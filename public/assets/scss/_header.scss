@@ -1,0 +1,208 @@
+.site-header {
+  width: 100%;
+  background: $color-bg-main;
+  border: none;
+  border-bottom: 1px solid $color-border;
+  border-radius: 0;
+  overflow: hidden;
+}
+
+/* ANCIEN BLOC, PLUS UTILISÉ */
+.top-header {
+  display: none;
+}
+
+/* BARRE SUPÉRIEURE */
+.nav-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: $space-md;
+  padding: $space-lg $space-xl;
+  background: $color-bg-soft;
+}
+
+/* BLOC LOGO + TITRE */
+.brand-box {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 16px;
+  flex: 1;
+  min-width: 0;
+}
+
+/* TITRE */
+.site-title {
+  margin: 0 0 -2px 0;
+  font-size: 1.21rem;
+  line-height: 1.1;
+  font-weight: $font-weight-bold;
+  color: $color-text-main;
+  white-space: nowrap;
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  span {
+    color: $color-secondary;
+  }
+}
+
+/* LOGO */
+.logo-box {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+
+  a {
+    @include flex-center;
+    width: 52px;
+    height: 52px;
+    background: $color-white;
+    border-radius: $radius-2xl;
+    box-shadow: $shadow-logo;
+    overflow: hidden;
+  }
+
+  img {
+    width: 62px;
+    height: 62px;
+    object-fit: contain;
+    display: block;
+  }
+}
+
+/* PROFIL DESKTOP */
+.profile-box {
+  display: none;
+  margin-left: auto;
+  align-items: center;
+  gap: $space-md;
+
+  a,
+  .logout-link {
+    text-decoration: none;
+    color: $color-black;
+    font-weight: $font-weight-semibold;
+    padding: $space-sm $space-lg;
+    border-radius: $radius-sm;
+    background: $color-white-soft;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    appearance: none;
+    outline: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.2;
+  }
+
+  form {
+    margin: 0;
+  }
+}
+
+/* PROFIL MOBILE */
+.mobile-profile-box {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  min-width: 34px;
+  flex-shrink: 0;
+
+  a,
+  .logout-link {
+    text-decoration: none;
+    color: $color-black;
+    font-size: 24px;
+    line-height: 1;
+    background: none;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    @include flex-center;
+    cursor: pointer;
+    font: inherit;
+    appearance: none;
+    outline: none;
+  }
+
+  form {
+    margin: 0;
+  }
+}
+
+/* IMAGE HERO */
+.hero-image {
+  position: relative;
+  width: 100%;
+  min-height: 420px;
+  margin: 0;
+  padding: 0;
+  background-image: url("../images/PapierMâché.jpeg");
+  background-size: cover;
+  background-position: 57% 46%;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.hero-overlay {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-height: 420px;
+  width: 100%;
+  padding: $space-xl $space-2xl $space-4xl $space-2xl;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.08);
+
+  h2 {
+    margin: 0;
+    font-size: 1.35rem;
+    font-weight: $font-weight-extrabold;
+    color: $color-white;
+    text-shadow: 0 3px 10px rgba(0, 0, 0, 0.55);
+  }
+}
+
+/* MENU PRINCIPAL */
+.main-nav {
+  display: none;
+  width: 100%;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0 $space-xl $space-xl $space-xl;
+  background: $color-bg-soft;
+
+  &.active {
+    display: flex;
+  }
+
+  a {
+    text-decoration: none;
+    color: $color-black;
+    font-weight: $font-weight-semibold;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* BOUTON BURGER */
+.burger-btn {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  min-width: 34px;
+  flex-shrink: 0;
+  cursor: pointer;
+  font-size: 34px;
+  color: $color-black;
+  background: none;
+  border: none;
+  padding: 0;
+  line-height: 1;
+}

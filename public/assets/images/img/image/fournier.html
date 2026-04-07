@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projet Fournier roux</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:," />
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite">
+    <div class="cookie-content">
+      <p>Nous utilisons des cookies pour améliorer votre expérience sur le site.</p>
+      <button id="accept-cookies" type="button">Accepter</button>
+    </div>
+  </div>
+
+  <header class="hero-header">
+    <div class="hero-overlay">
+      <div class="hero-text">
+        <p class="eyebrow">Projet associatif</p>
+        <h1>Projet <span class="highlight">Fournier roux</span></h1>
+        <p class="hero-subtitle">
+          Valorisation de l’association et découverte du Fournier roux à travers
+          une navigation plus immersive, visuelle et structurée.
+        </p>
+        <div class="hero-actions">
+          <button type="button" onclick="alert('Découvrir cliqué !')">Découvrir</button>
+          <button type="button" onclick="alert('En Savoir Plus cliqué !')">En Savoir Plus</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="video-section section-block">
+      <div class="section-heading">
+        <p class="section-tag">Multimédia</p>
+        <h2>🎥 Vidéos du Fournier roux</h2>
+        <p>
+          Deux vidéos locales intégrées depuis le dossier <strong>videos</strong>.
+        </p>
+      </div>
+
+      <div class="video-layout">
+        <div class="video-wrapper">
+          <video class="responsive-video" controls playsinline preload="metadata">
+            <source src="videos/fournier-roux-audio.mp4" type="video/mp4" />
+            Votre navigateur ne supporte pas la lecture vidéo.
+          </video>
+          <p class="video-caption">Vidéo 1 — Fournier roux avec chant naturel</p>
+        </div>
+
+        <div class="video-wrapper">
+          <video class="responsive-video" controls playsinline preload="metadata">
+            <source src="videos/fournier-roux.mp4.webm" type="video/webm" />
+            Votre navigateur ne supporte pas la lecture vidéo.
+          </video>
+          <p class="video-caption">Vidéo 2 — Observation du Fournier roux</p>
+        </div>
+      </div>
+
+      <div class="video-description">
+        <h3>Observation en vidéo</h3>
+        <p>
+          La première vidéo contient le chant naturel du Fournier roux.
+          La seconde présente une autre observation de l’oiseau dans son environnement.
+        </p>
+      </div>
+    </section>
+
+    <section class="arborescence section-block">
+      <div class="section-heading">
+        <p class="section-tag">Structure</p>
+        <h2>Arborescence du Site</h2>
+        <p>
+          Une organisation plus lisible, pensée comme des entrées visuelles
+          principales vers les contenus du projet.
+        </p>
+      </div>
+
+      <div class="tree-layout">
+        <div class="tree-home-card">
+          <div class="node root">Accueil</div>
+          <p>
+            Point d’entrée principal du projet avec présentation, accès rapide
+            aux contenus et mise en avant des découvertes.
+          </p>
+        </div>
+
+        <div class="tree-grid">
+          <article class="tree-card large">
+            <h3>L'Oiseau Fournier roux</h3>
+            <p>Description de l’espèce, habitat, comportement et caractéristiques principales.</p>
+          </article>
+
+          <article class="tree-card">
+            <h3>Construction du Nid</h3>
+            <p>Explication détaillée du processus de fabrication du nid et de son importance.</p>
+          </article>
+
+          <article class="tree-card">
+            <h3>Galerie</h3>
+            <p>Photographies, mises en avant visuelles et observation du Fournier roux.</p>
+          </article>
+
+          <article class="tree-card">
+            <h3>Ressources</h3>
+            <p>Sources, documents, liens pédagogiques et contenus complémentaires.</p>
+          </article>
+
+          <article class="tree-card wide">
+            <h3>Contact</h3>
+            <p>Informations pour joindre l’association, poser des questions ou participer au projet.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="wireframes section-block">
+      <div class="section-heading">
+        <p class="section-tag">Maquettes</p>
+        <h2>Wireframes Principaux</h2>
+        <p>
+          Les vues sont maintenant plus grandes et disposées différemment pour
+          mieux hiérarchiser les pages clés.
+        </p>
+      </div>
+
+      <div class="wireframes-layout">
+        <article class="wireframe wireframe-featured">
+          <div class="wf-header">Accueil</div>
+          <div class="wf-body">
+            <img src="img1.jpg" alt="Fournier roux adulte" />
+          </div>
+          <div class="wf-caption">
+            <p>Vue principale large avec mise en avant de l’oiseau et des accès rapides.</p>
+          </div>
+        </article>
+
+        <article class="wireframe">
+          <div class="wf-header">L'Oiseau Fournier roux</div>
+          <div class="wf-body">
+            <img src="img3.jpg" alt="Fournier roux au nid à Colonia" />
+          </div>
+        </article>
+
+        <article class="wireframe">
+          <div class="wf-header">Galerie</div>
+          <div class="wf-body">
+            <img src="img2.jpg" alt="Fournier roux nid historique" />
+          </div>
+        </article>
+
+        <article class="wireframe wireframe-tall">
+          <div class="wf-header">Contact</div>
+          <div class="wf-body">
+            <img src="img4.JPG" alt="Fournier roux et nid au Pantanal" />
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="maquette section-block">
+      <div class="section-heading">
+        <p class="section-tag">Expérience</p>
+        <h2>Maquette Principale</h2>
+      </div>
+
+      <div class="mockup modern-layout">
+        <div class="mockup-intro">
+          <header class="mockup-header">
+            <h2>Bienvenue sur Fournier roux</h2>
+            <p>À la découverte du Fournier roux</p>
+            <div class="buttons">
+              <button type="button" onclick="alert('Découvrir cliqué !')">Découvrir</button>
+              <button type="button" onclick="alert('En Savoir Plus cliqué !')">En Savoir Plus</button>
+            </div>
+          </header>
+
+          <div class="mockup-text">
+            <p>
+              Explorez le projet, découvrez l’espèce, observez ses nids et
+              consultez des données récentes grâce à l’intégration iNaturalist.
+            </p>
+          </div>
+        </div>
+
+        <div class="gallery gallery-large">
+          <div class="main-img">
+            <img id="current-img" src="img2.jpg" alt="Image principale" />
+          </div>
+          <div class="thumbnails">
+            <img src="img2.jpg" data-index="0" alt="Thumb Nid Historique" />
+            <img src="img1.jpg" data-index="1" alt="Thumb Adulte" />
+            <img src="img3.jpg" data-index="2" alt="Thumb Nid Colonia" />
+            <img src="img4.JPG" data-index="3" alt="Thumb Nid Pantanal" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="typography-specimen section-block">
+      <div class="section-heading">
+        <p class="section-tag">Typographie</p>
+        <h2>Test de la police Luciole</h2>
+        <p>
+          Exemple de rendu direct de la typographie <strong>Luciole</strong> pour le cahier des charges,
+          avec aperçu visuel et informations de référence.
+        </p>
+      </div>
+
+      <div class="typography-card">
+        <div class="typography-preview">
+          <p class="typography-label">Aperçu en direct</p>
+          <h3 class="luciole-title">Luciole</h3>
+          <p class="luciole-subtitle">
+            Une police pensée pour la lisibilité, utilisée ici pour les titres,
+            textes courants et éléments d’interface.
+          </p>
+
+          <div class="luciole-samples">
+            <p class="luciole-sample sample-large">"Bienvenue sur Fournier roux"
+            </p>
+            <p class="luciole-sample sample-body">
+              La typographie Luciole a été conçue pour améliorer la lisibilité,
+              notamment pour les personnes malvoyantes, grâce à des formes de lettres
+              claires, un espacement optimisé et une structure sans-serif facilitant
+              une lecture rapide et confortable sur écran comme sur support imprimé.
+            </p>
+            <p class="luciole-sample sample-alphabet">
+              ABCDEFGHIJKLMNOPQRSTUVWXYZ<br />
+              abcdefghijklmnopqrstuvwxyz<br />
+              0123456789 — &amp; ? ! % €
+            </p>
+          </div>
+        </div>
+
+        <div class="typography-details">
+          <h3>Détails de la typographie</h3>
+          <ul>
+            <li><strong>Nom :</strong> Luciole regular</li>
+            <li><strong>Format :</strong> WOFF2</li>
+            <li><strong>Usage :</strong> Titres, texte courant et éléments d’interface</li>
+            <li><strong>Poids testé :</strong> 400 et 700</li>
+            <li><strong>Objectif :</strong> Assurer une lecture claire, sobre et accessible</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="inat section-block inat-highlight">
+      <div class="section-heading">
+        <p class="section-tag">Données</p>
+        <h2>🧾 Fiche espèce — iNaturalist</h2>
+      </div>
+
+      <div class="inat-layout-single">
+        <div id="taxon-card" class="taxon-card taxon-card-large">
+          <p>Chargement des informations…</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="inat section-block">
+      <div class="section-heading">
+        <p class="section-tag">Actualité</p>
+        <h2>📍 Observations récentes — iNaturalist</h2>
+      </div>
+
+      <div class="inat-observations-wrapper">
+        <aside class="inat-side-info">
+          <h3>Observations en direct</h3>
+          <p>
+            Consultez les publications récentes et les lieux d’observation
+            disponibles publiquement via iNaturalist.
+          </p>
+        </aside>
+
+        <div id="observations-list" class="observations-list observations-grid">
+          <p>Chargement des observations…</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 Projet Fournier roux</p>
+  </footer>
+</body>
+
+</html>

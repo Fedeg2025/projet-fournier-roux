@@ -1,0 +1,100 @@
+.oiseau-page {
+  width: 100%;
+  max-width: 430px;
+  margin: 0 auto;
+  padding: 0 0 60px;
+  background: $color-bg-main;
+}
+
+.oiseau-article {
+  padding: 28px 18px 0;
+  color: $color-text-main;
+
+  &__title {
+    margin: 0 0 22px;
+    font-size: 30px;
+    line-height: 1.02;
+    font-weight: 800;
+    color: $color-black;
+
+    span {
+      display: block;
+      color: $color-secondary;
+    }
+
+    strong {
+      display: block;
+      color: $color-black;
+      font-weight: 800;
+    }
+  }
+
+  &__intro,
+  &__text,
+  &__note,
+  &__caption {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.9;
+    color: $color-text-soft;
+  }
+
+  &__intro,
+  &__text {
+    margin-bottom: 22px;
+  }
+
+  &__media {
+    margin: 34px 0;
+  }
+
+  &__image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+  }
+
+  &__map {
+    width: 100%;
+    max-width: 162px;
+    margin: 0;
+  }
+
+  &__map-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  &__caption {
+    margin-top: 18px;
+    max-width: 290px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .oiseau-page {
+    max-width: 760px;
+  }
+
+  .oiseau-article {
+    padding: 40px 28px 0;
+
+    &__title {
+      font-size: 42px;
+    }
+
+    &__intro,
+    &__text,
+    &__note,
+    &__caption {
+      font-size: 15px;
+    }
+
+    &__map {
+      max-width: 260px;
+    }
+  }
+}

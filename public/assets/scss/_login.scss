@@ -1,0 +1,78 @@
+/* =========================
+   PAGE LOGIN - SPÉCIFIQUE
+========================= */
+
+.auth-page--login {
+  .auth-form__actions-top {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0;
+  }
+
+  .auth-form__forgot-link {
+    font-size: 0.95rem;
+    font-weight: $font-weight-bold;
+    color: $color-black;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+  }
+
+  .auth-form__consent {
+    display: flex;
+    align-items: flex-start;
+    gap: $space-sm;
+    margin-top: 2px;
+  }
+
+  .auth-form__checkbox {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    margin-top: 1px;
+    border: 1px solid $color-text-muted;
+    border-radius: 50%;
+    background: transparent;
+    appearance: none;
+    cursor: pointer;
+    position: relative;
+
+    &:checked::after {
+      content: "";
+      position: absolute;
+      top: 5px;
+      left: 9px;
+      width: 6px;
+      height: 12px;
+      border: solid $color-secondary;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+
+    &:focus {
+      outline: 2px solid rgba($color-secondary, 0.2);
+      outline-offset: 2px;
+    }
+  }
+
+  .auth-form__consent-label {
+    max-width: 290px;
+    font-size: 0.95rem;
+    line-height: 1.42;
+    color: $color-text-main;
+
+    a {
+      color: $color-black;
+      font-weight: $font-weight-bold;
+      text-decoration: none;
+
+      &:hover,
+      &:focus {
+        text-decoration: underline;
+      }
+    }
+  }
+}

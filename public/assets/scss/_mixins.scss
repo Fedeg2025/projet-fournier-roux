@@ -1,0 +1,82 @@
+/* =========================
+   MIXINS
+========================= */
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin section-container {
+  max-width: $container-main;
+  margin: $space-md auto;
+  padding: 0 $space-4xl $space-8xl $space-4xl;
+}
+
+@mixin mobile-only {
+  @media (max-width: $breakpoint-mobile-max) {
+    @content;
+  }
+}
+
+@mixin desktop-only {
+  @media (min-width: $breakpoint-desktop-min) {
+    @content;
+  }
+}
+
+@mixin soft-card {
+  background: $color-card-soft;
+  border-radius: $radius-xl;
+  box-shadow: $shadow-soft;
+}
+
+@mixin reset-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+@mixin reset-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@mixin auth-button-base {
+  @include flex-center;
+  width: fit-content;
+  min-width: 160px;
+  height: 44px;
+  padding: 0 $space-2xl;
+  border-radius: $radius-xl;
+  font-size: 0.95rem;
+  font-weight: $font-weight-bold;
+  font-family: $font-main;
+  cursor: pointer;
+  transition: transform 0.15s ease, opacity 0.15s ease, box-shadow 0.15s ease;
+}
+
+@mixin form-field-base {
+  border: 1px solid rgba($color-text-soft, 0.55);
+  background-color: $color-input-bg;
+  color: $color-text-main;
+  font-size: $font-size-base;
+  font-family: $font-main;
+  outline: none;
+  box-shadow: none;
+  appearance: none;
+  -webkit-appearance: none;
+
+  &:hover,
+  &:focus {
+    border-color: rgba($color-text-soft, 0.7);
+    background-color: $color-white;
+  }
+}

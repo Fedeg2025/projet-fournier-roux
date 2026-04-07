@@ -1,0 +1,236 @@
+/* =========================
+   PAGE CONTACT
+========================= */
+
+.contact-page {
+  width: 100%;
+  background-color: $color-bg-main;
+
+  /* =========================
+     CONTACT - STRUCTURE
+  ========================= */
+
+  .contact-section {
+    width: 100%;
+    max-width: $container-main;
+    margin: 0 auto;
+    padding: $space-7xl $space-4xl $space-8xl;
+  }
+
+  .contact-section__inner {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  /* =========================
+     CONTACT - CARTE FORMULAIRE
+  ========================= */
+
+  .contact-card {
+    border: 1px solid rgba($color-text-soft, 0.55);
+    border-radius: $radius-2xl;
+    background-color: transparent;
+    padding: $space-7xl $space-6xl $space-6xl;
+  }
+
+  .contact-card__header {
+    margin-bottom: $space-7xl;
+  }
+
+  .contact-card__title {
+    margin: 0;
+    text-align: center;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    color: $color-white;
+  }
+
+  /* =========================
+     CONTACT - ALERTES
+  ========================= */
+
+  .contact-message {
+    margin-bottom: $space-5xl;
+    padding: $space-xl $space-2xl;
+    border-radius: $radius-md;
+    font-size: $font-size-sm;
+    line-height: $line-height-relaxed;
+
+    &--success {
+      border: 1px solid $color-success-border;
+      background-color: $color-success-bg;
+      color: $color-success-text;
+    }
+
+    &--error {
+      border: 1px solid $color-error-border;
+      background-color: $color-error-bg;
+      color: $color-error-text;
+    }
+  }
+
+  /* =========================
+     CONTACT - FORMULAIRE
+  ========================= */
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Civilité */
+
+  .contact-form__civility {
+    display: flex;
+    justify-content: space-between;
+    gap: $space-4xl;
+    margin: 0 0 $space-7xl;
+    padding: 0;
+    border: none;
+  }
+
+  .contact-form__legend {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .contact-form__radio-option {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $space-sm;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .contact-form__radio-text {
+    font-size: $font-size-md;
+    font-weight: $font-weight-bold;
+    color: $color-white;
+  }
+
+  .contact-form__radio-option input {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 22px;
+    height: 22px;
+    margin: 0;
+    border-radius: $radius-pill;
+    border: 1px solid rgba($color-text-soft, 0.65);
+    background-color: $color-white;
+    position: relative;
+    cursor: pointer;
+
+    &:checked::after {
+      content: "";
+      position: absolute;
+      top: 4px;
+      left: 7px;
+      width: 5px;
+      height: 10px;
+      border: solid $color-secondary;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+  }
+
+  /* Champs */
+
+  .contact-form__group {
+    display: flex;
+    flex-direction: column;
+    gap: $space-sm;
+    margin-bottom: $space-6xl;
+  }
+
+  .contact-form__label {
+    padding-left: $space-xs;
+    font-size: $font-size-md;
+    font-weight: $font-weight-bold;
+    color: $color-white;
+  }
+
+  .contact-form__input {
+    @include form-field-base;
+    width: 100%;
+    height: 44px;
+    padding: 0 $space-2xl;
+    border-radius: $radius-pill;
+  }
+
+  .contact-form__textarea {
+    @include form-field-base;
+    width: 100%;
+    min-height: 120px;
+    padding: $space-xl;
+    border-radius: $radius-xl;
+    resize: vertical;
+  }
+
+  .contact-form__textarea--objet {
+    min-height: 96px;
+  }
+
+  /* Bouton */
+
+  .contact-form__submit {
+    margin-top: $space-lg;
+  }
+
+  .contact-form__button {
+    width: 100%;
+    height: 44px;
+    border: none;
+    border-radius: $radius-sm;
+    background-color: $color-contact-button;
+    color: $color-white;
+    font-size: $font-size-base;
+    font-weight: $font-weight-bold;
+    font-family: $font-main;
+    cursor: pointer;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+
+    &:hover,
+    &:focus {
+      opacity: 0.92;
+      transform: translateY(-1px);
+    }
+  }
+
+  /* =========================
+     CONTACT - TEXTE INFÉRIEUR
+  ========================= */
+
+  .contact-info {
+    max-width: 700px;
+    margin: $space-7xl auto 0;
+    text-align: center;
+    color: $color-text-main;
+
+    p {
+      margin: 0 0 $space-6xl;
+      font-size: $font-size-base;
+      line-height: $line-height-relaxed;
+      letter-spacing: 0.08em;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    strong {
+      font-weight: $font-weight-regular;
+      letter-spacing: 0.08em;
+      color: $color-text-main;
+    }
+  }
+}

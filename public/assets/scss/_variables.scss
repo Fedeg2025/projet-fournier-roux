@@ -1,0 +1,155 @@
+/* =========================
+   VARIABLES GLOBALES
+========================= */
+
+/* COULEURS PRINCIPALES */
+$color-bg-main: #DDD1C4;
+$color-bg-soft: #efefef;
+$color-white: #ffffff;
+$color-black: #111111;
+
+$color-primary: #8b3d0f;
+$color-secondary: #e06a1a;
+
+$color-text-main: #111111;
+$color-text-soft: #4b3a2f;
+$color-text-muted: #4b4b4b;
+$color-text-footer: #6b4b2e;
+
+$color-border: #b9a999;
+$color-border-soft: #c8beb4;
+$color-divider: #9a9a9a;
+
+/* RÉSEAUX SOCIAUX */
+$color-facebook: #1877f2;
+$color-instagram: #e4405f;
+
+/* SURVOL */
+$color-hover-primary: #a84a14;
+
+/* TRANSPARENCES */
+$color-white-soft: rgba(255, 255, 255, 0.35);
+$color-card-soft: rgba(255, 255, 255, 0.45);
+
+/* TYPOGRAPHIE */
+$font-main: "Luciole", Arial, sans-serif;
+$font-fallback: Arial, sans-serif;
+
+/* TAILLES DE TEXTE */
+$font-size-xs: 12px;
+$font-size-sm: 13px;
+$font-size-md: 14px;
+$font-size-base: 16px;
+$font-size-lg: 18px;
+$font-size-xl: 22px;
+$font-size-xxl: 24px;
+$font-size-title: 30px;
+$font-size-title-desktop: 34px;
+$icon-size-lg: 42px;
+
+/* GRAISSES DE POLICE */
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-weight-extrabold: 800;
+
+/* INTERLIGNAGE */
+$line-height-tight: 1.1;
+$line-height-base: 1.25;
+$line-height-relaxed: 1.5;
+
+/* ESPACEMENTS */
+$space-xxs: 4px;
+$space-xs: 6px;
+$space-sm: 8px;
+$space-md: 10px;
+$space-lg: 12px;
+$space-xl: 14px;
+$space-2xl: 16px;
+$space-3xl: 18px;
+$space-4xl: 20px;
+$space-5xl: 22px;
+$space-6xl: 24px;
+$space-7xl: 30px;
+$space-8xl: 40px;
+
+/* RAYONS */
+$radius-sm: 6px;
+$radius-md: 10px;
+$radius-lg: 12px;
+$radius-xl: 14px;
+$radius-2xl: 24px;
+$radius-pill: 999px;
+
+/* OMBRES */
+$shadow-soft: 0 4px 14px rgba(0, 0, 0, 0.08);
+$shadow-logo: 0 8px 18px rgba(0, 0, 0, 0.08);
+
+/* CONTENEURS */
+$container-main: 1100px;
+$container-app: 100%;
+$logo-box-size: 72px;
+$logo-img-size: 66px;
+
+/* HERO */
+$hero-height-default: 330px;
+$hero-height-mobile: 360px;
+$hero-height-desktop: 500px;
+
+/* POINTS DE RUPTURE */
+$breakpoint-mobile-max: 800px;
+$breakpoint-desktop-min: 801px;
+
+/* =========================
+   COULEURS D'ÉTAT
+========================= */
+$color-error-border: #c94d3f;
+$color-error-bg: #fbe8e5;
+$color-error-text: #8e2d23;
+
+/* SUCCESS / FORMULAIRES */
+$color-success-border: #7ab98a;
+$color-success-bg: #e7f7ec;
+$color-success-text: #1d6b33;
+$color-input-bg: #f5f5f5;
+$color-contact-button: #596272;
+
+/* =========================
+   AUTH TOKENS
+========================= */
+
+/* LOGO */
+$auth-logo-wrap-size: 92px;
+$auth-logo-box-size: 92px;
+$auth-logo-size: 56px;
+$auth-logo-offset-left: 6rem;
+
+/* INPUTS / BOUTONS */
+$auth-input-height: 38px;
+$auth-button-width: 170px;
+$auth-button-height: 44px;
+
+/* LARGEURS */
+$auth-hero-max-width: 420px;
+$auth-content-max-width: 400px;
+
+/* PADDINGS / MARGES */
+$auth-hero-padding-top: 7rem;
+$auth-content-padding-x: 27px;
+$auth-content-padding-bottom: 3.2rem;
+$auth-header-margin-bottom: 2.3rem;
+$auth-divider-margin-top: 2.35rem;
+$auth-divider-margin-bottom: 1.75rem;
+$auth-register-text-margin-bottom: 1.5rem;
+$auth-footer-padding-y-top: 1.5rem;
+$auth-footer-padding-x: 1rem;
+$auth-footer-padding-y-bottom: 1.2rem;
+
+/* DÉRIVÉS COULEUR */
+$auth-page-footer-bg: lighten($color-bg-main, 8%);
+$auth-input-bg: lighten($color-bg-main, 12%);
+
+/* DIVERS */
+$auth-button-shadow-offset: 4px 4px 0 rgba($color-secondary, 0.2);
+$auth-button-shadow-offset-hover: 5px 5px 0 rgba($color-secondary, 0.24);

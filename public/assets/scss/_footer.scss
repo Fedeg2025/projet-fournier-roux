@@ -1,0 +1,148 @@
+/* =========================
+   FOOTER
+========================= */
+
+.site-footer {
+  width: 100%;
+  box-sizing: border-box;
+  background: $color-bg-main;
+  padding: $space-xl $space-3xl $space-lg $space-3xl;
+  color: $color-text-soft;
+}
+
+/* TOP */
+.footer-top {
+  @include flex-between;
+  gap: $space-3xl;
+  padding-bottom: $space-md;
+}
+
+/* LINKS */
+.footer-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  a {
+    text-decoration: none;
+    color: $color-text-muted;
+    font-weight: $font-weight-semibold;
+    font-size: $font-size-md;
+    padding-right: $space-xl;
+    margin-right: $space-xl;
+    position: relative;
+  }
+}
+
+/* ADDRESS */
+.footer-address {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  color: $color-text-footer;
+  font-size: $font-size-md;
+  font-weight: $font-weight-medium;
+
+  span {
+    padding-right: $space-md;
+    margin-right: $space-md;
+    position: relative;
+
+    &:last-child {
+      padding-right: 0;
+      margin-right: 0;
+    }
+  }
+}
+
+/* SOCIAL */
+.footer-socials {
+  display: flex;
+  align-items: center;
+  gap: $space-md;
+  flex-shrink: 0;
+
+  a {
+    text-decoration: none;
+    font-size: 28px;
+    line-height: 1;
+    @include flex-center;
+  }
+
+  .fa-facebook {
+    color: $color-facebook;
+  }
+
+  .fa-instagram {
+    color: $color-instagram;
+  }
+}
+
+/* BOTTOM */
+.footer-bottom {
+  padding-top: $space-md;
+  text-align: center;
+
+  p {
+    margin: 0;
+    font-size: $font-size-sm;
+    color: $color-text-footer;
+    font-weight: $font-weight-medium;
+  }
+}
+
+/* =========================
+   FOOTER RESPONSIVE MOBILE
+========================= */
+@include mobile-only {
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    gap: $space-xl;
+    padding-bottom: $space-lg;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $space-sm;
+    padding-right: $space-xl;
+
+    a {
+      font-size: $font-size-xs;
+      padding-right: 0;
+      margin-right: 0;
+      position: static;
+    }
+  }
+
+  .footer-address {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $space-xs;
+    font-size: $font-size-xs;
+    line-height: $line-height-base;
+
+    span {
+      padding: 0;
+      margin: 0;
+      position: static;
+    }
+  }
+
+  .footer-socials {
+    grid-column: 2;
+    justify-self: end;
+    font-size: 34px;
+    margin-top: $space-xxs;
+  }
+
+  .footer-bottom {
+    padding-top: $space-lg;
+
+    p {
+      font-size: $font-size-xs;
+    }
+  }
+}
