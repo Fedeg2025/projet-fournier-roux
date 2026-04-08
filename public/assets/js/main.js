@@ -1,9 +1,13 @@
-let pageActuelle = 1;
+let pageCourante = 1;
 let chargementEnCours = false;
 let toutesLesObservationsChargees = false;
 const quantiteParGroupe = 6;
 
-// Fonction : obtenirImage
+/*
+  Renvoie la meilleure URL d'image disponible pour une photo iNaturalist.
+  On privilégie l'URL principale, puis les variantes medium ou small,
+  avant de forcer une version large quand c'est possible.
+*/
 function obtenirImage(photo) {
   if (!photo) return "";
 
@@ -19,7 +23,10 @@ function obtenirImage(photo) {
   return image;
 }
 
-// Fonction : afficherGroupe
+/*
+  Affiche un groupe d'observations dans la zone principale.
+  Si aucun résultat n'est disponible, le bouton de chargement est masqué.
+*/
 function afficherGroupe(groupe) {
   const liste = document.getElementById("observations-list");
   const bouton = document.getElementById("load-more-inat");
@@ -68,7 +75,11 @@ function afficherGroupe(groupe) {
   liste.innerHTML = html;
 }
 
-// Fonction : chargerINaturalist
+/*
+  Interroge l'API iNaturalist pour charger un nouveau groupe d'observations.
+  La fonction évite les requêtes en double et met à jour l'interface
+  selon l'état du chargement, les résultats ou les erreurs éventuelles.
+*/
 function chargerINaturalist() {
   const liste = document.getElementById("observations-list");
   const bouton = document.getElementById("load-more-inat");
@@ -81,7 +92,7 @@ function chargerINaturalist() {
     bouton.disabled = true;
   }
 
-  if (pageActuelle === 1) {
+  if (pageCourante === 1) {
     liste.innerHTML = "<p>Chargement...</p>";
   }
 
@@ -89,7 +100,7 @@ function chargerINaturalist() {
     "https://api.inaturalist.org/v1/observations?taxon_id=11275&photos=true&per_page=" +
       quantiteParGroupe +
       "&page=" +
-      pageActuelle +
+      pageCourante +
       "&order_by=observed_on&order=desc"
   )
     .then(function (response) {
@@ -123,7 +134,7 @@ function chargerINaturalist() {
       }
 
       if (nouvellesObservations.length === 0) {
-        if (pageActuelle === 1) {
+        if (pageCourante === 1) {
           liste.innerHTML = "<p>Aucune observation trouvée.</p>";
         }
 
@@ -147,7 +158,7 @@ function chargerINaturalist() {
           bouton.style.display = "none";
         }
       } else {
-        pageActuelle++;
+        pageCourante++;
 
         if (bouton) {
           bouton.style.display = "inline-block";
@@ -163,7 +174,7 @@ function chargerINaturalist() {
     .catch(function (error) {
       console.error("Erreur iNaturalist :", error);
 
-      if (pageActuelle === 1) {
+      if (pageCourante === 1) {
         liste.innerHTML = "<p>Erreur lors du chargement des observations.</p>";
       }
 
@@ -176,6 +187,10 @@ function chargerINaturalist() {
     });
 }
 
+/*
+  Initialise les composants principaux une fois le DOM prêt :
+  chargement iNaturalist, galerie de miniatures et interactions utilisateur.
+*/
 document.addEventListener("DOMContentLoaded", function () {
   const liste = document.getElementById("observations-list");
   const bouton = document.getElementById("load-more-inat");
@@ -190,7 +205,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  /* ===== GALERIE PHOTOS ===== */
+  /* Gère la galerie de miniatures et la navigation entre les images. */
   const gallery = document.querySelector(".thumb-gallery");
 
   if (gallery) {
@@ -201,6 +216,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let indexActuel = 0;
 
+    /*
+      Met à jour l'élément actif, les indicateurs et le scroll
+      afin de recentrer la miniature sélectionnée.
+    */
     function mettreAJourGalerie(index) {
       if (!items.length) return;
 
@@ -269,7 +288,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-/* ===== LIGHTBOX ACCUEIL ===== */
+/* Gère la lightbox de la galerie principale de la page d'accueil. */
 const lightbox = document.getElementById("custom-lightbox");
 const lightboxImage = document.getElementById("lightbox-image");
 const lightboxClose = document.getElementById("lightbox-close");
@@ -287,6 +306,10 @@ if (
 ) {
   let imageActuelle = 0;
 
+  /*
+    Ouvre la lightbox avec l'image sélectionnée
+    et bloque le scroll de la page pendant l'affichage.
+  */
   function ouvrirLightbox(index) {
     const lien = galerieLiens[index];
     const image = lien.querySelector("img");
@@ -302,6 +325,7 @@ if (
     document.body.style.overflow = "hidden";
   }
 
+  /* Ferme la lightbox et rétablit l'état normal de la page. */
   function fermerLightbox() {
     lightbox.classList.remove("active");
     lightbox.setAttribute("aria-hidden", "true");
@@ -310,6 +334,7 @@ if (
     document.body.style.overflow = "";
   }
 
+  /* Passe à l'image suivante, avec retour au début en fin de galerie. */
   function imageSuivante() {
     imageActuelle++;
 
@@ -320,6 +345,7 @@ if (
     ouvrirLightbox(imageActuelle);
   }
 
+  /* Revient à l'image précédente, avec boucle vers la fin si nécessaire. */
   function imagePrecedente() {
     imageActuelle--;
 
@@ -372,7 +398,7 @@ if (
   });
 }
 
-/* ===== SLIDER NID ===== */
+/* Gère le slider automatique de la section du nid. */
 const nidSlider = document.querySelector(".nid-slider");
 
 if (nidSlider) {
@@ -386,6 +412,10 @@ if (nidSlider) {
     let currentIndex = 0;
     let slideWidth = slides[0].offsetWidth;
 
+    /*
+      Met à jour la position du slider.
+      La transition peut être activée ou désactivée selon le contexte.
+    */
     function updateNidSlider(withTransition) {
       if (withTransition) {
         track.style.transition = "transform 0.35s ease";
@@ -397,6 +427,7 @@ if (nidSlider) {
         "translateX(-" + currentIndex * slideWidth + "px)";
     }
 
+    /* Passe à la slide suivante. */
     function nextNidSlide() {
       currentIndex++;
       updateNidSlider(true);
@@ -422,7 +453,7 @@ if (nidSlider) {
   }
 }
 
-/* ===== PLAYLIST AUDIOS ===== */
+/* Gère une playlist audio interactive. */
 const playlist = document.querySelector("[data-audio-playlist]");
 
 if (playlist) {
@@ -454,7 +485,7 @@ if (playlist) {
   }
 }
 
-/* ===== MENU BURGER ===== */
+/* Gère l'ouverture et la fermeture du menu burger. */
 const burgerBtn = document.getElementById("burger-btn");
 const mainNav = document.getElementById("main-nav");
 const navLinks = document.querySelectorAll("#main-nav a");
