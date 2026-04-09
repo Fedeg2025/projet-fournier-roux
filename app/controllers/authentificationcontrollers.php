@@ -192,7 +192,7 @@ if ($page === 'nouveau-mot-de-passe') {
             } else {
                 $mot_de_passe_hash = password_hash($mot_de_passe, PASSWORD_DEFAULT);
 
-                $sql = "UPDATE utilisateur SET mot_de_passe = :mot_de_passe WHERE email = :email";
+                $sql = "UPDATE utilisateurs SET mot_de_passe = :mot_de_passe WHERE email = :email";
                 $stmt = $pdo->prepare($sql);
                 $stmt->execute([
                     ':mot_de_passe' => $mot_de_passe_hash,

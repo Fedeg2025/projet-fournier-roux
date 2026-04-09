@@ -33,13 +33,13 @@ $csrfToken = $_SESSION['csrf_token'] ?? '';
             </header>
 
             <?php if (!empty($erreur)): ?>
-                <div class="auth-message auth-message--error" role="alert" aria-live="polite">
+                <div class="auth-message auth-message--pas-reussi" role="alert" aria-live="polite">
                     <?php echo htmlspecialchars($erreur); ?>
                 </div>
             <?php endif; ?>
 
             <?php if (!empty($succes)): ?>
-                <div class="auth-message auth-message--success" role="alert" aria-live="polite">
+                <div class="auth-message auth-message--reussi" role="alert" aria-live="polite">
                     <?php echo htmlspecialchars($succes); ?>
                 </div>
             <?php endif; ?>
