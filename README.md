@@ -128,7 +128,7 @@ Le projet suit une organisation en **architecture MVC** :
 
 - **Models** : gestion des données et interactions avec la base ;
 - **Views** : affichage des pages et composants d’interface ;
-- **Controllers** : traitement des requêtes et logique applicative.
+- **Controllers** : traitement des requêtes et de la logique applicative.
 
 Cette structure permet :
 
@@ -146,12 +146,13 @@ Le projet utilise une base de données **MySQL**.
 Le dépôt contient :
 
 - `database/schema.sql` → structure de la base ;
-- `database/seed.sql` → données de démonstration minimales.
+- `database/seed.sql` → données de démonstration pour tester le projet en local.
 
 Le fichier `seed.sql` permet notamment d’insérer :
 
 - un **compte administrateur de démonstration** ;
-- les données minimales nécessaires au test du projet.
+- des utilisateurs, catégories, contenus et médias de test ;
+- les données nécessaires à une démonstration locale du projet.
 
 ---
 
@@ -165,7 +166,7 @@ Cette intégration permet :
 - d’enrichir le contenu pédagogique du site ;
 - d’apporter une dimension plus réaliste et interactive à l’expérience utilisateur.
 
-L’affichage repose sur des requêtes côté front permettant d’exploiter les données retournées par l’API.
+L’affichage repose sur des requêtes permettant d’exploiter les données retournées par l’API.
 
 ---
 
@@ -268,6 +269,16 @@ Importer ensuite :
 database/seed.sql
 ```
 
+### 4) Vérifier les fichiers médias
+
+Le projet utilise également des fichiers médias présents dans :
+
+```txt
+public/uploads
+```
+
+Ces fichiers doivent être conservés pour que les articles et contenus de démonstration s’affichent correctement.
+
 ---
 
 ## Lancer le projet
@@ -280,7 +291,9 @@ Exemples :
 - **WAMP**
 - **MAMP**
 
-Une fois la base configurée et le fichier `.env` renseigné, lancer le serveur local puis accéder au projet via le navigateur :
+Une fois la base configurée et le fichier `.env` renseigné, lancer le serveur local puis accéder au projet via le navigateur.
+
+Exemple d’accès local :
 
 ```txt
 http://localhost/web/fournier_roux/
@@ -292,15 +305,13 @@ L’URL exacte peut varier selon votre configuration locale.
 
 ## Compte administrateur de démonstration
 
-Un compte administrateur de démonstration est prévu via le fichier :
+Un compte administrateur de démonstration est créé automatiquement lors de l’import de :
 
 ```txt
 database/seed.sql
 ```
 
-Les identifiants peuvent être adaptés selon les besoins du test local.
-
-Pour des raisons de sécurité et de configuration locale, les identifiants exacts ne sont pas exposés directement dans ce README.
+Ce compte permet de tester localement les principales fonctionnalités d’administration du projet.
 
 ---
 
