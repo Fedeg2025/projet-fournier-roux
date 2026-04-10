@@ -1,6 +1,6 @@
 .env
-public/assets/images/videos/fournier-roux1.webm
 node_modules/
 vendor/
 public/uploads/
-uploads/
+public/assets/images/videos/*.mp4
+public/assets/images/videos/*.webm

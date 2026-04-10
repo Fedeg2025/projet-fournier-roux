@@ -2,13 +2,31 @@
   width: 100%;
   max-width: 430px;
   margin: 0 auto;
-  padding: 0 0 60px;
+  padding: 0 $space-3xl 60px; // 👈 aire lateral correcto
   background: $color-bg-main;
 }
 
 .oiseau-article {
-  padding: 28px 18px 0;
+  padding: 28px 0 0; // 👈 quitamos padding lateral (ahora lo controla el page)
   color: $color-text-main;
+
+  /* =========================
+     SECCIONES (FIX ESPACIADO)
+  ========================= */
+
+  &__section {
+    padding: $space-3xl $space-3xl $space-lg; // 👈 menos padding abajo
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: $radius-lg;
+  }
+
+  &__section + &__section {
+    margin-top: $space-4xl; // 👈 separación uniforme entre bloques
+  }
+
+  /* =========================
+     TITLE
+  ========================= */
 
   &__title {
     margin: 0 0 22px;
@@ -29,6 +47,10 @@
     }
   }
 
+  /* =========================
+     TEXT
+  ========================= */
+
   &__intro,
   &__text,
   &__note,
@@ -43,6 +65,10 @@
   &__text {
     margin-bottom: 22px;
   }
+
+  /* =========================
+     MEDIA
+  ========================= */
 
   &__media {
     margin: 34px 0;
@@ -74,13 +100,18 @@
   }
 }
 
+/* =========================
+   RESPONSIVE
+========================= */
+
 @media screen and (min-width: 768px) {
   .oiseau-page {
     max-width: 760px;
+    padding: 0 $space-4xl 60px; // 👈 más aire lateral
   }
 
   .oiseau-article {
-    padding: 40px 28px 0;
+    padding: 40px 0 0;
 
     &__title {
       font-size: 42px;

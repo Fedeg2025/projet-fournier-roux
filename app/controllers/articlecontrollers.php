@@ -7,15 +7,22 @@ if (!isset($_SESSION['user'])) {
 
 require_once __DIR__ . '/../models/article.php';
 
-$articles_recents = getLatestArticles($pdo, 3);
-$articles_anciens = getOlderArticles($pdo, 3);
+$articles = getAllArticles($pdo);
 
-foreach ($articles_recents as &$article) {
-    $article['medias'] = getMediaByArticle($pdo, $article['id_article']);
+$articles_par_page = 2;
+$page_articles = isset($_GET['p']) ? (int) $_GET['p'] : 1;
+
+if ($page_articles < 1) {
+    $page_articles = 1;
 }
-unset($article);
 
-foreach ($articles_anciens as &$article) {
+$total_articles = count($articles);
+$total_pages_articles = ceil($total_articles / $articles_par_page);
+$offset_articles = ($page_articles - 1) * $articles_par_page;
+
+$articles = array_slice($articles, $offset_articles, $articles_par_page);
+
+foreach ($articles as &$article) {
     $article['medias'] = getMediaByArticle($pdo, $article['id_article']);
 }
 unset($article);

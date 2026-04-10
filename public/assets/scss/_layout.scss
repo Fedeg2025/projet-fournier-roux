@@ -8,7 +8,7 @@
   background: $color-bg-main;
 }
 
-main {
+main:not(.profile-page):not(.admin-dashboard) {
   @include section-container;
 
   h2 {

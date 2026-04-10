@@ -1,19 +1,31 @@
-<section>
-    <h3>Utilisateurs</h3>
+<section class="admin-users">
+    <h3 class="admin-users__title">Utilisateurs</h3>
 
     <?php if (empty($utilisateurs)): ?>
-        <p>Aucun utilisateur.</p>
+        <p class="admin-users__empty">Aucun utilisateur.</p>
     <?php else: ?>
-        <?php foreach ($utilisateurs as $utilisateur): ?>
-            <p>
-                <strong>
-                    <?php echo htmlspecialchars($utilisateur['prenom'] . ' ' . $utilisateur['nom']); ?>
-                </strong><br>
+        <div class="admin-users__list">
+            <?php foreach ($utilisateurs as $utilisateur): ?>
+                <article class="admin-users__item">
+                    <h4 class="admin-users__name">
+                        <?php echo htmlspecialchars($utilisateur['prenom'] . ' ' . $utilisateur['nom']); ?>
+                    </h4>
 
-                Email : <?php echo htmlspecialchars($utilisateur['email']); ?><br>
-                Rôle : <?php echo htmlspecialchars($utilisateur['role']); ?>
-            </p>
-            <hr>
-        <?php endforeach; ?>
+                    <p class="admin-users__info">
+                        <span class="admin-users__label">Email :</span>
+                        <span class="admin-users__value">
+                            <?php echo htmlspecialchars($utilisateur['email']); ?>
+                        </span>
+                    </p>
+
+                    <p class="admin-users__info">
+                        <span class="admin-users__label">Rôle :</span>
+                        <span class="admin-users__value">
+                            <?php echo htmlspecialchars($utilisateur['role']); ?>
+                        </span>
+                    </p>
+                </article>
+            <?php endforeach; ?>
+        </div>
     <?php endif; ?>
 </section>

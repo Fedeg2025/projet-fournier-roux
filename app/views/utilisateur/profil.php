@@ -1,40 +1,98 @@
-<main>
-    <h2>Mon profil</h2>
+<main class="profile-page">
+    <section class="profile-page__section profile-page__section--info">
+        <h2 class="profile-page__title">Mon profil</h2>
 
-    <?php if (!empty($erreur)): ?>
-        <p style="color:red;"><?= htmlspecialchars($erreur) ?></p>
-    <?php endif; ?>
+        <?php if (!empty($erreur)): ?>
+            <p class="profile-page__message profile-page__message--error">
+                <?= htmlspecialchars($erreur) ?>
+            </p>
+        <?php endif; ?>
 
-    <?php if (!empty($succes)): ?>
-        <p style="color:green;"><?= htmlspecialchars($succes) ?></p>
-    <?php endif; ?>
+        <?php if (!empty($succes)): ?>
+            <p class="profile-page__message profile-page__message--success">
+                <?= htmlspecialchars($succes) ?>
+            </p>
+        <?php endif; ?>
 
-    <form method="POST" action="index.php?page=profil">
-        <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
+        <form class="profile-form" method="POST" action="index.php?page=profil">
+            <input
+                type="hidden"
+                name="csrf_token"
+                value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>"
+            >
 
-        <label>Nom :</label>
-        <input type="text" name="nom" value="<?= htmlspecialchars($utilisateur['nom']) ?>" required>
+            <div class="profile-form__group">
+                <label class="profile-form__label" for="nom">Nom :</label>
+                <input
+                    class="profile-form__input"
+                    type="text"
+                    name="nom"
+                    id="nom"
+                    value="<?= htmlspecialchars($utilisateur['nom']) ?>"
+                    required
+                >
+            </div>
 
-        <label>Prénom :</label>
-        <input type="text" name="prenom" value="<?= htmlspecialchars($utilisateur['prenom']) ?>" required>
+            <div class="profile-form__group">
+                <label class="profile-form__label" for="prenom">Prénom :</label>
+                <input
+                    class="profile-form__input"
+                    type="text"
+                    name="prenom"
+                    id="prenom"
+                    value="<?= htmlspecialchars($utilisateur['prenom']) ?>"
+                    required
+                >
+            </div>
 
-        <button type="submit">Modifier</button>
-    </form>
+            <div class="profile-form__actions">
+                <button class="profile-form__button" type="submit">Modifier</button>
+            </div>
+        </form>
 
-    <p><strong>Email :</strong> <?= htmlspecialchars($utilisateur['email']) ?></p>
-    <p><strong>Rôle :</strong> <?= htmlspecialchars($utilisateur['role']) ?></p>
+        <div class="profile-details">
+            <p class="profile-details__item">
+                <span class="profile-details__label">Email :</span>
+                <span class="profile-details__value"><?= htmlspecialchars($utilisateur['email']) ?></span>
+            </p>
 
-    <hr>
+            <p class="profile-details__item">
+                <span class="profile-details__label">Rôle :</span>
+                <span class="profile-details__value"><?= htmlspecialchars($utilisateur['role']) ?></span>
+            </p>
+        </div>
+    </section>
 
-    <h3>Suppression du compte</h3>
+    <section class="profile-page__section profile-page__section--delete">
+        <h3 class="profile-page__subtitle">Suppression du compte</h3>
 
-    <form method="POST" action="index.php?page=profil">
-        <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
-        <input type="hidden" name="action" value="delete_account_request">
+        <form class="profile-delete-form" method="POST" action="index.php?page=profil">
+            <input
+                type="hidden"
+                name="csrf_token"
+                value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>"
+            >
+            <input
+                type="hidden"
+                name="action"
+                value="delete_account_request"
+            >
 
-        <label>Motif (optionnel) :</label>
-        <textarea name="motif"></textarea>
+            <div class="profile-delete-form__group">
+                <label class="profile-delete-form__label" for="motif">Motif (optionnel) :</label>
+                <textarea
+                    class="profile-delete-form__textarea"
+                    name="motif"
+                    id="motif"
+                    rows="5"
+                ></textarea>
+            </div>
 
-        <button type="submit">Demander la suppression du compte</button>
-    </form>
+            <div class="profile-delete-form__actions">
+                <button class="profile-delete-form__button" type="submit">
+                    Demander la suppression du compte
+                </button>
+            </div>
+        </form>
+    </section>
 </main>

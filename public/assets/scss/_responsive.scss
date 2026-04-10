@@ -405,7 +405,7 @@
    PAGE FICHE ESPÈCE - DESKTOP LARGE
 ========================= */
 
-@media (min-width: 1600px) {
+@media (min-width: 1900px) {
   .oiseau-page {
     .oiseau-article {
       &__header {
@@ -1085,5 +1085,299 @@
     right: $space-4xl;
     top: 50%;
     transform: translateY(-50%);
+  }
+}
+/* =========================
+   RESPONSIVE - ADMIN TABLETTE / DESKTOP
+========================= */
+
+@media (min-width: 752px) {
+  .admin-dashboard {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: $space-6xl;
+  }
+
+  .admin-dashboard__nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: $space-3xl;
+  }
+
+  .admin-dashboard__link {
+    width: auto;
+    min-width: 180px;
+    text-align: center;
+  }
+
+  .admin-dashboard__section--contenus,
+  .admin-dashboard__section--utilisateurs {
+    gap: $space-6xl;
+    align-items: stretch;
+  }
+
+  .admin-dashboard__block {
+    justify-content: flex-start;
+  }
+
+  .admin-article-form,
+  .admin-articles,
+  .admin-messages,
+  .admin-users,
+  .admin-delete-requests {
+    width: 100%;
+  }
+
+  .admin-article-form__title,
+  .admin-articles__title,
+  .admin-messages__title,
+  .admin-users__title,
+  .admin-delete-requests__title {
+    text-align: center;
+  }
+
+  .admin-article-form__textarea {
+    min-height: 220px;
+  }
+
+  .admin-article-form__actions {
+    justify-content: flex-start;
+  }
+
+  .admin-articles__actions,
+  .admin-delete-requests__actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .admin-articles__edit-link,
+  .admin-articles__delete-button,
+  .admin-delete-requests__button {
+    width: auto;
+  }
+
+  .admin-delete-requests__row,
+  .admin-users__info {
+    display: grid;
+    grid-template-columns: 180px minmax(0, 1fr);
+    gap: $space-2xl;
+    align-items: start;
+  }
+}
+
+/* =========================
+   RESPONSIVE - ADMIN DESKTOP LARGE
+========================= */
+
+@media (min-width: 1200px) {
+  .admin-dashboard {
+    max-width: 1600px;
+  }
+
+  .admin-dashboard__section--contenus,
+  .admin-dashboard__section--utilisateurs {
+    display: grid;
+    grid-template-columns: minmax(320px, 420px) minmax(0, 1fr);
+    gap: $space-6xl;
+    align-items: start;
+  }
+
+  .admin-dashboard__block--article-form,
+  .admin-dashboard__block--users,
+  .admin-dashboard__block--articles,
+  .admin-dashboard__block--delete-requests {
+    align-self: start;
+  }
+
+  .admin-dashboard__block--article-form,
+  .admin-dashboard__block--users {
+    position: sticky;
+    top: $space-6xl;
+  }
+
+  .admin-article-form,
+  .admin-users,
+  .admin-articles,
+  .admin-delete-requests {
+    height: auto;
+  }
+
+  .admin-article-form__title,
+  .admin-articles__title,
+  .admin-users__title,
+  .admin-delete-requests__title {
+    text-align: center;
+  }
+
+  .admin-article-form__textarea {
+    min-height: 260px;
+  }
+
+  .admin-articles__actions,
+  .admin-delete-requests__actions {
+    justify-content: flex-start;
+  }
+}
+
+/* =========================
+   RESPONSIVE - PROFILE TABLETTE
+========================= */
+
+@media (min-width: 736px) {
+  .profile-page {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: $space-5xl $space-4xl $space-8xl;
+    gap: $space-5xl;
+  }
+
+  .profile-page__section {
+    width: 100%;
+    padding: $space-4xl;
+  }
+
+  .profile-page__section--info,
+  .profile-page__section--delete {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+  }
+
+  .profile-page__title,
+  .profile-page__subtitle {
+    text-align: center;
+  }
+
+  .profile-form,
+  .profile-delete-form,
+  .profile-details {
+    width: 100%;
+    max-width: none;
+  }
+
+  .profile-form__input,
+  .profile-delete-form__textarea {
+    width: 100%;
+    max-width: none;
+  }
+
+  .profile-details__item {
+    display: grid;
+    grid-template-columns: 120px minmax(0, 1fr);
+    gap: $space-2xl;
+    align-items: start;
+  }
+
+  .profile-details__value {
+    margin-left: 0;
+  }
+
+  .profile-delete-form__textarea {
+    min-height: 150px;
+  }
+}
+
+/* =========================
+   RESPONSIVE - PROFILE DESKTOP MEDIUM
+========================= */
+
+@media (min-width: 1050px) {
+  .profile-page {
+    max-width: 1180px;
+    padding-left: $space-5xl;
+    padding-right: $space-5xl;
+
+    display: grid;
+    grid-template-columns: minmax(360px, 430px) minmax(0, 1fr);
+    gap: $space-4xl;
+    align-items: stretch;
+  }
+
+  .profile-page__section--info,
+  .profile-page__section--delete {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    height: 100%;
+  }
+
+  .profile-page__section--delete {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .profile-delete-form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .profile-delete-form__group {
+    flex: 1;
+  }
+
+  .profile-delete-form__textarea {
+    min-height: 160px;
+  }
+}
+
+/* =========================
+   RESPONSIVE - PROFILE DESKTOP LARGE
+========================= */
+
+@media (min-width: 1400px) {
+  .profile-page {
+    max-width: 1280px;
+    padding-left: $space-6xl;
+    padding-right: $space-6xl;
+    grid-template-columns: minmax(380px, 460px) minmax(0, 1fr);
+    gap: $space-5xl;
+    align-items: stretch;
+  }
+
+  .profile-page__section--info,
+  .profile-page__section--delete {
+    height: 100%;
+  }
+
+  .profile-page__section--info {
+    position: sticky;
+    top: $space-6xl;
+    align-self: start;
+    height: auto;
+  }
+
+  .profile-form__actions,
+  .profile-delete-form__actions {
+    justify-content: flex-start;
+  }
+
+  .profile-delete-form__textarea {
+    min-height: 170px;
+  }
+}
+
+/* =========================
+   RESPONSIVE - PROFILE ULTRA LARGE
+========================= */
+
+@media (min-width: 1900px) {
+  .profile-page {
+    max-width: 1400px;
+    padding-left: $space-8xl;
+    padding-right: $space-8xl;
+    grid-template-columns: minmax(400px, 500px) minmax(0, 1fr);
+    gap: $space-6xl;
+    align-items: stretch;
+  }
+
+  .profile-page__section--delete {
+    max-width: none;
+  }
+
+  .profile-delete-form__textarea {
+    min-height: 200px;
   }
 }

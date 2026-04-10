@@ -31,7 +31,29 @@
 
 </div>
 
-<script src="public/assets/js/main.js"></script>
-</body>
+<!-- Script global (menu burger) -->
+<script src="public/assets/js/common/menu.js" defer></script>
 
+<!-- Script spécifique à la page accueil -->
+<?php if (isset($_GET['page']) && $_GET['page'] === 'accueil'): ?>
+    <script src="public/assets/js/home/lightbox.js" defer></script>
+<?php endif; ?>
+
+<!-- Script spécifique à la page galerie -->
+<?php if (isset($_GET['page']) && $_GET['page'] === 'galerie'): ?>
+    <script src="public/assets/js/gallery/thumb-gallery.js" defer></script>
+    <script src="public/assets/js/gallery/audio-playlist.js" defer></script>
+<?php endif; ?>
+
+<!-- Script spécifique à la page nid -->
+<?php if (isset($_GET['page']) && $_GET['page'] === 'nid'): ?>
+    <script src="public/assets/js/pages/nid-slider.js" defer></script>
+<?php endif; ?>
+
+<!-- Script spécifique à la page inaturalist -->
+<?php if (isset($_GET['page']) && $_GET['page'] === 'inaturalist'): ?>
+    <script src="public/assets/js/pages/inaturalist.js" defer></script>
+<?php endif; ?>
+
+</body>
 </html>

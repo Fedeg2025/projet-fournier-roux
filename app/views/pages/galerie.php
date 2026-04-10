@@ -1,5 +1,5 @@
 <?php
-$assetBase = '/web/fournier_roux/public/assets/images';
+$assetBase = 'public/assets/images';
 
 $galleryImages = [
     [
@@ -140,6 +140,7 @@ $audioTracks = [
                 <div class="media-card__visual">
                     <video controls playsinline preload="metadata">
                         <source src="<?= $assetBase; ?>/videos/fournier-roux-audio.mp4" type="video/mp4">
+                        <source src="<?= $assetBase; ?>/videos/fournier-roux-audio.webm" type="video/webm">
                         Votre navigateur ne supporte pas la lecture vidéo.
                     </video>
                 </div>
@@ -157,7 +158,9 @@ $audioTracks = [
                 <div class="media-card__visual">
                     <video controls playsinline preload="metadata">
                         <source src="<?= $assetBase; ?>/videos/fournier-roux1.webm" type="video/webm">
+                        <source src="<?= $assetBase; ?>/videos/fournier-roux1.mp4" type="video/mp4">
                         <source src="<?= $assetBase; ?>/videos/fournier-roux.webm" type="video/webm">
+                        <source src="<?= $assetBase; ?>/videos/fournier-roux.mp4" type="video/mp4">
                         Votre navigateur ne supporte pas la lecture vidéo.
                     </video>
                 </div>
@@ -233,4 +236,3 @@ $audioTracks = [
     </section>
 
 </main>
-

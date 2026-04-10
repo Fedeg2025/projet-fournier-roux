@@ -1,0 +1,224 @@
+/* =========================
+   PROFILE PAGE
+========================= */
+
+.profile-page {
+  padding: $space-4xl;
+  background-color: $color-bg-soft;
+  color: $color-text-main;
+  font-family: $font-main;
+
+  display: flex;
+  flex-direction: column;
+  gap: $space-4xl;
+}
+
+/* =========================
+   PROFILE SECTION
+========================= */
+
+.profile-page__section {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4xl;
+
+  padding: $space-4xl;
+  background-color: $color-white;
+  border: 1px solid $color-border-soft;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-soft;
+}
+
+/* =========================
+   TITLES
+========================= */
+
+.profile-page__title {
+  margin: 0;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+  text-align: center;
+  color: $color-primary;
+}
+
+.profile-page__subtitle {
+  margin: 0;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+  text-align: center;
+  color: $color-text-main;
+}
+
+/* =========================
+   MESSAGES
+========================= */
+
+.profile-page__message {
+  margin: 0;
+  padding: $space-lg $space-2xl;
+  border-radius: $radius-md;
+  font-size: $font-size-sm;
+  line-height: $line-height-relaxed;
+}
+
+.profile-page__message--error {
+  border: 1px solid $color-error-border;
+  background-color: $color-error-bg;
+  color: $color-error-text;
+}
+
+.profile-page__message--success {
+  border: 1px solid $color-success-border;
+  background-color: $color-success-bg;
+  color: $color-success-text;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4xl;
+}
+
+.profile-form__group {
+  display: flex;
+  flex-direction: column;
+  gap: $space-sm;
+}
+
+.profile-form__label {
+  margin: 0;
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
+  color: $color-text-main;
+}
+
+.profile-form__input {
+  @include form-field-base;
+  width: 100%;
+  min-height: 42px;
+  padding: $space-lg $space-2xl;
+  border-radius: $radius-md;
+}
+
+.profile-form__actions {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.profile-form__button {
+  @include auth-button-base;
+  min-width: 170px;
+  height: $auth-button-height;
+  padding: 0 24px;
+
+  border: 2px solid transparent;
+  background-color: $color-secondary;
+  color: $color-black;
+  box-shadow: none;
+
+  white-space: nowrap;
+  text-align: center;
+  line-height: 1.2;
+
+  &:hover,
+  &:focus {
+    opacity: 0.92;
+    transform: translateY(-1px);
+  }
+}
+
+/* =========================
+   DETAILS
+========================= */
+
+.profile-details {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3xl;
+
+  padding-top: $space-sm;
+  border-top: 1px solid $color-border-soft;
+}
+
+.profile-details__item {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: $space-xs;
+}
+
+.profile-details__label {
+  font-size: $font-size-base;
+  font-weight: $font-weight-bold;
+  color: $color-text-main;
+}
+
+.profile-details__value {
+  font-size: $font-size-base;
+  color: $color-text-soft;
+}
+
+/* =========================
+   DELETE FORM
+========================= */
+
+.profile-delete-form {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4xl;
+}
+
+.profile-delete-form__group {
+  display: flex;
+  flex-direction: column;
+  gap: $space-sm;
+}
+
+.profile-delete-form__label {
+  margin: 0;
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
+  color: $color-text-main;
+}
+
+.profile-delete-form__textarea {
+  @include form-field-base;
+  width: 100%;
+  min-height: 140px;
+  padding: $space-lg $space-2xl;
+  border-radius: $radius-md;
+  resize: vertical;
+}
+
+.profile-delete-form__actions {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.profile-delete-form__button {
+  @include auth-button-base;
+  min-width: 220px;
+  height: $auth-button-height;
+  padding: 0 24px;
+
+  border: 1px solid $color-error-border;
+  background-color: $color-error-bg;
+  color: $color-error-text;
+  box-shadow: none;
+
+  white-space: normal;
+  text-align: center;
+  line-height: 1.2;
+
+  &:hover,
+  &:focus {
+    opacity: 0.92;
+    transform: translateY(-1px);
+  }
+}

@@ -1,59 +1,17 @@
-# ==========================================
-# .htaccess principal - Proyecto Fournier Roux
-# ==========================================
-
 Options -Indexes
-Options -MultiViews
-
 RewriteEngine On
 RewriteBase /web/fournier_roux/
 
-# ------------------------------------------
-# Forzar HTTPS excepto en localhost
-# ------------------------------------------
-RewriteCond %{HTTPS} !=on
-RewriteCond %{HTTP_HOST} !^localhost$ [NC]
-RewriteCond %{HTTP_HOST} !^127\.0\.0\.1$ [NC]
-RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
-
-# ------------------------------------------
-# Bloquear archivos ocultos
-# ------------------------------------------
 RewriteRule "(^|/)\." - [F,L]
 
-# ------------------------------------------
-# Bloquear archivos sensibles
-# ------------------------------------------
-<FilesMatch "^(composer\.(json|lock)|package(-lock)?\.json|README\.md|\.env|\.env\.example|phpunit\.xml|web\.config)$">
-    Require all denied
+<FilesMatch "^(\.env|\.env\.example|composer\.(json|lock)|package(-lock)?\.json|README\.md|phpunit\.xml)$">
+Require all denied
 </FilesMatch>
 
-<FilesMatch "\.(log|sql|bak|old|orig|save|swp|dist)$">
-    Require all denied
+<FilesMatch "\.(log|sql|bak|old|orig|save|swp)$">
+Require all denied
 </FilesMatch>
 
-# ------------------------------------------
-# Bloquear carpetas internas
-# ------------------------------------------
-RewriteRule ^(app|config|database|routes|vendor|node_modules|\.git)(/|$) - [F,L,NC]
-
-# ------------------------------------------
-# Bloquear métodos HTTP raros
-# ------------------------------------------
-RewriteCond %{REQUEST_METHOD} !^(GET|POST|HEAD)$ [NC]
-RewriteRule .* - [F,L]
-
-# ------------------------------------------
-# Bloquear otros archivos peligrosos
-# ------------------------------------------
-<FilesMatch "\.(ini|sh|bat|ps1|yml|yaml)$">
-    Require all denied
-</FilesMatch>
-# ------------------------------------------
-# Headers de seguridad
-# ------------------------------------------
-<IfModule mod_headers.c>
-    Header always set X-Content-Type-Options "nosniff"
-    Header always set X-Frame-Options "SAMEORIGIN"
-    Header always set Referrer-Policy "strict-origin-when-cross-origin"
-</IfModule>
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
