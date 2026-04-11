@@ -119,96 +119,11 @@ if ($page === 'login') {
 
 /**
  * ---------------------------------------------------------
- * MOT DE PASSE OUBLIÉ
+ * MOT DE PASSE OUBLIÉ / RÉINITIALISATION DÉSACTIVÉS
  * ---------------------------------------------------------
  */
-if ($page === 'mot-de-passe-oublie') {
-
-    $erreur = '';
-
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-        if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
-            $erreur = 'Requête invalide (CSRF).';
-        } else {
-
-            $email = strtolower(trim($_POST['email'] ?? ''));
-
-            if (empty($email)) {
-                $erreur = 'Veuillez entrer un email.';
-            } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $erreur = 'Email invalide.';
-            } else {
-                $utilisateur = findUserByEmail($pdo, $email);
-
-                if (!$utilisateur) {
-                    $erreur = 'Aucun compte trouvé avec cet email.';
-                } else {
-                    $_SESSION['reset_email'] = $email;
-                    header('Location: index.php?page=nouveau-mot-de-passe');
-                    exit;
-                }
-            }
-        }
-    }
-
-    require_once __DIR__ . '/../views/pages/auth-header.php';
-    require_once __DIR__ . '/../views/pages/mot-de-passe-oublie.php';
-    require_once __DIR__ . '/../views/pages/auth-footer.php';
-    exit;
-}
-
-/**
- * ---------------------------------------------------------
- * NOUVEAU MOT DE PASSE
- * ---------------------------------------------------------
- */
-if ($page === 'nouveau-mot-de-passe') {
-
-    $erreur = '';
-    $succes = '';
-
-    if (empty($_SESSION['reset_email'])) {
-        header('Location: index.php?page=mot-de-passe-oublie');
-        exit;
-    }
-
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-        if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
-            $erreur = 'Requête invalide (CSRF).';
-        } else {
-
-            $mot_de_passe = $_POST['mot_de_passe'] ?? '';
-            $confirmation = $_POST['confirmation_mot_de_passe'] ?? '';
-            $email = $_SESSION['reset_email'];
-
-            if (empty($mot_de_passe) || empty($confirmation)) {
-                $erreur = 'Veuillez remplir tous les champs.';
-            } elseif (strlen($mot_de_passe) < 8) {
-                $erreur = 'Mot de passe trop court.';
-            } elseif ($mot_de_passe !== $confirmation) {
-                $erreur = 'Les mots de passe ne correspondent pas.';
-            } else {
-                $mot_de_passe_hash = password_hash($mot_de_passe, PASSWORD_DEFAULT);
-
-                $sql = "UPDATE utilisateurs SET mot_de_passe = :mot_de_passe WHERE email = :email";
-                $stmt = $pdo->prepare($sql);
-                $stmt->execute([
-                    ':mot_de_passe' => $mot_de_passe_hash,
-                    ':email' => $email
-                ]);
-
-                unset($_SESSION['reset_email']);
-
-                $succes = 'Mot de passe modifié avec succès.';
-            }
-        }
-    }
-
-    require_once __DIR__ . '/../views/pages/auth-header.php';
-    require_once __DIR__ . '/../views/pages/nouveau-mot-de-passe.php';
-    require_once __DIR__ . '/../views/pages/auth-footer.php';
+if ($page === 'mot-de-passe-oublie' || $page === 'nouveau-mot-de-passe') {
+    header('Location: index.php?page=login');
     exit;
 }
 
@@ -234,4 +149,4 @@ if ($page === 'logout') {
 
     header('Location: index.php?page=accueil');
     exit;
-}
+} 

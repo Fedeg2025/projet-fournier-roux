@@ -73,12 +73,6 @@ $csrfToken = $_SESSION['csrf_token'] ?? '';
                         required>
                 </div>
 
-                <div class="auth-form__actions-top">
-                    <a class="auth-form__forgot-link" href="index.php?page=mot-de-passe-oublie">
-                        Mot de passe oublié ?
-                    </a>
-                </div>
-
                 <div class="auth-form__submit">
                     <button class="auth-form__button" type="submit">Se connecter</button>
                 </div>
