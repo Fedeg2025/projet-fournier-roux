@@ -1,6 +1,19 @@
+<!-- =========================
+     PAGE POLITIQUE DE CONFIDENTIALITÉ
+     Cette page informe les utilisateurs
+     sur la gestion de leurs données personnelles
+     ========================= -->
+
 <main>
+
+    <!-- =========================
+         TITRE PRINCIPAL
+         ========================= -->
     <h2>Politique de confidentialité</h2>
 
+    <!-- =========================
+         ARTICLE 1 - OBJET
+         ========================= -->
     <section>
         <h3>1. Objet</h3>
         <p>
@@ -10,6 +23,9 @@
         </p>
     </section>
 
+    <!-- =========================
+         ARTICLE 2 - DONNÉES COLLECTÉES
+         ========================= -->
     <section>
         <h3>2. Données collectées</h3>
         <p>
@@ -26,6 +42,9 @@
         </ul>
     </section>
 
+    <!-- =========================
+         ARTICLE 3 - FINALITÉS
+         ========================= -->
     <section>
         <h3>3. Finalités du traitement</h3>
         <p>
@@ -41,6 +60,9 @@
         </ul>
     </section>
 
+    <!-- =========================
+         ARTICLE 4 - BASE LÉGALE
+         ========================= -->
     <section>
         <h3>4. Base légale</h3>
         <p>
@@ -50,6 +72,9 @@
         </p>
     </section>
 
+    <!-- =========================
+         ARTICLE 5 - DESTINATAIRES
+         ========================= -->
     <section>
         <h3>5. Destinataires des données</h3>
         <p>
@@ -58,6 +83,9 @@
         </p>
     </section>
 
+    <!-- =========================
+         ARTICLE 6 - DURÉE DE CONSERVATION
+         ========================= -->
     <section>
         <h3>6. Durée de conservation</h3>
         <p>
@@ -72,6 +100,9 @@
         </p>
     </section>
 
+    <!-- =========================
+         ARTICLE 7 - SUPPRESSION / ANONYMISATION
+         ========================= -->
     <section>
         <h3>7. Suppression de compte et anonymisation</h3>
         <p>
@@ -95,6 +126,9 @@
         </p>
     </section>
 
+    <!-- =========================
+         ARTICLE 8 - SÉCURITÉ
+         ========================= -->
     <section>
         <h3>8. Sécurité</h3>
         <p>
@@ -108,6 +142,9 @@
         </p>
     </section>
 
+    <!-- =========================
+         ARTICLE 9 - DROITS UTILISATEURS
+         ========================= -->
     <section>
         <h3>9. Droits des utilisateurs</h3>
         <p>
@@ -126,6 +163,9 @@
         </p>
     </section>
 
+    <!-- =========================
+         ARTICLE 10 - COOKIES
+         ========================= -->
     <section>
         <h3>10. Cookies et sessions</h3>
         <p>
@@ -134,6 +174,9 @@
         </p>
     </section>
 
+    <!-- =========================
+         ARTICLE 11 - MODIFICATION
+         ========================= -->
     <section>
         <h3>11. Modification de la politique</h3>
         <p>
@@ -141,4 +184,5 @@
             les évolutions du projet, de ses fonctionnalités ou des obligations applicables.
         </p>
     </section>
+
 </main>

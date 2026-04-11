@@ -1,12 +1,30 @@
+<!-- =========================
+     LISTE DES DEMANDES DE SUPPRESSION
+     Cette vue permet à l’administrateur
+     de consulter et traiter les demandes de suppression de compte
+     ========================= -->
+
 <section class="admin-delete-requests">
     <h2 class="admin-delete-requests__title">Demandes de suppression de compte</h2>
 
+    <!-- =========================
+         CAS AUCUNE DEMANDE
+         ========================= -->
     <?php if (empty($demandes_suppression)): ?>
         <p class="admin-delete-requests__empty">Aucune demande de suppression pour le moment.</p>
+
     <?php else: ?>
+
+        <!-- =========================
+             LISTE DES DEMANDES
+             ========================= -->
         <div class="admin-delete-requests__list">
             <?php foreach ($demandes_suppression as $demande): ?>
                 <article class="admin-delete-requests__item">
+
+                    <!-- =========================
+                         UTILISATEUR
+                         ========================= -->
                     <p class="admin-delete-requests__row">
                         <span class="admin-delete-requests__label">Utilisateur :</span>
                         <span class="admin-delete-requests__value">
@@ -14,6 +32,9 @@
                         </span>
                     </p>
 
+                    <!-- =========================
+                         EMAIL
+                         ========================= -->
                     <p class="admin-delete-requests__row">
                         <span class="admin-delete-requests__label">Email :</span>
                         <span class="admin-delete-requests__value">
@@ -21,6 +42,9 @@
                         </span>
                     </p>
 
+                    <!-- =========================
+                         MOTIF
+                         ========================= -->
                     <div class="admin-delete-requests__row">
                         <span class="admin-delete-requests__label">Motif :</span>
                         <div class="admin-delete-requests__value">
@@ -28,6 +52,9 @@
                         </div>
                     </div>
 
+                    <!-- =========================
+                         STATUT
+                         ========================= -->
                     <p class="admin-delete-requests__row">
                         <span class="admin-delete-requests__label">Statut :</span>
                         <span class="admin-delete-requests__value">
@@ -45,6 +72,9 @@
                         </span>
                     </p>
 
+                    <!-- =========================
+                         DATE DE DEMANDE
+                         ========================= -->
                     <p class="admin-delete-requests__row">
                         <span class="admin-delete-requests__label">Date de demande :</span>
                         <span class="admin-delete-requests__value">
@@ -52,6 +82,9 @@
                         </span>
                     </p>
 
+                    <!-- =========================
+                         DATE DE TRAITEMENT
+                         ========================= -->
                     <p class="admin-delete-requests__row">
                         <span class="admin-delete-requests__label">Date de traitement :</span>
                         <span class="admin-delete-requests__value">
@@ -59,6 +92,9 @@
                         </span>
                     </p>
 
+                    <!-- =========================
+                         ADMINISTRATEUR AYANT TRAITÉ
+                         ========================= -->
                     <p class="admin-delete-requests__row">
                         <span class="admin-delete-requests__label">Traité par :</span>
                         <span class="admin-delete-requests__value">
@@ -70,8 +106,13 @@
                         </span>
                     </p>
 
+                    <!-- =========================
+                         ACTIONS ADMINISTRATEUR
+                         ========================= -->
                     <div class="admin-delete-requests__actions">
                         <?php if (!empty($demande['statut']) && trim($demande['statut']) === 'en_attente'): ?>
+
+                            <!-- Action : traiter -->
                             <form
                                 class="admin-delete-requests__form"
                                 method="POST"
@@ -93,6 +134,7 @@
                                 </button>
                             </form>
 
+                            <!-- Action : refuser -->
                             <form
                                 class="admin-delete-requests__form"
                                 method="POST"

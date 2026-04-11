@@ -1,4 +1,10 @@
 <?php
+
+// =========================
+// RESSOURCES MÉDIAS
+// Ce bloc prépare les chemins des images
+// et des fichiers audio utilisés dans la galerie
+// =========================
 $assetBase = 'public/assets/images';
 
 $galleryImages = [
@@ -48,51 +54,61 @@ $audioTracks = [
     [
         'src' => $assetBase . '/audios/XC932468%20-%20Rufous%20Hornero%20-%20Furnarius%20rufus.wav',
         'type' => 'audio/wav',
-        'label' => 'track 1'
+        'label' => 'Chant territorial du Fournier roux pour défendre son nid.'
     ],
     [
         'src' => $assetBase . '/audios/XC943374%20-%20Rufous%20Hornero%20-%20Furnarius%20rufus.mp3',
         'type' => 'audio/mpeg',
-        'label' => 'track 2'
+        'label' => 'Duo vocal du couple, renforçant leur lien et leur coordination.'
     ],
     [
         'src' => $assetBase . '/audios/XC985697%20-%20Rufous%20Hornero%20-%20Furnarius%20rufus.wav',
         'type' => 'audio/wav',
-        'label' => 'track 3'
+        'label' => 'Appel d’alerte face à une présence perçue comme une menace.'
     ],
     [
         'src' => $assetBase . '/audios/XC992354%20-%20Rufous%20Hornero%20-%20Furnarius%20rufus.wav',
         'type' => 'audio/wav',
-        'label' => 'track 4'
+        'label' => 'Chant matinal marquant la présence du territoire.'
     ],
     [
         'src' => $assetBase . '/audios/XC1009595%20-%20Rufous%20Hornero%20-%20Furnarius%20rufus.wav',
         'type' => 'audio/wav',
-        'label' => 'track 5'
+        'label' => 'Communication entre partenaires pendant la construction ou l’entretien du nid.'
     ],
 ];
 ?>
 
+<!-- =========================
+     PAGE GALERIE
+     Cette vue présente une galerie multimédia
+     composée d’images, de vidéos et d’enregistrements audio
+     ========================= -->
+
 <main class="gallery-page">
 
+    <!-- =========================
+         EN-TÊTE DE LA GALERIE
+         ========================= -->
     <section class="gallery-hero">
         <div class="gallery-hero__content">
             <p class="gallery-hero__tag">Galerie multimédia</p>
             <h1>Galerie du <span>Fournier roux</span></h1>
             <p class="gallery-hero__text">
-                Découvrez les vidéos et les enregistrements audio du Fournier roux
-                dans une présentation immersive inspirée de la maquette Figma.
+                Découvrez les vidéos et les enregistrements audio du Fournier roux.
             </p>
         </div>
     </section>
 
+    <!-- =========================
+         SECTION GALERIE PHOTO
+         ========================= -->
     <section class="gallery-section">
         <div class="section-heading">
-            <p class="section-heading__tag">Photos</p>
+            <p class="section-heading__tag"></p>
             <h2>Galerie photo</h2>
             <p>
-                Découvrez une sélection d’images du Fournier roux
-                dans une galerie horizontale inspirée de la maquette.
+                Découvrez une sélection d’images du Fournier roux.
             </p>
         </div>
 
@@ -125,13 +141,15 @@ $audioTracks = [
         </div>
     </section>
 
+    <!-- =========================
+         SECTION VIDÉOS
+         ========================= -->
     <section class="gallery-section">
         <div class="section-heading">
-            <p class="section-heading__tag">Vidéos</p>
+            <p class="section-heading__tag"></p>
             <h2>Observations vidéo</h2>
             <p>
-                Retrouvez ici plusieurs vidéos locales intégrées dans la galerie
-                pour présenter le Fournier roux et son comportement.
+            Plongez dans l’univers du Fournier roux à travers des vidéos révélant son comportement.
             </p>
         </div>
 
@@ -146,11 +164,8 @@ $audioTracks = [
                 </div>
 
                 <div class="media-card__content">
-                    <h3>Vidéo 1 — Fournier roux avec chant naturel</h3>
-                    <p>
-                        Une première vidéo montrant le Fournier roux dans son environnement
-                        avec son chant naturel.
-                    </p>
+                    <h3> Une première vidéo montrant le Fournier roux dans son environnement
+                        avec son chant naturel.</h3>
                 </div>
             </article>
 
@@ -166,18 +181,18 @@ $audioTracks = [
                 </div>
 
                 <div class="media-card__content">
-                    <h3>Vidéo 2 — Observation du Fournier roux</h3>
-                    <p>
-                        Une seconde observation vidéo du Fournier roux où, apparemment, le mâle donne à manger à la femelle.
-                    </p>
+                    <h3>Nouvelle observation vidéo du Fournier roux : le père donne à manger à son petit.</h3>
                 </div>
             </article>
         </div>
     </section>
 
+    <!-- =========================
+         SECTION AUDIO
+         ========================= -->
     <section class="gallery-section">
         <div class="section-heading">
-            <p class="section-heading__tag">Audios</p>
+            <p class="section-heading__tag"></p>
             <h2>🎧 Écouter le Fournier roux</h2>
             <p>
                 Une sélection d’enregistrements audio pour écouter le chant
@@ -216,10 +231,14 @@ $audioTracks = [
         </div>
     </section>
 
+    <!-- =========================
+         SECTION D’APPEL À L’ACTION
+         Lien vers les observations iNaturalist
+         ========================= -->
     <section class="gallery-section gallery-section--cta">
         <div class="gallery-cta">
             <div class="gallery-cta__text">
-                <p class="section-heading__tag">Données</p>
+                <p class="section-heading__tag"></p>
                 <h2>Voir aussi les observations iNaturalist</h2>
                 <p>
                     Complétez cette galerie avec les observations récentes publiées

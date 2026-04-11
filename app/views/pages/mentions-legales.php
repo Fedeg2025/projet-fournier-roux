@@ -1,6 +1,19 @@
+<!-- =========================
+     PAGE MENTIONS LÉGALES
+     Cette page présente les informations légales
+     relatives à l’éditeur du site et à son fonctionnement
+     ========================= -->
+
 <main>
+
+    <!-- =========================
+         TITRE PRINCIPAL
+         ========================= -->
     <h2>Mentions légales</h2>
 
+    <!-- =========================
+         ÉDITEUR DU SITE
+         ========================= -->
     <section>
         <h3>Éditeur du site</h3>
         <p>
@@ -14,6 +27,9 @@
         </p>
     </section>
 
+    <!-- =========================
+         HÉBERGEMENT
+         ========================= -->
     <section>
         <h3>Hébergement</h3>
         <p>
@@ -22,6 +38,9 @@
         </p>
     </section>
 
+    <!-- =========================
+         PROPRIÉTÉ INTELLECTUELLE
+         ========================= -->
     <section>
         <h3>Propriété intellectuelle</h3>
         <p>
@@ -36,6 +55,9 @@
         </p>
     </section>
 
+    <!-- =========================
+         RESPONSABILITÉ
+         ========================= -->
     <section>
         <h3>Responsabilité</h3>
         <p>
@@ -49,6 +71,9 @@
         </p>
     </section>
 
+    <!-- =========================
+         DONNÉES PERSONNELLES
+         ========================= -->
     <section>
         <h3>Données personnelles</h3>
         <p>
@@ -62,6 +87,9 @@
         </p>
     </section>
 
+    <!-- =========================
+         SUPPRESSION DE COMPTE / RGPD
+         ========================= -->
     <section>
         <h3>Suppression de compte et anonymisation</h3>
         <p>
@@ -86,6 +114,9 @@
         </p>
     </section>
 
+    <!-- =========================
+         COOKIES
+         ========================= -->
     <section>
         <h3>Cookies</h3>
         <p>
@@ -94,6 +125,9 @@
         </p>
     </section>
 
+    <!-- =========================
+         DROIT APPLICABLE
+         ========================= -->
     <section>
         <h3>Droit applicable</h3>
         <p>
@@ -101,4 +135,5 @@
             et à défaut de résolution amiable, les juridictions compétentes pourront être saisies.
         </p>
     </section>
+
 </main>

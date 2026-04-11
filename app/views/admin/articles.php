@@ -1,16 +1,37 @@
+<!-- =========================
+     LISTE ADMIN DES ARTICLES
+     Cette vue affiche les articles publiés
+     avec les actions de modification, suppression et pagination
+     ========================= -->
+
 <section class="admin-articles">
     <h2 class="admin-articles__title">Articles publiés</h2>
 
+    <!-- =========================
+         CAS AUCUN ARTICLE
+         ========================= -->
     <?php if (empty($articles)): ?>
         <p class="admin-articles__empty">Aucun article.</p>
+
     <?php else: ?>
+
+        <!-- =========================
+             LISTE DES ARTICLES
+             ========================= -->
         <div class="admin-articles__list">
             <?php foreach ($articles as $article): ?>
                 <article class="admin-articles__item">
+
+                    <!-- =========================
+                         TITRE DE L’ARTICLE
+                         ========================= -->
                     <h3 class="admin-articles__item-title">
                         <?php echo htmlspecialchars($article['titre']); ?>
                     </h3>
 
+                    <!-- =========================
+                         IMAGE PRINCIPALE
+                         ========================= -->
                     <?php if (!empty($article['medias'][0]) && $article['medias'][0]['type_media'] === 'image'): ?>
                         <div class="admin-articles__image-wrapper">
                             <img
@@ -21,6 +42,9 @@
                         </div>
                     <?php endif; ?>
 
+                    <!-- =========================
+                         CATÉGORIES
+                         ========================= -->
                     <p class="admin-articles__categories">
                         <em>
                             Catégories :
@@ -28,10 +52,16 @@
                         </em>
                     </p>
 
+                    <!-- =========================
+                         CONTENU
+                         ========================= -->
                     <div class="admin-articles__content">
                         <?php echo nl2br(htmlspecialchars($article['contenu'])); ?>
                     </div>
 
+                    <!-- =========================
+                         MÉTADONNÉES
+                         ========================= -->
                     <p class="admin-articles__meta">
                         <small>
                             <?php echo htmlspecialchars($article['date_publication']); ?> -
@@ -39,6 +69,9 @@
                         </small>
                     </p>
 
+                    <!-- =========================
+                         ACTIONS ADMINISTRATEUR
+                         ========================= -->
                     <div class="admin-articles__actions">
                         <a
                             class="admin-articles__edit-link"
@@ -55,6 +88,9 @@
                         </a>
                     </div>
 
+                    <!-- =========================
+                         CONFIRMATION DE SUPPRESSION
+                         ========================= -->
                     <?php if (isset($confirm_delete) && $confirm_delete === (int) $article['id_article']): ?>
                         <div class="admin-articles__confirm">
                             <p class="admin-articles__confirm-text">
@@ -98,6 +134,9 @@
             <?php endforeach; ?>
         </div>
 
+        <!-- =========================
+             PAGINATION
+             ========================= -->
         <div class="admin-articles__pagination">
             <?php if ($page_articles > 1): ?>
                 <a

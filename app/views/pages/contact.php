@@ -1,21 +1,36 @@
+<!-- =========================
+     PAGE CONTACT
+     Cette vue affiche le formulaire de contact
+     ainsi que les informations de contact de l’association
+     ========================= -->
+
 <main class="auth-page contact-page">
     <section class="auth-content">
         <div class="auth-content__inner">
 
             <h1>Contactez-nous</h1>
 
+            <!-- =========================
+                 MESSAGE DE SUCCÈS
+                 ========================= -->
             <?php if (!empty($succes)): ?>
                 <div class="auth-message auth-message--success" role="alert" aria-live="polite">
                     <?php echo htmlspecialchars($succes); ?>
                 </div>
             <?php endif; ?>
 
+            <!-- =========================
+                 MESSAGE D’ERREUR
+                 ========================= -->
             <?php if (!empty($erreur)): ?>
                 <div class="auth-message auth-message--error" role="alert" aria-live="polite">
                     <?php echo htmlspecialchars($erreur); ?>
                 </div>
             <?php endif; ?>
 
+            <!-- =========================
+                 FORMULAIRE DE CONTACT
+                 ========================= -->
             <form class="auth-form" method="POST" action="index.php?page=contact">
                 <input
                     type="hidden"
@@ -23,6 +38,9 @@
                     value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>"
                 >
 
+                <!-- =========================
+                     CHOIX DE CIVILITÉ
+                     ========================= -->
                 <fieldset class="auth-form__choices">
                     <legend class="visually-hidden">Civilité</legend>
 
@@ -63,6 +81,9 @@
                     </label>
                 </fieldset>
 
+                <!-- =========================
+                     NOM
+                     ========================= -->
                 <div class="auth-form__group">
                     <label class="auth-form__label" for="nom">Nom</label>
                     <input
@@ -75,6 +96,9 @@
                     >
                 </div>
 
+                <!-- =========================
+                     PRÉNOM
+                     ========================= -->
                 <div class="auth-form__group">
                     <label class="auth-form__label" for="prenom">Prénom</label>
                     <input
@@ -87,6 +111,9 @@
                     >
                 </div>
 
+                <!-- =========================
+                     EMAIL
+                     ========================= -->
                 <div class="auth-form__group">
                     <label class="auth-form__label" for="email">E-mail</label>
                     <input
@@ -99,6 +126,9 @@
                     >
                 </div>
 
+                <!-- =========================
+                     OBJET
+                     ========================= -->
                 <div class="auth-form__group">
                     <label class="auth-form__label" for="objet">Objet du message</label>
                     <textarea
@@ -109,6 +139,9 @@
                     ><?php echo isset($_POST['objet']) ? htmlspecialchars($_POST['objet']) : ''; ?></textarea>
                 </div>
 
+                <!-- =========================
+                     MESSAGE
+                     ========================= -->
                 <div class="auth-form__group">
                     <label class="auth-form__label" for="message">Message</label>
                     <textarea
@@ -119,6 +152,9 @@
                     ><?php echo isset($_POST['message']) ? htmlspecialchars($_POST['message']) : ''; ?></textarea>
                 </div>
 
+                <!-- =========================
+                     CONSENTEMENT RGPD
+                     ========================= -->
                 <div class="auth-form__consent">
                     <input
                         class="auth-form__checkbox"
@@ -134,13 +170,22 @@
                     </label>
                 </div>
 
+                <!-- =========================
+                     BOUTON D’ENVOI
+                     ========================= -->
                 <div class="auth-form__submit">
                     <button class="auth-form__button" type="submit">Envoyer le message</button>
                 </div>
             </form>
 
+            <!-- =========================
+                 SÉPARATEUR VISUEL
+                 ========================= -->
             <div class="auth-divider" aria-hidden="true"></div>
 
+            <!-- =========================
+                 INFORMATIONS DE CONTACT
+                 ========================= -->
             <div class="contact-info">
                 <p>
                     Merci pour votre visite. Nous vous remercions d’avoir consulté notre site dédié au Fournier roux.

@@ -1,6 +1,17 @@
 <?php
 
-// Vérifie si un utilisateur a déjà une demande en attente
+// =========================
+// MODÈLE DEMANDE DE SUPPRESSION DE COMPTE
+// Ce fichier contient les fonctions liées
+// aux demandes de suppression de compte utilisateur
+// =========================
+
+
+// =========================
+// VÉRIFIER SI UNE DEMANDE EST DÉJÀ EN ATTENTE
+// Cette fonction retourne true si l’utilisateur
+// possède déjà une demande non traitée
+// =========================
 function hasPendingDeleteAccountRequest($pdo, $id_utilisateur)
 {
     $sql = "SELECT COUNT(*)
@@ -14,7 +25,12 @@ function hasPendingDeleteAccountRequest($pdo, $id_utilisateur)
     return (int) $stmt->fetchColumn() > 0;
 }
 
-// Crée une demande de suppression de compte
+
+// =========================
+// CRÉER UNE DEMANDE DE SUPPRESSION DE COMPTE
+// Cette fonction enregistre une nouvelle demande
+// avec les informations de l’utilisateur au moment de la demande
+// =========================
 function createDeleteAccountRequest($pdo, $id_utilisateur, $motif = null)
 {
     $sql_user = "SELECT nom, prenom, email
@@ -44,7 +60,12 @@ function createDeleteAccountRequest($pdo, $id_utilisateur, $motif = null)
     ]);
 }
 
-// Récupère toutes les demandes de suppression
+
+// =========================
+// RÉCUPÉRER TOUTES LES DEMANDES
+// Cette fonction retourne la liste complète
+// des demandes de suppression
+// =========================
 function getAllDeleteAccountRequests($pdo)
 {
     $sql = "SELECT
@@ -59,10 +80,16 @@ function getAllDeleteAccountRequests($pdo)
             ORDER BY d.date_demande DESC";
 
     $stmt = $pdo->query($sql);
+
     return $stmt->fetchAll();
 }
 
-// Marque une demande comme traitée
+
+// =========================
+// MARQUER UNE DEMANDE COMME TRAITÉE
+// Cette fonction enregistre le traitement
+// d’une demande par un administrateur
+// =========================
 function markDeleteAccountRequestAsProcessed($pdo, $id_demande, $admin_id, $commentaire_admin = null)
 {
     $sql = "UPDATE demandes_suppression_compte
@@ -73,10 +100,16 @@ function markDeleteAccountRequestAsProcessed($pdo, $id_demande, $admin_id, $comm
             WHERE id_demande = ?";
 
     $stmt = $pdo->prepare($sql);
+
     return $stmt->execute([$admin_id, $commentaire_admin, $id_demande]);
 }
 
-// Marque une demande comme refusée
+
+// =========================
+// MARQUER UNE DEMANDE COMME REFUSÉE
+// Cette fonction enregistre le refus
+// d’une demande par un administrateur
+// =========================
 function markDeleteAccountRequestAsRefused($pdo, $id_demande, $admin_id, $commentaire_admin = null)
 {
     $sql = "UPDATE demandes_suppression_compte
@@ -87,5 +120,6 @@ function markDeleteAccountRequestAsRefused($pdo, $id_demande, $admin_id, $commen
             WHERE id_demande = ?";
 
     $stmt = $pdo->prepare($sql);
+
     return $stmt->execute([$admin_id, $commentaire_admin, $id_demande]);
 }

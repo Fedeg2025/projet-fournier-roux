@@ -1,26 +1,50 @@
 <?php
+
+// =========================
+// RÉCUPÉRATION DU TOKEN CSRF
+// Ce token est utilisé pour sécuriser le formulaire
+// d’inscription
+// =========================
 $csrfToken = $_SESSION['csrf_token'] ?? '';
 ?>
+
+<!-- =========================
+     PAGE D’INSCRIPTION
+     Cette vue permet à l’utilisateur
+     de créer un compte
+     ========================= -->
 
 <main class="auth-page auth-page--register">
     <section class="auth-content">
         <div class="auth-content__inner">
 
+            <!-- =========================
+                 TITRE ET INTRODUCTION
+                 ========================= -->
             <h1>Créer un compte</h1>
             <p>Rejoignez l’espace utilisateur</p>
 
+            <!-- =========================
+                 MESSAGE D’ERREUR
+                 ========================= -->
             <?php if (!empty($erreur)): ?>
                 <div class="auth-message auth-message--error" role="alert" aria-live="polite">
                     <?php echo htmlspecialchars($erreur); ?>
                 </div>
             <?php endif; ?>
 
+            <!-- =========================
+                 MESSAGE DE SUCCÈS
+                 ========================= -->
             <?php if (!empty($succes)): ?>
                 <div class="auth-message auth-message--success" role="alert" aria-live="polite">
                     <?php echo htmlspecialchars($succes); ?>
                 </div>
             <?php endif; ?>
 
+            <!-- =========================
+                 FORMULAIRE D’INSCRIPTION
+                 ========================= -->
             <form class="auth-form" method="POST" action="index.php?page=register" novalidate>
                 <input
                     type="hidden"
@@ -28,6 +52,9 @@ $csrfToken = $_SESSION['csrf_token'] ?? '';
                     value="<?php echo htmlspecialchars($csrfToken); ?>"
                 >
 
+                <!-- =========================
+                     CHAMP NOM
+                     ========================= -->
                 <div class="auth-form__group">
                     <label class="auth-form__label" for="nom">Nom</label>
                     <input
@@ -40,6 +67,9 @@ $csrfToken = $_SESSION['csrf_token'] ?? '';
                     >
                 </div>
 
+                <!-- =========================
+                     CHAMP PRÉNOM
+                     ========================= -->
                 <div class="auth-form__group">
                     <label class="auth-form__label" for="prenom">Prénom</label>
                     <input
@@ -52,6 +82,9 @@ $csrfToken = $_SESSION['csrf_token'] ?? '';
                     >
                 </div>
 
+                <!-- =========================
+                     CHAMP EMAIL
+                     ========================= -->
                 <div class="auth-form__group">
                     <label class="auth-form__label" for="email">Adresse email</label>
                     <input
@@ -65,6 +98,9 @@ $csrfToken = $_SESSION['csrf_token'] ?? '';
                     >
                 </div>
 
+                <!-- =========================
+                     CHAMP MOT DE PASSE
+                     ========================= -->
                 <div class="auth-form__group">
                     <label class="auth-form__label" for="mot_de_passe">Mot de passe</label>
                     <input
@@ -77,6 +113,9 @@ $csrfToken = $_SESSION['csrf_token'] ?? '';
                     >
                 </div>
 
+                <!-- =========================
+                     CONSENTEMENT
+                     ========================= -->
                 <div class="auth-form__consent">
                     <input
                         class="auth-form__checkbox"
@@ -92,13 +131,22 @@ $csrfToken = $_SESSION['csrf_token'] ?? '';
                     </label>
                 </div>
 
+                <!-- =========================
+                     BOUTON D’INSCRIPTION
+                     ========================= -->
                 <div class="auth-form__submit">
                     <button class="auth-form__button" type="submit">S'inscrire</button>
                 </div>
             </form>
 
+            <!-- =========================
+                 SÉPARATEUR VISUEL
+                 ========================= -->
             <div class="auth-divider" aria-hidden="true"></div>
 
+            <!-- =========================
+                 LIEN VERS LA CONNEXION
+                 ========================= -->
             <section class="auth-register">
                 <p class="auth-register__text">Déjà membre ?</p>
                 <a class="auth-register__button" href="index.php?page=login">

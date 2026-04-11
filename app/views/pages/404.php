@@ -1,3 +1,9 @@
+<!-- =========================
+     PAGE D'ERREUR 404
+     Cette vue informe l'utilisateur
+     que la page demandée est introuvable
+     ========================= -->
+
 <main class="error-page">
     <h1 class="error-page__title">Erreur 404</h1>
     

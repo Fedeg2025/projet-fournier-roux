@@ -1,12 +1,7 @@
 <?php
 
 // =========================
-// PAGE COURANTE
-// =========================
-$page = $_GET['page'] ?? 'accueil';
-
-// =========================
-// PAGES AUTORISÉES
+// LISTE DES PAGES AUTORISÉES
 // =========================
 $pages = [
     'oiseau',
@@ -19,10 +14,18 @@ $pages = [
 ];
 
 // =========================
-// AFFICHAGE
+// AFFICHAGE DES PAGES SIMPLES
+// Ce contrôleur affiche une page statique selon la variable $page
 // =========================
+
+// Sécurité : on vérifie que la variable $page existe
+if (!isset($page)) {
+    $page = 'accueil';
+}
+
 require_once BASE_PATH . '/app/views/pages/header.php';
 
+// Vérification que la page est autorisée
 if (in_array($page, $pages, true)) {
     require_once BASE_PATH . '/app/views/pages/' . $page . '.php';
 } else {

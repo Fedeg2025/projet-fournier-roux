@@ -1,12 +1,30 @@
+<!-- =========================
+     PAGE ACTUALITÉS
+     Cette vue affiche la liste des articles publiés
+     avec pagination, image, extrait et métadonnées
+     ========================= -->
+
 <main class="articles-page">
     <h1 class="articles-page__title">Actualités</h1>
 
+    <!-- =========================
+         CAS AUCUN ARTICLE
+         ========================= -->
     <?php if (empty($articles)): ?>
         <p class="articles-page__empty">Aucun article publié.</p>
+
     <?php else: ?>
+
+        <!-- =========================
+             LISTE DES ARTICLES
+             ========================= -->
         <div class="articles-page__list">
             <?php foreach ($articles as $article): ?>
                 <section class="articles-page__item">
+
+                    <!-- =========================
+                         TITRE DE L’ARTICLE
+                         ========================= -->
                     <h2 class="articles-page__item-title">
                         <a
                             class="articles-page__item-link"
@@ -16,6 +34,9 @@
                         </a>
                     </h2>
 
+                    <!-- =========================
+                         IMAGE PRINCIPALE
+                         ========================= -->
                     <?php if (!empty($article['medias'][0]) && $article['medias'][0]['type_media'] === 'image'): ?>
                         <div class="articles-page__image-wrapper">
                             <img
@@ -26,6 +47,9 @@
                         </div>
                     <?php endif; ?>
 
+                    <!-- =========================
+                         CATÉGORIES
+                         ========================= -->
                     <p class="articles-page__categories">
                         <em>
                             Catégories :
@@ -33,6 +57,9 @@
                         </em>
                     </p>
 
+                    <!-- =========================
+                         EXTRAIT DE L’ARTICLE
+                         ========================= -->
                     <div class="articles-page__excerpt">
                         <?php
                         $excerpt = mb_substr($article['contenu'], 0, 200);
@@ -43,6 +70,9 @@
                         ?>
                     </div>
 
+                    <!-- =========================
+                         LIEN VERS LE DÉTAIL
+                         ========================= -->
                     <p class="articles-page__more">
                         <a
                             class="articles-page__more-link"
@@ -52,6 +82,9 @@
                         </a>
                     </p>
 
+                    <!-- =========================
+                         MÉTADONNÉES
+                         ========================= -->
                     <p class="articles-page__meta">
                         <small>
                             <?php echo htmlspecialchars($article['date_publication']); ?> -
@@ -62,6 +95,9 @@
             <?php endforeach; ?>
         </div>
 
+        <!-- =========================
+             PAGINATION
+             ========================= -->
         <div class="articles-page__pagination">
             <?php if ($page_articles > 1): ?>
                 <a

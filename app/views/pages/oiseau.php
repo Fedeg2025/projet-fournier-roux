@@ -1,5 +1,15 @@
+<!-- =========================
+     PAGE L’OISEAU
+     Cette vue présente différents éléments
+     culturels et symboliques autour du Fournier roux
+     ========================= -->
+
 <main class="oiseau-page">
     <article class="oiseau-article">
+
+        <!-- =========================
+             EN-TÊTE DE LA PAGE
+             ========================= -->
         <header class="oiseau-article__header">
             <h1 class="oiseau-article__title">
                 FOURNIER
@@ -8,6 +18,11 @@
             </h1>
         </header>
 
+        <!-- =========================
+             SECTION DES NOMS
+             Présentation des différents noms
+             du Fournier roux selon les cultures
+             ========================= -->
         <section class="oiseau-article__section oiseau-article__section--noms" aria-labelledby="nom-oiseau">
             <h2 id="nom-oiseau" class="visually-hidden">Les différents noms du Fournier roux</h2>
 
@@ -37,6 +52,11 @@
             </p>
         </section>
 
+        <!-- =========================
+             SECTION LÉGENDE
+             Présentation d’une légende guaraní
+             liée au Fournier roux
+             ========================= -->
         <section class="oiseau-article__section oiseau-article__section--legende" aria-labelledby="legende-fournier">
             <h2 id="legende-fournier" class="oiseau-article__subtitle">
                 La légende du Fournier roux

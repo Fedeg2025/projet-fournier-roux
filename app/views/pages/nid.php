@@ -1,5 +1,10 @@
 <?php
 
+// =========================
+// RESSOURCES DE LA GALERIE
+// Ce bloc définit le chemin des images
+// ainsi que la liste des fichiers utilisés dans le slider
+// =========================
 $galleryWebPath = 'public/assets/images/nid';
 
 $images = [
@@ -40,13 +45,25 @@ $images = [
 
 ?>
 
+<!-- =========================
+     PAGE CONSTRUCTION DU NID
+     Cette vue présente le processus
+     de construction du nid du Fournier roux
+     ========================= -->
+
 <main id="main-content" class="page-nid">
     <article class="contenu-page">
 
+        <!-- =========================
+             EN-TÊTE DE LA PAGE
+             ========================= -->
         <header class="entete">
             <h1>Construction du nid du fournier roux</h1>
         </header>
 
+        <!-- =========================
+             IMAGE PRINCIPALE
+             ========================= -->
         <section class="image-principale">
             <figure class="figure-nid">
                 <img
@@ -56,6 +73,9 @@ $images = [
             </figure>
         </section>
 
+        <!-- =========================
+             PRÉSENTATION GÉNÉRALE
+             ========================= -->
         <section class="carte">
             <h2>Comment le fournier construit son nid</h2>
 
@@ -76,7 +96,11 @@ $images = [
             </p>
         </section>
 
-        <!-- SLIDER NUEVO -->
+        <!-- =========================
+             GALERIE / SLIDER
+             Cette section présente les différentes étapes
+             de la construction du nid
+             ========================= -->
         <section id="galerie-nid" class="section section-galerie">
             <h2>L’incroyable processus de construction du nid</h2>
 
@@ -97,9 +121,15 @@ $images = [
             </div>
         </section>
 
+        <!-- =========================
+             INFORMATIONS COMPLÉMENTAIRES
+             ========================= -->
         <section class="section processus">
             <div class="cartes">
 
+                <!-- =========================
+                     DURÉE ET CONSTRUCTION
+                     ========================= -->
                 <article class="carte">
                     <h3>Durée et construction</h3>
 
@@ -120,6 +150,9 @@ $images = [
                     </p>
                 </article>
 
+                <!-- =========================
+                     PARTICULARITÉS DU NID
+                     ========================= -->
                 <article class="carte">
                     <h3>Particularités du nid</h3>
 

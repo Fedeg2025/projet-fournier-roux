@@ -1,30 +1,41 @@
 <?php
 
 // =========================
-// MODÈLE
+// MODÈLE DE DEMANDE DE SUPPRESSION DE COMPTE
+// Ce modèle permet de gérer les demandes
+// de suppression envoyées par les utilisateurs
 // =========================
 require_once BASE_PATH . '/app/models/demande-suppression-compte.php';
 
+
 // =========================
-// SÉCURITÉ
+// VÉRIFICATION DE L'AUTHENTIFICATION
+// Cette page est réservée aux utilisateurs connectés
 // =========================
 if (!isset($_SESSION['user'])) {
     header('Location: index.php?page=login');
     exit;
 }
 
+
 // =========================
-// VARIABLES
+// INITIALISATION DES VARIABLES
+// Ces variables sont utilisées dans la vue
 // =========================
 $erreur = '';
 $succes = '';
 $utilisateur = $_SESSION['user'];
 
+
 // =========================
-// TRAITEMENT FORMULAIRE
+// TRAITEMENT DU FORMULAIRE
+// Ce contrôleur gère :
+// - la mise à jour du profil
+// - la demande de suppression de compte
 // =========================
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+    // Vérification du token CSRF
     if (
         !isset($_POST['csrf_token']) ||
         $_POST['csrf_token'] !== $_SESSION['csrf_token']
@@ -34,14 +45,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $id_utilisateur = $_SESSION['user']['id_utilisateur'];
 
-        // Demande de suppression de compte
+        // =========================
+        // DEMANDE DE SUPPRESSION DE COMPTE
+        // =========================
         if (isset($_POST['action']) && $_POST['action'] === 'delete_account_request') {
 
+            // Un administrateur ne peut pas supprimer son propre compte
             if ($_SESSION['user']['role'] === 'admin') {
                 $erreur = 'Un administrateur ne peut pas supprimer son compte.';
             } else {
                 $motif = trim($_POST['motif'] ?? '');
 
+                // Vérifie si une demande existe déjà
                 if (hasPendingDeleteAccountRequest($pdo, $id_utilisateur)) {
                     $erreur = 'Une demande de suppression est déjà en attente de traitement.';
                 } else {
@@ -56,7 +71,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
 
         } else {
-            // Mise à jour du profil
+
+            // =========================
+            // MISE À JOUR DU PROFIL
+            // =========================
             $nom = trim($_POST['nom'] ?? '');
             $prenom = trim($_POST['prenom'] ?? '');
 
@@ -87,8 +105,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+
 // =========================
-// AFFICHAGE
+// AFFICHAGE DE LA PAGE PROFIL
+// Cette vue affiche les informations utilisateur
+// et les formulaires liés au compte
 // =========================
 require_once BASE_PATH . '/app/views/pages/header.php';
 require_once BASE_PATH . '/app/views/utilisateur/profil.php';

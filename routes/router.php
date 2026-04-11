@@ -1,10 +1,16 @@
 <?php
 
+// =========================
+// PAGE DEMANDÉE
+// Si aucune page n'est indiquée, on affiche l'accueil
+// =========================
 $page = $_GET['page'] ?? 'accueil';
 
 switch ($page) {
 
-    // Pages publiques
+    // =========================
+    // PAGES PUBLIQUES
+    // =========================
     case 'accueil':
         require_once BASE_PATH . '/app/controllers/homecontrollers.php';
         break;
@@ -19,24 +25,66 @@ switch ($page) {
         require_once BASE_PATH . '/app/controllers/pagecontrollers.php';
         break;
 
-    // Authentification
+    // =========================
+    // AUTHENTIFICATION
+    // Le routeur décide quelle fonction appeler
+    // =========================
     case 'login':
-    case 'register':
-    case 'logout':
         require_once BASE_PATH . '/app/controllers/authentificationcontrollers.php';
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            traiterLogin();
+        } else {
+            afficherLogin();
+        }
         break;
 
-    // Utilisateur
+    case 'register':
+        require_once BASE_PATH . '/app/controllers/authentificationcontrollers.php';
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            traiterRegister();
+        } else {
+            afficherRegister();
+        }
+        break;
+
+    case 'logout':
+        require_once BASE_PATH . '/app/controllers/authentificationcontrollers.php';
+        traiterLogout();
+        break;
+
+    case 'mot-de-passe-oublie':
+    case 'nouveau-mot-de-passe':
+        require_once BASE_PATH . '/app/controllers/authentificationcontrollers.php';
+        redirigerMotDePasseOublie();
+        break;
+
+    // =========================
+    // UTILISATEUR
+    // =========================
     case 'profil':
         require_once BASE_PATH . '/app/controllers/usercontrollers.php';
         break;
 
-    // Contact
+    // =========================
+    // CONTACT
+    // Le routeur appelle la bonne fonction
+    // selon la méthode HTTP
+    // =========================
     case 'contact':
         require_once BASE_PATH . '/app/controllers/contactcontrollers.php';
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            traiterContact();
+        } else {
+            afficherContact();
+        }
         break;
 
-    // Articles
+    // =========================
+    // ARTICLES
+    // =========================
     case 'articles':
         require_once BASE_PATH . '/app/controllers/articlecontrollers.php';
         break;
@@ -45,18 +93,25 @@ switch ($page) {
         require_once BASE_PATH . '/app/controllers/article-single-controller.php';
         break;
 
-    // Ressources
+    // =========================
+    // RESSOURCES
+    // =========================
     case 'ressources':
         require_once BASE_PATH . '/app/controllers/ressourcecontrollers.php';
         break;
 
-    // Administration
+    // =========================
+    // ADMINISTRATION
+    // =========================
     case 'admin':
         require_once BASE_PATH . '/app/controllers/admincontrollers.php';
         break;
 
-    // Page introuvable
+    // =========================
+    // PAGE INTROUVABLE
+    // =========================
     default:
+        http_response_code(404);
         require_once BASE_PATH . '/app/views/pages/404.php';
         break;
 }

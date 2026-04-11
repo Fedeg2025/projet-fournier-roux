@@ -1,6 +1,17 @@
+<!-- =========================
+     PAGE L’OISEAU
+     Cette vue présente une fiche complète
+     sur le Fournier roux : identité, habitat,
+     comportement, reproduction et importance culturelle
+     ========================= -->
+
 <main id="main-content" class="oiseau-page">
     <article class="oiseau-article" aria-labelledby="oiseau-title">
 
+        <!-- =========================
+             EN-TÊTE DE LA PAGE
+             Présentation générale de l’espèce
+             ========================= -->
         <header class="oiseau-article__header">
             <div class="oiseau-article__header-content">
                 <p class="oiseau-article__eyebrow">Fiche espèce</p>
@@ -33,6 +44,9 @@
         <div class="oiseau-article__body">
             <div class="oiseau-article__main">
 
+                <!-- =========================
+                     IDENTITÉ DE L’ESPÈCE
+                     ========================= -->
                 <section class="oiseau-article__section oiseau-article__section--identite" aria-labelledby="identite-fournier">
                     <h2 id="identite-fournier" class="oiseau-article__subtitle">Identité de l’espèce</h2>
 
@@ -84,6 +98,9 @@
                     </dl>
                 </section>
 
+                <!-- =========================
+                     DESCRIPTION GÉNÉRALE
+                     ========================= -->
                 <section class="oiseau-article__section oiseau-article__section--description oiseau-article__section--with-image" aria-labelledby="description-fournier">
                     <div class="oiseau-article__section-content">
                         <h2 id="description-fournier" class="oiseau-article__subtitle">Description générale</h2>
@@ -113,6 +130,9 @@
                     </figure>
                 </section>
 
+                <!-- =========================
+                     IDENTIFICATION
+                     ========================= -->
                 <section class="oiseau-article__section oiseau-article__section--identification" aria-labelledby="identification-fournier">
                     <h2 id="identification-fournier" class="oiseau-article__subtitle">Identification</h2>
 
@@ -136,6 +156,9 @@
                     </p>
                 </section>
 
+                <!-- =========================
+                     VOIX ET COMPORTEMENT
+                     ========================= -->
                 <section class="oiseau-article__section oiseau-article__section--comportement" aria-labelledby="comportement-fournier">
                     <h2 id="comportement-fournier" class="oiseau-article__subtitle">Voix et comportement</h2>
 
@@ -154,6 +177,9 @@
                     </p>
                 </section>
 
+                <!-- =========================
+                     HABITAT
+                     ========================= -->
                 <section class="oiseau-article__section oiseau-article__section--habitat" aria-labelledby="habitat-fournier">
                     <h2 id="habitat-fournier" class="oiseau-article__subtitle">Habitat</h2>
 
@@ -169,6 +195,9 @@
                     </p>
                 </section>
 
+                <!-- =========================
+                     RÉPARTITION
+                     ========================= -->
                 <section class="oiseau-article__section oiseau-article__section--repartition" aria-labelledby="repartition-fournier">
                     <h2 id="repartition-fournier" class="oiseau-article__subtitle">Répartition</h2>
 
@@ -184,6 +213,9 @@
                     </p>
                 </section>
 
+                <!-- =========================
+                     ALIMENTATION
+                     ========================= -->
                 <section class="oiseau-article__section oiseau-article__section--alimentation" aria-labelledby="alimentation-fournier">
                     <h2 id="alimentation-fournier" class="oiseau-article__subtitle">Alimentation</h2>
 
@@ -199,6 +231,9 @@
                     </p>
                 </section>
 
+                <!-- =========================
+                     REPRODUCTION
+                     ========================= -->
                 <section class="oiseau-article__section oiseau-article__section--reproduction oiseau-article__section--with-image" aria-labelledby="reproduction-fournier">
                     <div class="oiseau-article__section-content">
                         <h2 id="reproduction-fournier" class="oiseau-article__subtitle">Reproduction</h2>
@@ -226,6 +261,9 @@
                     </figure>
                 </section>
 
+                <!-- =========================
+                     LE NID
+                     ========================= -->
                 <section class="oiseau-article__section oiseau-article__section--nid oiseau-article__section--with-image" aria-labelledby="nid-fournier">
                     <div class="oiseau-article__section-content">
                         <h2 id="nid-fournier" class="oiseau-article__subtitle">Le nid</h2>
@@ -260,6 +298,9 @@
                     </figure>
                 </section>
 
+                <!-- =========================
+                     LE SAVIEZ-VOUS ?
+                     ========================= -->
                 <aside class="oiseau-article__section oiseau-article__section--info" aria-labelledby="info-fournier">
                     <h2 id="info-fournier" class="oiseau-article__subtitle">Le saviez-vous ?</h2>
 
@@ -275,6 +316,9 @@
                     </p>
                 </aside>
 
+                <!-- =========================
+                     STATUT DE CONSERVATION
+                     ========================= -->
                 <section class="oiseau-article__section oiseau-article__section--conservation" aria-labelledby="conservation-fournier">
                     <h2 id="conservation-fournier" class="oiseau-article__subtitle">Statut de conservation</h2>
 
@@ -285,6 +329,9 @@
                     </p>
                 </section>
 
+                <!-- =========================
+                     IMPORTANCE CULTURELLE
+                     ========================= -->
                 <section class="oiseau-article__section oiseau-article__section--culture" aria-labelledby="culture-fournier">
                     <h2 id="culture-fournier" class="oiseau-article__subtitle">Importance culturelle</h2>
 
@@ -297,6 +344,10 @@
 
             </div>
 
+            <!-- =========================
+                 COLONNE LATÉRALE
+                 Informations complémentaires
+                 ========================= -->
             <aside class="oiseau-article__sidebar" aria-label="Informations complémentaires sur le Fournier roux">
                 <section class="oiseau-article__card oiseau-article__card--summary">
                     <h3 class="oiseau-article__card-title">Résumé technique</h3>

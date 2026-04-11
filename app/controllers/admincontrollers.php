@@ -1,7 +1,8 @@
 <?php
 
 // =========================
-// SÉCURITÉ ADMIN
+// VÉRIFICATION DES DROITS ADMINISTRATEUR
+// Cette fonction protège l’accès au back-office
 // =========================
 function requireAdmin()
 {
@@ -18,8 +19,10 @@ function requireAdmin()
 
 requireAdmin();
 
+
 // =========================
-// MODÈLES
+// CHARGEMENT DES MODÈLES
+// Ces modèles sont utilisés dans le back-office
 // =========================
 require_once BASE_PATH . '/app/models/message.php';
 require_once BASE_PATH . '/app/models/article.php';
@@ -28,22 +31,28 @@ require_once BASE_PATH . '/app/models/User.php';
 require_once BASE_PATH . '/app/models/demande-suppression-compte.php';
 require_once BASE_PATH . '/app/models/media.php';
 
+
 // =========================
-// VARIABLES
+// INITIALISATION DES VARIABLES
+// Ces variables sont utilisées dans la vue admin
 // =========================
 $article_a_modifier = null;
 $erreur = '';
 $succes = '';
 
+
 // =========================
-// CSRF
+// GÉNÉRATION DU TOKEN CSRF
+// Le token est créé s’il n’existe pas encore
 // =========================
 if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 
+
 // =========================
-// SECTION BACK-OFFICE
+// CHOIX DE LA SECTION DU BACK-OFFICE
+// Cette variable permet d’afficher la bonne zone
 // =========================
 $section = $_GET['section'] ?? 'messages';
 
@@ -53,14 +62,18 @@ if (!in_array($section, $sections_autorisees, true)) {
     $section = 'messages';
 }
 
+
 // =========================
-// CONFIRMATIONS DANS L’INTERFACE
+// CONFIRMATIONS D’ACTIONS DANS L’INTERFACE
+// Ces variables permettent d’afficher des états visuels
 // =========================
 $confirm_delete = isset($_GET['confirm_delete']) ? (int) $_GET['confirm_delete'] : 0;
 $confirm_delete_message = isset($_GET['confirm_delete_message']) ? (int) $_GET['confirm_delete_message'] : 0;
 
+
 // =========================
-// FONCTION UPLOAD IMAGE
+// AJOUT D’UNE IMAGE À UN ARTICLE
+// Cette fonction vérifie le fichier puis enregistre le média
 // =========================
 function addImageToArticle($pdo, $id_article)
 {
@@ -104,8 +117,10 @@ function addImageToArticle($pdo, $id_article)
     }
 }
 
+
 // =========================
 // SUPPRESSION D’UN MESSAGE
+// Cette partie supprime un message du formulaire admin
 // =========================
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
     if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
@@ -122,8 +137,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
     exit;
 }
 
+
 // =========================
 // TRAITEMENT D’UNE DEMANDE DE SUPPRESSION DE COMPTE
+// Cette action anonymise l’utilisateur puis traite la demande
 // =========================
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['process_delete_request'])) {
     if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
@@ -150,8 +167,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['process_delete_reques
     exit;
 }
 
+
 // =========================
 // REFUS D’UNE DEMANDE DE SUPPRESSION DE COMPTE
+// Cette action marque la demande comme refusée
 // =========================
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['refuse_delete_request'])) {
     if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
@@ -170,8 +189,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['refuse_delete_request
     exit;
 }
 
+
 // =========================
 // SUPPRESSION D’UN ARTICLE
+// Cette action supprime l’article et ses relations
 // =========================
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_article'])) {
     if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
@@ -191,8 +212,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_article'])) {
     exit;
 }
 
+
 // =========================
-// CHARGER UN ARTICLE POUR MODIFICATION
+// CHARGEMENT D’UN ARTICLE À MODIFIER
+// Cette partie récupère l’article à éditer
 // =========================
 if (isset($_GET['edit_article'])) {
     $id_article = (int) $_GET['edit_article'];
@@ -200,8 +223,10 @@ if (isset($_GET['edit_article'])) {
     $section = 'contenus';
 }
 
+
 // =========================
-// CRÉATION / MODIFICATION D’UN ARTICLE
+// CRÉATION OU MODIFICATION D’UN ARTICLE
+// Cette partie traite le formulaire d’article
 // =========================
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['titre'])) {
     if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
@@ -217,6 +242,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['titre'])) {
         } elseif (mb_strlen($contenu) < 10) {
             $erreur = 'Le contenu doit contenir au moins 10 caractères.';
         } else {
+
+            // Modification d’un article existant
             if (isset($_POST['id_article']) && !empty($_POST['id_article'])) {
                 $id_article = (int) $_POST['id_article'];
 
@@ -234,28 +261,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['titre'])) {
 
                 header('Location: index.php?page=admin&section=contenus');
                 exit;
-            } else {
-                createArticle($pdo, $titre, $contenu, $id_utilisateur);
-
-                $id_article = $pdo->lastInsertId();
-
-                foreach ($categories_formulaire as $id_categorie) {
-                    addArticleCategory($pdo, $id_article, $id_categorie);
-                }
-
-                addImageToArticle($pdo, $id_article);
-
-                $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-
-                header('Location: index.php?page=admin&section=contenus');
-                exit;
             }
+
+            // Création d’un nouvel article
+            createArticle($pdo, $titre, $contenu, $id_utilisateur);
+
+            $id_article = $pdo->lastInsertId();
+
+            foreach ($categories_formulaire as $id_categorie) {
+                addArticleCategory($pdo, $id_article, $id_categorie);
+            }
+
+            addImageToArticle($pdo, $id_article);
+
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+
+            header('Location: index.php?page=admin&section=contenus');
+            exit;
         }
     }
 }
 
+
 // =========================
-// DONNÉES NÉCESSAIRES À L’ADMINISTRATION
+// RÉCUPÉRATION DES DONNÉES D’ADMINISTRATION
+// Ces données sont nécessaires pour afficher le tableau de bord
 // =========================
 $messages = getAllMessages($pdo);
 $articles = getAllArticles($pdo);
@@ -288,8 +318,9 @@ if ($article_a_modifier) {
     $categories_selectionnees = getCategoryIdsByArticle($pdo, $article_a_modifier['id_article']);
 }
 
+
 // =========================
-// AFFICHAGE
+// AFFICHAGE DU TABLEAU DE BORD ADMINISTRATEUR
 // =========================
 require_once BASE_PATH . '/app/views/pages/header.php';
 require_once BASE_PATH . '/app/views/admin/dashboard.php';

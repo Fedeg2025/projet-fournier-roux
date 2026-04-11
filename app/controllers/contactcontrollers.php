@@ -5,17 +5,35 @@
 // =========================
 require_once BASE_PATH . '/app/models/message.php';
 
-// =========================
-// VARIABLES
-// =========================
-$succes = '';
-$erreur = '';
 
 // =========================
-// TRAITEMENT DU FORMULAIRE
+// AFFICHAGE DE LA PAGE CONTACT
+// Cette fonction affiche le formulaire de contact
 // =========================
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+function afficherContact()
+{
+    $succes = '';
+    $erreur = '';
 
+    require BASE_PATH . '/app/views/pages/header.php';
+    require BASE_PATH . '/app/views/pages/contact.php';
+    require BASE_PATH . '/app/views/pages/footer.php';
+    exit;
+}
+
+
+// =========================
+// TRAITEMENT DU FORMULAIRE DE CONTACT
+// Cette fonction vérifie les données et enregistre le message
+// =========================
+function traiterContact()
+{
+    global $pdo;
+
+    $succes = '';
+    $erreur = '';
+
+    // Vérification du token CSRF
     if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
         $erreur = 'Requête invalide (CSRF).';
     } else {
@@ -29,11 +47,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $id_utilisateur = null;
 
+        // Récupération de l'identifiant utilisateur si la personne est connectée
         if (isset($_SESSION['user'])) {
             $id_utilisateur = $_SESSION['user']['id_utilisateur'];
         }
 
-        if (empty($civilite) || empty($prenom) || empty($nom) || empty($email) || empty($objet) || empty($message)) {
+        // Validation des champs
+        if (
+            empty($civilite) ||
+            empty($prenom) ||
+            empty($nom) ||
+            empty($email) ||
+            empty($objet) ||
+            empty($message)
+        ) {
             $erreur = 'Tous les champs sont obligatoires.';
         } elseif (empty($contact_consent)) {
             $erreur = 'Vous devez accepter la politique de confidentialité.';
@@ -52,6 +79,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } elseif (mb_strlen($message) < 10) {
             $erreur = 'Le message doit contenir au moins 10 caractères.';
         } else {
+
+            // Enregistrement du message en base de données
             createMessage(
                 $pdo,
                 $civilite,
@@ -64,13 +93,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             );
 
             $succes = 'Message envoyé avec succès.';
+
+            // Régénération du token CSRF après traitement
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
         }
     }
-}
 
-// =========================
-// AFFICHAGE
-// =========================
-require_once BASE_PATH . '/app/views/pages/header.php';
-require_once BASE_PATH . '/app/views/pages/contact.php';
-require_once BASE_PATH . '/app/views/pages/footer.php';
+    require BASE_PATH . '/app/views/pages/header.php';
+    require BASE_PATH . '/app/views/pages/contact.php';
+    require BASE_PATH . '/app/views/pages/footer.php';
+    exit;
+}

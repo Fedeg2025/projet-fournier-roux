@@ -1,9 +1,22 @@
+<!-- =========================
+     PAGE ARTICLE
+     Cette vue affiche le détail complet
+     d’un article publié
+     ========================= -->
+
 <main class="article-page">
     <article class="article-page__container">
+
+        <!-- =========================
+             TITRE DE L’ARTICLE
+             ========================= -->
         <h1 class="article-page__title">
             <?php echo htmlspecialchars($article['titre']); ?>
         </h1>
 
+        <!-- =========================
+             IMAGE PRINCIPALE
+             ========================= -->
         <?php if (!empty($article['medias'][0]) && $article['medias'][0]['type_media'] === 'image'): ?>
             <div class="article-page__image-wrapper">
                 <img
@@ -14,6 +27,9 @@
             </div>
         <?php endif; ?>
 
+        <!-- =========================
+             CATÉGORIES
+             ========================= -->
         <p class="article-page__categories">
             <em>
                 Catégories :
@@ -21,6 +37,9 @@
             </em>
         </p>
 
+        <!-- =========================
+             MÉTADONNÉES
+             ========================= -->
         <p class="article-page__meta">
             <small>
                 <?php echo htmlspecialchars($article['date_publication']); ?> -
@@ -28,10 +47,16 @@
             </small>
         </p>
 
+        <!-- =========================
+             CONTENU DE L’ARTICLE
+             ========================= -->
         <div class="article-page__content">
             <?php echo nl2br(htmlspecialchars($article['contenu'])); ?>
         </div>
 
+        <!-- =========================
+             LIEN DE RETOUR
+             ========================= -->
         <div class="article-page__back">
             <a
                 class="article-page__back-link"

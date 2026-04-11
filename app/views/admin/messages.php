@@ -1,16 +1,37 @@
+<!-- =========================
+     LISTE DES MESSAGES REÇUS
+     Cette vue permet à l’administrateur
+     de consulter et supprimer les messages envoyés via le formulaire de contact
+     ========================= -->
+
 <section class="admin-messages">
     <h2 class="admin-messages__title">Messages reçus</h2>
 
+    <!-- =========================
+         CAS AUCUN MESSAGE
+         ========================= -->
     <?php if (empty($messages)): ?>
         <p class="admin-messages__empty">Aucun message.</p>
+
     <?php else: ?>
+
+        <!-- =========================
+             LISTE DES MESSAGES
+             ========================= -->
         <div class="admin-messages__list">
             <?php foreach ($messages as $message): ?>
                 <article class="admin-messages__item">
+
+                    <!-- =========================
+                         OBJET DU MESSAGE
+                         ========================= -->
                     <h3 class="admin-messages__subject">
                         <?php echo htmlspecialchars($message['objet']); ?>
                     </h3>
 
+                    <!-- =========================
+                         INFORMATIONS EXPÉDITEUR
+                         ========================= -->
                     <p class="admin-messages__meta">
                         <span class="admin-messages__author">
                             <?php echo htmlspecialchars($message['prenom'] . ' ' . $message['nom']); ?>
@@ -21,14 +42,23 @@
                         </span>
                     </p>
 
+                    <!-- =========================
+                         CONTENU DU MESSAGE
+                         ========================= -->
                     <p class="admin-messages__text">
                         <?php echo nl2br(htmlspecialchars($message['message'])); ?>
                     </p>
 
+                    <!-- =========================
+                         DATE D’ENVOI
+                         ========================= -->
                     <p class="admin-messages__date">
                         <small><?php echo htmlspecialchars($message['date_envoi']); ?></small>
                     </p>
 
+                    <!-- =========================
+                         ACTIONS
+                         ========================= -->
                     <div class="admin-messages__actions">
                         <a
                             class="admin-messages__delete-link"
@@ -38,6 +68,9 @@
                         </a>
                     </div>
 
+                    <!-- =========================
+                         CONFIRMATION DE SUPPRESSION
+                         ========================= -->
                     <?php if (isset($confirm_delete_message) && $confirm_delete_message === (int) $message['id_message']): ?>
                         <div class="admin-messages__confirm">
                             <p class="admin-messages__confirm-text">

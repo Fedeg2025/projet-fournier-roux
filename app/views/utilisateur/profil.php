@@ -1,21 +1,40 @@
+<!-- =========================
+     PAGE PROFIL
+     Cette vue permet à l’utilisateur
+     de consulter et modifier ses informations personnelles
+     ainsi que d’envoyer une demande de suppression de compte
+     ========================= -->
+
 <main class="profile-page">
     <h1 class="profile-page__title">Mon profil</h1>
 
+    <!-- =========================
+         SECTION INFORMATIONS PERSONNELLES
+         ========================= -->
     <section class="profile-page__section profile-page__section--info">
         <h2 class="profile-page__subtitle">Informations personnelles</h2>
 
+        <!-- =========================
+             MESSAGE D’ERREUR
+             ========================= -->
         <?php if (!empty($erreur)): ?>
             <p class="profile-page__message profile-page__message--error">
                 <?php echo htmlspecialchars($erreur); ?>
             </p>
         <?php endif; ?>
 
+        <!-- =========================
+             MESSAGE DE SUCCÈS
+             ========================= -->
         <?php if (!empty($succes)): ?>
             <p class="profile-page__message profile-page__message--success">
                 <?php echo htmlspecialchars($succes); ?>
             </p>
         <?php endif; ?>
 
+        <!-- =========================
+             FORMULAIRE DE MISE À JOUR DU PROFIL
+             ========================= -->
         <form class="profile-form" method="POST" action="index.php?page=profil">
             <input
                 type="hidden"
@@ -54,6 +73,9 @@
             </div>
         </form>
 
+        <!-- =========================
+             DÉTAILS DU COMPTE
+             ========================= -->
         <div class="profile-details">
             <p class="profile-details__item">
                 <span class="profile-details__label">Email :</span>
@@ -71,6 +93,11 @@
         </div>
     </section>
 
+    <!-- =========================
+         SECTION DEMANDE DE SUPPRESSION
+         Cette section n’est affichée
+         que pour les utilisateurs non administrateurs
+         ========================= -->
     <?php if ($utilisateur['role'] !== 'admin'): ?>
         <section class="profile-page__section profile-page__section--delete">
             <h2 class="profile-page__subtitle">Suppression du compte</h2>

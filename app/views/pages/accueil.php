@@ -1,11 +1,25 @@
+<!-- =========================
+     PAGE D'ACCUEIL
+     Cette vue présente l’association,
+     le Fournier roux et une galerie d’images
+     ========================= -->
+
 <main class="accueil-page">
   <h1 class="visually-hidden">Accueil - Association Les Fourniers roux</h1>
 
+  <!-- =========================
+       INTRODUCTION
+       Présentation de l’association
+       et du Fournier roux
+       ========================= -->
   <article class="accueil-intro" aria-labelledby="accueil-intro-title">
     <header class="section-header">
       <h2 id="accueil-intro-title" class="visually-hidden">Présentation de l’association et du Fournier roux</h2>
     </header>
 
+    <!-- =========================
+         SECTION BIENVENUE
+         ========================= -->
     <section aria-labelledby="bienvenue-title">
       <header>
         <div class="titre">
@@ -28,6 +42,9 @@
       </div>
     </section>
 
+    <!-- =========================
+         SECTION SYMBOLIQUE
+         ========================= -->
     <section aria-labelledby="symbolique-title">
       <header class="section-header">
         <h2 id="symbolique-title" class="visually-hidden">Symbolique du Fournier roux</h2>
@@ -45,6 +62,9 @@
     </section>
   </article>
 
+  <!-- =========================
+       CONTENU COMPLÉMENTAIRE
+       ========================= -->
   <article class="accueil-contenu" aria-labelledby="accueil-contenu-title">
     <header class="section-header">
       <h2 id="accueil-contenu-title" class="visually-hidden">Habitat, comportement et portée symbolique du Fournier roux</h2>
@@ -71,70 +91,55 @@
     </section>
   </article>
 
+  <!-- =========================
+       GALERIE D’IMAGES
+       ========================= -->
   <section id="galerie" class="accueil-galerie" aria-label="Galerie de photos du Fournier roux">
     <div class="galerie-grid">
+
       <article class="paysage">
-        <a
-          href="public/assets/images/img1.webp"
-          aria-label="Fournier roux perché sur une branche">
-          <img
-            src="public/assets/images/img1.webp"
-            alt="Fournier roux perché sur une branche dans un environnement naturel">
+        <a href="public/assets/images/img1.webp" aria-label="Fournier roux perché sur une branche">
+          <img src="public/assets/images/img1.webp" alt="Fournier roux perché sur une branche dans un environnement naturel">
         </a>
       </article>
 
       <article class="paysage">
-        <a
-          href="public/assets/images/img2.webp"
-          aria-label="Fournier roux près de son nid">
-          <img
-            src="public/assets/images/img2.webp"
-            alt="Fournier roux observé près de son nid en terre">
+        <a href="public/assets/images/img2.webp" aria-label="Fournier roux près de son nid">
+          <img src="public/assets/images/img2.webp" alt="Fournier roux observé près de son nid en terre">
         </a>
       </article>
 
       <article class="paysage">
-        <a
-          href="public/assets/images/img3.webp"
-          aria-label="Fournier roux dans la végétation">
-          <img
-            src="public/assets/images/img3.webp"
-            alt="Fournier roux au milieu de la végétation avec son plumage brun et roux">
+        <a href="public/assets/images/img3.webp" aria-label="Fournier roux dans la végétation">
+          <img src="public/assets/images/img3.webp" alt="Fournier roux au milieu de la végétation avec son plumage brun et roux">
         </a>
       </article>
 
       <article class="paysage">
-        <a
-          href="public/assets/images/img4.webp"
-          aria-label="Nid de Fournier roux en forme de four">
-          <img
-            src="public/assets/images/img4.webp"
-            alt="Nid de Fournier roux construit en boue avec sa forme caractéristique de four">
+        <a href="public/assets/images/img4.webp" aria-label="Nid de Fournier roux en forme de four">
+          <img src="public/assets/images/img4.webp" alt="Nid de Fournier roux construit en boue avec sa forme caractéristique de four">
         </a>
       </article>
 
       <article class="paysage">
-        <a
-          href="public/assets/images/img5.webp"
-          aria-label="Fournier roux au sol">
-          <img
-            src="public/assets/images/img5.webp"
-            alt="Fournier roux marchant au sol dans son habitat naturel">
+        <a href="public/assets/images/img5.webp" aria-label="Fournier roux au sol">
+          <img src="public/assets/images/img5.webp" alt="Fournier roux marchant au sol dans son habitat naturel">
         </a>
       </article>
 
       <article class="paysage">
-        <a
-          href="public/assets/images/img6.webp"
-          aria-label="Fournier roux en observation">
-          <img
-            src="public/assets/images/img6.webp"
-            alt="Fournier roux en train d’observer son environnement">
+        <a href="public/assets/images/img6.webp" aria-label="Fournier roux en observation">
+          <img src="public/assets/images/img6.webp" alt="Fournier roux en train d’observer son environnement">
         </a>
       </article>
+
     </div>
   </section>
 
+  <!-- =========================
+       LIGHTBOX PERSONNALISÉE
+       Permet d’afficher les images en grand
+       ========================= -->
   <aside class="custom-lightbox" id="custom-lightbox" aria-hidden="true">
     <button class="lightbox-close" id="lightbox-close" type="button" aria-label="Fermer l’image">
       <i class="fa-solid fa-xmark" aria-hidden="true"></i>
@@ -144,14 +149,11 @@
       <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
     </button>
 
-    <img
-      class="lightbox-image"
-      id="lightbox-image"
-      src=""
-      alt="">
+    <img class="lightbox-image" id="lightbox-image" src="" alt="">
 
     <button class="lightbox-next" id="lightbox-next" type="button" aria-label="Image suivante">
       <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
     </button>
   </aside>
+
 </main>

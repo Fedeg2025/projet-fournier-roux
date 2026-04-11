@@ -1,6 +1,15 @@
+<!-- =========================
+     TABLEAU DE BORD ADMINISTRATEUR
+     Cette vue organise les différentes sections
+     du back-office : messages, contenus et utilisateurs
+     ========================= -->
+
 <main class="admin-dashboard">
     <h1 class="admin-dashboard__title">Back-office administrateur</h1>
 
+    <!-- =========================
+         NAVIGATION DU BACK-OFFICE
+         ========================= -->
     <nav class="admin-dashboard__nav">
         <a
             class="admin-dashboard__link <?php echo $section === 'messages' ? 'admin-dashboard__link--active' : ''; ?>"
@@ -24,15 +33,29 @@
         </a>
     </nav>
 
+    <!-- =========================
+         SÉPARATEUR VISUEL
+         ========================= -->
     <hr class="admin-dashboard__separator">
 
+    <!-- =========================
+         CONTENU DU BACK-OFFICE
+         Le contenu affiché dépend de la section sélectionnée
+         ========================= -->
     <section class="admin-dashboard__content">
+
+        <!-- =========================
+             SECTION MESSAGES
+             ========================= -->
         <?php if ($section === 'messages'): ?>
             <div class="admin-dashboard__section admin-dashboard__section--messages">
                 <?php require_once BASE_PATH . '/app/views/admin/messages.php'; ?>
             </div>
         <?php endif; ?>
 
+        <!-- =========================
+             SECTION CONTENUS
+             ========================= -->
         <?php if ($section === 'contenus'): ?>
             <div class="admin-dashboard__section admin-dashboard__section--contenus">
                 <div class="admin-dashboard__block admin-dashboard__block--article-form">
@@ -45,6 +68,9 @@
             </div>
         <?php endif; ?>
 
+        <!-- =========================
+             SECTION UTILISATEURS
+             ========================= -->
         <?php if ($section === 'utilisateurs'): ?>
             <div class="admin-dashboard__section admin-dashboard__section--utilisateurs">
                 <div class="admin-dashboard__block admin-dashboard__block--users">
