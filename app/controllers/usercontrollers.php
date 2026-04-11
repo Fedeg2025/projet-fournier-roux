@@ -1,52 +1,65 @@
 <?php
 
-require_once __DIR__ . '/../models/demande-suppression-compte.php';
+// =========================
+// MODÈLE
+// =========================
+require_once BASE_PATH . '/app/models/demande-suppression-compte.php';
 
+// =========================
+// SÉCURITÉ
+// =========================
 if (!isset($_SESSION['user'])) {
     header('Location: index.php?page=login');
     exit;
 }
 
-// Génération du jeton CSRF s'il n'existe pas encore.
-if (empty($_SESSION['csrf_token'])) {
-    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-}
-
+// =========================
+// VARIABLES
+// =========================
 $erreur = '';
 $succes = '';
+$utilisateur = $_SESSION['user'];
 
+// =========================
+// TRAITEMENT FORMULAIRE
+// =========================
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Vérification CSRF.
+
     if (
         !isset($_POST['csrf_token']) ||
         $_POST['csrf_token'] !== $_SESSION['csrf_token']
     ) {
         $erreur = 'Requête invalide (CSRF).';
     } else {
+
         $id_utilisateur = $_SESSION['user']['id_utilisateur'];
 
+        // Demande de suppression de compte
         if (isset($_POST['action']) && $_POST['action'] === 'delete_account_request') {
-            $motif = trim($_POST['motif'] ?? '');
 
-            if (hasPendingDeleteAccountRequest($pdo, $id_utilisateur)) {
-                $erreur = 'Une demande de suppression est déjà en attente de traitement.';
+            if ($_SESSION['user']['role'] === 'admin') {
+                $erreur = 'Un administrateur ne peut pas supprimer son compte.';
             } else {
-                $demande_creee = createDeleteAccountRequest($pdo, $id_utilisateur, $motif ?: null);
+                $motif = trim($_POST['motif'] ?? '');
 
-                if ($demande_creee) {
-                    $succes = 'Votre demande de suppression de compte a bien été envoyée.';
-
-                    // Régénération du jeton CSRF après succès.
-                    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+                if (hasPendingDeleteAccountRequest($pdo, $id_utilisateur)) {
+                    $erreur = 'Une demande de suppression est déjà en attente de traitement.';
                 } else {
-                    $erreur = 'Une erreur est survenue lors de l’envoi de la demande.';
+                    $demande_creee = createDeleteAccountRequest($pdo, $id_utilisateur, $motif ?: null);
+
+                    if ($demande_creee) {
+                        $succes = 'Votre demande de suppression de compte a bien été envoyée.';
+                    } else {
+                        $erreur = 'Une erreur est survenue lors de l’envoi de la demande.';
+                    }
                 }
             }
+
         } else {
+            // Mise à jour du profil
             $nom = trim($_POST['nom'] ?? '');
             $prenom = trim($_POST['prenom'] ?? '');
 
-            // Validation.
             if (empty($nom) || empty($prenom)) {
                 $erreur = 'Le nom et le prénom sont obligatoires.';
             } elseif (mb_strlen($nom) < 2 || mb_strlen($nom) > 100) {
@@ -54,21 +67,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } elseif (mb_strlen($prenom) < 2 || mb_strlen($prenom) > 100) {
                 $erreur = 'Le prénom doit contenir entre 2 et 100 caractères.';
             } else {
-                $requete = $pdo->prepare("
-                    UPDATE utilisateurs
-                    SET nom = ?, prenom = ?
-                    WHERE id_utilisateur = ?
-                ");
+                $sql = "UPDATE utilisateurs
+                        SET nom = ?, prenom = ?
+                        WHERE id_utilisateur = ?";
 
-                $mise_a_jour_reussie = $requete->execute([$nom, $prenom, $id_utilisateur]);
+                $stmt = $pdo->prepare($sql);
+                $mise_a_jour_reussie = $stmt->execute([$nom, $prenom, $id_utilisateur]);
 
                 if ($mise_a_jour_reussie) {
                     $_SESSION['user']['nom'] = $nom;
                     $_SESSION['user']['prenom'] = $prenom;
+                    $utilisateur = $_SESSION['user'];
                     $succes = 'Profil mis à jour avec succès.';
-
-                    // Régénération du jeton CSRF après succès.
-                    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
                 } else {
                     $erreur = 'Une erreur est survenue lors de la mise à jour du profil.';
                 }
@@ -77,8 +87,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-$utilisateur = $_SESSION['user'];
-
-require_once __DIR__ . '/../views/pages/header.php';
-require_once __DIR__ . '/../views/utilisateur/profil.php';
-require_once __DIR__ . '/../views/pages/footer.php';
+// =========================
+// AFFICHAGE
+// =========================
+require_once BASE_PATH . '/app/views/pages/header.php';
+require_once BASE_PATH . '/app/views/utilisateur/profil.php';
+require_once BASE_PATH . '/app/views/pages/footer.php';

@@ -1,6 +1,6 @@
 <main class="inat-page">
     <section class="inat-hero">
-        <h2 class="inat-title">Observations iNaturalist</h2>
+        <h1 class="inat-title">Observations iNaturalist</h1>
 
         <p class="inat-text">
             Cette page permet de consulter des observations récentes du Fournier roux
@@ -15,6 +15,6 @@
     </section>
 
     <div class="inat-actions">
-        <button id="load-more-inat" class="inat-button">Voir plus</button>
+        <button id="load-more-inat" class="inat-button" type="button">Voir plus</button>
     </div>
 </main>

@@ -3,10 +3,43 @@
 ========================= */
 
 .auth-page--login {
+  background: $color-bg-soft;
+
+  .auth-content {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .auth-content__inner {
+    max-width: 930px;
+    margin: 0 auto;
+  }
+
+  .auth-header {
+    margin-bottom: 2.6rem;
+  }
+
+  .auth-header__title {
+    margin: 0;
+  }
+
+  .auth-form {
+    gap: 1.7rem;
+  }
+
+  .auth-form__group {
+    gap: $space-lg;
+  }
+
+  .auth-form__input {
+    background-color: $auth-input-bg;
+  }
+
   .auth-form__actions-top {
     display: flex;
     justify-content: flex-end;
-    margin-top: 0;
+    align-items: center;
+    margin-top: 0.25rem;
   }
 
   .auth-form__forgot-link {
@@ -19,6 +52,23 @@
     &:focus {
       text-decoration: underline;
     }
+  }
+
+  .auth-form__submit {
+    margin-top: 1.2rem;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .auth-divider {
+    margin-top: 2.8rem;
+    margin-bottom: 2rem;
+  }
+
+  .auth-register {
+    margin: 0;
+    display: flex;
+    justify-content: flex-start;
   }
 
   .auth-form__consent {

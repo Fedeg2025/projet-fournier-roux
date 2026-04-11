@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -18,28 +19,32 @@
             <div class="nav-header">
 
                 <button class="burger-btn" id="burger-btn" type="button" aria-label="Ouvrir le menu">
-                    <i class="fa-solid fa-bars"></i>
+                    <i class="fa-solid fa-bars" aria-hidden="true"></i>
                 </button>
 
                 <div class="brand-box">
                     <div class="logo-box">
-                        <a href="index.php?page=accueil">
+                        <a href="index.php?page=accueil" aria-label="Retour à l'accueil">
                             <img src="public/assets/images/logoCreator_imagetologo.jpg" alt="Logo Fournier Roux">
                         </a>
                     </div>
 
-                    <h1 class="site-title">
+                    <p class="site-title">
                         <a href="index.php?page=accueil">
                             Fournier <span>roux</span>
                         </a>
-                    </h1>
+                    </p>
                 </div>
 
                 <div class="profile-box">
                     <?php if (isset($_SESSION['user'])): ?>
                         <a href="index.php?page=profil">Profil</a>
                         <form method="POST" action="index.php?page=logout" style="display:inline;">
-                            <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token'] ?? '') ?>">
+                            <input
+                                type="hidden"
+                                name="csrf_token"
+                                value="<?php echo htmlspecialchars($_SESSION['csrf_token'] ?? ''); ?>"
+                            >
                             <button type="submit" class="logout-link">
                                 Déconnexion
                             </button>
@@ -52,24 +57,28 @@
                 <div class="mobile-profile-box">
                     <?php if (isset($_SESSION['user'])): ?>
                         <a href="index.php?page=profil" aria-label="Profil">
-                            <i class="fa-solid fa-user"></i>
+                            <i class="fa-solid fa-user" aria-hidden="true"></i>
                         </a>
                         <form method="POST" action="index.php?page=logout" style="display:inline;">
-                            <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token'] ?? '') ?>">
+                            <input
+                                type="hidden"
+                                name="csrf_token"
+                                value="<?php echo htmlspecialchars($_SESSION['csrf_token'] ?? ''); ?>"
+                            >
                             <button type="submit" class="logout-link" aria-label="Déconnexion">
-                                <i class="fa-solid fa-right-from-bracket"></i>
+                                <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
                             </button>
                         </form>
                     <?php else: ?>
                         <a href="index.php?page=login" aria-label="Connexion">
-                            <i class="fa-solid fa-user"></i>
+                            <i class="fa-solid fa-user" aria-hidden="true"></i>
                         </a>
                     <?php endif; ?>
                 </div>
 
             </div>
 
-            <nav class="main-nav" id="main-nav">
+            <nav class="main-nav" id="main-nav" aria-label="Navigation principale">
                 <a href="index.php?page=accueil">Accueil</a>
                 <a href="index.php?page=oiseau">L’oiseau</a>
                 <a href="index.php?page=nid">Construction du nid</a>

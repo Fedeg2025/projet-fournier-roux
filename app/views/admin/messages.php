@@ -1,5 +1,5 @@
 <section class="admin-messages">
-    <h3 class="admin-messages__title">Messages reçus</h3>
+    <h2 class="admin-messages__title">Messages reçus</h2>
 
     <?php if (empty($messages)): ?>
         <p class="admin-messages__empty">Aucun message.</p>
@@ -7,9 +7,9 @@
         <div class="admin-messages__list">
             <?php foreach ($messages as $message): ?>
                 <article class="admin-messages__item">
-                    <h4 class="admin-messages__subject">
+                    <h3 class="admin-messages__subject">
                         <?php echo htmlspecialchars($message['objet']); ?>
-                    </h4>
+                    </h3>
 
                     <p class="admin-messages__meta">
                         <span class="admin-messages__author">
@@ -29,28 +29,54 @@
                         <small><?php echo htmlspecialchars($message['date_envoi']); ?></small>
                     </p>
 
-                    <form
-                        class="admin-messages__form"
-                        method="POST"
-                        action="index.php?page=admin&section=messages"
-                        onsubmit="return confirm('Supprimer ce message ?');"
-                    >
-                        <input
-                            type="hidden"
-                            name="csrf_token"
-                            value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>"
+                    <div class="admin-messages__actions">
+                        <a
+                            class="admin-messages__delete-link"
+                            href="index.php?page=admin&section=messages&confirm_delete_message=<?php echo htmlspecialchars($message['id_message']); ?>"
                         >
-
-                        <input
-                            type="hidden"
-                            name="delete"
-                            value="<?php echo htmlspecialchars($message['id_message']); ?>"
-                        >
-
-                        <button type="submit" class="admin-messages__button">
                             Supprimer
-                        </button>
-                    </form>
+                        </a>
+                    </div>
+
+                    <?php if (isset($confirm_delete_message) && $confirm_delete_message === (int) $message['id_message']): ?>
+                        <div class="admin-messages__confirm">
+                            <p class="admin-messages__confirm-text">
+                                Confirmer la suppression de ce message ?
+                            </p>
+
+                            <form
+                                class="admin-messages__confirm-form"
+                                method="POST"
+                                action="index.php?page=admin&section=messages"
+                            >
+                                <input
+                                    type="hidden"
+                                    name="csrf_token"
+                                    value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>"
+                                >
+
+                                <input
+                                    type="hidden"
+                                    name="delete"
+                                    value="<?php echo htmlspecialchars($message['id_message']); ?>"
+                                >
+
+                                <button
+                                    class="admin-messages__button admin-messages__button--danger"
+                                    type="submit"
+                                >
+                                    Oui, supprimer
+                                </button>
+
+                                <a
+                                    class="admin-messages__button admin-messages__button--secondary"
+                                    href="index.php?page=admin&section=messages"
+                                >
+                                    Annuler
+                                </a>
+                            </form>
+                        </div>
+                    <?php endif; ?>
                 </article>
             <?php endforeach; ?>
         </div>

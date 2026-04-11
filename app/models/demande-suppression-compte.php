@@ -1,60 +1,69 @@
 <?php
 
-function hasPendingDeleteAccountRequest($pdo, $idUtilisateur)
+// Vérifie si un utilisateur a déjà une demande en attente
+function hasPendingDeleteAccountRequest($pdo, $id_utilisateur)
 {
-    $sql = "SELECT COUNT(*) 
-            FROM demandes_suppression_compte 
-            WHERE id_utilisateur = ? 
+    $sql = "SELECT COUNT(*)
+            FROM demandes_suppression_compte
+            WHERE id_utilisateur = ?
             AND statut = 'en_attente'";
+
     $stmt = $pdo->prepare($sql);
-    $stmt->execute([$idUtilisateur]);
+    $stmt->execute([$id_utilisateur]);
 
     return (int) $stmt->fetchColumn() > 0;
 }
 
-function createDeleteAccountRequest($pdo, $idUtilisateur, $motif = null)
+// Crée une demande de suppression de compte
+function createDeleteAccountRequest($pdo, $id_utilisateur, $motif = null)
 {
-    $stmtUser = $pdo->prepare("SELECT nom, prenom, email FROM utilisateurs WHERE id_utilisateur = ?");
-    $stmtUser->execute([$idUtilisateur]);
-    $user = $stmtUser->fetch();
+    $sql_user = "SELECT nom, prenom, email
+                 FROM utilisateurs
+                 WHERE id_utilisateur = ?";
 
-    if (!$user) {
+    $stmt_user = $pdo->prepare($sql_user);
+    $stmt_user->execute([$id_utilisateur]);
+    $utilisateur = $stmt_user->fetch();
+
+    if (!$utilisateur) {
         return false;
     }
 
-    $sql = "INSERT INTO demandes_suppression_compte 
+    $sql = "INSERT INTO demandes_suppression_compte
             (id_utilisateur, motif, nom_snapshot, prenom_snapshot, email_snapshot)
             VALUES (?, ?, ?, ?, ?)";
+
     $stmt = $pdo->prepare($sql);
 
     return $stmt->execute([
-        $idUtilisateur,
+        $id_utilisateur,
         $motif,
-        $user['nom'],
-        $user['prenom'],
-        $user['email']
+        $utilisateur['nom'],
+        $utilisateur['prenom'],
+        $utilisateur['email']
     ]);
 }
 
+// Récupère toutes les demandes de suppression
 function getAllDeleteAccountRequests($pdo)
 {
-    $sql = "SELECT 
+    $sql = "SELECT
                 d.*,
-                COALESCE(d.nom_snapshot, u.nom) AS nom,
-                COALESCE(d.prenom_snapshot, u.prenom) AS prenom,
-                COALESCE(d.email_snapshot, u.email) AS email,
+                d.nom_snapshot AS nom,
+                d.prenom_snapshot AS prenom,
+                d.email_snapshot AS email,
                 admin.nom AS admin_nom,
                 admin.prenom AS admin_prenom
             FROM demandes_suppression_compte d
-            LEFT JOIN utilisateurs u ON d.id_utilisateur = u.id_utilisateur
             LEFT JOIN utilisateurs admin ON d.traitee_par = admin.id_utilisateur
             ORDER BY d.date_demande DESC";
-    $stmt = $pdo->query($sql);
 
+    $stmt = $pdo->query($sql);
     return $stmt->fetchAll();
 }
 
-function markDeleteAccountRequestAsProcessed($pdo, $idDemande, $adminId, $commentaireAdmin = null)
+// Marque une demande comme traitée
+function markDeleteAccountRequestAsProcessed($pdo, $id_demande, $admin_id, $commentaire_admin = null)
 {
     $sql = "UPDATE demandes_suppression_compte
             SET statut = 'traitee',
@@ -62,12 +71,13 @@ function markDeleteAccountRequestAsProcessed($pdo, $idDemande, $adminId, $commen
                 traitee_par = ?,
                 commentaire_admin = ?
             WHERE id_demande = ?";
-    $stmt = $pdo->prepare($sql);
 
-    return $stmt->execute([$adminId, $commentaireAdmin, $idDemande]);
+    $stmt = $pdo->prepare($sql);
+    return $stmt->execute([$admin_id, $commentaire_admin, $id_demande]);
 }
 
-function markDeleteAccountRequestAsRefused($pdo, $idDemande, $adminId, $commentaireAdmin = null)
+// Marque une demande comme refusée
+function markDeleteAccountRequestAsRefused($pdo, $id_demande, $admin_id, $commentaire_admin = null)
 {
     $sql = "UPDATE demandes_suppression_compte
             SET statut = 'refusee',
@@ -75,7 +85,7 @@ function markDeleteAccountRequestAsRefused($pdo, $idDemande, $adminId, $commenta
                 traitee_par = ?,
                 commentaire_admin = ?
             WHERE id_demande = ?";
-    $stmt = $pdo->prepare($sql);
 
-    return $stmt->execute([$adminId, $commentaireAdmin, $idDemande]);
+    $stmt = $pdo->prepare($sql);
+    return $stmt->execute([$admin_id, $commentaire_admin, $id_demande]);
 }

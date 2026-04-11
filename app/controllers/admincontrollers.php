@@ -1,26 +1,8 @@
 <?php
 
-// Modèles nécessaires pour l'administration
-require_once __DIR__ . '/../models/message.php';
-require_once __DIR__ . '/../models/article.php';
-require_once __DIR__ . '/../models/categorie.php';
-require_once __DIR__ . '/../models/User.php';
-require_once __DIR__ . '/../models/demande-suppression-compte.php';
-
-$article_a_modifier = null;
-$erreur = '';
-$succes = '';
-
-/**
- * Génère un jeton CSRF s'il n'existe pas encore.
- */
-if (empty($_SESSION['csrf_token'])) {
-    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-}
-
-/**
- * Vérifie que l'utilisateur connecté est bien administrateur.
- */
+// =========================
+// SÉCURITÉ ADMIN
+// =========================
 function requireAdmin()
 {
     if (!isset($_SESSION['user'])) {
@@ -34,9 +16,52 @@ function requireAdmin()
     }
 }
 
-/**
- * Ajoute une image à un article si un fichier valide a été envoyé.
- */
+requireAdmin();
+
+// =========================
+// MODÈLES
+// =========================
+require_once BASE_PATH . '/app/models/message.php';
+require_once BASE_PATH . '/app/models/article.php';
+require_once BASE_PATH . '/app/models/categorie.php';
+require_once BASE_PATH . '/app/models/User.php';
+require_once BASE_PATH . '/app/models/demande-suppression-compte.php';
+require_once BASE_PATH . '/app/models/media.php';
+
+// =========================
+// VARIABLES
+// =========================
+$article_a_modifier = null;
+$erreur = '';
+$succes = '';
+
+// =========================
+// CSRF
+// =========================
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
+// =========================
+// SECTION BACK-OFFICE
+// =========================
+$section = $_GET['section'] ?? 'messages';
+
+$sections_autorisees = ['messages', 'contenus', 'utilisateurs'];
+
+if (!in_array($section, $sections_autorisees, true)) {
+    $section = 'messages';
+}
+
+// =========================
+// CONFIRMATIONS DANS L’INTERFACE
+// =========================
+$confirm_delete = isset($_GET['confirm_delete']) ? (int) $_GET['confirm_delete'] : 0;
+$confirm_delete_message = isset($_GET['confirm_delete_message']) ? (int) $_GET['confirm_delete_message'] : 0;
+
+// =========================
+// FONCTION UPLOAD IMAGE
+// =========================
 function addImageToArticle($pdo, $id_article)
 {
     if (
@@ -47,8 +72,8 @@ function addImageToArticle($pdo, $id_article)
         return;
     }
 
-    // Taille maximale : 2 Mo
     $taille_max = 2 * 1024 * 1024;
+
     if ($_FILES['image']['size'] > $taille_max) {
         return;
     }
@@ -63,47 +88,25 @@ function addImageToArticle($pdo, $id_article)
         return;
     }
 
-    $dossier_televersement = __DIR__ . '/../../public/uploads/';
+    $dossier = BASE_PATH . '/public/uploads/';
 
-    if (!is_dir($dossier_televersement)) {
-        mkdir($dossier_televersement, 0777, true);
+    if (!is_dir($dossier)) {
+        mkdir($dossier, 0777, true);
     }
 
-    $nom_original = basename($_FILES['image']['name']);
-    $nom_securise = preg_replace('/[^A-Za-z0-9._-]/', '_', $nom_original);
-    $nom_fichier = uniqid() . '_' . $nom_securise;
-    $chemin_cible = $dossier_televersement . $nom_fichier;
+    $nom = uniqid() . '_' . preg_replace('/[^A-Za-z0-9._-]/', '_', basename($_FILES['image']['name']));
+    $chemin = $dossier . $nom;
 
-    if (move_uploaded_file($_FILES['image']['tmp_name'], $chemin_cible)) {
-        createMedia($pdo, $nom_fichier, 'image');
+    if (move_uploaded_file($_FILES['image']['tmp_name'], $chemin)) {
+        createMedia($pdo, $nom, 'image');
         $id_media = $pdo->lastInsertId();
         linkMediaToArticle($pdo, $id_article, $id_media);
     }
 }
 
-/**
- * Vérifie les droits admin.
- */
-requireAdmin();
-
-/**
- * Section actuelle du back-office.
- * Si rien n'est donné dans l'URL, on ouvre "messages" par défaut.
- */
-$section = $_GET['section'] ?? 'messages';
-
-/**
- * Pour éviter des valeurs bizarres dans l'URL.
- */
-$sections_autorisees = ['messages', 'contenus', 'utilisateurs'];
-
-if (!in_array($section, $sections_autorisees, true)) {
-    $section = 'messages';
-}
-
-/**
- * Suppression d'un message.
- */
+// =========================
+// SUPPRESSION D’UN MESSAGE
+// =========================
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
     if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
         http_response_code(403);
@@ -119,9 +122,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
     exit;
 }
 
-/**
- * Traitement d'une demande de suppression de compte.
- */
+// =========================
+// TRAITEMENT D’UNE DEMANDE DE SUPPRESSION DE COMPTE
+// =========================
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['process_delete_request'])) {
     if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
         http_response_code(403);
@@ -131,7 +134,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['process_delete_reques
     $id_demande = (int) $_POST['process_delete_request'];
     $admin_id = $_SESSION['user']['id_utilisateur'];
 
-    $requete_demande = $pdo->prepare("SELECT id_utilisateur FROM demandes_suppression_compte WHERE id_demande = ?");
+    $requete_demande = $pdo->prepare('SELECT id_utilisateur FROM demandes_suppression_compte WHERE id_demande = ?');
     $requete_demande->execute([$id_demande]);
     $demande = $requete_demande->fetch();
 
@@ -147,9 +150,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['process_delete_reques
     exit;
 }
 
-/**
- * Refus d'une demande de suppression de compte.
- */
+// =========================
+// REFUS D’UNE DEMANDE DE SUPPRESSION DE COMPTE
+// =========================
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['refuse_delete_request'])) {
     if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
         http_response_code(403);
@@ -167,9 +170,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['refuse_delete_request
     exit;
 }
 
-/**
- * Suppression d'un article.
- */
+// =========================
+// SUPPRESSION D’UN ARTICLE
+// =========================
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_article'])) {
     if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
         http_response_code(403);
@@ -188,22 +191,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_article'])) {
     exit;
 }
 
-/**
- * Charger un article pour le modifier.
- * Exemple :
- * index.php?page=admin&section=contenus&edit_article=3
- */
+// =========================
+// CHARGER UN ARTICLE POUR MODIFICATION
+// =========================
 if (isset($_GET['edit_article'])) {
     $id_article = (int) $_GET['edit_article'];
     $article_a_modifier = getArticleById($pdo, $id_article);
-
-    // Si on modifie un article, on reste dans la section contenus
     $section = 'contenus';
 }
 
-/**
- * Création ou modification d'un article.
- */
+// =========================
+// CRÉATION / MODIFICATION D’UN ARTICLE
+// =========================
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['titre'])) {
     if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
         $erreur = 'Requête invalide (CSRF).';
@@ -218,7 +217,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['titre'])) {
         } elseif (mb_strlen($contenu) < 10) {
             $erreur = 'Le contenu doit contenir au moins 10 caractères.';
         } else {
-            // Modification
             if (isset($_POST['id_article']) && !empty($_POST['id_article'])) {
                 $id_article = (int) $_POST['id_article'];
 
@@ -237,7 +235,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['titre'])) {
                 header('Location: index.php?page=admin&section=contenus');
                 exit;
             } else {
-                // Création
                 createArticle($pdo, $titre, $contenu, $id_utilisateur);
 
                 $id_article = $pdo->lastInsertId();
@@ -257,9 +254,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['titre'])) {
     }
 }
 
-/**
- * Récupération des données nécessaires à l'administration.
- */
+// =========================
+// DONNÉES NÉCESSAIRES À L’ADMINISTRATION
+// =========================
 $messages = getAllMessages($pdo);
 $articles = getAllArticles($pdo);
 
@@ -271,7 +268,7 @@ if ($page_articles < 1) {
 }
 
 $total_articles = count($articles);
-$total_pages_articles = ceil($total_articles / $articles_par_page);
+$total_pages_articles = (int) ceil($total_articles / $articles_par_page);
 $offset_articles = ($page_articles - 1) * $articles_par_page;
 
 $articles = array_slice($articles, $offset_articles, $articles_par_page);
@@ -291,9 +288,9 @@ if ($article_a_modifier) {
     $categories_selectionnees = getCategoryIdsByArticle($pdo, $article_a_modifier['id_article']);
 }
 
-/**
- * Affichage
- */
-require_once __DIR__ . '/../views/pages/header.php';
-require_once __DIR__ . '/../views/admin/dashboard.php';
-require_once __DIR__ . '/../views/pages/footer.php';
+// =========================
+// AFFICHAGE
+// =========================
+require_once BASE_PATH . '/app/views/pages/header.php';
+require_once BASE_PATH . '/app/views/admin/dashboard.php';
+require_once BASE_PATH . '/app/views/pages/footer.php';

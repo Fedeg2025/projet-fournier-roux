@@ -1,4 +1,6 @@
 <main class="accueil-page">
+  <h1 class="visually-hidden">Accueil - Association Les Fourniers roux</h1>
+
   <article class="accueil-intro" aria-labelledby="accueil-intro-title">
     <header class="section-header">
       <h2 id="accueil-intro-title" class="visually-hidden">Présentation de l’association et du Fournier roux</h2>

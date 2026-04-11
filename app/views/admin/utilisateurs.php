@@ -1,5 +1,5 @@
 <section class="admin-users">
-    <h3 class="admin-users__title">Utilisateurs</h3>
+    <h2 class="admin-users__title">Utilisateurs</h2>
 
     <?php if (empty($utilisateurs)): ?>
         <p class="admin-users__empty">Aucun utilisateur.</p>
@@ -7,9 +7,9 @@
         <div class="admin-users__list">
             <?php foreach ($utilisateurs as $utilisateur): ?>
                 <article class="admin-users__item">
-                    <h4 class="admin-users__name">
+                    <h3 class="admin-users__name">
                         <?php echo htmlspecialchars($utilisateur['prenom'] . ' ' . $utilisateur['nom']); ?>
-                    </h4>
+                    </h3>
 
                     <p class="admin-users__info">
                         <span class="admin-users__label">Email :</span>
@@ -21,7 +21,11 @@
                     <p class="admin-users__info">
                         <span class="admin-users__label">Rôle :</span>
                         <span class="admin-users__value">
-                            <?php echo htmlspecialchars($utilisateur['role']); ?>
+                            <?php
+                            echo $utilisateur['role'] === 'admin'
+                                ? 'Administrateur'
+                                : 'Utilisateur';
+                            ?>
                         </span>
                     </p>
                 </article>

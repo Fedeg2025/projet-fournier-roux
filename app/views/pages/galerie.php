@@ -103,10 +103,10 @@ $audioTracks = [
 
             <div class="thumb-gallery__track">
                 <?php foreach ($galleryImages as $index => $image): ?>
-                    <figure class="thumb-gallery__item <?= $index === 0 ? 'is-active' : ''; ?>">
+                    <figure class="thumb-gallery__item <?php echo $index === 0 ? 'is-active' : ''; ?>">
                         <img
-                            src="<?= htmlspecialchars($image['src']); ?>"
-                            alt="<?= htmlspecialchars($image['alt']); ?>"
+                            src="<?php echo htmlspecialchars($image['src']); ?>"
+                            alt="<?php echo htmlspecialchars($image['alt']); ?>"
                             loading="lazy"
                         >
                     </figure>
@@ -120,7 +120,7 @@ $audioTracks = [
 
         <div class="thumb-gallery__dots" aria-label="Indicateurs de galerie">
             <?php foreach ($galleryImages as $index => $image): ?>
-                <span class="thumb-gallery__dot <?= $index === 0 ? 'is-active' : ''; ?>"></span>
+                <span class="thumb-gallery__dot <?php echo $index === 0 ? 'is-active' : ''; ?>"></span>
             <?php endforeach; ?>
         </div>
     </section>
@@ -128,7 +128,7 @@ $audioTracks = [
     <section class="gallery-section">
         <div class="section-heading">
             <p class="section-heading__tag">Vidéos</p>
-            <h2> Observations vidéo</h2>
+            <h2>Observations vidéo</h2>
             <p>
                 Retrouvez ici plusieurs vidéos locales intégrées dans la galerie
                 pour présenter le Fournier roux et son comportement.
@@ -139,8 +139,8 @@ $audioTracks = [
             <article class="media-card media-card--video">
                 <div class="media-card__visual">
                     <video controls playsinline preload="metadata">
-                        <source src="<?= $assetBase; ?>/videos/fournier-roux-audio.mp4" type="video/mp4">
-                        <source src="<?= $assetBase; ?>/videos/fournier-roux-audio.webm" type="video/webm">
+                        <source src="<?php echo $assetBase; ?>/videos/fournier-roux-audio.mp4" type="video/mp4">
+                        <source src="<?php echo $assetBase; ?>/videos/fournier-roux-audio.webm" type="video/webm">
                         Votre navigateur ne supporte pas la lecture vidéo.
                     </video>
                 </div>
@@ -157,10 +157,10 @@ $audioTracks = [
             <article class="media-card media-card--video">
                 <div class="media-card__visual">
                     <video controls playsinline preload="metadata">
-                        <source src="<?= $assetBase; ?>/videos/fournier-roux1.webm" type="video/webm">
-                        <source src="<?= $assetBase; ?>/videos/fournier-roux1.mp4" type="video/mp4">
-                        <source src="<?= $assetBase; ?>/videos/fournier-roux.webm" type="video/webm">
-                        <source src="<?= $assetBase; ?>/videos/fournier-roux.mp4" type="video/mp4">
+                        <source src="<?php echo $assetBase; ?>/videos/fournier-roux1.webm" type="video/webm">
+                        <source src="<?php echo $assetBase; ?>/videos/fournier-roux1.mp4" type="video/mp4">
+                        <source src="<?php echo $assetBase; ?>/videos/fournier-roux.webm" type="video/webm">
+                        <source src="<?php echo $assetBase; ?>/videos/fournier-roux.mp4" type="video/mp4">
                         Votre navigateur ne supporte pas la lecture vidéo.
                     </video>
                 </div>
@@ -168,7 +168,7 @@ $audioTracks = [
                 <div class="media-card__content">
                     <h3>Vidéo 2 — Observation du Fournier roux</h3>
                     <p>
-                        Une seconde observation vidéo des Fournier ou aparentement le male donne a manger au female.
+                        Une seconde observation vidéo du Fournier roux où, apparemment, le mâle donne à manger à la femelle.
                     </p>
                 </div>
             </article>
@@ -190,8 +190,8 @@ $audioTracks = [
                 <div class="media-card__content">
                     <audio controls preload="metadata" data-audio-player>
                         <source
-                            src="<?= htmlspecialchars($audioTracks[0]['src']); ?>"
-                            type="<?= htmlspecialchars($audioTracks[0]['type']); ?>"
+                            src="<?php echo htmlspecialchars($audioTracks[0]['src']); ?>"
+                            type="<?php echo htmlspecialchars($audioTracks[0]['type']); ?>"
                             data-audio-source
                         >
                         Votre navigateur ne supporte pas la lecture audio.
@@ -204,12 +204,12 @@ $audioTracks = [
                 <?php foreach ($audioTracks as $index => $track): ?>
                     <button
                         type="button"
-                        class="audio-playlist__item <?= $index === 0 ? 'is-active' : ''; ?>"
-                        data-audio-src="<?= htmlspecialchars($track['src']); ?>"
-                        data-audio-type="<?= htmlspecialchars($track['type']); ?>"
-                        aria-pressed="<?= $index === 0 ? 'true' : 'false'; ?>"
+                        class="audio-playlist__item <?php echo $index === 0 ? 'is-active' : ''; ?>"
+                        data-audio-src="<?php echo htmlspecialchars($track['src']); ?>"
+                        data-audio-type="<?php echo htmlspecialchars($track['type']); ?>"
+                        aria-pressed="<?php echo $index === 0 ? 'true' : 'false'; ?>"
                     >
-                        <span class="audio-playlist__item-title"><?= htmlspecialchars($track['label']); ?></span>
+                        <span class="audio-playlist__item-title"><?php echo htmlspecialchars($track['label']); ?></span>
                     </button>
                 <?php endforeach; ?>
             </div>

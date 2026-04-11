@@ -1,5 +1,5 @@
 <main class="articles-page">
-    <h2 class="articles-page__title">Actualités</h2>
+    <h1 class="articles-page__title">Actualités</h1>
 
     <?php if (empty($articles)): ?>
         <p class="articles-page__empty">Aucun article publié.</p>
@@ -7,21 +7,21 @@
         <div class="articles-page__list">
             <?php foreach ($articles as $article): ?>
                 <section class="articles-page__item">
-                    <h3 class="articles-page__item-title">
+                    <h2 class="articles-page__item-title">
                         <a
                             class="articles-page__item-link"
                             href="index.php?page=article&id=<?php echo htmlspecialchars($article['id_article']); ?>"
                         >
                             <?php echo htmlspecialchars($article['titre']); ?>
                         </a>
-                    </h3>
+                    </h2>
 
                     <?php if (!empty($article['medias'][0]) && $article['medias'][0]['type_media'] === 'image'): ?>
                         <div class="articles-page__image-wrapper">
                             <img
                                 class="articles-page__image"
                                 src="public/uploads/<?php echo htmlspecialchars($article['medias'][0]['nom_fichier']); ?>"
-                                alt="Image de l'article"
+                                alt="Illustration de l’article <?php echo htmlspecialchars($article['titre']); ?>"
                             >
                         </div>
                     <?php endif; ?>
@@ -34,7 +34,13 @@
                     </p>
 
                     <div class="articles-page__excerpt">
-                        <?php echo nl2br(htmlspecialchars(mb_substr($article['contenu'], 0, 200))); ?>...
+                        <?php
+                        $excerpt = mb_substr($article['contenu'], 0, 200);
+                        echo nl2br(htmlspecialchars($excerpt));
+                        if (mb_strlen($article['contenu']) > 200) {
+                            echo '...';
+                        }
+                        ?>
                     </div>
 
                     <p class="articles-page__more">
@@ -68,7 +74,7 @@
 
             <?php for ($i = 1; $i <= $total_pages_articles; $i++): ?>
                 <a
-                    class="articles-page__pagination-link <?php echo ($i === $page_articles) ? 'is-active' : ''; ?>"
+                    class="articles-page__pagination-link <?php echo $i === $page_articles ? 'is-active' : ''; ?>"
                     href="index.php?page=articles&p=<?php echo $i; ?>"
                 >
                     <?php echo $i; ?>

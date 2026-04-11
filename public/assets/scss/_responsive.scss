@@ -778,52 +778,40 @@
   ========================= */
 
   .contact-page {
-    .contact-section {
+    .auth-content {
       padding: $space-5xl $space-2xl $space-8xl;
     }
 
-    .contact-section__inner {
+    .auth-content__inner {
       max-width: 100%;
     }
 
-    .contact-card {
-      padding: $space-6xl $space-4xl $space-5xl;
-    }
-
-    .contact-card__header {
-      margin-bottom: $space-6xl;
-    }
-
-    .contact-card__title {
-      font-size: $font-size-lg;
-    }
-
-    .contact-form__civility {
+    .auth-form__choices {
       gap: $space-2xl;
       margin-bottom: $space-6xl;
     }
 
-    .contact-form__radio-text {
+    .auth-form__choice-label {
       font-size: $font-size-sm;
     }
 
-    .contact-form__group {
+    .auth-form__group {
       margin-bottom: $space-5xl;
     }
 
-    .contact-form__input {
+    .auth-form__input {
       height: 42px;
     }
 
-    .contact-form__textarea {
+    .auth-form__textarea {
       min-height: 110px;
     }
 
-    .contact-form__textarea--objet {
+    .auth-form__textarea--objet {
       min-height: 90px;
     }
 
-    .contact-form__button {
+    .auth-form__button {
       height: 42px;
       font-size: $font-size-md;
     }
@@ -850,7 +838,7 @@
 
 @media (min-width: 450px) {
   .contact-page {
-    .contact-form__button {
+    .auth-form__button {
       width: auto;
       min-width: 280px;
       max-width: 280px;
@@ -994,15 +982,12 @@
   }
 
   /* =========================
-     DESKTOP - AUTH
+     DESKTOP - AUTH / CONTACT
   ========================= */
 
   .auth-page--login,
-  .auth-page--register {
-    .auth-hero__inner {
-      max-width: 520px;
-    }
-
+  .auth-page--register,
+  .contact-page {
     .auth-content__inner {
       max-width: 620px;
     }
@@ -1087,6 +1072,7 @@
     transform: translateY(-50%);
   }
 }
+
 /* =========================
    RESPONSIVE - ADMIN TABLETTE / DESKTOP
 ========================= */
@@ -1279,49 +1265,9 @@
   }
 }
 
-/* =========================
-   RESPONSIVE - PROFILE DESKTOP MEDIUM
-========================= */
-
-@media (min-width: 1050px) {
-  .profile-page {
-    max-width: 1180px;
-    padding-left: $space-5xl;
-    padding-right: $space-5xl;
-
-    display: grid;
-    grid-template-columns: minmax(360px, 430px) minmax(0, 1fr);
-    gap: $space-4xl;
-    align-items: stretch;
-  }
-
-  .profile-page__section--info,
-  .profile-page__section--delete {
-    width: 100%;
-    max-width: none;
-    margin: 0;
-    height: 100%;
-  }
-
-  .profile-page__section--delete {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .profile-delete-form {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .profile-delete-form__group {
-    flex: 1;
-  }
-
   .profile-delete-form__textarea {
     min-height: 160px;
   }
-}
 
 /* =========================
    RESPONSIVE - PROFILE DESKTOP LARGE

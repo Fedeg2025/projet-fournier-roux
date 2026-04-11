@@ -1,15 +1,15 @@
 <main class="article-page">
     <article class="article-page__container">
-        <h2 class="article-page__title">
+        <h1 class="article-page__title">
             <?php echo htmlspecialchars($article['titre']); ?>
-        </h2>
+        </h1>
 
         <?php if (!empty($article['medias'][0]) && $article['medias'][0]['type_media'] === 'image'): ?>
             <div class="article-page__image-wrapper">
                 <img
                     class="article-page__image"
                     src="public/uploads/<?php echo htmlspecialchars($article['medias'][0]['nom_fichier']); ?>"
-                    alt="Image de l'article"
+                    alt="Illustration de l’article <?php echo htmlspecialchars($article['titre']); ?>"
                 >
             </div>
         <?php endif; ?>

@@ -23,7 +23,7 @@
             <figure class="oiseau-article__hero-media">
                 <img
                     src="public/assets/images/hornero.webp"
-                    alt="Fournier roux posé"
+                    alt="Fournier roux adulte posé"
                     class="oiseau-article__hero-image"
                     loading="eager"
                 >
@@ -297,9 +297,9 @@
 
             </div>
 
-            <aside class="oiseau-article__sidebar" aria-label="Résumé technique">
+            <aside class="oiseau-article__sidebar" aria-label="Informations complémentaires sur le Fournier roux">
                 <section class="oiseau-article__card oiseau-article__card--summary">
-                    <h2 class="oiseau-article__card-title">Résumé technique</h2>
+                    <h3 class="oiseau-article__card-title">Résumé technique</h3>
 
                     <dl class="oiseau-article__mini-list">
                         <div class="oiseau-article__mini-item">
@@ -335,14 +335,14 @@
                 </section>
 
                 <section class="oiseau-article__card oiseau-article__card--highlight">
-                    <h2 class="oiseau-article__card-title">Caractéristique clé</h2>
+                    <h3 class="oiseau-article__card-title">Caractéristique clé</h3>
                     <p class="oiseau-article__card-text">
                         Son nid de boue en forme de four est l’un des plus célèbres et reconnaissables parmi les oiseaux d’Amérique du Sud.
                     </p>
                 </section>
 
                 <section class="oiseau-article__card oiseau-article__card--habitat-note">
-                    <h2 class="oiseau-article__card-title">Milieux fréquents</h2>
+                    <h3 class="oiseau-article__card-title">Milieux fréquents</h3>
                     <p class="oiseau-article__card-text">
                         Prairies, jardins, zones agricoles, parcs urbains, clôtures, chemins et paysages semi-ouverts.
                     </p>

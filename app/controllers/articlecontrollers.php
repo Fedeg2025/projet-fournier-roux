@@ -1,14 +1,23 @@
 <?php
 
+// Vérification de connexion
 if (!isset($_SESSION['user'])) {
     header('Location: index.php?page=login');
     exit;
 }
 
-require_once __DIR__ . '/../models/article.php';
+// Chargement des modèles
+require_once BASE_PATH . '/app/models/article.php';
+require_once BASE_PATH . '/app/models/media.php';
 
+// =========================
+// RÉCUPÉRATION DES ARTICLES
+// =========================
 $articles = getAllArticles($pdo);
 
+// =========================
+// PAGINATION
+// =========================
 $articles_par_page = 2;
 $page_articles = isset($_GET['p']) ? (int) $_GET['p'] : 1;
 
@@ -22,11 +31,17 @@ $offset_articles = ($page_articles - 1) * $articles_par_page;
 
 $articles = array_slice($articles, $offset_articles, $articles_par_page);
 
+// =========================
+// AJOUT DES MÉDIAS
+// =========================
 foreach ($articles as &$article) {
     $article['medias'] = getMediaByArticle($pdo, $article['id_article']);
 }
 unset($article);
 
-require_once __DIR__ . '/../views/pages/header.php';
-require_once __DIR__ . '/../views/utilisateur/actualites.php';
-require_once __DIR__ . '/../views/pages/footer.php';
+// =========================
+// AFFICHAGE
+// =========================
+require_once BASE_PATH . '/app/views/pages/header.php';
+require_once BASE_PATH . '/app/views/utilisateur/actualites.php';
+require_once BASE_PATH . '/app/views/pages/footer.php';

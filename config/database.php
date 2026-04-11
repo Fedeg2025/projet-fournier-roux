@@ -1,22 +1,26 @@
 <?php
 
-require_once __DIR__ . '/env.php';
+$config = require BASE_PATH . '/config/env.php';
 
-$hote = $_ENV['DB_HOST'];
-$nom_base = $_ENV['DB_NAME'];
-$nom_utilisateur = $_ENV['DB_USER'];
-$mot_de_passe = $_ENV['DB_PASS'];
+$hote = $config['DB_HOST'];
+$nom_base = $config['DB_NAME'];
+$nom_utilisateur = $config['DB_USER'];
+$mot_de_passe = $config['DB_PASS'];
 
 try {
     $pdo = new PDO(
         "mysql:host=$hote;dbname=$nom_base;charset=utf8mb4",
         $nom_utilisateur,
-        $mot_de_passe
+        $mot_de_passe,
+        [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+        ]
     );
 
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-
 } catch (PDOException $e) {
-    die("Erreur de connexion : " . $e->getMessage());
+    error_log('Erreur de connexion PDO : ' . $e->getMessage());
+
+    http_response_code(500);
+    exit('Une erreur technique est survenue. Veuillez réessayer plus tard.');
 }

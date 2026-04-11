@@ -3,34 +3,10 @@ $csrfToken = $_SESSION['csrf_token'] ?? '';
 ?>
 
 <main class="auth-page auth-page--login">
-    <section class="auth-hero">
-        <div class="auth-hero__inner">
-            <h1 class="auth-hero__brand">
-                <span class="auth-hero__brand-main">FOURNIER</span>
-                <span class="auth-hero__brand-accent"> roux</span>
-            </h1>
-
-            <div class="auth-hero__logo-wrap">
-                <a
-                    href="index.php?page=accueil"
-                    class="auth-hero__logo-link"
-                    aria-label="Retour à l'accueil">
-                    <div class="auth-hero__logo-box">
-                        <img
-                            src="public/assets/images/logoCreator_imagetologo.jpg"
-                            alt="Logo Fournier Roux"
-                            class="auth-hero__logo">
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
-
     <section class="auth-content">
         <div class="auth-content__inner">
-            <header class="auth-header">
-                <h1 class="auth-header__title">Accéder à votre compte</h1>
-            </header>
+
+            <h1>Accéder à votre compte</h1>
 
             <?php if (!empty($erreur)): ?>
                 <div class="auth-message auth-message--error" role="alert" aria-live="polite">
@@ -48,7 +24,8 @@ $csrfToken = $_SESSION['csrf_token'] ?? '';
                 <input
                     type="hidden"
                     name="csrf_token"
-                    value="<?php echo htmlspecialchars($csrfToken); ?>">
+                    value="<?php echo htmlspecialchars($csrfToken); ?>"
+                >
 
                 <div class="auth-form__group">
                     <label class="auth-form__label" for="email">Adresse email</label>
@@ -59,7 +36,8 @@ $csrfToken = $_SESSION['csrf_token'] ?? '';
                         name="email"
                         autocomplete="email"
                         required
-                        value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
+                        value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>"
+                    >
                 </div>
 
                 <div class="auth-form__group">
@@ -70,7 +48,8 @@ $csrfToken = $_SESSION['csrf_token'] ?? '';
                         id="mot_de_passe"
                         name="mot_de_passe"
                         autocomplete="current-password"
-                        required>
+                        required
+                    >
                 </div>
 
                 <div class="auth-form__submit">
@@ -85,10 +64,7 @@ $csrfToken = $_SESSION['csrf_token'] ?? '';
                     Créer un compte
                 </a>
             </section>
+
         </div>
     </section>
-
-    <footer class="auth-footer">
-        <p>© 2026 Fournier Roux – Tous droits réservés</p>
-    </footer>
 </main>

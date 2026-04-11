@@ -1,8 +1,10 @@
 <?php
 
-$config_env = parse_ini_file(dirname(__DIR__) . '/.env');
+$config_env = parse_ini_file(BASE_PATH . '/.env');
 
-$_ENV['DB_HOST'] = $config_env['DB_HOST'] ?? 'localhost';
-$_ENV['DB_NAME'] = $config_env['DB_NAME'] ?? '';
-$_ENV['DB_USER'] = $config_env['DB_USER'] ?? '';
-$_ENV['DB_PASS'] = $config_env['DB_PASS'] ?? '';
+return [
+    'DB_HOST' => $config_env['DB_HOST'] ?? 'localhost',
+    'DB_NAME' => $config_env['DB_NAME'] ?? '',
+    'DB_USER' => $config_env['DB_USER'] ?? '',
+    'DB_PASS' => $config_env['DB_PASS'] ?? '',
+];

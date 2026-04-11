@@ -2,30 +2,32 @@
 
 <footer class="site-footer">
     <div class="footer-top">
-        <div class="footer-links">
-            <a href="index.php?page=politique-confidentialite">CONFIDENTIALITÉ</a>
-            <a href="index.php?page=mentions-legales">MENTIONS LÉGALES</a>
+
+        <nav class="footer-links" aria-label="Liens légaux">
+            <a href="index.php?page=politique-confidentialite">Confidentialité</a>
+            <a href="index.php?page=mentions-legales">Mentions légales</a>
             <a href="index.php?page=cgu">CGU</a>
-        </div>
+        </nav>
 
         <div class="footer-address">
-            <span>KERVADEC</span>
-            <span>56400 PLUNERET,</span>
-            <span>Morbihan - Bretagne, FRANCE</span>
+            <span>Kervadec</span>
+            <span>56400 Pluneret,</span>
+            <span>Morbihan - Bretagne, France</span>
         </div>
 
         <div class="footer-socials">
-            <a href="#" aria-label="Facebook">
-                <i class="fa-brands fa-facebook"></i>
+            <a href="#" aria-label="Accéder à notre page Facebook">
+                <i class="fa-brands fa-facebook" aria-hidden="true"></i>
             </a>
-            <a href="#" aria-label="Instagram">
-                <i class="fa-brands fa-instagram"></i>
+            <a href="#" aria-label="Accéder à notre page Instagram">
+                <i class="fa-brands fa-instagram" aria-hidden="true"></i>
             </a>
         </div>
+
     </div>
 
     <div class="footer-bottom">
-        <p>© 2024 Fournier Roux - Tous droits réservés</p>
+        <p>© 2026 Fournier Roux - Tous droits réservés</p>
     </div>
 </footer>
 

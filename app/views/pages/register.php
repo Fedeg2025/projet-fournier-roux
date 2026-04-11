@@ -3,34 +3,11 @@ $csrfToken = $_SESSION['csrf_token'] ?? '';
 ?>
 
 <main class="auth-page auth-page--register">
-    <section class="auth-hero">
-        <div class="auth-hero__inner">
-            <h1 class="auth-hero__brand">
-                <span class="auth-hero__brand-main">FOURNIER</span>
-                <span class="auth-hero__brand-accent"> roux</span>
-            </h1>
-
-            <div class="auth-hero__logo-wrap">
-                <a
-                    href="index.php?page=accueil"
-                    class="auth-hero__logo-link"
-                    aria-label="Retour à l'accueil">
-                    <div class="auth-hero__logo-box">
-                        <img
-                            src="public/assets/images/logoCreator_imagetologo.jpg"
-                            alt="Logo Fournier Roux"
-                            class="auth-hero__logo">
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
-
     <section class="auth-content">
         <div class="auth-content__inner">
-            <header class="auth-header">
-                <p class="auth-header__subtitle">Créer votre compte</p>
-            </header>
+
+            <h1>Créer un compte</h1>
+            <p>Rejoignez l’espace utilisateur</p>
 
             <?php if (!empty($erreur)): ?>
                 <div class="auth-message auth-message--error" role="alert" aria-live="polite">
@@ -48,7 +25,8 @@ $csrfToken = $_SESSION['csrf_token'] ?? '';
                 <input
                     type="hidden"
                     name="csrf_token"
-                    value="<?php echo htmlspecialchars($csrfToken); ?>">
+                    value="<?php echo htmlspecialchars($csrfToken); ?>"
+                >
 
                 <div class="auth-form__group">
                     <label class="auth-form__label" for="nom">Nom</label>
@@ -58,7 +36,8 @@ $csrfToken = $_SESSION['csrf_token'] ?? '';
                         id="nom"
                         name="nom"
                         required
-                        value="<?php echo isset($_POST['nom']) ? htmlspecialchars($_POST['nom']) : ''; ?>">
+                        value="<?php echo isset($_POST['nom']) ? htmlspecialchars($_POST['nom']) : ''; ?>"
+                    >
                 </div>
 
                 <div class="auth-form__group">
@@ -69,7 +48,8 @@ $csrfToken = $_SESSION['csrf_token'] ?? '';
                         id="prenom"
                         name="prenom"
                         required
-                        value="<?php echo isset($_POST['prenom']) ? htmlspecialchars($_POST['prenom']) : ''; ?>">
+                        value="<?php echo isset($_POST['prenom']) ? htmlspecialchars($_POST['prenom']) : ''; ?>"
+                    >
                 </div>
 
                 <div class="auth-form__group">
@@ -81,7 +61,8 @@ $csrfToken = $_SESSION['csrf_token'] ?? '';
                         name="email"
                         autocomplete="email"
                         required
-                        value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
+                        value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>"
+                    >
                 </div>
 
                 <div class="auth-form__group">
@@ -92,7 +73,8 @@ $csrfToken = $_SESSION['csrf_token'] ?? '';
                         id="mot_de_passe"
                         name="mot_de_passe"
                         autocomplete="new-password"
-                        required>
+                        required
+                    >
                 </div>
 
                 <div class="auth-form__consent">
@@ -101,10 +83,12 @@ $csrfToken = $_SESSION['csrf_token'] ?? '';
                         type="checkbox"
                         id="register_consent"
                         name="register_consent"
-                        required>
+                        required
+                        <?php echo isset($_POST['register_consent']) ? 'checked' : ''; ?>
+                    >
                     <label class="auth-form__consent-label" for="register_consent">
                         En créant votre compte, vous acceptez les conditions d’utilisation et la
-                        <a href="index.php?page=politique-confidentialite">politique de confidentialité</a>.
+                        <a class="auth-form__link" href="index.php?page=politique-confidentialite">politique de confidentialité</a>.
                     </label>
                 </div>
 
@@ -117,15 +101,11 @@ $csrfToken = $_SESSION['csrf_token'] ?? '';
 
             <section class="auth-register">
                 <p class="auth-register__text">Déjà membre ?</p>
-
                 <a class="auth-register__button" href="index.php?page=login">
                     Se connecter
                 </a>
             </section>
+
         </div>
     </section>
-
-    <footer class="auth-footer">
-        <p>© 2026 Fournier Roux – Tous droits réservés</p>
-    </footer>
 </main>

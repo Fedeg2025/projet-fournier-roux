@@ -1,11 +1,7 @@
 <section class="admin-article-form">
-    <h3 class="admin-article-form__title">
-        <?php if ($article_a_modifier): ?>
-            Modifier un article
-        <?php else: ?>
-            Créer un article
-        <?php endif; ?>
-    </h3>
+    <h2 class="admin-article-form__title">
+        <?php echo $article_a_modifier ? 'Modifier un article' : 'Créer un article'; ?>
+    </h2>
 
     <form
         class="admin-article-form__form"
@@ -16,7 +12,7 @@
         <input
             type="hidden"
             name="csrf_token"
-            value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>"
+            value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>"
         >
 
         <?php if ($article_a_modifier): ?>
@@ -53,6 +49,10 @@
         <fieldset class="admin-article-form__group admin-article-form__fieldset">
             <legend class="admin-article-form__label">Catégories :</legend>
 
+            <p class="admin-article-form__help">
+                Sélectionnez une ou plusieurs catégories.
+            </p>
+
             <div class="admin-article-form__categories">
                 <?php foreach ($categories as $categorie): ?>
                     <label class="admin-article-form__category">
@@ -61,7 +61,7 @@
                             type="checkbox"
                             name="categories[]"
                             value="<?php echo htmlspecialchars($categorie['id_categorie']); ?>"
-                            <?php echo in_array($categorie['id_categorie'], $categories_selectionnees) ? 'checked' : ''; ?>
+                            <?php echo in_array($categorie['id_categorie'], $categories_selectionnees, true) ? 'checked' : ''; ?>
                         >
                         <span class="admin-article-form__category-name">
                             <?php echo htmlspecialchars($categorie['nom']); ?>
@@ -80,15 +80,17 @@
                 id="image"
                 accept="image/*"
             >
+            <p class="admin-article-form__help">
+                Champ optionnel.
+            </p>
         </div>
 
         <div class="admin-article-form__actions">
-            <button class="admin-article-form__button" type="submit">
-                <?php if ($article_a_modifier): ?>
-                    Modifier
-                <?php else: ?>
-                    Créer
-                <?php endif; ?>
+            <button
+                class="admin-article-form__button <?php echo $article_a_modifier ? 'admin-article-form__button--edit' : 'admin-article-form__button--create'; ?>"
+                type="submit"
+            >
+                <?php echo $article_a_modifier ? 'Enregistrer les modifications' : 'Créer l’article'; ?>
             </button>
         </div>
     </form>

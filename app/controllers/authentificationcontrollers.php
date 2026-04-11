@@ -1,30 +1,18 @@
 <?php
 
-// Chargement du modèle utilisateur contenant les fonctions
-// nécessaires à la gestion des comptes (recherche, création, etc.).
-require_once __DIR__ . '/../models/User.php';
+// =========================
+// MODÈLE UTILISATEUR
+// =========================
+require_once BASE_PATH . '/app/models/User.php';
 
-// Vérifie que la session est démarrée.
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+// =========================
+// PAGE COURANTE
+// =========================
+$page = $_GET['page'] ?? 'login';
 
-// Détermination de la page demandée via le paramètre GET.
-// Si aucune page n'est spécifiée, la page de connexion est affichée par défaut.
-$page = isset($_GET['page']) ? $_GET['page'] : 'login';
-
-/**
- * Génère un jeton CSRF s'il n'existe pas encore.
- */
-if (empty($_SESSION['csrf_token'])) {
-    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-}
-
-/**
- * ---------------------------------------------------------
- * GESTION DE L'INSCRIPTION
- * ---------------------------------------------------------
- */
+// =========================
+// INSCRIPTION
+// =========================
 if ($page === 'register') {
 
     $erreur = '';
@@ -47,7 +35,7 @@ if ($page === 'register') {
             } elseif (empty($register_consent)) {
                 $erreur = 'Vous devez accepter les conditions.';
             } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $erreur = "Email invalide.";
+                $erreur = 'Email invalide.';
             } elseif (strlen($mot_de_passe) < 8) {
                 $erreur = 'Mot de passe trop court.';
             } else {
@@ -58,27 +46,33 @@ if ($page === 'register') {
                     $erreur = 'Email déjà utilisé.';
                 } else {
                     createUser($pdo, $nom, $prenom, $email, $mot_de_passe);
-                    $succes = 'Compte créé avec succès.';
+
+                    $_SESSION['flash_success'] = 'Compte créé avec succès. Vous pouvez maintenant vous connecter.';
                     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+
+                    header('Location: index.php?page=login');
+                    exit;
                 }
             }
         }
     }
 
-    require_once __DIR__ . '/../views/pages/auth-header.php';
-    require_once __DIR__ . '/../views/pages/register.php';
-    require_once __DIR__ . '/../views/pages/auth-footer.php';
+    $view = BASE_PATH . '/app/views/pages/register.php';
+    require_once BASE_PATH . '/app/views/layouts/auth-layout.php';
     exit;
 }
 
-/**
- * ---------------------------------------------------------
- * GESTION DE LA CONNEXION
- * ---------------------------------------------------------
- */
+// =========================
+// CONNEXION
+// =========================
 if ($page === 'login') {
 
     $erreur = '';
+    $succes = $_SESSION['flash_success'] ?? '';
+
+    if (isset($_SESSION['flash_success'])) {
+        unset($_SESSION['flash_success']);
+    }
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -96,14 +90,12 @@ if ($page === 'login') {
                 $utilisateur = findUserByEmail($pdo, $email);
 
                 if ($utilisateur && password_verify($mot_de_passe, $utilisateur['mot_de_passe'])) {
-
                     session_regenerate_id(true);
                     $_SESSION['user'] = $utilisateur;
                     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 
                     header('Location: index.php?page=accueil');
                     exit;
-
                 } else {
                     $erreur = 'Identifiants incorrects.';
                 }
@@ -111,27 +103,22 @@ if ($page === 'login') {
         }
     }
 
-    require_once __DIR__ . '/../views/pages/auth-header.php';
-    require_once __DIR__ . '/../views/pages/login.php';
-    require_once __DIR__ . '/../views/pages/auth-footer.php';
+    $view = BASE_PATH . '/app/views/pages/login.php';
+    require_once BASE_PATH . '/app/views/layouts/auth-layout.php';
     exit;
 }
 
-/**
- * ---------------------------------------------------------
- * MOT DE PASSE OUBLIÉ / RÉINITIALISATION DÉSACTIVÉS
- * ---------------------------------------------------------
- */
+// =========================
+// MOT DE PASSE OUBLIÉ DÉSACTIVÉ
+// =========================
 if ($page === 'mot-de-passe-oublie' || $page === 'nouveau-mot-de-passe') {
     header('Location: index.php?page=login');
     exit;
 }
 
-/**
- * ---------------------------------------------------------
- * GESTION DE LA DÉCONNEXION
- * ---------------------------------------------------------
- */
+// =========================
+// DÉCONNEXION
+// =========================
 if ($page === 'logout') {
 
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -149,4 +136,4 @@ if ($page === 'logout') {
 
     header('Location: index.php?page=accueil');
     exit;
-} 
+}

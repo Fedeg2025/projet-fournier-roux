@@ -1,5 +1,5 @@
 <section class="admin-delete-requests">
-    <h3 class="admin-delete-requests__title">Demandes de suppression de compte</h3>
+    <h2 class="admin-delete-requests__title">Demandes de suppression de compte</h2>
 
     <?php if (empty($demandes_suppression)): ?>
         <p class="admin-delete-requests__empty">Aucune demande de suppression pour le moment.</p>
@@ -10,21 +10,21 @@
                     <p class="admin-delete-requests__row">
                         <span class="admin-delete-requests__label">Utilisateur :</span>
                         <span class="admin-delete-requests__value">
-                            <?= htmlspecialchars($demande['prenom'] . ' ' . $demande['nom']) ?>
+                            <?php echo htmlspecialchars($demande['prenom'] . ' ' . $demande['nom']); ?>
                         </span>
                     </p>
 
                     <p class="admin-delete-requests__row">
                         <span class="admin-delete-requests__label">Email :</span>
                         <span class="admin-delete-requests__value">
-                            <?= htmlspecialchars($demande['email']) ?>
+                            <?php echo htmlspecialchars($demande['email']); ?>
                         </span>
                     </p>
 
                     <div class="admin-delete-requests__row">
                         <span class="admin-delete-requests__label">Motif :</span>
                         <div class="admin-delete-requests__value">
-                            <?= !empty($demande['motif']) ? nl2br(htmlspecialchars($demande['motif'])) : '—' ?>
+                            <?php echo !empty($demande['motif']) ? nl2br(htmlspecialchars($demande['motif'])) : '—'; ?>
                         </div>
                     </div>
 
@@ -48,14 +48,14 @@
                     <p class="admin-delete-requests__row">
                         <span class="admin-delete-requests__label">Date de demande :</span>
                         <span class="admin-delete-requests__value">
-                            <?= htmlspecialchars($demande['date_demande']) ?>
+                            <?php echo htmlspecialchars($demande['date_demande']); ?>
                         </span>
                     </p>
 
                     <p class="admin-delete-requests__row">
                         <span class="admin-delete-requests__label">Date de traitement :</span>
                         <span class="admin-delete-requests__value">
-                            <?= !empty($demande['date_traitement']) ? htmlspecialchars($demande['date_traitement']) : '—' ?>
+                            <?php echo !empty($demande['date_traitement']) ? htmlspecialchars($demande['date_traitement']) : '—'; ?>
                         </span>
                     </p>
 
@@ -63,7 +63,7 @@
                         <span class="admin-delete-requests__label">Traité par :</span>
                         <span class="admin-delete-requests__value">
                             <?php if (!empty($demande['admin_prenom']) || !empty($demande['admin_nom'])): ?>
-                                <?= htmlspecialchars(trim(($demande['admin_prenom'] ?? '') . ' ' . ($demande['admin_nom'] ?? ''))) ?>
+                                <?php echo htmlspecialchars(trim(($demande['admin_prenom'] ?? '') . ' ' . ($demande['admin_nom'] ?? ''))); ?>
                             <?php else: ?>
                                 —
                             <?php endif; ?>
@@ -80,13 +80,14 @@
                                 <input
                                     type="hidden"
                                     name="csrf_token"
-                                    value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>"
+                                    value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>"
                                 >
+
                                 <button
                                     class="admin-delete-requests__button admin-delete-requests__button--process"
                                     type="submit"
                                     name="process_delete_request"
-                                    value="<?= (int) $demande['id_demande'] ?>"
+                                    value="<?php echo (int) $demande['id_demande']; ?>"
                                 >
                                     Traiter
                                 </button>
@@ -100,13 +101,14 @@
                                 <input
                                     type="hidden"
                                     name="csrf_token"
-                                    value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>"
+                                    value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>"
                                 >
+
                                 <button
                                     class="admin-delete-requests__button admin-delete-requests__button--refuse"
                                     type="submit"
                                     name="refuse_delete_request"
-                                    value="<?= (int) $demande['id_demande'] ?>"
+                                    value="<?php echo (int) $demande['id_demande']; ?>"
                                 >
                                     Refuser
                                 </button>
