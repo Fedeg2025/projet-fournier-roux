@@ -61,12 +61,14 @@
      CHARGEMENT DES SCRIPTS SPÉCIFIQUES
      Les scripts sont chargés en fonction de la page courante
      ========================= -->
+     
 <?php
 $page = $_GET['page'] ?? 'accueil';
 ?>
 
 <?php if ($page === 'accueil'): ?>
     <script src="public/assets/js/home/lightbox.js" defer></script>
+    <script src="public/assets/js/home/accueil-carousel.js" defer></script>
 <?php endif; ?>
 
 <?php if ($page === 'galerie'): ?>

@@ -68,6 +68,86 @@ main.accueil-page {
 }
 
 /* =========================
+   CARROUSEL DESKTOP
+========================= */
+
+.accueil-carousel {
+  @include section-container;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: $space-6xl;
+}
+
+.desktop-carousel {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.desktop-carousel__track {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  overflow: hidden;
+  border-radius: $radius-md;
+  background-color: $color-bg-soft;
+  box-shadow: $shadow-soft;
+}
+
+.desktop-carousel__slide {
+  display: none;
+  width: 100%;
+  height: 100%;
+
+  &.is-active {
+    display: block;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+.desktop-carousel__btn {
+  @include flex-center;
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: none;
+  border-radius: $radius-pill;
+  background-color: rgba($color-white, 0.88);
+  color: $color-text-main;
+  cursor: pointer;
+  font-size: $font-size-xl;
+  line-height: 1;
+  transform: translateY(-50%);
+  box-shadow: $shadow-soft;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+
+  &:hover,
+  &:focus-visible {
+    background-color: $color-white;
+  }
+}
+
+.desktop-carousel__btn--prev {
+  left: $space-lg;
+}
+
+.desktop-carousel__btn--next {
+  right: $space-lg;
+}
+
+/* =========================
    GALERIE
 ========================= */
 

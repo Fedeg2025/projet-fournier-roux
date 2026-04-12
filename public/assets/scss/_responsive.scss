@@ -1327,3 +1327,65 @@
     min-height: 200px;
   }
 }
+
+/* =========================
+   RESPONSIVE - TABLET-CAROUSEL
+========================= */
+@media (max-width: 991px) {
+  .desktop-carousel {
+    display: none;
+  }
+
+  .accueil {
+    &__title {
+      font-size: 2.2rem;
+      line-height: 1.2;
+    }
+
+    &__intro {
+      gap: 1rem;
+
+      &::before,
+      &::after {
+        width: 70px;
+      }
+
+      span {
+        font-size: 1.4rem;
+      }
+    }
+
+    &__text {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      text-align: left;
+    }
+  }
+
+  .accueil-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+
+    &__item {
+      min-height: 140px;
+
+      img {
+        height: 140px;
+      }
+    }
+  }
+}
+
+/* =========================
+   RESPONSIVE - MOBILE
+========================= */
+@media (max-width: 575px) {
+  .accueil-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+
+    &__item img {
+      height: 120px;
+    }
+  }
+}

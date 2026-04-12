@@ -12,55 +12,115 @@
        Présentation de l’association
        et du Fournier roux
        ========================= -->
-  <article class="accueil-intro" aria-labelledby="accueil-intro-title">
+  <section class="accueil-intro" aria-labelledby="bienvenue-title">
+    <div class="section-bienvenue__header">
+      <div class="section-bienvenue__title-wrap">
+        <h2 id="bienvenue-title" class="section-bienvenue__title">
+          Bienvenue chez <br>
+          Les Fourniers
+        </h2>
+      </div>
+
+      <div class="section-bienvenue__intro" aria-hidden="true">
+        <span class="section-bienvenue__intro-line"></span>
+        <span class="section-bienvenue__intro-text">INTRO</span>
+        <span class="section-bienvenue__intro-line"></span>
+      </div>
+    </div>
+
+    <div class="text-border">
+      <p>
+        Créée au début des années 2000 par des amoureux de la nature, l’association
+        <strong>Les Fourniers roux</strong> est née d’une fascination pour cet oiseau discret
+        mais extraordinaire, capable de construire de véritables petits refuges en argile.
+        Au fil des années, l’association s’est donné pour mission de faire découvrir cette
+        espèce au plus grand nombre, de transmettre des connaissances accessibles et de
+        sensibiliser chacun à la préservation de la biodiversité. Ce site a été imaginé comme
+        une fenêtre ouverte sur l’univers du Fournier roux : un lieu pour observer, apprendre,
+        comprendre et s’émerveiller. À travers ses contenus, il vise à rapprocher le public de
+        la nature et à encourager une attention plus consciente au vivant.
+      </p>
+    </div>
+  </section>
+
+  <!-- =========================
+       CARROUSEL D’IMAGES
+       ========================= -->
+
+  <?php
+  $carouselImages = [
+    [
+      'file' => 'slider2.webp',
+      'alt'  => 'Fournier roux perché sur une branche, observant son environnement'
+    ],
+    [
+      'file' => 'slider3.webp',
+      'alt'  => 'Nid de fournier roux en argile avec un oiseau à l’intérieur'
+    ],
+    [
+      'file' => 'slider4.webp',
+      'alt'  => 'Fournier roux perché sur une branche fine dans la végétation'
+    ],
+    [
+      'file' => 'slider5.webp',
+      'alt'  => 'Fournier roux posé dans un environnement naturel verdoyant'
+    ],
+    [
+      'file' => 'slider6.webp',
+      'alt'  => 'Trois fourniers roux perchés côte à côte sur une structure'
+    ],
+    [
+      'file' => 'slider7.webp',
+      'alt'  => 'Fournier roux sortant de son nid en terre fixé à un arbre'
+    ]
+  ];
+  ?>
+
+  <section class="accueil-carousel" aria-labelledby="carousel-title">
+    <h2 id="carousel-title" class="visually-hidden">Carrousel d’images du Fournier roux</h2>
+
+    <div class="container">
+      <div class="desktop-carousel" id="desktopCarousel">
+        <button class="desktop-carousel__btn desktop-carousel__btn--prev" type="button" aria-label="Image précédente">
+          ‹
+        </button>
+
+        <div class="desktop-carousel__track">
+          <?php foreach ($carouselImages as $index => $image): ?>
+            <div class="desktop-carousel__slide <?= $index === 0 ? 'is-active' : '' ?>">
+              <img
+                src="public/assets/images/carousel/<?= htmlspecialchars($image['file']) ?>"
+                alt="<?= htmlspecialchars($image['alt']) ?>"
+                loading="lazy">
+            </div>
+          <?php endforeach; ?>
+        </div>
+
+        <button class="desktop-carousel__btn desktop-carousel__btn--next" type="button" aria-label="Image suivante">
+          ›
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================
+       SECTION SYMBOLIQUE
+       ========================= -->
+  <section aria-labelledby="symbolique-title">
     <header class="section-header">
-      <h2 id="accueil-intro-title" class="visually-hidden">Présentation de l’association et du Fournier roux</h2>
+      <h2 id="symbolique-title" class="visually-hidden">Symbolique du Fournier roux</h2>
     </header>
 
-    <!-- =========================
-         SECTION BIENVENUE
-         ========================= -->
-    <section aria-labelledby="bienvenue-title">
-      <header>
-        <div class="titre">
-          <h2 id="bienvenue-title">Bienvenue chez le fournier <span>roux</span></h2>
-        </div>
-      </header>
-
-      <div class="text-border">
-        <p>
-          Créée au début des années 2000 par des amoureux de la nature, l’association
-          <strong>Les Fourniers roux</strong> est née d’une fascination pour cet oiseau discret
-          mais extraordinaire, capable de construire de véritables petits refuges en argile.
-          Au fil des années, l’association s’est donné pour mission de faire découvrir cette
-          espèce au plus grand nombre, de transmettre des connaissances accessibles et de
-          sensibiliser chacun à la préservation de la biodiversité. Ce site a été imaginé comme
-          une fenêtre ouverte sur l’univers du Fournier roux : un lieu pour observer, apprendre,
-          comprendre et s’émerveiller. À travers ses contenus, il vise à rapprocher le public de
-          la nature et à encourager une attention plus consciente au vivant.
-        </p>
-      </div>
-    </section>
-
-    <!-- =========================
-         SECTION SYMBOLIQUE
-         ========================= -->
-    <section aria-labelledby="symbolique-title">
-      <header class="section-header">
-        <h2 id="symbolique-title" class="visually-hidden">Symbolique du Fournier roux</h2>
-      </header>
-
-      <div class="text-border">
-        <p>
-          En Amérique du Sud, on dit que si un Fournier roux construit son nid dans une maison,
-          c’est un signe de prospérité et d’union. Selon certaines croyances, son nid attire le
-          travail, l’harmonie et le bien-être. Il représente l’effort, la persévérance et la
-          construction de quelque chose de solide — des valeurs qui évoquent la vie familiale
-          et le progrès.
-        </p>
-      </div>
-    </section>
-  </article>
+    <div class="text-border">
+      <p>
+        En Amérique du Sud, on dit que si un Fournier roux construit son nid dans une maison,
+        c’est un signe de prospérité et d’union. Selon certaines croyances, son nid attire le
+        travail, l’harmonie et le bien-être. Il représente l’effort, la persévérance et la
+        construction de quelque chose de solide — des valeurs qui évoquent la vie familiale
+        et le progrès.
+      </p>
+    </div>
+  </section>
 
   <!-- =========================
        CONTENU COMPLÉMENTAIRE
@@ -99,37 +159,55 @@
 
       <article class="paysage">
         <a href="public/assets/images/img1.webp" aria-label="Fournier roux perché sur une branche">
-          <img src="public/assets/images/img1.webp" alt="Fournier roux perché sur une branche dans un environnement naturel">
+          <img
+            src="public/assets/images/img1.webp"
+            alt="Fournier roux perché sur une branche dans un environnement naturel"
+            loading="lazy">
         </a>
       </article>
 
       <article class="paysage">
         <a href="public/assets/images/img2.webp" aria-label="Fournier roux près de son nid">
-          <img src="public/assets/images/img2.webp" alt="Fournier roux observé près de son nid en terre">
+          <img
+            src="public/assets/images/img2.webp"
+            alt="Fournier roux observé près de son nid en terre"
+            loading="lazy">
         </a>
       </article>
 
       <article class="paysage">
         <a href="public/assets/images/img3.webp" aria-label="Fournier roux dans la végétation">
-          <img src="public/assets/images/img3.webp" alt="Fournier roux au milieu de la végétation avec son plumage brun et roux">
+          <img
+            src="public/assets/images/img3.webp"
+            alt="Fournier roux au milieu de la végétation avec son plumage brun et roux"
+            loading="lazy">
         </a>
       </article>
 
       <article class="paysage">
         <a href="public/assets/images/img4.webp" aria-label="Nid de Fournier roux en forme de four">
-          <img src="public/assets/images/img4.webp" alt="Nid de Fournier roux construit en boue avec sa forme caractéristique de four">
+          <img
+            src="public/assets/images/img4.webp"
+            alt="Nid de Fournier roux construit en boue avec sa forme caractéristique de four"
+            loading="lazy">
         </a>
       </article>
 
       <article class="paysage">
         <a href="public/assets/images/img5.webp" aria-label="Fournier roux au sol">
-          <img src="public/assets/images/img5.webp" alt="Fournier roux marchant au sol dans son habitat naturel">
+          <img
+            src="public/assets/images/img5.webp"
+            alt="Fournier roux marchant au sol dans son habitat naturel"
+            loading="lazy">
         </a>
       </article>
 
       <article class="paysage">
         <a href="public/assets/images/img6.webp" aria-label="Fournier roux en observation">
-          <img src="public/assets/images/img6.webp" alt="Fournier roux en train d’observer son environnement">
+          <img
+            src="public/assets/images/img6.webp"
+            alt="Fournier roux en train d’observer son environnement"
+            loading="lazy">
         </a>
       </article>
 
