@@ -1,16 +1,17 @@
+
 -- phpMyAdmin SQL Dump
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : lun. 13 avr. 2026 à 16:14
+-- Généré le : lun. 13 avr. 2026 à 18:04
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
-SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
+SET FOREIGN_KEY_CHECKS = 0;
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -139,8 +140,9 @@ TRUNCATE TABLE `utilisateurs`;
 INSERT INTO `utilisateurs` (`id_utilisateur`, `nom`, `email`, `mot_de_passe`, `role`, `prenom`) VALUES
 (5, 'Garcia', 'fgh.surf32@gmail.com', '$2y$10$PecIsHfzAoRv5RkTyutEA.iizv.ag7ereUzWts24jQ8VrCxsD82nm', 'admin', 'Federico'),
 (8, 'Derian', 'claire.derian@gmail.com', '$2y$10$MLfbhvdI3trYiDv1JV.tqOe31dVDTUI3.1RtVNsJ99YpIdblNv2Ky', 'utilisateur', 'Claire Raymonde'),
-(13, 'Garcia herwig', 'fgh.surf@gmail.com', '$2y$10$br60tHml9DS3L7L/dOM1ve4o0Qkmgo4PTlBHY3nCcpAgekFXySeca', 'utilisateur', 'Pepe');
-SET FOREIGN_KEY_CHECKS=1;
+(13, 'Garcia herwig', 'fgh.surf@gmail.com', '$2y$10$br60tHml9DS3L7L/dOM1ve4o0Qkmgo4PTlBHY3nCcpAgekFXySeca', 'utilisateur', 'Pepe'),
+(14, 'Admin', 'admin@test.com', '$2y$10$wH7s9wHcYc0d3kXJQz6mUeZrK9zG9F3jXk9c7lY8ZQp3WjH6U8Y8a', 'admin', 'Super');
+SET FOREIGN_KEY_CHECKS = 1;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
