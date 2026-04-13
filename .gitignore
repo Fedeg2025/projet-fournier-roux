@@ -2,5 +2,5 @@
 node_modules/
 vendor/
 public/uploads/
-public/assets/images/videos/*.mp4
-public/assets/images/videos/*.webm
+public/assets/images/videos/fournier-roux1.webm
+public/assets/images/videos/fournier-roux1.mp4

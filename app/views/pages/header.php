@@ -118,7 +118,7 @@
             <nav class="main-nav" id="main-nav" aria-label="Navigation principale">
                 <a href="index.php?page=accueil">Accueil</a>
                 <a href="index.php?page=oiseau">L’oiseau</a>
-                <a href="index.php?page=nid">Construction du nid</a>
+                <a href="index.php?page=nid">Le Nid</a>
                 <a href="index.php?page=galerie">Galerie</a>
                 <a href="index.php?page=contact">Contact</a>
 

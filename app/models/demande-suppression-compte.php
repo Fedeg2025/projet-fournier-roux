@@ -33,6 +33,11 @@ function hasPendingDeleteAccountRequest($pdo, $id_utilisateur)
 // =========================
 function createDeleteAccountRequest($pdo, $id_utilisateur, $motif = null)
 {
+    // Empêche la création d'une nouvelle demande si une est déjà en attente
+    if (hasPendingDeleteAccountRequest($pdo, $id_utilisateur)) {
+        return false;
+    }
+
     $sql_user = "SELECT nom, prenom, email
                  FROM utilisateurs
                  WHERE id_utilisateur = ?";

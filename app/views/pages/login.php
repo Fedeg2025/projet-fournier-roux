@@ -28,6 +28,12 @@ $csrfToken = $_SESSION['csrf_token'] ?? '';
                 </div>
             <?php endif; ?>
 
+            <?php if (isset($_GET['error']) && $_GET['error'] === 'compte_en_suppression'): ?>
+                <div class="auth-message auth-message--error" role="alert" aria-live="polite">
+                    Votre compte est en cours de suppression. Vous ne pouvez plus vous connecter.
+                </div>
+            <?php endif; ?>
+
             <!-- =========================
                  MESSAGE DE SUCCÈS
                  ========================= -->
@@ -95,6 +101,7 @@ $csrfToken = $_SESSION['csrf_token'] ?? '';
                  LIEN VERS L’INSCRIPTION
                  ========================= -->
             <section class="auth-register">
+                <p class="auth-register__text">Pas encore de compte ?</p>
                 <a class="auth-register__button" href="index.php?page=register">
                     Créer un compte
                 </a>

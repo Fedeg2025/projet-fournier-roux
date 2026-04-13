@@ -4,6 +4,7 @@
 // MODÈLE UTILISATEUR
 // =========================
 require_once BASE_PATH . '/app/models/User.php';
+require_once BASE_PATH . '/app/models/demande-suppression-compte.php';
 
 
 // =========================
@@ -59,6 +60,11 @@ function traiterLogin()
 
             // Vérification du mot de passe
             if ($utilisateur && password_verify($mot_de_passe, $utilisateur['mot_de_passe'])) {
+
+                if (hasPendingDeleteAccountRequest($pdo, $utilisateur['id_utilisateur'])) {
+                    header('Location: index.php?page=login&error=compte_en_suppression');
+                    exit;
+                }
 
                 // Sécurisation de la session
                 session_regenerate_id(true);

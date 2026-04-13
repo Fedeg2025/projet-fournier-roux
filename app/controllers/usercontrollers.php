@@ -63,7 +63,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $demande_creee = createDeleteAccountRequest($pdo, $id_utilisateur, $motif ?: null);
 
                     if ($demande_creee) {
-                        $succes = 'Votre demande de suppression de compte a bien été envoyée.';
+                        session_unset();
+                        session_destroy();
+                        header('Location: index.php?page=accueil&message=demande_envoyee');
+                        exit;
                     } else {
                         $erreur = 'Une erreur est survenue lors de l’envoi de la demande.';
                     }

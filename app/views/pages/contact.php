@@ -35,8 +35,7 @@
                 <input
                     type="hidden"
                     name="csrf_token"
-                    value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>"
-                >
+                    value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
 
                 <!-- =========================
                      CHOIX DE CIVILITÉ
@@ -52,8 +51,7 @@
                             name="civilite"
                             value="M"
                             required
-                            <?php echo (isset($_POST['civilite']) && $_POST['civilite'] === 'M') ? 'checked' : ''; ?>
-                        >
+                            <?php echo (isset($_POST['civilite']) && $_POST['civilite'] === 'M') ? 'checked' : ''; ?>>
                     </label>
 
                     <label class="auth-form__choice">
@@ -64,8 +62,7 @@
                             name="civilite"
                             value="Mme"
                             required
-                            <?php echo (isset($_POST['civilite']) && $_POST['civilite'] === 'Mme') ? 'checked' : ''; ?>
-                        >
+                            <?php echo (isset($_POST['civilite']) && $_POST['civilite'] === 'Mme') ? 'checked' : ''; ?>>
                     </label>
 
                     <label class="auth-form__choice">
@@ -76,8 +73,7 @@
                             name="civilite"
                             value="Autre"
                             required
-                            <?php echo (isset($_POST['civilite']) && $_POST['civilite'] === 'Autre') ? 'checked' : ''; ?>
-                        >
+                            <?php echo (isset($_POST['civilite']) && $_POST['civilite'] === 'Autre') ? 'checked' : ''; ?>>
                     </label>
                 </fieldset>
 
@@ -92,8 +88,7 @@
                         id="nom"
                         name="nom"
                         required
-                        value="<?php echo isset($_POST['nom']) ? htmlspecialchars($_POST['nom']) : ''; ?>"
-                    >
+                        value="<?php echo isset($_POST['nom']) ? htmlspecialchars($_POST['nom']) : ''; ?>">
                 </div>
 
                 <!-- =========================
@@ -107,8 +102,7 @@
                         id="prenom"
                         name="prenom"
                         required
-                        value="<?php echo isset($_POST['prenom']) ? htmlspecialchars($_POST['prenom']) : ''; ?>"
-                    >
+                        value="<?php echo isset($_POST['prenom']) ? htmlspecialchars($_POST['prenom']) : ''; ?>">
                 </div>
 
                 <!-- =========================
@@ -122,8 +116,7 @@
                         id="email"
                         name="email"
                         required
-                        value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>"
-                    >
+                        value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
                 </div>
 
                 <!-- =========================
@@ -131,12 +124,13 @@
                      ========================= -->
                 <div class="auth-form__group">
                     <label class="auth-form__label" for="objet">Objet du message</label>
-                    <textarea
-                        class="auth-form__textarea auth-form__textarea--objet"
+                    <input
+                        class="auth-form__input"
+                        type="text"
                         id="objet"
                         name="objet"
                         required
-                    ><?php echo isset($_POST['objet']) ? htmlspecialchars($_POST['objet']) : ''; ?></textarea>
+                        value="<?php echo isset($_POST['objet']) ? htmlspecialchars($_POST['objet']) : ''; ?>">
                 </div>
 
                 <!-- =========================
@@ -148,8 +142,7 @@
                         class="auth-form__textarea"
                         id="message"
                         name="message"
-                        required
-                    ><?php echo isset($_POST['message']) ? htmlspecialchars($_POST['message']) : ''; ?></textarea>
+                        required><?php echo isset($_POST['message']) ? htmlspecialchars($_POST['message']) : ''; ?></textarea>
                 </div>
 
                 <!-- =========================
@@ -162,8 +155,7 @@
                         id="contact_consent"
                         name="contact_consent"
                         required
-                        <?php echo isset($_POST['contact_consent']) ? 'checked' : ''; ?>
-                    >
+                        <?php echo isset($_POST['contact_consent']) ? 'checked' : ''; ?>>
                     <label class="auth-form__consent-label" for="contact_consent">
                         J’accepte que mes données soient utilisées dans le cadre de ma demande, conformément à la
                         <a class="auth-form__link" href="index.php?page=politique-confidentialite">politique de confidentialité</a>.

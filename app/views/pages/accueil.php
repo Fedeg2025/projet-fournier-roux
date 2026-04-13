@@ -7,6 +7,12 @@
 <main class="accueil-page">
   <h1 class="visually-hidden">Accueil - Association Les Fourniers roux</h1>
 
+  <?php if (isset($_GET['message']) && $_GET['message'] === 'demande_envoyee'): ?>
+    <div class="success-message">
+      Votre demande de suppression a bien été envoyée.
+    </div>
+  <?php endif; ?>
+
   <!-- =========================
        INTRODUCTION
        Présentation de l’association
