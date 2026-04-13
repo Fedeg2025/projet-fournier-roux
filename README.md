@@ -65,7 +65,6 @@ L’espace administrateur permet :
 - la **gestion des utilisateurs** ;
 - la **gestion des contenus / actualités** ;
 - la consultation et la suppression des **messages de contact** ;
-- la gestion des **demandes de suppression de compte**.
 
 ---
 
@@ -87,15 +86,16 @@ Le projet final correspond donc à une mise en œuvre concrète et cohérente de
 
 ## Gestion des comptes utilisateurs
 
-Le projet applique une logique de **suppression fonctionnelle par anonymisation** plutôt qu’une suppression physique systématique.
+Le projet applique une logique de suppression fonctionnelle combinant :
 
-Lorsqu’un compte utilisateur doit être supprimé, les données personnelles peuvent être **anonymisées** afin de :
+- une anonymisation des données utilisateurs ;
+- une dissociation des relations (clé étrangère mise à NULL).
 
-- respecter une logique de protection des données ;
-- conserver une **cohérence fonctionnelle** ;
-- maintenir une certaine **traçabilité** lorsque cela est nécessaire.
+Cette approche permet de préserver l’intégrité des données tout en respectant la confidentialité des utilisateurs.
 
-Ce choix a été fait dans une logique proche des bonnes pratiques **RGPD**, tout en restant adapté au périmètre pédagogique du projet.
+Dans certains cas (ex : messages de contact), les données restent conservées 
+même après suppression du compte, mais la relation avec l’utilisateur est supprimée 
+(id_utilisateur NULL), garantissant ainsi l’intégrité des données tout en respectant la confidentialité.
 
 ---
 

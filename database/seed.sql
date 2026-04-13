@@ -3,10 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : dim. 12 avr. 2026 à 12:28
+-- Généré le : lun. 13 avr. 2026 à 16:14
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
+SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -101,20 +102,6 @@ INSERT INTO `contient` (`id_article`, `id_media`) VALUES
 (23, 24);
 
 --
--- Tronquer la table avant d'insérer `demandes_suppression_compte`
---
-
-TRUNCATE TABLE `demandes_suppression_compte`;
---
--- Déchargement des données de la table `demandes_suppression_compte`
---
-
-INSERT INTO `demandes_suppression_compte` (`id_demande`, `id_utilisateur`, `motif`, `statut`, `date_demande`, `date_traitement`, `traitee_par`, `commentaire_admin`, `nom_snapshot`, `prenom_snapshot`, `email_snapshot`) VALUES
-(1, 7, 'me pudri', 'traitee', '2026-04-01 21:50:37', '2026-04-01 21:53:47', 5, NULL, NULL, NULL, NULL),
-(2, 7, 'eh', 'traitee', '2026-04-01 22:01:47', '2026-04-01 22:04:19', 5, NULL, NULL, NULL, NULL),
-(3, 9, 'j', 'traitee', '2026-04-01 22:15:38', '2026-04-01 22:17:59', 5, NULL, 'Deriane', 'Claire Raymonde1', 'fg.surf@gmail.com');
-
---
 -- Tronquer la table avant d'insérer `media`
 --
 
@@ -151,11 +138,9 @@ TRUNCATE TABLE `utilisateurs`;
 
 INSERT INTO `utilisateurs` (`id_utilisateur`, `nom`, `email`, `mot_de_passe`, `role`, `prenom`) VALUES
 (5, 'Garcia', 'fgh.surf32@gmail.com', '$2y$10$PecIsHfzAoRv5RkTyutEA.iizv.ag7ereUzWts24jQ8VrCxsD82nm', 'admin', 'Federico'),
-(6, 'Matias', 'fgh.surf33@gmail.com', '$2y$10$tFE4HJ7kk0NCP2kHXuDeQOHAqM7TR3VImNDjAb8TXGmPnDgRenECG', 'utilisateur', 'Herwig'),
-(7, 'Anonyme', 'anonyme_7@example.com', '$2y$10$MPuR2axpGdCpVs45/sspXOdVeAAgGpctNoMLBcOkqemyV9JRX7RR2', 'utilisateur', 'Utilisateur'),
 (8, 'Derian', 'claire.derian@gmail.com', '$2y$10$MLfbhvdI3trYiDv1JV.tqOe31dVDTUI3.1RtVNsJ99YpIdblNv2Ky', 'utilisateur', 'Claire Raymonde'),
-(9, 'Anonyme', 'anonyme_9@example.com', '$2y$10$MHXr2oUOrG9TUsbokPlaKuotDKOFRVI.r9gc/xJ.9wgjuJzaMR2.C', 'utilisateur', 'Utilisateur'),
-(12, 'Admin', 'admin@fournier-roux.local', '$2y$10$ZIK.t2Otc3TajGzeiliL5e14BOdQminnJuTogypRNei1iecKh20C6', 'admin', 'Test');
+(13, 'Garcia herwig', 'fgh.surf@gmail.com', '$2y$10$br60tHml9DS3L7L/dOM1ve4o0Qkmgo4PTlBHY3nCcpAgekFXySeca', 'utilisateur', 'Pepe');
+SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

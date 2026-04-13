@@ -2,6 +2,12 @@
   background: $color-bg-main;
   color: $color-text-main;
   font-family: $font-main;
+
+  h1,
+  h2,
+  h3 {
+    color: $color-primary;
+  }
 }
 
 .contenu-page {
@@ -24,6 +30,12 @@
   @include flex-center;
   width: 100%;
   margin: 0 auto $space-6xl;
+}
+
+.figure-nid {
+  width: 100%;
+  max-width: 700px;
+  margin: 0;
 }
 
 .figure-nid img {
@@ -65,7 +77,7 @@
 
 .nid-slider {
   position: relative;
-  max-width: 700px;
+  width: 100%;
   margin: 0 auto;
   overflow: hidden;
   border-radius: $radius-md;

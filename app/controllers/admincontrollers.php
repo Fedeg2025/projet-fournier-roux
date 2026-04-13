@@ -28,7 +28,6 @@ require_once BASE_PATH . '/app/models/message.php';
 require_once BASE_PATH . '/app/models/article.php';
 require_once BASE_PATH . '/app/models/categorie.php';
 require_once BASE_PATH . '/app/models/User.php';
-require_once BASE_PATH . '/app/models/demande-suppression-compte.php';
 require_once BASE_PATH . '/app/models/media.php';
 
 
@@ -134,58 +133,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 
     header('Location: index.php?page=admin&section=messages');
-    exit;
-}
-
-
-// =========================
-// TRAITEMENT D’UNE DEMANDE DE SUPPRESSION DE COMPTE
-// Cette action anonymise l’utilisateur puis traite la demande
-// =========================
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['process_delete_request'])) {
-    if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
-        http_response_code(403);
-        exit('Requête invalide (CSRF).');
-    }
-
-    $id_demande = (int) $_POST['process_delete_request'];
-    $admin_id = $_SESSION['user']['id_utilisateur'];
-
-    $requete_demande = $pdo->prepare('SELECT id_utilisateur FROM demandes_suppression_compte WHERE id_demande = ?');
-    $requete_demande->execute([$id_demande]);
-    $demande = $requete_demande->fetch();
-
-    if ($demande) {
-        anonymiseUser($pdo, $demande['id_utilisateur']);
-    }
-
-    markDeleteAccountRequestAsProcessed($pdo, $id_demande, $admin_id);
-
-    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-
-    header('Location: index.php?page=admin&section=utilisateurs');
-    exit;
-}
-
-
-// =========================
-// REFUS D’UNE DEMANDE DE SUPPRESSION DE COMPTE
-// Cette action marque la demande comme refusée
-// =========================
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['refuse_delete_request'])) {
-    if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
-        http_response_code(403);
-        exit('Requête invalide (CSRF).');
-    }
-
-    $id_demande = (int) $_POST['refuse_delete_request'];
-    $admin_id = $_SESSION['user']['id_utilisateur'];
-
-    markDeleteAccountRequestAsRefused($pdo, $id_demande, $admin_id);
-
-    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-
-    header('Location: index.php?page=admin&section=utilisateurs');
     exit;
 }
 
@@ -309,8 +256,53 @@ foreach ($articles as &$article) {
 unset($article);
 
 $categories = getAllCategories($pdo);
+
+
+// =========================
+// GESTION SIMPLE DES UTILISATEURS
+// Recherche, filtre alphabétique et pagination
+// =========================
 $utilisateurs = getAllUsers($pdo);
-$demandes_suppression = getAllDeleteAccountRequests($pdo);
+
+$search = trim($_GET['search'] ?? '');
+$letter = strtoupper(trim($_GET['letter'] ?? ''));
+
+// Recherche
+if ($search !== '') {
+    $utilisateurs = array_filter($utilisateurs, function ($utilisateur) use ($search) {
+        $search = mb_strtolower($search);
+
+        return mb_strpos(mb_strtolower($utilisateur['nom']), $search) !== false
+            || mb_strpos(mb_strtolower($utilisateur['prenom']), $search) !== false
+            || mb_strpos(mb_strtolower($utilisateur['email']), $search) !== false;
+    });
+}
+
+// Filtre alphabétique
+if ($letter !== '' && preg_match('/^[A-Z]$/', $letter)) {
+    $utilisateurs = array_filter($utilisateurs, function ($utilisateur) use ($letter) {
+        $premiere_lettre = mb_strtoupper(mb_substr($utilisateur['nom'], 0, 1));
+        return $premiere_lettre === $letter;
+    });
+}
+
+// Réindexation après filtrage
+$utilisateurs = array_values($utilisateurs);
+
+// Pagination utilisateurs
+$utilisateurs_par_page = 10;
+$page_utilisateurs = isset($_GET['user_page']) ? (int) $_GET['user_page'] : 1;
+
+if ($page_utilisateurs < 1) {
+    $page_utilisateurs = 1;
+}
+
+$total_utilisateurs = count($utilisateurs);
+$total_pages_utilisateurs = (int) ceil($total_utilisateurs / $utilisateurs_par_page);
+$offset_utilisateurs = ($page_utilisateurs - 1) * $utilisateurs_par_page;
+
+$utilisateurs = array_slice($utilisateurs, $offset_utilisateurs, $utilisateurs_par_page);
+
 
 $categories_selectionnees = [];
 

@@ -1,11 +1,11 @@
 <?php
 
 // =========================
-// MODÈLE DE DEMANDE DE SUPPRESSION DE COMPTE
-// Ce modèle permet de gérer les demandes
-// de suppression envoyées par les utilisateurs
+// MODÈLE DE SUPPRESSION DE COMPTE
+// Ce modèle permet de gérer la suppression directe
+// du compte utilisateur
 // =========================
-require_once BASE_PATH . '/app/models/demande-suppression-compte.php';
+require_once BASE_PATH . '/app/models/suppression-compte.php';
 
 
 // =========================
@@ -31,7 +31,7 @@ $utilisateur = $_SESSION['user'];
 // TRAITEMENT DU FORMULAIRE
 // Ce contrôleur gère :
 // - la mise à jour du profil
-// - la demande de suppression de compte
+// - la suppression directe du compte
 // =========================
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -46,30 +46,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $id_utilisateur = $_SESSION['user']['id_utilisateur'];
 
         // =========================
-        // DEMANDE DE SUPPRESSION DE COMPTE
+        // SUPPRESSION DIRECTE DU COMPTE
         // =========================
-        if (isset($_POST['action']) && $_POST['action'] === 'delete_account_request') {
+        if (isset($_POST['action']) && $_POST['action'] === 'delete_account') {
 
             // Un administrateur ne peut pas supprimer son propre compte
             if ($_SESSION['user']['role'] === 'admin') {
                 $erreur = 'Un administrateur ne peut pas supprimer son compte.';
             } else {
-                $motif = trim($_POST['motif'] ?? '');
+                $suppression_reussie = deleteAccountWithRelatedData($pdo, $id_utilisateur);
 
-                // Vérifie si une demande existe déjà
-                if (hasPendingDeleteAccountRequest($pdo, $id_utilisateur)) {
-                    $erreur = 'Une demande de suppression est déjà en attente de traitement.';
+                if ($suppression_reussie) {
+                    session_unset();
+                    session_destroy();
+                    header('Location: index.php?page=accueil');
+                    exit;
                 } else {
-                    $demande_creee = createDeleteAccountRequest($pdo, $id_utilisateur, $motif ?: null);
-
-                    if ($demande_creee) {
-                        session_unset();
-                        session_destroy();
-                        header('Location: index.php?page=accueil&message=demande_envoyee');
-                        exit;
-                    } else {
-                        $erreur = 'Une erreur est survenue lors de l’envoi de la demande.';
-                    }
+                    $erreur = 'Une erreur est survenue lors de la suppression du compte.';
                 }
             }
 

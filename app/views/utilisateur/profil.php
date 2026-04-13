@@ -2,7 +2,7 @@
      PAGE PROFIL
      Cette vue permet à l’utilisateur
      de consulter et modifier ses informations personnelles
-     ainsi que d’envoyer une demande de suppression de compte
+     ainsi que de supprimer directement son compte
      ========================= -->
 
 <main class="profile-page">
@@ -94,7 +94,7 @@
     </section>
 
     <!-- =========================
-         SECTION DEMANDE DE SUPPRESSION
+         SECTION SUPPRESSION DU COMPTE
          Cette section n’est affichée
          que pour les utilisateurs non administrateurs
          ========================= -->
@@ -103,7 +103,7 @@
             <h2 class="profile-page__subtitle">Suppression du compte</h2>
 
             <p class="profile-delete-form__help">
-                Vous pouvez envoyer une demande de suppression de compte.
+                Vous pouvez supprimer définitivement votre compte depuis votre profil.
             </p>
 
             <form class="profile-delete-form" method="POST" action="index.php?page=profil">
@@ -116,22 +116,12 @@
                 <input
                     type="hidden"
                     name="action"
-                    value="delete_account_request"
+                    value="delete_account"
                 >
-
-                <div class="profile-delete-form__group">
-                    <label class="profile-delete-form__label" for="motif">Motif (optionnel) :</label>
-                    <textarea
-                        class="profile-delete-form__textarea"
-                        name="motif"
-                        id="motif"
-                        rows="6"
-                    ></textarea>
-                </div>
 
                 <div class="profile-delete-form__actions">
                     <button class="profile-delete-form__button" type="submit">
-                        Demander la suppression du compte
+                        Supprimer mon compte
                     </button>
                 </div>
             </form>

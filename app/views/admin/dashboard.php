@@ -70,15 +70,14 @@
 
         <!-- =========================
              SECTION UTILISATEURS
+             Cette section affiche la gestion simple
+             des utilisateurs avec recherche, filtre
+             et pagination dans la vue dédiée
              ========================= -->
         <?php if ($section === 'utilisateurs'): ?>
             <div class="admin-dashboard__section admin-dashboard__section--utilisateurs">
                 <div class="admin-dashboard__block admin-dashboard__block--users">
                     <?php require_once BASE_PATH . '/app/views/admin/utilisateurs.php'; ?>
-                </div>
-
-                <div class="admin-dashboard__block admin-dashboard__block--delete-requests">
-                    <?php require_once BASE_PATH . '/app/views/admin/demandes-suppression.php'; ?>
                 </div>
             </div>
         <?php endif; ?>

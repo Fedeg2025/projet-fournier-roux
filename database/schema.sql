@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : mar. 07 avr. 2026 à 20:15
+-- Généré le : lun. 13 avr. 2026 à 16:06
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -66,26 +66,6 @@ CREATE TABLE `categorie` (
 CREATE TABLE `contient` (
   `id_article` int(11) NOT NULL,
   `id_media` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `demandes_suppression_compte`
---
-
-CREATE TABLE `demandes_suppression_compte` (
-  `id_demande` int(11) NOT NULL,
-  `id_utilisateur` int(11) NOT NULL,
-  `motif` text DEFAULT NULL,
-  `statut` enum('en_attente','traitee','refusee') NOT NULL DEFAULT 'en_attente',
-  `date_demande` datetime NOT NULL DEFAULT current_timestamp(),
-  `date_traitement` datetime DEFAULT NULL,
-  `traitee_par` int(11) DEFAULT NULL,
-  `commentaire_admin` text DEFAULT NULL,
-  `nom_snapshot` varchar(100) DEFAULT NULL,
-  `prenom_snapshot` varchar(100) DEFAULT NULL,
-  `email_snapshot` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -166,14 +146,6 @@ ALTER TABLE `contient`
   ADD KEY `id_media` (`id_media`);
 
 --
--- Index pour la table `demandes_suppression_compte`
---
-ALTER TABLE `demandes_suppression_compte`
-  ADD PRIMARY KEY (`id_demande`),
-  ADD KEY `id_utilisateur` (`id_utilisateur`),
-  ADD KEY `traitee_par` (`traitee_par`);
-
---
 -- Index pour la table `media`
 --
 ALTER TABLE `media`
@@ -208,12 +180,6 @@ ALTER TABLE `articles`
 --
 ALTER TABLE `categorie`
   MODIFY `id_categorie` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `demandes_suppression_compte`
---
-ALTER TABLE `demandes_suppression_compte`
-  MODIFY `id_demande` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `media`
@@ -258,18 +224,10 @@ ALTER TABLE `contient`
   ADD CONSTRAINT `contient_ibfk_2` FOREIGN KEY (`id_media`) REFERENCES `media` (`id_media`);
 
 --
--- Contraintes pour la table `demandes_suppression_compte`
---
-ALTER TABLE `demandes_suppression_compte`
-  ADD CONSTRAINT `demandes_suppression_compte_ibfk_1` FOREIGN KEY (`id_utilisateur`) REFERENCES `utilisateurs` (`id_utilisateur`) ON DELETE CASCADE,
-  ADD CONSTRAINT `demandes_suppression_compte_ibfk_2` FOREIGN KEY (`traitee_par`) REFERENCES `utilisateurs` (`id_utilisateur`) ON DELETE SET NULL;
-
---
 -- Contraintes pour la table `messages`
 --
 ALTER TABLE `messages`
-  ADD CONSTRAINT `fk_messages_utilisateur` FOREIGN KEY (`id_utilisateur`) REFERENCES `utilisateurs` (`id_utilisateur`) ON DELETE SET NULL,
-  ADD CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`id_utilisateur`) REFERENCES `utilisateurs` (`id_utilisateur`);
+  ADD CONSTRAINT `fk_messages_utilisateur` FOREIGN KEY (`id_utilisateur`) REFERENCES `utilisateurs` (`id_utilisateur`) ON DELETE SET NULL;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

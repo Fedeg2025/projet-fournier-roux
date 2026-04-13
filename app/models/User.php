@@ -52,26 +52,3 @@ function getAllUsers($pdo)
 
     return $stmt->fetchAll();
 }
-
-
-// =========================
-// ANONYMISER UN UTILISATEUR
-// Cette fonction remplace les données personnelles
-// dans le cadre d’une suppression ou d’une anonymisation
-// =========================
-function anonymiseUser($pdo, $id_utilisateur)
-{
-    $email_anonyme = 'anonyme_' . $id_utilisateur . '@example.com';
-    $mot_de_passe_invalide = password_hash(bin2hex(random_bytes(16)), PASSWORD_DEFAULT);
-
-    $sql = "UPDATE utilisateurs
-            SET nom = 'Anonyme',
-                prenom = 'Utilisateur',
-                email = ?,
-                mot_de_passe = ?
-            WHERE id_utilisateur = ?";
-
-    $stmt = $pdo->prepare($sql);
-
-    return $stmt->execute([$email_anonyme, $mot_de_passe_invalide, $id_utilisateur]);
-}

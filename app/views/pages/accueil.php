@@ -112,7 +112,7 @@
   <!-- =========================
        SECTION SYMBOLIQUE
        ========================= -->
-  <section aria-labelledby="symbolique-title">
+  <section class="accueil-contenu" aria-labelledby="symbolique-title">
     <header class="section-header">
       <h2 id="symbolique-title" class="visually-hidden">Symbolique du Fournier roux</h2>
     </header>
