@@ -53,7 +53,7 @@
         </p>
         <ul>
             <li>la consultation de contenus éducatifs et informatifs ;</li>
-            <li>l’accès à des actualités liées à l’association ;</li>
+            <li>l’accès à des actualités liées au projet ;</li>
             <li>la consultation d’observations naturalistes via des sources externes ;</li>
             <li>la création et la gestion d’un compte utilisateur ;</li>
             <li>l’utilisation d’un formulaire de contact.</li>
@@ -86,8 +86,8 @@
             L’utilisateur peut accéder à son espace personnel afin de consulter et modifier ses informations.
         </p>
         <p>
-            Il peut également demander la suppression de son compte, conformément aux modalités prévues
-            dans la politique de confidentialité du site.
+            Il peut également supprimer son compte directement depuis son espace personnel,
+            conformément aux modalités prévues dans la politique de confidentialité du site.
         </p>
     </section>
 
@@ -113,10 +113,10 @@
     <section>
         <h3>7. Responsabilité</h3>
         <p>
-            L’association s’efforce d’assurer l’exactitude et la mise à jour des informations diffusées sur le site.
+            L’éditeur du site s’efforce d’assurer l’exactitude et la mise à jour des informations diffusées.
         </p>
         <p>
-            Toutefois, elle ne saurait être tenue responsable d’éventuelles erreurs, omissions ou
+            Toutefois, il ne saurait être tenu responsable d’éventuelles erreurs, omissions ou
             indisponibilités temporaires du service.
         </p>
     </section>
@@ -131,7 +131,7 @@
             ou pour toute autre raison technique.
         </p>
         <p>
-            L’association ne saurait être tenue responsable des éventuelles interruptions ou dysfonctionnements.
+            L’éditeur ne saurait être tenu responsable des éventuelles interruptions ou dysfonctionnements.
         </p>
     </section>
 
@@ -160,7 +160,7 @@
             d’observation naturaliste.
         </p>
         <p>
-            L’association ne peut être tenue responsable du contenu ou du fonctionnement de ces sites tiers.
+            L’éditeur ne peut être tenu responsable du contenu ou du fonctionnement de ces sites tiers.
         </p>
     </section>
 

@@ -55,7 +55,7 @@
             <li>connexion et sécurisation de l’accès à l’espace utilisateur ;</li>
             <li>gestion des demandes envoyées via le formulaire de contact ;</li>
             <li>administration du site et du back-office ;</li>
-            <li>traitement des demandes de suppression de compte ;</li>
+            <li>suppression ou anonymisation du compte utilisateur lorsque cela est demandé ;</li>
             <li>sécurisation technique et bon fonctionnement général du site.</li>
         </ul>
     </section>
@@ -94,9 +94,9 @@
             exigences techniques, administratives et de sécurité du projet.
         </p>
         <p>
-            Certaines données peuvent être conservées de manière limitée lorsqu’elles sont nécessaires à la
-            cohérence technique de la base de données, à la prévention d’abus, à la sécurité du site ou à la
-            traçabilité administrative.
+            Lorsqu’un compte est supprimé, certaines données peuvent être supprimées ou anonymisées selon les
+            besoins techniques du site, la cohérence de la base de données et les exigences minimales de sécurité
+            et de traçabilité.
         </p>
     </section>
 
@@ -106,9 +106,7 @@
     <section>
         <h3>7. Suppression de compte et anonymisation</h3>
         <p>
-            L’utilisateur peut demander la suppression de son compte depuis son espace personnel.
-            Cette demande n’est pas exécutée automatiquement : elle est transmise à un administrateur
-            et traitée dans le back-office.
+            L’utilisateur peut demander la suppression de son compte directement depuis son espace personnel.
         </p>
         <p>
             Afin de préserver l’intégrité de la base de données et des contenus associés, la suppression
@@ -120,9 +118,8 @@
             au fonctionnement technique du site.
         </p>
         <p>
-            Lorsqu’une demande de suppression est effectuée, certaines informations liées à cette demande
-            peuvent être conservées sous forme de trace administrative minimale au moment de la demande,
-            afin d’assurer le suivi, la sécurité et la traçabilité du traitement.
+            Certaines informations minimales peuvent être conservées lorsqu’elles sont strictement nécessaires
+            à la sécurité, à la cohérence technique du site ou à la traçabilité administrative.
         </p>
     </section>
 

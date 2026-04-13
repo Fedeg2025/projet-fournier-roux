@@ -93,24 +93,20 @@
     <section>
         <h3>Suppression de compte et anonymisation</h3>
         <p>
-            La suppression d’un compte utilisateur ne s’effectue pas automatiquement. Elle se fait via une
-            demande transmise par l’utilisateur depuis son espace personnel, puis traitée par un administrateur
-            dans le back-office.
+            L’utilisateur peut supprimer son compte directement depuis son espace personnel.
         </p>
         <p>
             Afin de respecter les principes du RGPD tout en garantissant l’intégrité de la base de données,
-            le traitement de cette demande peut prendre la forme d’une <strong>anonymisation</strong> du compte
-            plutôt qu’une suppression brute en base de données.
+            cette suppression peut être réalisée sous la forme d’une <strong>anonymisation</strong> du compte.
         </p>
         <p>
             Cette anonymisation consiste à remplacer les informations directement identifiantes du compte
-            utilisateur par des valeurs anonymisées, tout en conservant les éléments strictement nécessaires
-            à la cohérence technique du site et à la traçabilité administrative du traitement de la demande.
+            utilisateur par des données anonymisées, tout en conservant les éléments strictement nécessaires
+            à la cohérence technique du site et à la sécurité du système.
         </p>
         <p>
-            Lorsqu’une demande de suppression est enregistrée, certaines informations peuvent être conservées
-            sous forme d’empreinte administrative minimale au moment de la demande, notamment pour assurer
-            le suivi du traitement, la sécurité et la traçabilité.
+            Certaines informations minimales peuvent être conservées lorsque cela est strictement nécessaire
+            à la sécurité, à la traçabilité administrative ou au bon fonctionnement technique du site.
         </p>
     </section>
 
