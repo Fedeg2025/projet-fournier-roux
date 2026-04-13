@@ -141,7 +141,7 @@ INSERT INTO `utilisateurs` (`id_utilisateur`, `nom`, `email`, `mot_de_passe`, `r
 (5, 'Garcia', 'fgh.surf32@gmail.com', '$2y$10$PecIsHfzAoRv5RkTyutEA.iizv.ag7ereUzWts24jQ8VrCxsD82nm', 'admin', 'Federico'),
 (8, 'Derian', 'claire.derian@gmail.com', '$2y$10$MLfbhvdI3trYiDv1JV.tqOe31dVDTUI3.1RtVNsJ99YpIdblNv2Ky', 'utilisateur', 'Claire Raymonde'),
 (13, 'Garcia herwig', 'fgh.surf@gmail.com', '$2y$10$br60tHml9DS3L7L/dOM1ve4o0Qkmgo4PTlBHY3nCcpAgekFXySeca', 'utilisateur', 'Pepe'),
-(14, 'Admin', 'admin@test.com', '$2y$10$wH7s9wHcYc0d3kXJQz6mUeZrK9zG9F3jXk9c7lY8ZQp3WjH6U8Y8a', 'admin', 'Super');
+(14, 'Admin', 'admin@test.com', '$2y$10$qfb9qRFIXltvPX6aHY0T0OfPUUu/OJc6MF09InE8ssl0GVIWWVvgG', 'admin', 'Super');
 SET FOREIGN_KEY_CHECKS = 1;
 COMMIT;
 
