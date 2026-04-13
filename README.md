@@ -1,6 +1,6 @@
 # Fournier Roux — Des bâtisseurs exceptionnels
 
-Projet de fin de formation réalisé individuellement dans une mise en situation fictive : un site web pédagogique développé en **PHP (architecture MVC)** avec **MySQL**, intégrant un espace utilisateur, un back-office d’administration et une consultation d’observations via l’API **iNaturalist**.
+Projet de fin de formation réalisé individuellement dans le cadre d’une mise en situation fictive : il s’agit d’un site web pédagogique développé en **PHP (architecture MVC)** avec **MySQL**, intégrant un espace utilisateur, un back-office d’administration ainsi qu’une consultation d’observations via l’API **iNaturalist**.
 
 ---
 
@@ -55,7 +55,7 @@ L’espace utilisateur permet :
 - la **connexion / déconnexion** ;
 - l’accès à un **espace personnel** ;
 - la consultation des informations liées au compte ;
-- une **demande de suppression de compte**.
+- la **suppression du compte directement depuis le profil**.
 
 ### Back-office administrateur
 
@@ -86,10 +86,12 @@ Le projet final correspond donc à une mise en œuvre concrète et cohérente de
 
 ## Gestion des comptes utilisateurs
 
-Le projet applique une logique de suppression fonctionnelle combinant :
+Le projet applique une logique de suppression de compte combinant :
 
 - une anonymisation des données utilisateurs ;
 - une dissociation des relations (clé étrangère mise à NULL).
+
+La suppression du compte est accessible directement depuis l’espace utilisateur (profil).
 
 Cette approche permet de préserver l’intégrité des données tout en respectant la confidentialité des utilisateurs.
 
