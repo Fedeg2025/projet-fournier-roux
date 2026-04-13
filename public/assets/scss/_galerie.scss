@@ -45,7 +45,7 @@
 
 /* =========================================================
    GALERÍA HORIZONTAL
-   ========================================================= */
+========================================================= */
 
 .thumb-gallery {
   position: relative;
@@ -57,20 +57,19 @@
   background: rgba($color-white, 0.8);
   border-radius: $radius-2xl;
   overflow: hidden;
-  min-height: auto;
 
   &__track {
-    display: flex !important;
-    align-items: stretch !important;
-    gap: 18px !important;
-    width: 100% !important;
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
+    display: flex;
+    align-items: stretch;
+    gap: 18px;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
     scrollbar-width: none;
     -ms-overflow-style: none;
     scroll-behavior: smooth;
-    padding: 0 !important;
-    margin: 0 !important;
+    padding: 0;
+    margin: 0;
 
     &::-webkit-scrollbar {
       display: none;
@@ -78,36 +77,37 @@
   }
 
   &__item {
-    display: block !important;
-    flex: 0 0 calc((100% - 36px) / 3) !important;
-    width: calc((100% - 36px) / 3) !important;
-    min-width: calc((100% - 36px) / 3) !important;
-    max-width: calc((100% - 36px) / 3) !important;
-    height: 180px !important;
-    margin: 0 !important;
+    display: block;
+    flex: 0 0 calc((100% - 36px) / 3);
+    width: calc((100% - 36px) / 3);
+    min-width: calc((100% - 36px) / 3);
+    max-width: calc((100% - 36px) / 3);
+    height: 180px;
+    margin: 0;
     border-radius: $radius-md;
     overflow: hidden;
     background: rgba($color-bg-soft, 0.9);
-    opacity: 1 !important;
-    transform: none !important;
+    opacity: 1;
+    transform: none;
 
     &.is-active {
-      opacity: 1 !important;
-      transform: none !important;
+      opacity: 1;
+      transform: none;
     }
 
     img,
     picture,
     a,
     figure {
-      display: block !important;
-      width: 100% !important;
-      height: 100% !important;
-      margin: 0 !important;
+      display: block;
+      width: 100%;
+      height: 100%;
+      margin: 0;
     }
 
     img {
-      object-fit: cover !important;
+      object-fit: cover;
+      object-position: center top;
     }
   }
 
@@ -123,7 +123,9 @@
     font-size: 30px;
     line-height: 1;
     cursor: pointer;
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease;
 
     &:hover {
       opacity: 0.7;
@@ -134,7 +136,7 @@
 
 /* =========================================================
    PUNTOS DEL CARRUSEL
-   ========================================================= */
+========================================================= */
 
 .thumb-gallery__dots {
   display: flex;
@@ -149,13 +151,19 @@
   height: 8px;
   border-radius: 999px;
   background: rgba($color-text-soft, 0.22);
-  transition: transform 0.2s ease, background 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
 
   &.is-active {
     background: rgba($color-text-soft, 0.55);
     transform: scale(1.2);
   }
 }
+
+/* =========================================================
+   GRILLES MÉDIA
+========================================================= */
 
 .media-grid {
   display: grid;
@@ -172,24 +180,25 @@
 
 .media-card {
   width: 100%;
+  max-width: 100%;
 }
 
-/* SOLO AQUÍ se reduce el ancho útil de los videos */
-.gallery-section:has(.media-grid--videos) {
-  max-width: 948px;
-}
-
+/* =========================================================
+   VIDÉOS
+========================================================= */
 .media-card--video {
+  width: 100%;
+
   .media-card__visual {
     width: 100%;
     background: darken($color-text-soft, 8%);
     border-radius: $radius-sm;
     overflow: hidden;
 
-    video {
+    video,
+    iframe {
       display: block;
       width: 100%;
-      height: auto;
       aspect-ratio: 4 / 3;
       object-fit: cover;
       background: $color-black;
@@ -197,18 +206,23 @@
   }
 
   .media-card__content {
+    width: 100%;
     padding-top: $space-md;
     text-align: center;
+    color: $color-text-main;
 
     h3 {
       margin: 0;
       font-size: $font-size-md;
       font-weight: $font-weight-medium;
-      color: $color-white;
+      color: inherit;
     }
 
     p {
-      display: none;
+      margin: 0;
+      font-size: $font-size-base;
+      line-height: $line-height-relaxed;
+      color: inherit;
     }
   }
 }
@@ -216,7 +230,7 @@
 /* =========================================================
    PLAYLIST DE AUDIOS
    PLAYER ARRIBA + LISTA ABAJO
-   ========================================================= */
+========================================================= */
 
 .audio-playlist {
   display: flex;
@@ -253,7 +267,9 @@
   background: transparent;
   text-align: left;
   cursor: pointer;
-  transition: background 0.2s ease, padding-left 0.2s ease;
+  transition:
+    background 0.2s ease,
+    padding-left 0.2s ease;
   box-shadow: none;
   border-radius: 0;
 
@@ -359,6 +375,10 @@
   }
 }
 
+/* =========================================================
+   CTA
+========================================================= */
+
 .gallery-section--cta {
   margin-top: $space-6xl;
   margin-bottom: 0;
@@ -390,6 +410,9 @@
   }
 
   &__action {
+    display: flex;
+    justify-content: center;
+
     .btn-primary {
       @include reset-link;
       @include flex-center;

@@ -23,6 +23,8 @@
     font-size: $font-size-title;
     font-weight: $font-weight-bold;
     line-height: $line-height-tight;
+    padding-top: $space-3xl;
+    padding-bottom: $space-3xl;
   }
 }
 
@@ -34,13 +36,13 @@
 
 .figure-nid {
   width: 100%;
-  max-width: 700px;
+  max-width: 920px;
   margin: 0;
 }
 
 .figure-nid img {
   width: 100%;
-  max-width: 700px;
+  max-width: 920px;
   border-radius: $radius-sm;
   display: block;
 }

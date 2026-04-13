@@ -10,13 +10,13 @@
         <!-- =========================
              EN-TÊTE DE LA PAGE
              ========================= -->
-        <header class="oiseau-article__header">
+        <section class="oiseau-article__section oiseau-article__section--title">
             <h1 class="oiseau-article__title">
                 FOURNIER
                 <span>roux</span>
                 <strong>l’oiseau</strong>
             </h1>
-        </header>
+        </section>
 
         <!-- =========================
              SECTION DES NOMS

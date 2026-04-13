@@ -11,11 +11,11 @@ main.accueil-page {
   width: 1px;
   height: 1px;
   padding: 0;
-  margin: -1px;
+  margin: 0;
   overflow: hidden;
-  clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+  clip-path: inset(50%);
 }
 
 /* =========================
@@ -45,6 +45,60 @@ main.accueil-page {
 }
 
 /* =========================
+   SECTION BIENVENUE
+========================= */
+
+.section-bienvenue__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: $space-4xl;
+}
+
+.section-bienvenue__title {
+  margin: 0;
+  text-align: center;
+  padding-top: $space-3xl;
+  padding-bottom: $space-2xl;
+}
+
+.section-bienvenue__title {
+  margin: 0 0 $space-lg 0;
+  font-family: $font-main;
+  font-size: $font-size-title;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+  color: $color-primary;
+  text-align: center;
+}
+
+.section-bienvenue__intro {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-md;
+  width: 100%;
+}
+
+.section-bienvenue__intro-line {
+  display: block;
+  width: 140px;
+  height: 1px;
+  background-color: $color-border-soft;
+}
+
+.section-bienvenue__intro-text {
+  font-family: $font-main;
+  font-size: $font-size-base;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-base;
+  color: $color-text-main;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* =========================
    BLOCS TEXTE
 ========================= */
 
@@ -53,6 +107,7 @@ main.accueil-page {
   background-color: $color-bg-soft;
   border-radius: $radius-sm;
   padding: $space-6xl;
+  box-sizing: border-box;
 
   p {
     margin: 0 0 $space-4xl 0;

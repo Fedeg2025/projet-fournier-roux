@@ -103,7 +103,7 @@ $audioTracks = [
     <!-- =========================
          SECTION GALERIE PHOTO
          ========================= -->
-    <section class="gallery-section">
+    <section class="gallery-section gallery-section--photos">
         <div class="section-heading">
             <p class="section-heading__tag"></p>
             <h2>Galerie photo</h2>
@@ -123,8 +123,7 @@ $audioTracks = [
                         <img
                             src="<?php echo htmlspecialchars($image['src']); ?>"
                             alt="<?php echo htmlspecialchars($image['alt']); ?>"
-                            loading="lazy"
-                        >
+                            loading="lazy">
                     </figure>
                 <?php endforeach; ?>
             </div>
@@ -149,7 +148,7 @@ $audioTracks = [
             <p class="section-heading__tag"></p>
             <h2>Observations vidéo</h2>
             <p>
-            Plongez dans l’univers du Fournier roux à travers des vidéos révélant son comportement.
+                Plongez dans l’univers du Fournier roux à travers des vidéos révélant son comportement.
             </p>
         </div>
 
@@ -207,8 +206,7 @@ $audioTracks = [
                         <source
                             src="<?php echo htmlspecialchars($audioTracks[0]['src']); ?>"
                             type="<?php echo htmlspecialchars($audioTracks[0]['type']); ?>"
-                            data-audio-source
-                        >
+                            data-audio-source>
                         Votre navigateur ne supporte pas la lecture audio.
                     </audio>
                     <p data-audio-current-title>Rufous Hornero - Furnarius rufus</p>
@@ -222,8 +220,7 @@ $audioTracks = [
                         class="audio-playlist__item <?php echo $index === 0 ? 'is-active' : ''; ?>"
                         data-audio-src="<?php echo htmlspecialchars($track['src']); ?>"
                         data-audio-type="<?php echo htmlspecialchars($track['type']); ?>"
-                        aria-pressed="<?php echo $index === 0 ? 'true' : 'false'; ?>"
-                    >
+                        aria-pressed="<?php echo $index === 0 ? 'true' : 'false'; ?>">
                         <span class="audio-playlist__item-title"><?php echo htmlspecialchars($track['label']); ?></span>
                     </button>
                 <?php endforeach; ?>
@@ -248,7 +245,7 @@ $audioTracks = [
 
             <div class="gallery-cta__action">
                 <a class="btn-primary" href="index.php?page=inaturalist">
-                    Voir les observations iNaturalist
+                    Voir les observations
                 </a>
             </div>
         </div>

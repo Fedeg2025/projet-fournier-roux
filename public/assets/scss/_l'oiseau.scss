@@ -2,26 +2,36 @@
   width: 100%;
   max-width: 430px;
   margin: 0 auto;
-  padding: 0 $space-3xl 60px; // 👈 aire lateral correcto
-  background: $color-bg-main;
+  padding: 0 $space-3xl 60px;
+  background: transparent;
 }
 
 .oiseau-article {
-  padding: 28px 0 0; // 👈 quitamos padding lateral (ahora lo controla el page)
+  padding: 28px 0 0;
   color: $color-text-main;
+  background: transparent;
 
   /* =========================
-     SECCIONES (FIX ESPACIADO)
+     SECCIONES
   ========================= */
 
   &__section {
-    padding: $space-3xl $space-3xl $space-lg; // 👈 menos padding abajo
-    background: rgba(255, 255, 255, 0.7);
+    padding: $space-3xl $space-3xl $space-lg;
+    background: rgba($color-white, 0.7);
     border-radius: $radius-lg;
   }
 
+  &__section.oiseau-article__section--title {
+    padding: $space-5xl 0 $space-4xl;
+    background: transparent;
+    border: none;
+    outline: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
   &__section + &__section {
-    margin-top: $space-4xl; // 👈 separación uniforme entre bloques
+    margin-top: $space-4xl;
   }
 
   /* =========================
@@ -29,15 +39,22 @@
   ========================= */
 
   &__title {
-    margin: 0 0 22px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: $space-sm;
+    text-align: center;
     font-size: 30px;
-    line-height: 1.02;
+    line-height: 1.05;
     font-weight: 800;
     color: $color-black;
 
     span {
       display: block;
       color: $color-secondary;
+      font-weight: 800;
     }
 
     strong {
@@ -97,35 +114,5 @@
   &__caption {
     margin-top: 18px;
     max-width: 290px;
-  }
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media screen and (min-width: 768px) {
-  .oiseau-page {
-    max-width: 760px;
-    padding: 0 $space-4xl 60px; // 👈 más aire lateral
-  }
-
-  .oiseau-article {
-    padding: 40px 0 0;
-
-    &__title {
-      font-size: 42px;
-    }
-
-    &__intro,
-    &__text,
-    &__note,
-    &__caption {
-      font-size: 15px;
-    }
-
-    &__map {
-      max-width: 260px;
-    }
   }
 }

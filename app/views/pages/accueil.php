@@ -19,11 +19,11 @@
        et du Fournier roux
        ========================= -->
   <section class="accueil-intro" aria-labelledby="bienvenue-title">
+    <!-- En-tête visuel -->
     <div class="section-bienvenue__header">
       <div class="section-bienvenue__title-wrap">
         <h2 id="bienvenue-title" class="section-bienvenue__title">
-          Bienvenue chez <br>
-          Les Fourniers
+          Bienvenue chez Les Fourniers
         </h2>
       </div>
 
@@ -34,18 +34,21 @@
       </div>
     </div>
 
-    <div class="text-border">
-      <p>
-        Créée au début des années 2000 par des amoureux de la nature, l’association
-        <strong>Les Fourniers roux</strong> est née d’une fascination pour cet oiseau discret
-        mais extraordinaire, capable de construire de véritables petits refuges en argile.
-        Au fil des années, l’association s’est donné pour mission de faire découvrir cette
-        espèce au plus grand nombre, de transmettre des connaissances accessibles et de
-        sensibiliser chacun à la préservation de la biodiversité. Ce site a été imaginé comme
-        une fenêtre ouverte sur l’univers du Fournier roux : un lieu pour observer, apprendre,
-        comprendre et s’émerveiller. À travers ses contenus, il vise à rapprocher le public de
-        la nature et à encourager une attention plus consciente au vivant.
-      </p>
+    <!-- Contenu limité -->
+    <div class="accueil-intro__content">
+      <div class="text-border">
+        <p>
+          Créée au début des années 2000 par des amoureux de la nature, l’association
+          <strong>Les Fourniers roux</strong> est née d’une fascination pour cet oiseau discret
+          mais extraordinaire, capable de construire de véritables petits refuges en argile.
+          Au fil des années, l’association s’est donné pour mission de faire découvrir cette
+          espèce au plus grand nombre, de transmettre des connaissances accessibles et de
+          sensibiliser chacun à la préservation de la biodiversité. Ce site a été imaginé comme
+          une fenêtre ouverte sur l’univers du Fournier roux : un lieu pour observer, apprendre,
+          comprendre et s’émerveiller. À travers ses contenus, il vise à rapprocher le public de
+          la nature et à encourager une attention plus consciente au vivant.
+        </p>
+      </div>
     </div>
   </section>
 
@@ -239,5 +242,4 @@
       <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
     </button>
   </aside>
-
 </main>
