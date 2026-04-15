@@ -2,9 +2,8 @@
 
 // =========================
 // PAGE DEMANDÉE
-// Si aucune page n'est indiquée, on affiche l'accueil
 // =========================
-$page = $_GET['page'] ?? 'accueil';
+$page = isset($_GET['page']) ? trim($_GET['page']) : 'accueil';
 
 switch ($page) {
 
@@ -12,7 +11,7 @@ switch ($page) {
     // PAGES PUBLIQUES
     // =========================
     case 'accueil':
-        require_once BASE_PATH . '/app/controllers/homecontrollers.php';
+        require_once BASE_PATH . '/app/controllers/home-controller.php';
         break;
 
     case 'oiseau':
@@ -22,63 +21,64 @@ switch ($page) {
     case 'mentions-legales':
     case 'politique-confidentialite':
     case 'cgu':
-        require_once BASE_PATH . '/app/controllers/pagecontrollers.php';
+        require_once BASE_PATH . '/app/controllers/page-controller.php';
+        break;
+
+    case 'error':
+        require_once BASE_PATH . '/app/views/pages/error.php';
         break;
 
     // =========================
     // AUTHENTIFICATION
-    // Le routeur décide quelle fonction appeler
     // =========================
     case 'login':
-        require_once BASE_PATH . '/app/controllers/authentificationcontrollers.php';
+        require_once BASE_PATH . '/app/controllers/auth-controller.php';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            traiterLogin();
+            processLogin();
         } else {
-            afficherLogin();
+            showLogin();
         }
         break;
 
     case 'register':
-        require_once BASE_PATH . '/app/controllers/authentificationcontrollers.php';
+        require_once BASE_PATH . '/app/controllers/auth-controller.php';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            traiterRegister();
+            processRegister();
         } else {
-            afficherRegister();
+            showRegister();
         }
         break;
 
     case 'logout':
-        require_once BASE_PATH . '/app/controllers/authentificationcontrollers.php';
-        traiterLogout();
+        require_once BASE_PATH . '/app/controllers/auth-controller.php';
+        processLogout();
         break;
 
     case 'mot-de-passe-oublie':
     case 'nouveau-mot-de-passe':
-        require_once BASE_PATH . '/app/controllers/authentificationcontrollers.php';
-        redirigerMotDePasseOublie();
+        require_once BASE_PATH . '/app/controllers/auth-controller.php';
+        redirectForgotPassword();
         break;
 
     // =========================
     // UTILISATEUR
     // =========================
     case 'profil':
-        require_once BASE_PATH . '/app/controllers/usercontrollers.php';
+        require_once BASE_PATH . '/app/controllers/user-controller.php';
         break;
 
     // =========================
     // CONTACT
-    // Le routeur appelle la bonne fonction
-    // selon la méthode HTTP
     // =========================
     case 'contact':
-        require_once BASE_PATH . '/app/controllers/contactcontrollers.php';
+        require_once BASE_PATH . '/app/controllers/contact-controller.php';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            traiterContact();
+            processContact();
         } else {
-            afficherContact();
+            showContact();
         }
         break;
 
@@ -86,7 +86,7 @@ switch ($page) {
     // ARTICLES
     // =========================
     case 'articles':
-        require_once BASE_PATH . '/app/controllers/articlecontrollers.php';
+        require_once BASE_PATH . '/app/controllers/article-controller.php';
         break;
 
     case 'article':
@@ -97,14 +97,14 @@ switch ($page) {
     // RESSOURCES
     // =========================
     case 'ressources':
-        require_once BASE_PATH . '/app/controllers/ressourcecontrollers.php';
+        require_once BASE_PATH . '/app/controllers/resource-controller.php';
         break;
 
     // =========================
     // ADMINISTRATION
     // =========================
     case 'admin':
-        require_once BASE_PATH . '/app/controllers/admincontrollers.php';
+        require_once BASE_PATH . '/app/controllers/admin-controller.php';
         break;
 
     // =========================

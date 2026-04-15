@@ -1,32 +1,32 @@
 <!-- =========================
      TABLEAU DE BORD ADMINISTRATEUR
      Cette vue organise les différentes sections
-     du back-office : messages, contenus et utilisateurs
+     du back-office : messages, articles et utilisateurs
      ========================= -->
 
-<main class="admin-dashboard">
-    <h1 class="admin-dashboard__title">Back-office administrateur</h1>
+<main class="tableau-bord-admin">
+    <h1 class="tableau-bord-admin__title">Back-office administrateur</h1>
 
     <!-- =========================
          NAVIGATION DU BACK-OFFICE
          ========================= -->
-    <nav class="admin-dashboard__nav">
+    <nav class="tableau-bord-admin__nav">
         <a
-            class="admin-dashboard__link <?php echo $section === 'messages' ? 'admin-dashboard__link--active' : ''; ?>"
+            class="tableau-bord-admin__link <?php echo $section === 'messages' ? 'tableau-bord-admin__link--active' : ''; ?>"
             href="index.php?page=admin&section=messages"
         >
             Messages
         </a>
 
         <a
-            class="admin-dashboard__link <?php echo $section === 'contenus' ? 'admin-dashboard__link--active' : ''; ?>"
-            href="index.php?page=admin&section=contenus"
+            class="tableau-bord-admin__link <?php echo $section === 'articles' ? 'tableau-bord-admin__link--active' : ''; ?>"
+            href="index.php?page=admin&section=articles"
         >
-            Contenus
+            Articles
         </a>
 
         <a
-            class="admin-dashboard__link <?php echo $section === 'utilisateurs' ? 'admin-dashboard__link--active' : ''; ?>"
+            class="tableau-bord-admin__link <?php echo $section === 'utilisateurs' ? 'tableau-bord-admin__link--active' : ''; ?>"
             href="index.php?page=admin&section=utilisateurs"
         >
             Utilisateurs
@@ -36,50 +36,49 @@
     <!-- =========================
          SÉPARATEUR VISUEL
          ========================= -->
-    <hr class="admin-dashboard__separator">
+    <hr class="tableau-bord-admin__separator">
 
     <!-- =========================
          CONTENU DU BACK-OFFICE
-         Le contenu affiché dépend de la section sélectionnée
          ========================= -->
-    <section class="admin-dashboard__content">
+    <section class="tableau-bord-admin__content">
 
         <!-- =========================
              SECTION MESSAGES
              ========================= -->
         <?php if ($section === 'messages'): ?>
-            <div class="admin-dashboard__section admin-dashboard__section--messages">
+            <div class="tableau-bord-admin__section tableau-bord-admin__section--messages">
                 <?php require_once BASE_PATH . '/app/views/admin/messages.php'; ?>
             </div>
         <?php endif; ?>
 
         <!-- =========================
-             SECTION CONTENUS
+             SECTION ARTICLES
              ========================= -->
-        <?php if ($section === 'contenus'): ?>
-            <div class="admin-dashboard__section admin-dashboard__section--contenus">
-                <div class="admin-dashboard__block admin-dashboard__block--article-form">
+        <?php if ($section === 'articles'): ?>
+            <div class="tableau-bord-admin__section tableau-bord-admin__section--articles">
+
+                <div class="tableau-bord-admin__block tableau-bord-admin__block--formulaire-article">
                     <?php require_once BASE_PATH . '/app/views/admin/article-form.php'; ?>
                 </div>
 
-                <div class="admin-dashboard__block admin-dashboard__block--articles">
+                <div class="tableau-bord-admin__block tableau-bord-admin__block--articles">
                     <?php require_once BASE_PATH . '/app/views/admin/articles.php'; ?>
                 </div>
+
             </div>
         <?php endif; ?>
 
         <!-- =========================
              SECTION UTILISATEURS
-             Cette section affiche la gestion simple
-             des utilisateurs avec recherche, filtre
-             et pagination dans la vue dédiée
              ========================= -->
         <?php if ($section === 'utilisateurs'): ?>
-            <div class="admin-dashboard__section admin-dashboard__section--utilisateurs">
-                <div class="admin-dashboard__block admin-dashboard__block--users">
-                    <?php require_once BASE_PATH . '/app/views/admin/utilisateurs.php'; ?>
+            <div class="tableau-bord-admin__section tableau-bord-admin__section--utilisateurs">
+                <div class="tableau-bord-admin__block tableau-bord-admin__block--utilisateurs">
+                    <?php require_once BASE_PATH . '/app/views/admin/user.php'; ?>
                 </div>
             </div>
         <?php endif; ?>
+
     </section>
 </main>

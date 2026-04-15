@@ -1,37 +1,39 @@
 /* =========================
-   SECTION iNATURALIST
+   SECTION INATURALIST
 ========================= */
 
-.inat-page {
+.page-inaturalist {
   @include section-container;
 }
 
-.inat-hero {
+.hero-inaturalist {
   text-align: center;
   margin-bottom: $space-7xl;
 }
 
-.inat-title {
+.hero-inaturalist__title {
+  margin: 0 0 $space-md;
   color: $color-primary;
-  margin-bottom: $space-md;
+  font-size: $font-size-title;
+  line-height: $line-height-tight;
 }
 
-.inat-text {
+.hero-inaturalist__text {
   max-width: 700px;
   margin: 0 auto;
   color: $color-text-soft;
-  line-height: 1.6;
+  line-height: $line-height-relaxed;
 }
 
-.inat-gallery {
+.galerie-inaturalist {
   margin-bottom: $space-5xl;
 }
 
-.inat-list {
+.galerie-inaturalist__list {
   min-height: 200px;
 }
 
-.inat-loading {
+.galerie-inaturalist__loading {
   text-align: center;
   color: $color-text-soft;
 }
@@ -40,77 +42,125 @@
    GRILLE DES OBSERVATIONS
 ========================= */
 
-.obs-grid {
+.galerie-inaturalist__grille {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 20px;
+  gap: $space-4xl;
 }
 
-/* Espace entre l’ancien groupe et le nouveau groupe */
-.obs-grid + .obs-grid {
-  margin-top: 40px;
-}
-
-.obs-card {
+.galerie-inaturalist__carte {
   @include soft-card;
-  padding: 18px;
+  padding: $space-3xl;
   text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
+  gap: $space-lg;
   height: 100%;
-
-  .obs-image-wrapper {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 15px;
-  }
-
-  img {
-    display: block;
-    width: 100%;
-    max-width: 360px;
-    height: auto;
-    margin: 0 auto;
-    border-radius: 10px;
-  }
-
-  .obs-credit {
-    display: block;
-    margin-top: 8px;
-    font-size: 0.9rem;
-    color: $color-text-soft;
-  }
-
-  p {
-    width: 100%;
-    margin: 8px 0;
-    color: $color-text-soft;
-    line-height: 1.5;
-  }
 }
 
-.inat-actions {
+.galerie-inaturalist__image-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.galerie-inaturalist__image {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+  margin: 0 auto;
+  border-radius: $radius-md;
+}
+
+.galerie-inaturalist__credit {
+  display: block;
+  margin-top: $space-sm;
+  font-size: $font-size-sm;
+  color: $color-text-soft;
+}
+
+.galerie-inaturalist__text {
+  width: 100%;
+  margin: 0;
+  color: $color-text-soft;
+  line-height: $line-height-relaxed;
+}
+
+.actions-inaturalist {
   display: flex;
   justify-content: center;
   margin-top: $space-4xl;
 }
 
-.inat-button {
-  padding: 12px 24px;
+.actions-inaturalist__button {
+  padding: $space-lg $space-6xl;
   border: none;
   border-radius: $radius-md;
   background: $color-primary;
   color: $color-white;
   font-weight: $font-weight-bold;
+  font-family: $font-main;
   cursor: pointer;
-  transition: 0.2s ease;
+  transition: background 0.2s ease;
 
-  &:hover {
+  &:hover,
+  &:focus {
     background: $color-hover-primary;
+  }
+}
+
+/* =========================
+   DESKTOP
+   On améliore seulement la vue large
+========================= */
+
+@include desktop-only {
+  .page-inaturalist {
+    padding-top: $space-7xl;
+    padding-bottom: $space-8xl;
+  }
+
+  .hero-inaturalist {
+    margin-bottom: $space-8xl;
+  }
+
+  .hero-inaturalist__title {
+    font-size: $font-size-title-desktop;
+  }
+
+  .galerie-inaturalist__grille {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: $space-6xl;
+  }
+
+  .galerie-inaturalist__carte {
+    padding: $space-4xl;
+    align-items: stretch;
+    text-align: left;
+  }
+
+  .galerie-inaturalist__image-wrapper {
+    align-items: stretch;
+  }
+
+  .galerie-inaturalist__image {
+    max-width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  .galerie-inaturalist__credit {
+    text-align: left;
+  }
+
+  .galerie-inaturalist__text {
+    font-size: $font-size-base;
+  }
+
+  .actions-inaturalist {
+    margin-top: $space-6xl;
   }
 }

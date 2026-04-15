@@ -3,9 +3,10 @@
 ========================= */
 @font-face {
   font-family: "Luciole";
-  src: url("../fonts/Luciole-Regular.woff2") format("woff2"),
-       url("../fonts/Luciole-Regular.ttf") format("truetype");
-  font-weight: 400;
+  src:
+    url("../fonts/Luciole-Regular.woff2") format("woff2"),
+    url("../fonts/Luciole-Regular.ttf") format("truetype");
+  font-weight: $font-weight-regular;
   font-style: normal;
   font-display: swap;
 }
@@ -13,7 +14,7 @@
 @font-face {
   font-family: "Luciole";
   src: url("../fonts/Luciole-Bold.woff2") format("woff2");
-  font-weight: 700;
+  font-weight: $font-weight-bold;
   font-style: normal;
   font-display: swap;
 }
@@ -21,7 +22,7 @@
 @font-face {
   font-family: "Luciole";
   src: url("../fonts/Luciole-Italic.woff2") format("woff2");
-  font-weight: 400;
+  font-weight: $font-weight-regular;
   font-style: italic;
   font-display: swap;
 }
@@ -29,7 +30,7 @@
 @font-face {
   font-family: "Luciole";
   src: url("../fonts/Luciole-BoldItalic.woff2") format("woff2");
-  font-weight: 700;
+  font-weight: $font-weight-bold;
   font-style: italic;
   font-display: swap;
 }
@@ -37,7 +38,9 @@
 /* =========================
    RESET + BASE
 ========================= */
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -47,15 +50,15 @@ html {
 
 body {
   margin: 0;
-  background: #DDD1C4;
-  color: #111111;
-  font-family: "Luciole", Arial, sans-serif;
-  line-height: 1.5;
+  background-color: $color-bg-main;
+  color: $color-text-main;
+  font-family: $font-main;
+  line-height: $line-height-relaxed;
 }
 
 img {
-  max-width: 100%;
   display: block;
+  max-width: 100%;
 }
 
 a {

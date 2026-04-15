@@ -4,7 +4,7 @@ const lightboxImage = document.getElementById("lightbox-image");
 const lightboxClose = document.getElementById("lightbox-close");
 const lightboxPrev = document.getElementById("lightbox-prev");
 const lightboxNext = document.getElementById("lightbox-next");
-const galerieLiens = document.querySelectorAll(".accueil-galerie .paysage a");
+const galerieLiens = document.querySelectorAll(".accueil-galerie .galerie-grid a");
 
 if (
   lightbox &&
@@ -20,7 +20,9 @@ if (
     const lien = galerieLiens[index];
     const image = lien.querySelector("img");
 
-    if (!lien || !image) return;
+    if (!lien || !image) {
+      return;
+    }
 
     imageActuelle = index;
     lightboxImage.src = lien.getAttribute("href");
@@ -28,7 +30,7 @@ if (
 
     lightbox.classList.add("active");
     lightbox.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
+    document.body.classList.add("lightbox-open");
   }
 
   function fermerLightbox() {
@@ -36,7 +38,7 @@ if (
     lightbox.setAttribute("aria-hidden", "true");
     lightboxImage.src = "";
     lightboxImage.alt = "";
-    document.body.style.overflow = "";
+    document.body.classList.remove("lightbox-open");
   }
 
   function imageSuivante() {
@@ -85,7 +87,9 @@ if (
   });
 
   document.addEventListener("keydown", function (event) {
-    if (!lightbox.classList.contains("active")) return;
+    if (!lightbox.classList.contains("active")) {
+      return;
+    }
 
     if (event.key === "Escape") {
       fermerLightbox();

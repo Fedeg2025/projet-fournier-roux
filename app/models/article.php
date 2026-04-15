@@ -8,8 +8,8 @@
 
 
 // =========================
-// REQUÊTE DE BASE
-// Cette partie permet de factoriser
+// REQUÊTES DE BASE
+// Ces fonctions permettent de factoriser
 // les éléments communs des requêtes article
 // =========================
 function getBaseArticleQuery()
@@ -34,80 +34,145 @@ function getBaseArticleSelect()
 // RÉCUPÉRATION DES ARTICLES
 // =========================
 
-// Récupérer tous les articles
+
+// =========================
+// RÉCUPÉRER TOUS LES ARTICLES
+// Cette fonction retourne tous les articles
+// triés par date de publication
+// Paramètre :
+// - $pdo : connexion à la base de données
+// Retour : tableau des articles ou tableau vide si erreur
+// =========================
 function getAllArticles($pdo)
 {
-    $sql = getBaseArticleSelect() . " " .
-           getBaseArticleQuery() . "
-           GROUP BY articles.id_article
-           ORDER BY articles.date_publication DESC";
+    try {
+        $sql = getBaseArticleSelect() . " " .
+               getBaseArticleQuery() . "
+               GROUP BY articles.id_article
+               ORDER BY articles.date_publication DESC";
 
-    return $pdo->query($sql)->fetchAll();
+        return $pdo->query($sql)->fetchAll();
+    } catch (PDOException $e) {
+        error_log('Erreur getAllArticles : ' . $e->getMessage());
+        return [];
+    }
 }
 
 
-// Récupérer les derniers articles
+// =========================
+// RÉCUPÉRER LES DERNIERS ARTICLES
+// Cette fonction retourne un nombre limité
+// d’articles récents
+// Paramètres :
+// - $pdo : connexion à la base de données
+// - $limit : nombre d’articles à récupérer
+// Retour : tableau des articles ou tableau vide si erreur
+// =========================
 function getLatestArticles($pdo, $limit = 3)
 {
-    $sql = getBaseArticleSelect() . " " .
-           getBaseArticleQuery() . "
-           GROUP BY articles.id_article
-           ORDER BY articles.date_publication DESC
-           LIMIT :limite";
+    try {
+        $sql = getBaseArticleSelect() . " " .
+               getBaseArticleQuery() . "
+               GROUP BY articles.id_article
+               ORDER BY articles.date_publication DESC
+               LIMIT :limit";
 
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindValue(':limite', (int) $limit, PDO::PARAM_INT);
-    $stmt->execute();
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindValue(':limit', (int) $limit, PDO::PARAM_INT);
+        $stmt->execute();
 
-    return $stmt->fetchAll();
+        return $stmt->fetchAll();
+    } catch (PDOException $e) {
+        error_log('Erreur getLatestArticles : ' . $e->getMessage());
+        return [];
+    }
 }
 
 
-// Récupérer les articles plus anciens
+// =========================
+// RÉCUPÉRER LES ARTICLES PLUS ANCIENS
+// Cette fonction retourne les articles
+// après un certain décalage
+// Paramètres :
+// - $pdo : connexion à la base de données
+// - $offset : nombre d’articles à ignorer
+// Retour : tableau des articles ou tableau vide si erreur
+// =========================
 function getOlderArticles($pdo, $offset = 3)
 {
-    $sql = getBaseArticleSelect() . " " .
-           getBaseArticleQuery() . "
-           GROUP BY articles.id_article
-           ORDER BY articles.date_publication DESC
-           LIMIT 100 OFFSET :offset";
+    try {
+        $sql = getBaseArticleSelect() . " " .
+               getBaseArticleQuery() . "
+               GROUP BY articles.id_article
+               ORDER BY articles.date_publication DESC
+               LIMIT 100 OFFSET :offset";
 
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindValue(':offset', (int) $offset, PDO::PARAM_INT);
-    $stmt->execute();
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindValue(':offset', (int) $offset, PDO::PARAM_INT);
+        $stmt->execute();
 
-    return $stmt->fetchAll();
+        return $stmt->fetchAll();
+    } catch (PDOException $e) {
+        error_log('Erreur getOlderArticles : ' . $e->getMessage());
+        return [];
+    }
 }
 
 
-// Récupérer le détail d’un article par son identifiant
-function getArticleDetailById($pdo, $id_article)
+// =========================
+// RÉCUPÉRER LE DÉTAIL D’UN ARTICLE
+// Cette fonction retourne le détail
+// d’un article selon son identifiant
+// Paramètres :
+// - $pdo : connexion à la base de données
+// - $articleId : identifiant de l’article
+// Retour : article ou null si erreur ou introuvable
+// =========================
+function getArticleDetailById($pdo, $articleId)
 {
-    $sql = getBaseArticleSelect() . " " .
-           getBaseArticleQuery() . "
-           WHERE articles.id_article = ?
-           GROUP BY articles.id_article";
+    try {
+        $sql = getBaseArticleSelect() . " " .
+               getBaseArticleQuery() . "
+               WHERE articles.id_article = ?
+               GROUP BY articles.id_article";
 
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$id_article]);
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$articleId]);
 
-    return $stmt->fetch();
+        return $stmt->fetch();
+    } catch (PDOException $e) {
+        error_log('Erreur getArticleDetailById : ' . $e->getMessage());
+        return null;
+    }
 }
 
 
-// Récupérer les articles d’une catégorie
-function getArticlesByCategory($pdo, $id_categorie)
+// =========================
+// RÉCUPÉRER LES ARTICLES D’UNE CATÉGORIE
+// Cette fonction retourne les articles
+// associés à une catégorie
+// Paramètres :
+// - $pdo : connexion à la base de données
+// - $categoryId : identifiant de la catégorie
+// Retour : tableau des articles ou tableau vide si erreur
+// =========================
+function getArticlesByCategory($pdo, $categoryId)
 {
-    $sql = getBaseArticleSelect() . " " .
-           getBaseArticleQuery() . "
-           WHERE categorie.id_categorie = ?
-           GROUP BY articles.id_article
-           ORDER BY articles.date_publication DESC";
+    try {
+        $sql = getBaseArticleSelect() . " " .
+               getBaseArticleQuery() . "
+               WHERE categorie.id_categorie = ?
+               GROUP BY articles.id_article
+               ORDER BY articles.date_publication DESC";
 
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$id_categorie]);
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$categoryId]);
 
-    return $stmt->fetchAll();
+        return $stmt->fetchAll();
+    } catch (PDOException $e) {
+        error_log('Erreur getArticlesByCategory : ' . $e->getMessage());
+        return [];
+    }
 }
 
 
@@ -115,44 +180,99 @@ function getArticlesByCategory($pdo, $id_categorie)
 // CRUD DES ARTICLES
 // =========================
 
-// Créer un article
-function createArticle($pdo, $titre, $contenu, $id_utilisateur)
-{
-    $sql = "INSERT INTO articles (titre, contenu, id_utilisateur) VALUES (?, ?, ?)";
-    $stmt = $pdo->prepare($sql);
 
-    return $stmt->execute([$titre, $contenu, $id_utilisateur]);
+// =========================
+// CRÉER UN ARTICLE
+// Cette fonction enregistre un nouvel article
+// Paramètres :
+// - $pdo : connexion à la base de données
+// - $title : titre de l’article
+// - $content : contenu de l’article
+// - $userId : identifiant de l’utilisateur
+// Retour : true si succès, sinon false
+// =========================
+function createArticle($pdo, $title, $content, $userId)
+{
+    try {
+        $sql = "INSERT INTO articles (titre, contenu, id_utilisateur) VALUES (?, ?, ?)";
+        $stmt = $pdo->prepare($sql);
+
+        return $stmt->execute([$title, $content, $userId]);
+    } catch (PDOException $e) {
+        error_log('Erreur createArticle : ' . $e->getMessage());
+        return false;
+    }
 }
 
 
-// Mettre à jour un article
-function updateArticle($pdo, $id_article, $titre, $contenu)
+// =========================
+// METTRE À JOUR UN ARTICLE
+// Cette fonction met à jour
+// le titre et le contenu d’un article
+// Paramètres :
+// - $pdo : connexion à la base de données
+// - $articleId : identifiant de l’article
+// - $title : titre de l’article
+// - $content : contenu de l’article
+// Retour : true si succès, sinon false
+// =========================
+function updateArticle($pdo, $articleId, $title, $content)
 {
-    $sql = "UPDATE articles SET titre = ?, contenu = ? WHERE id_article = ?";
-    $stmt = $pdo->prepare($sql);
+    try {
+        $sql = "UPDATE articles SET titre = ?, contenu = ? WHERE id_article = ?";
+        $stmt = $pdo->prepare($sql);
 
-    return $stmt->execute([$titre, $contenu, $id_article]);
+        return $stmt->execute([$title, $content, $articleId]);
+    } catch (PDOException $e) {
+        error_log('Erreur updateArticle : ' . $e->getMessage());
+        return false;
+    }
 }
 
 
-// Supprimer un article
-function deleteArticle($pdo, $id_article)
+// =========================
+// SUPPRIMER UN ARTICLE
+// Cette fonction supprime un article
+// Paramètres :
+// - $pdo : connexion à la base de données
+// - $articleId : identifiant de l’article
+// Retour : true si succès, sinon false
+// =========================
+function deleteArticle($pdo, $articleId)
 {
-    $sql = "DELETE FROM articles WHERE id_article = ?";
-    $stmt = $pdo->prepare($sql);
+    try {
+        $sql = "DELETE FROM articles WHERE id_article = ?";
+        $stmt = $pdo->prepare($sql);
 
-    return $stmt->execute([$id_article]);
+        return $stmt->execute([$articleId]);
+    } catch (PDOException $e) {
+        error_log('Erreur deleteArticle : ' . $e->getMessage());
+        return false;
+    }
 }
 
 
-// Récupérer un article simple par son identifiant
-function getArticleById($pdo, $id_article)
+// =========================
+// RÉCUPÉRER UN ARTICLE SIMPLE
+// Cette fonction retourne un article
+// sans jointures supplémentaires
+// Paramètres :
+// - $pdo : connexion à la base de données
+// - $articleId : identifiant de l’article
+// Retour : article ou null si erreur ou introuvable
+// =========================
+function getArticleById($pdo, $articleId)
 {
-    $sql = "SELECT * FROM articles WHERE id_article = ?";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$id_article]);
+    try {
+        $sql = "SELECT * FROM articles WHERE id_article = ?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$articleId]);
 
-    return $stmt->fetch();
+        return $stmt->fetch();
+    } catch (PDOException $e) {
+        error_log('Erreur getArticleById : ' . $e->getMessage());
+        return null;
+    }
 }
 
 
@@ -160,34 +280,75 @@ function getArticleById($pdo, $id_article)
 // GESTION DES CATÉGORIES
 // =========================
 
-// Associer une catégorie à un article
-function addArticleCategory(PDO $pdo, int $id_article, int $id_categorie): bool
-{
-    $sql = "INSERT INTO appartient (id_article, id_categorie) VALUES (?, ?)";
-    $stmt = $pdo->prepare($sql);
 
-    return $stmt->execute([$id_article, $id_categorie]);
+// =========================
+// AJOUTER UNE CATÉGORIE À UN ARTICLE
+// Cette fonction associe une catégorie
+// à un article
+// Paramètres :
+// - $pdo : connexion à la base de données
+// - $articleId : identifiant de l’article
+// - $categoryId : identifiant de la catégorie
+// Retour : true si succès, sinon false
+// =========================
+function addArticleCategory($pdo, $articleId, $categoryId)
+{
+    try {
+        $sql = "INSERT INTO appartient (id_article, id_categorie) VALUES (?, ?)";
+        $stmt = $pdo->prepare($sql);
+
+        return $stmt->execute([$articleId, $categoryId]);
+    } catch (PDOException $e) {
+        error_log('Erreur addArticleCategory : ' . $e->getMessage());
+        return false;
+    }
 }
 
 
-// Supprimer toutes les catégories d’un article
-function deleteArticleCategories(PDO $pdo, int $id_article): bool
+// =========================
+// SUPPRIMER LES CATÉGORIES D’UN ARTICLE
+// Cette fonction supprime toutes les catégories
+// liées à un article
+// Paramètres :
+// - $pdo : connexion à la base de données
+// - $articleId : identifiant de l’article
+// Retour : true si succès, sinon false
+// =========================
+function deleteArticleCategories($pdo, $articleId)
 {
-    $sql = "DELETE FROM appartient WHERE id_article = ?";
-    $stmt = $pdo->prepare($sql);
+    try {
+        $sql = "DELETE FROM appartient WHERE id_article = ?";
+        $stmt = $pdo->prepare($sql);
 
-    return $stmt->execute([$id_article]);
+        return $stmt->execute([$articleId]);
+    } catch (PDOException $e) {
+        error_log('Erreur deleteArticleCategories : ' . $e->getMessage());
+        return false;
+    }
 }
 
 
-// Récupérer les identifiants de catégories d’un article
-function getCategoryIdsByArticle(PDO $pdo, int $id_article): array
+// =========================
+// RÉCUPÉRER LES IDENTIFIANTS DE CATÉGORIES
+// Cette fonction retourne la liste
+// des identifiants de catégories d’un article
+// Paramètres :
+// - $pdo : connexion à la base de données
+// - $articleId : identifiant de l’article
+// Retour : tableau des identifiants ou tableau vide si erreur
+// =========================
+function getCategoryIdsByArticle($pdo, $articleId)
 {
-    $sql = "SELECT id_categorie FROM appartient WHERE id_article = ?";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$id_article]);
+    try {
+        $sql = "SELECT id_categorie FROM appartient WHERE id_article = ?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$articleId]);
 
-    return $stmt->fetchAll(PDO::FETCH_COLUMN);
+        return $stmt->fetchAll(PDO::FETCH_COLUMN);
+    } catch (PDOException $e) {
+        error_log('Erreur getCategoryIdsByArticle : ' . $e->getMessage());
+        return [];
+    }
 }
 
 
@@ -196,10 +357,15 @@ function getCategoryIdsByArticle(PDO $pdo, int $id_article): array
 // Cette fonction supprime uniquement
 // les relations entre l’article et ses médias
 // =========================
-function deleteArticleMedia(PDO $pdo, int $id_article): bool
+function deleteArticleMedia($pdo, $articleId)
 {
-    $sql = "DELETE FROM contient WHERE id_article = ?";
-    $stmt = $pdo->prepare($sql);
+    try {
+        $sql = "DELETE FROM contient WHERE id_article = ?";
+        $stmt = $pdo->prepare($sql);
 
-    return $stmt->execute([$id_article]);
+        return $stmt->execute([$articleId]);
+    } catch (PDOException $e) {
+        error_log('Erreur deleteArticleMedia : ' . $e->getMessage());
+        return false;
+    }
 }

@@ -1,6 +1,6 @@
 .env
 node_modules/
-vendor/
 public/uploads/
 public/assets/images/videos/fournier-roux1.webm
 public/assets/images/videos/fournier-roux1.mp4
+config/db-config.php

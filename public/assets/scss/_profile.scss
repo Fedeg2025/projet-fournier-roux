@@ -1,31 +1,29 @@
 /* =========================
-   PROFILE PAGE
+   PAGE PROFIL
 ========================= */
 
-.profile-page {
+.page-profil {
   width: 100%;
   min-width: 0;
   padding: $space-4xl;
   background-color: $color-bg-soft;
   color: $color-text-main;
   font-family: $font-main;
-
   display: flex;
   flex-direction: column;
   gap: $space-4xl;
 }
 
 /* =========================
-   PROFILE SECTION
+   SECTION PROFIL
 ========================= */
 
-.profile-page__section {
+.page-profil__section {
   width: 100%;
   min-width: 0;
   display: flex;
   flex-direction: column;
   gap: $space-4xl;
-
   padding: $space-4xl;
   background-color: $color-white;
   border: 1px solid $color-border-soft;
@@ -34,10 +32,10 @@
 }
 
 /* =========================
-   TITLES
+   TITRES
 ========================= */
 
-.profile-page__title {
+.page-profil__title {
   margin: 0;
   font-size: $font-size-xl;
   font-weight: $font-weight-bold;
@@ -46,7 +44,7 @@
   color: $color-primary;
 }
 
-.profile-page__subtitle {
+.page-profil__subtitle {
   margin: 0;
   font-size: $font-size-lg;
   font-weight: $font-weight-bold;
@@ -59,7 +57,7 @@
    MESSAGES
 ========================= */
 
-.profile-page__message {
+.page-profil__message {
   margin: 0;
   padding: $space-lg $space-2xl;
   border-radius: $radius-md;
@@ -67,23 +65,23 @@
   line-height: $line-height-relaxed;
 }
 
-.profile-page__message--error {
+.page-profil__message--error {
   border: 1px solid $color-error-border;
   background-color: $color-error-bg;
   color: $color-error-text;
 }
 
-.profile-page__message--success {
+.page-profil__message--success {
   border: 1px solid $color-success-border;
   background-color: $color-success-bg;
   color: $color-success-text;
 }
 
 /* =========================
-   FORM
+   FORMULAIRE PROFIL
 ========================= */
 
-.profile-form {
+.formulaire-profil {
   width: 100%;
   min-width: 0;
   display: flex;
@@ -91,7 +89,7 @@
   gap: $space-4xl;
 }
 
-.profile-form__group {
+.formulaire-profil__group {
   width: 100%;
   min-width: 0;
   display: flex;
@@ -99,14 +97,14 @@
   gap: $space-sm;
 }
 
-.profile-form__label {
+.formulaire-profil__label {
   margin: 0;
   font-size: $font-size-base;
   font-weight: $font-weight-medium;
   color: $color-text-main;
 }
 
-.profile-form__input {
+.formulaire-profil__input {
   @include form-field-base;
   width: 100%;
   min-height: 42px;
@@ -115,24 +113,22 @@
   box-sizing: border-box;
 }
 
-.profile-form__actions {
+.formulaire-profil__actions {
   display: flex;
   justify-content: flex-start;
 }
 
-.profile-form__button {
+.formulaire-profil__button {
   @include auth-button-base;
   min-width: 170px;
   max-width: 100%;
   height: $auth-button-height;
   padding: 0 24px;
   box-sizing: border-box;
-
   border: 2px solid transparent;
   background-color: $color-secondary;
   color: $color-black;
   box-shadow: none;
-
   white-space: nowrap;
   text-align: center;
   line-height: 1.2;
@@ -145,21 +141,20 @@
 }
 
 /* =========================
-   DETAILS
+   DÉTAILS PROFIL
 ========================= */
 
-.profile-details {
+.details-profil {
   width: 100%;
   min-width: 0;
   display: flex;
   flex-direction: column;
   gap: $space-3xl;
-
   padding-top: $space-sm;
   border-top: 1px solid $color-border-soft;
 }
 
-.profile-details__item {
+.details-profil__item {
   margin: 0;
   min-width: 0;
   display: flex;
@@ -167,23 +162,23 @@
   gap: $space-xs;
 }
 
-.profile-details__label {
+.details-profil__label {
   font-size: $font-size-base;
   font-weight: $font-weight-bold;
   color: $color-text-main;
 }
 
-.profile-details__value {
+.details-profil__value {
   font-size: $font-size-base;
   color: $color-text-soft;
   word-break: break-word;
 }
 
 /* =========================
-   DELETE FORM
+   FORMULAIRE SUPPRESSION
 ========================= */
 
-.profile-delete-form {
+.formulaire-suppression-profil {
   width: 100%;
   min-width: 0;
   display: flex;
@@ -191,49 +186,29 @@
   gap: $space-4xl;
 }
 
-.profile-delete-form__group {
-  width: 100%;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: $space-sm;
-}
-
-.profile-delete-form__label {
+.formulaire-suppression-profil__help {
   margin: 0;
   font-size: $font-size-base;
-  font-weight: $font-weight-medium;
-  color: $color-text-main;
+  line-height: $line-height-relaxed;
+  color: $color-text-soft;
 }
 
-.profile-delete-form__textarea {
-  @include form-field-base;
-  width: 100%;
-  min-height: 140px;
-  padding: $space-lg $space-2xl;
-  border-radius: $radius-md;
-  box-sizing: border-box;
-  resize: vertical;
-}
-
-.profile-delete-form__actions {
+.formulaire-suppression-profil__actions {
   display: flex;
   justify-content: flex-start;
 }
 
-.profile-delete-form__button {
+.formulaire-suppression-profil__button {
   @include auth-button-base;
   min-width: 220px;
   max-width: 100%;
   height: $auth-button-height;
   padding: 0 24px;
   box-sizing: border-box;
-
   border: 1px solid $color-error-border;
   background-color: $color-error-bg;
   color: $color-error-text;
   box-shadow: none;
-
   white-space: normal;
   text-align: center;
   line-height: 1.2;

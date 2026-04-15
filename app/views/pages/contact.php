@@ -4,181 +4,190 @@
      ainsi que les informations de contact de l’association
      ========================= -->
 
-<main class="auth-page contact-page">
-    <section class="auth-content">
-        <div class="auth-content__inner">
-
+<main class="page-contact page-authentification">
+    <section class="contenu-authentification">
+        <div class="contenu-authentification__inner">
             <h1>Contactez-nous</h1>
 
             <!-- =========================
                  MESSAGE DE SUCCÈS
                  ========================= -->
-            <?php if (!empty($succes)): ?>
-                <div class="auth-message auth-message--success" role="alert" aria-live="polite">
-                    <?php echo htmlspecialchars($succes); ?>
+            <?php if (!empty($successMessage)): ?>
+                <div class="message-authentification message-authentification--success" role="alert" aria-live="polite">
+                    <?php echo htmlspecialchars($successMessage); ?>
                 </div>
             <?php endif; ?>
 
             <!-- =========================
                  MESSAGE D’ERREUR
                  ========================= -->
-            <?php if (!empty($erreur)): ?>
-                <div class="auth-message auth-message--error" role="alert" aria-live="polite">
-                    <?php echo htmlspecialchars($erreur); ?>
+            <?php if (!empty($errorMessage)): ?>
+                <div class="message-authentification message-authentification--error" role="alert" aria-live="polite">
+                    <?php echo htmlspecialchars($errorMessage); ?>
                 </div>
             <?php endif; ?>
 
             <!-- =========================
                  FORMULAIRE DE CONTACT
                  ========================= -->
-            <form class="auth-form" method="POST" action="index.php?page=contact">
+            <form class="formulaire-authentification" method="POST" action="index.php?page=contact">
                 <input
                     type="hidden"
                     name="csrf_token"
-                    value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
+                    value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>"
+                >
 
                 <!-- =========================
                      CHOIX DE CIVILITÉ
                      ========================= -->
-                <fieldset class="auth-form__choices">
+                <fieldset class="formulaire-authentification__choices">
                     <legend class="visually-hidden">Civilité</legend>
 
-                    <label class="auth-form__choice">
-                        <span class="auth-form__choice-label">Mr.</span>
+                    <label class="formulaire-authentification__choice">
+                        <span class="formulaire-authentification__choice-label">Mr</span>
                         <input
-                            class="auth-form__checkbox"
+                            class="formulaire-authentification__checkbox"
                             type="radio"
                             name="civilite"
                             value="M"
                             required
-                            <?php echo (isset($_POST['civilite']) && $_POST['civilite'] === 'M') ? 'checked' : ''; ?>>
+                            <?php echo (isset($_POST['civilite']) && $_POST['civilite'] === 'M') ? 'checked' : ''; ?>
+                        >
                     </label>
 
-                    <label class="auth-form__choice">
-                        <span class="auth-form__choice-label">Mme.</span>
+                    <label class="formulaire-authentification__choice">
+                        <span class="formulaire-authentification__choice-label">Mme</span>
                         <input
-                            class="auth-form__checkbox"
+                            class="formulaire-authentification__checkbox"
                             type="radio"
                             name="civilite"
                             value="Mme"
                             required
-                            <?php echo (isset($_POST['civilite']) && $_POST['civilite'] === 'Mme') ? 'checked' : ''; ?>>
+                            <?php echo (isset($_POST['civilite']) && $_POST['civilite'] === 'Mme') ? 'checked' : ''; ?>
+                        >
                     </label>
 
-                    <label class="auth-form__choice">
-                        <span class="auth-form__choice-label">Autres.</span>
+                    <label class="formulaire-authentification__choice">
+                        <span class="formulaire-authentification__choice-label">Autre</span>
                         <input
-                            class="auth-form__checkbox"
+                            class="formulaire-authentification__checkbox"
                             type="radio"
                             name="civilite"
                             value="Autre"
                             required
-                            <?php echo (isset($_POST['civilite']) && $_POST['civilite'] === 'Autre') ? 'checked' : ''; ?>>
+                            <?php echo (isset($_POST['civilite']) && $_POST['civilite'] === 'Autre') ? 'checked' : ''; ?>
+                        >
                     </label>
                 </fieldset>
 
                 <!-- =========================
                      NOM
                      ========================= -->
-                <div class="auth-form__group">
-                    <label class="auth-form__label" for="nom">Nom</label>
+                <div class="formulaire-authentification__group">
+                    <label class="formulaire-authentification__label" for="nom">Nom</label>
                     <input
-                        class="auth-form__input"
+                        class="formulaire-authentification__input"
                         type="text"
                         id="nom"
                         name="nom"
                         required
-                        value="<?php echo isset($_POST['nom']) ? htmlspecialchars($_POST['nom']) : ''; ?>">
+                        value="<?php echo isset($_POST['nom']) ? htmlspecialchars($_POST['nom']) : ''; ?>"
+                    >
                 </div>
 
                 <!-- =========================
                      PRÉNOM
                      ========================= -->
-                <div class="auth-form__group">
-                    <label class="auth-form__label" for="prenom">Prénom</label>
+                <div class="formulaire-authentification__group">
+                    <label class="formulaire-authentification__label" for="prenom">Prénom</label>
                     <input
-                        class="auth-form__input"
+                        class="formulaire-authentification__input"
                         type="text"
                         id="prenom"
                         name="prenom"
                         required
-                        value="<?php echo isset($_POST['prenom']) ? htmlspecialchars($_POST['prenom']) : ''; ?>">
+                        value="<?php echo isset($_POST['prenom']) ? htmlspecialchars($_POST['prenom']) : ''; ?>"
+                    >
                 </div>
 
                 <!-- =========================
                      EMAIL
                      ========================= -->
-                <div class="auth-form__group">
-                    <label class="auth-form__label" for="email">E-mail</label>
+                <div class="formulaire-authentification__group">
+                    <label class="formulaire-authentification__label" for="email">E-mail</label>
                     <input
-                        class="auth-form__input"
+                        class="formulaire-authentification__input"
                         type="email"
                         id="email"
                         name="email"
                         required
-                        value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
+                        value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>"
+                    >
                 </div>
 
                 <!-- =========================
                      OBJET
                      ========================= -->
-                <div class="auth-form__group">
-                    <label class="auth-form__label" for="objet">Objet du message</label>
+                <div class="formulaire-authentification__group">
+                    <label class="formulaire-authentification__label" for="objet">Objet du message</label>
                     <input
-                        class="auth-form__input"
+                        class="formulaire-authentification__input"
                         type="text"
                         id="objet"
                         name="objet"
                         required
-                        value="<?php echo isset($_POST['objet']) ? htmlspecialchars($_POST['objet']) : ''; ?>">
+                        value="<?php echo isset($_POST['objet']) ? htmlspecialchars($_POST['objet']) : ''; ?>"
+                    >
                 </div>
 
                 <!-- =========================
                      MESSAGE
                      ========================= -->
-                <div class="auth-form__group">
-                    <label class="auth-form__label" for="message">Message</label>
+                <div class="formulaire-authentification__group">
+                    <label class="formulaire-authentification__label" for="message">Message</label>
                     <textarea
-                        class="auth-form__textarea"
+                        class="formulaire-authentification__textarea"
                         id="message"
                         name="message"
-                        required><?php echo isset($_POST['message']) ? htmlspecialchars($_POST['message']) : ''; ?></textarea>
+                        required
+                    ><?php echo isset($_POST['message']) ? htmlspecialchars($_POST['message']) : ''; ?></textarea>
                 </div>
 
                 <!-- =========================
                      CONSENTEMENT RGPD
                      ========================= -->
-                <div class="auth-form__consent">
+                <div class="formulaire-authentification__consent">
                     <input
-                        class="auth-form__checkbox"
+                        class="formulaire-authentification__checkbox"
                         type="checkbox"
                         id="contact_consent"
                         name="contact_consent"
                         required
-                        <?php echo isset($_POST['contact_consent']) ? 'checked' : ''; ?>>
-                    <label class="auth-form__consent-label" for="contact_consent">
+                        <?php echo isset($_POST['contact_consent']) ? 'checked' : ''; ?>
+                    >
+                    <label class="formulaire-authentification__consent-label" for="contact_consent">
                         J’accepte que mes données soient utilisées dans le cadre de ma demande, conformément à la
-                        <a class="auth-form__link" href="index.php?page=politique-confidentialite">politique de confidentialité</a>.
+                        <a class="formulaire-authentification__link" href="index.php?page=politique-confidentialite">politique de confidentialité</a>.
                     </label>
                 </div>
 
                 <!-- =========================
                      BOUTON D’ENVOI
                      ========================= -->
-                <div class="auth-form__submit">
-                    <button class="auth-form__button" type="submit">Envoyer le message</button>
+                <div class="formulaire-authentification__submit">
+                    <button class="formulaire-authentification__button" type="submit">Envoyer le message</button>
                 </div>
             </form>
 
             <!-- =========================
                  SÉPARATEUR VISUEL
                  ========================= -->
-            <div class="auth-divider" aria-hidden="true"></div>
+            <div class="separateur-authentification" aria-hidden="true"></div>
 
             <!-- =========================
                  INFORMATIONS DE CONTACT
                  ========================= -->
-            <div class="contact-info">
+            <div class="informations-contact">
                 <p>
                     Merci pour votre visite. Nous vous remercions d’avoir consulté notre site dédié au Fournier roux.
                 </p>
@@ -196,7 +205,6 @@
                     Notre équipe vous répondra dans les meilleurs délais.
                 </p>
             </div>
-
         </div>
     </section>
 </main>

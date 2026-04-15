@@ -5,7 +5,8 @@ const navLinks = document.querySelectorAll("#main-nav a");
 
 if (burgerBtn && mainNav) {
   burgerBtn.addEventListener("click", function () {
-    mainNav.classList.toggle("active");
+    const isActive = mainNav.classList.toggle("active");
+    burgerBtn.setAttribute("aria-expanded", isActive);
   });
 }
 
@@ -14,6 +15,7 @@ if (navLinks.length > 0) {
     navLinks[i].addEventListener("click", function () {
       if (mainNav) {
         mainNav.classList.remove("active");
+        burgerBtn.setAttribute("aria-expanded", "false");
       }
     });
   }

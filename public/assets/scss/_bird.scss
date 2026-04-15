@@ -1,0 +1,117 @@
+.oiseau-page {
+  width: 100%;
+  max-width: 430px;
+  margin: 0 auto;
+  padding: 0 $space-3xl $space-8xl;
+  background: transparent;
+}
+
+.oiseau-article {
+  padding: $space-4xl 0 0;
+  color: $color-text-main;
+  background: transparent;
+
+  /* =========================
+     SECTIONS
+  ========================= */
+
+  &__section {
+    padding: $space-3xl $space-3xl $space-lg;
+    background: rgba($color-white, 0.7);
+    border-radius: $radius-lg;
+  }
+
+  &__section--title {
+    padding: $space-5xl 0 $space-4xl;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  &__section + &__section {
+    margin-top: $space-4xl;
+  }
+
+  /* =========================
+     TITLE
+  ========================= */
+
+  &__title {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: $space-sm;
+    text-align: center;
+    font-size: $font-size-title;
+    line-height: $line-height-tight;
+    font-weight: $font-weight-extrabold;
+    color: $color-black;
+
+    span {
+      display: block;
+      color: $color-secondary;
+      font-weight: $font-weight-extrabold;
+    }
+
+    strong {
+      display: block;
+      color: $color-black;
+      font-weight: $font-weight-extrabold;
+    }
+  }
+
+  /* =========================
+     TEXT
+  ========================= */
+
+  &__intro,
+  &__text,
+  &__note,
+  &__caption {
+    margin: 0;
+    font-size: $font-size-sm;
+    line-height: $line-height-relaxed;
+    color: $color-text-soft;
+  }
+
+  &__intro,
+  &__text {
+    margin-bottom: $space-4xl;
+  }
+
+  /* =========================
+     MEDIA
+  ========================= */
+
+  &__media {
+    margin: $space-5xl 0;
+  }
+
+  &__image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+  }
+
+  &__map {
+    width: 100%;
+    max-width: 162px;
+    margin: 0;
+  }
+
+  &__map-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid rgba($color-black, 0.08);
+  }
+
+  &__caption {
+    margin-top: $space-3xl;
+    max-width: 290px;
+  }
+}

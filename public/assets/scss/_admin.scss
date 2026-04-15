@@ -1,8 +1,8 @@
 /* =========================
-   ADMIN DASHBOARD
+   TABLEAU DE BORD ADMIN
 ========================= */
 
-.admin-dashboard {
+.tableau-bord-admin {
   min-height: 100vh;
   padding: $space-4xl;
   background-color: $color-bg-soft;
@@ -10,7 +10,7 @@
   font-family: $font-main;
 }
 
-.admin-dashboard__title {
+.tableau-bord-admin__title {
   margin: 0 0 $space-4xl 0;
   font-size: $font-size-xl;
   font-weight: $font-weight-bold;
@@ -18,15 +18,14 @@
   text-align: center;
 }
 
-.admin-dashboard__nav {
+.tableau-bord-admin__nav {
   display: flex;
   flex-direction: column;
   gap: $space-2xl;
 }
 
-.admin-dashboard__link {
+.tableau-bord-admin__link {
   @include reset-link;
-
   display: block;
   padding: $space-3xl $space-4xl;
   background-color: $color-white;
@@ -40,26 +39,26 @@
   }
 }
 
-.admin-dashboard__separator {
+.tableau-bord-admin__separator {
   margin: $space-4xl 0;
   border: 0;
   border-top: 1px solid $color-divider;
 }
 
-.admin-dashboard__content {
+.tableau-bord-admin__content {
   display: flex;
   flex-direction: column;
   gap: $space-4xl;
 }
 
-.admin-dashboard__section {
+.tableau-bord-admin__section {
   display: flex;
   flex-direction: column;
   gap: $space-4xl;
   align-items: stretch;
 }
 
-.admin-dashboard__block {
+.tableau-bord-admin__block {
   display: flex;
   flex-direction: column;
   gap: $space-4xl;
@@ -67,10 +66,10 @@
 }
 
 /* =========================
-   ADMIN ARTICLE FORM
+   FORMULAIRE ARTICLE ADMIN
 ========================= */
 
-.admin-article-form {
+.formulaire-article-admin {
   display: flex;
   flex-direction: column;
   gap: $space-4xl;
@@ -82,7 +81,7 @@
   box-shadow: $shadow-soft;
 }
 
-.admin-article-form__title {
+.formulaire-article-admin__title {
   margin: 0;
   font-size: $font-size-xl;
   font-weight: $font-weight-bold;
@@ -91,27 +90,27 @@
   color: $color-text-main;
 }
 
-.admin-article-form__form {
+.formulaire-article-admin__form {
   display: flex;
   flex-direction: column;
   gap: $space-4xl;
 }
 
-.admin-article-form__group {
+.formulaire-article-admin__group {
   display: flex;
   flex-direction: column;
   gap: $space-sm;
   margin: 0;
 }
 
-.admin-article-form__fieldset {
+.formulaire-article-admin__fieldset {
   margin: 0 0 $space-4xl 0;
   padding: 0;
   border: 0;
   min-width: 0;
 }
 
-.admin-article-form__label {
+.formulaire-article-admin__label {
   margin: 0;
   padding: 0;
   font-size: $font-size-base;
@@ -119,39 +118,39 @@
   color: $color-text-main;
 }
 
-.admin-article-form__input,
-.admin-article-form__textarea,
-.admin-article-form__file {
+.formulaire-article-admin__input,
+.formulaire-article-admin__textarea,
+.formulaire-article-admin__file {
   @include form-field-base;
   width: 100%;
   border-radius: $radius-md;
   padding: $space-lg $space-2xl;
 }
 
-.admin-article-form__input {
+.formulaire-article-admin__input {
   min-height: 42px;
 }
 
-.admin-article-form__textarea {
+.formulaire-article-admin__textarea {
   min-height: 160px;
   line-height: $line-height-relaxed;
   resize: vertical;
 }
 
-.admin-article-form__categories {
+.formulaire-article-admin__categories {
   display: flex;
   flex-direction: column;
   gap: $space-lg;
   margin-top: $space-sm;
 }
 
-.admin-article-form__category {
+.formulaire-article-admin__category {
   display: flex;
   align-items: flex-start;
   gap: $space-lg;
 }
 
-.admin-article-form__checkbox {
+.formulaire-article-admin__checkbox {
   width: 18px;
   height: 18px;
   margin: 2px 0 0;
@@ -160,28 +159,28 @@
   cursor: pointer;
 }
 
-.admin-article-form__category-name {
+.formulaire-article-admin__category-name {
   font-size: $font-size-base;
   line-height: $line-height-relaxed;
   color: $color-text-main;
 }
 
-.admin-article-form__file {
+.formulaire-article-admin__file {
   padding: $space-md;
   cursor: pointer;
 }
 
-.admin-article-form__actions {
+.formulaire-article-admin__actions {
   display: flex;
   justify-content: flex-start;
 }
 
-.admin-article-form__button {
+.formulaire-article-admin__button {
   @include auth-button-base;
   width: auto;
   min-width: 170px;
   height: $auth-button-height;
-  padding: 0 24px;
+  padding: 0 $space-6xl;
   box-sizing: border-box;
   border: 2px solid transparent;
   background-color: $color-secondary;
@@ -202,17 +201,17 @@
 }
 
 /* =========================
-   ADMIN ARTICLES
+   ARTICLES ADMIN
 ========================= */
 
-.admin-articles {
+.articles-admin {
   display: flex;
   flex-direction: column;
   gap: $space-4xl;
   height: 100%;
 }
 
-.admin-articles__title {
+.articles-admin__title {
   margin: 0;
   font-size: $font-size-xl;
   font-weight: $font-weight-bold;
@@ -221,7 +220,7 @@
   color: $color-text-main;
 }
 
-.admin-articles__empty {
+.articles-admin__empty {
   margin: 0;
   padding: $space-4xl;
   background-color: $color-white;
@@ -230,13 +229,13 @@
   color: $color-text-muted;
 }
 
-.admin-articles__list {
+.articles-admin__list {
   display: flex;
   flex-direction: column;
   gap: $space-4xl;
 }
 
-.admin-articles__item {
+.articles-admin__item {
   display: flex;
   flex-direction: column;
   gap: $space-3xl;
@@ -247,7 +246,7 @@
   box-shadow: $shadow-soft;
 }
 
-.admin-articles__item-title {
+.articles-admin__item-title {
   margin: 0;
   font-size: $font-size-lg;
   font-weight: $font-weight-bold;
@@ -255,71 +254,137 @@
   color: $color-text-main;
 }
 
-.admin-articles__image-wrapper {
+.articles-admin__image-wrapper {
   width: 100%;
   overflow: hidden;
   border-radius: $radius-md;
   background-color: $color-bg-soft;
 }
 
-.admin-articles__image {
+.articles-admin__image {
   display: block;
   width: 100%;
   height: auto;
 }
 
-.admin-articles__categories {
+.articles-admin__categories {
   margin: 0;
   font-size: $font-size-sm;
   color: $color-text-soft;
 }
 
-.admin-articles__content {
+.articles-admin__content {
   margin: 0;
   font-size: $font-size-base;
   line-height: $line-height-relaxed;
   color: $color-text-main;
 }
 
-.admin-articles__meta {
+.articles-admin__meta {
   margin: 0;
   font-size: $font-size-sm;
   color: $color-text-muted;
 }
 
-.admin-articles__actions {
+.articles-admin__actions {
   display: flex;
   flex-direction: column;
   gap: $space-2xl;
 }
 
-.admin-articles__edit-link {
+.articles-admin__edit-link,
+.articles-admin__delete-link {
   @include reset-link;
-
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: $space-lg $space-4xl;
   border-radius: $radius-md;
-  background-color: $color-primary;
-  color: $color-white;
   font-size: $font-size-base;
   font-weight: $font-weight-semibold;
 }
 
-.admin-articles__delete-form {
-  margin: 0;
+.articles-admin__edit-link {
+  background-color: $color-primary;
+  color: $color-white;
 }
 
-.admin-articles__delete-button {
-  width: 100%;
-  padding: $space-lg $space-4xl;
-  border: 1px solid $color-error-border;
-  border-radius: $radius-md;
+.articles-admin__delete-link {
   background-color: $color-error-bg;
   color: $color-error-text;
+  border: 1px solid $color-error-border;
+}
+
+.articles-admin__confirm {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2xl;
+  padding: $space-3xl;
+  border: 1px solid $color-border-soft;
+  border-radius: $radius-md;
+  background-color: $color-bg-soft;
+}
+
+.articles-admin__confirm-text {
+  margin: 0;
+  font-size: $font-size-base;
+  color: $color-text-main;
+}
+
+.articles-admin__confirm-form {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2xl;
+}
+
+.articles-admin__button {
+  @include reset-link;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: $space-lg $space-4xl;
+  border-radius: $radius-md;
   font-size: $font-size-base;
   font-weight: $font-weight-semibold;
   font-family: $font-main;
   cursor: pointer;
+}
+
+.articles-admin__button--danger {
+  border: 1px solid $color-error-border;
+  background-color: $color-error-bg;
+  color: $color-error-text;
+}
+
+.articles-admin__button--secondary {
+  border: 1px solid $color-border-soft;
+  background-color: $color-white;
+  color: $color-text-main;
+}
+
+.articles-admin__pagination {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-lg;
+  justify-content: center;
+}
+
+.articles-admin__pagination-link {
+  @include reset-link;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 42px;
+  padding: $space-md $space-lg;
+  border: 1px solid $color-border-soft;
+  border-radius: $radius-md;
+  background-color: $color-white;
+  color: $color-text-main;
+  font-size: $font-size-base;
+}
+
+.articles-admin__pagination-link--active {
+  background-color: $color-primary;
+  border-color: $color-primary;
+  color: $color-white;
 }

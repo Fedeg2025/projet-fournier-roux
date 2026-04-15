@@ -13,9 +13,9 @@ $csrfToken = $_SESSION['csrf_token'] ?? '';
      d’accéder à son compte
      ========================= -->
 
-<main class="auth-page auth-page--login">
-    <section class="auth-content">
-        <div class="auth-content__inner">
+<main class="page-authentification page-authentification--connexion">
+    <section class="contenu-authentification">
+        <div class="contenu-authentification__inner">
 
             <h1>Accéder à votre compte</h1>
 
@@ -23,13 +23,13 @@ $csrfToken = $_SESSION['csrf_token'] ?? '';
                  MESSAGE D’ERREUR
                  ========================= -->
             <?php if (!empty($erreur)): ?>
-                <div class="auth-message auth-message--error" role="alert" aria-live="polite">
+                <div class="message-authentification message-authentification--error" role="alert" aria-live="polite">
                     <?php echo htmlspecialchars($erreur); ?>
                 </div>
             <?php endif; ?>
 
             <?php if (isset($_GET['error']) && $_GET['error'] === 'compte_en_suppression'): ?>
-                <div class="auth-message auth-message--error" role="alert" aria-live="polite">
+                <div class="message-authentification message-authentification--error" role="alert" aria-live="polite">
                     Votre compte est en cours de suppression. Vous ne pouvez plus vous connecter.
                 </div>
             <?php endif; ?>
@@ -38,7 +38,7 @@ $csrfToken = $_SESSION['csrf_token'] ?? '';
                  MESSAGE DE SUCCÈS
                  ========================= -->
             <?php if (!empty($succes)): ?>
-                <div class="auth-message auth-message--success" role="alert" aria-live="polite">
+                <div class="message-authentification message-authentification--success" role="alert" aria-live="polite">
                     <?php echo htmlspecialchars($succes); ?>
                 </div>
             <?php endif; ?>
@@ -46,7 +46,7 @@ $csrfToken = $_SESSION['csrf_token'] ?? '';
             <!-- =========================
                  FORMULAIRE DE CONNEXION
                  ========================= -->
-            <form class="auth-form" method="POST" action="index.php?page=login" novalidate>
+            <form class="formulaire-authentification" method="POST" action="index.php?page=login" novalidate>
                 <input
                     type="hidden"
                     name="csrf_token"
@@ -56,10 +56,10 @@ $csrfToken = $_SESSION['csrf_token'] ?? '';
                 <!-- =========================
                      CHAMP EMAIL
                      ========================= -->
-                <div class="auth-form__group">
-                    <label class="auth-form__label" for="email">Adresse email</label>
+                <div class="formulaire-authentification__group">
+                    <label class="formulaire-authentification__label" for="email">Adresse email</label>
                     <input
-                        class="auth-form__input"
+                        class="formulaire-authentification__input"
                         type="email"
                         id="email"
                         name="email"
@@ -72,10 +72,10 @@ $csrfToken = $_SESSION['csrf_token'] ?? '';
                 <!-- =========================
                      CHAMP MOT DE PASSE
                      ========================= -->
-                <div class="auth-form__group">
-                    <label class="auth-form__label" for="mot_de_passe">Mot de passe</label>
+                <div class="formulaire-authentification__group">
+                    <label class="formulaire-authentification__label" for="mot_de_passe">Mot de passe</label>
                     <input
-                        class="auth-form__input"
+                        class="formulaire-authentification__input"
                         type="password"
                         id="mot_de_passe"
                         name="mot_de_passe"
@@ -87,22 +87,22 @@ $csrfToken = $_SESSION['csrf_token'] ?? '';
                 <!-- =========================
                      BOUTON DE CONNEXION
                      ========================= -->
-                <div class="auth-form__submit">
-                    <button class="auth-form__button" type="submit">Se connecter</button>
+                <div class="formulaire-authentification__submit">
+                    <button class="formulaire-authentification__button" type="submit">Se connecter</button>
                 </div>
             </form>
 
             <!-- =========================
                  SÉPARATEUR VISUEL
                  ========================= -->
-            <div class="auth-divider" aria-hidden="true"></div>
+            <div class="separateur-authentification" aria-hidden="true"></div>
 
             <!-- =========================
                  LIEN VERS L’INSCRIPTION
                  ========================= -->
-            <section class="auth-register">
-                <p class="auth-register__text">Pas encore de compte ?</p>
-                <a class="auth-register__button" href="index.php?page=register">
+            <section class="inscription-authentification">
+                <p class="inscription-authentification__text">Pas encore de compte ?</p>
+                <a class="inscription-authentification__button" href="index.php?page=register">
                     Créer un compte
                 </a>
             </section>

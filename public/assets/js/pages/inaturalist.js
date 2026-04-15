@@ -9,11 +9,15 @@ const quantiteParGroupe = 6;
   avant de forcer une version large quand c'est possible.
 */
 function obtenirImage(photo) {
-  if (!photo) return "";
+  if (!photo) {
+    return "";
+  }
 
   let image = photo.url || photo.medium_url || photo.small_url || "";
 
-  if (!image) return "";
+  if (!image) {
+    return "";
+  }
 
   image = image
     .replace("/square.", "/large.")
@@ -31,7 +35,9 @@ function afficherGroupe(groupe) {
   const liste = document.getElementById("observations-list");
   const bouton = document.getElementById("load-more-inat");
 
-  if (!liste) return;
+  if (!liste) {
+    return;
+  }
 
   if (!groupe || groupe.length === 0) {
     if (bouton) {
@@ -40,7 +46,7 @@ function afficherGroupe(groupe) {
     return;
   }
 
-  let html = '<div class="obs-grid">';
+  let html = '<div class="galerie-inaturalist__grille">';
 
   for (let i = 0; i < groupe.length; i++) {
     const observation = groupe[i];
@@ -53,20 +59,20 @@ function afficherGroupe(groupe) {
     const date = observation.observed_on || "Date inconnue";
     const lieu = observation.place_guess || "Lieu inconnu";
 
-    html += '<article class="obs-card">';
+    html += '<article class="galerie-inaturalist__carte">';
 
     if (image) {
-      html += '<div class="obs-image-wrapper">';
+      html += '<div class="galerie-inaturalist__image-wrapper">';
       html +=
-        '<img src="' +
+        '<img class="galerie-inaturalist__image" src="' +
         image +
         '" alt="Observation iNaturalist" loading="lazy" decoding="async" referrerpolicy="no-referrer">';
-      html += '<span class="obs-credit">Source : iNaturalist &copy;</span>';
+      html += '<span class="galerie-inaturalist__credit">Source : iNaturalist &copy;</span>';
       html += "</div>";
     }
 
-    html += "<p>Date : " + date + "</p>";
-    html += "<p>Lieu : " + lieu + "</p>";
+    html += '<p class="galerie-inaturalist__text">Date : ' + date + "</p>";
+    html += '<p class="galerie-inaturalist__text">Lieu : ' + lieu + "</p>";
     html += "</article>";
   }
 
@@ -84,7 +90,9 @@ function chargerINaturalist() {
   const liste = document.getElementById("observations-list");
   const bouton = document.getElementById("load-more-inat");
 
-  if (!liste || chargementEnCours || toutesLesObservationsChargees) return;
+  if (!liste || chargementEnCours || toutesLesObservationsChargees) {
+    return;
+  }
 
   chargementEnCours = true;
 
@@ -93,7 +101,7 @@ function chargerINaturalist() {
   }
 
   if (pageCourante === 1) {
-    liste.innerHTML = "<p>Chargement...</p>";
+    liste.innerHTML = '<p class="galerie-inaturalist__loading">Chargement...</p>';
   }
 
   fetch(
@@ -135,7 +143,7 @@ function chargerINaturalist() {
 
       if (nouvellesObservations.length === 0) {
         if (pageCourante === 1) {
-          liste.innerHTML = "<p>Aucune observation trouvée.</p>";
+          liste.innerHTML = '<p class="galerie-inaturalist__loading">Aucune observation trouvée.</p>';
         }
 
         toutesLesObservationsChargees = true;
@@ -175,7 +183,7 @@ function chargerINaturalist() {
       console.error("Erreur iNaturalist :", error);
 
       if (pageCourante === 1) {
-        liste.innerHTML = "<p>Erreur lors du chargement des observations.</p>";
+        liste.innerHTML = '<p class="galerie-inaturalist__loading">Erreur lors du chargement des observations.</p>';
       }
 
       if (bouton) {

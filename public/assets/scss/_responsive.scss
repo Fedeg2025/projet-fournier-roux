@@ -1,367 +1,129 @@
 /* =========================
-   PAGE GALERIE - BASE
+   RESPONSIVE - PAGE GALERIE
 ========================= */
 
-.gallery-page {
-  width: 100%;
-  padding: $space-6xl 0 $space-8xl;
-  background-color: $color-bg-main;
-}
-
-.gallery-hero {
-  display: none;
-}
-
-/* =========================
-   GALERIE - STRUCTURE
-========================= */
-
-.gallery-section {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto $space-8xl;
-  padding: 0 $space-4xl;
-}
-
-.section-heading {
-  margin-bottom: $space-6xl;
-  text-align: left;
-
-  &__tag {
-    display: inline-block;
-    margin-bottom: $space-sm;
-    font-size: $font-size-sm;
-    font-weight: $font-weight-bold;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: $color-primary;
+@include mobile-only {
+  .page-galerie {
+    padding: $space-4xl 0 $space-8xl;
   }
 
-  h2 {
-    margin: 0 0 $space-lg;
-    font-size: $font-size-title;
-    line-height: $line-height-tight;
-    color: $color-text-soft;
+  .section-galerie {
+    padding: 0 $space-2xl;
+    margin-bottom: $space-7xl;
   }
 
-  p {
-    margin: 0;
-    font-size: $font-size-base;
-    line-height: $line-height-relaxed;
-    color: $color-text-soft;
-  }
-}
+  .entete-section {
+    margin-bottom: $space-5xl;
 
-/* =========================
-   GALERIE - GALERIE DE VIGNETTES
-========================= */
-
-.thumb-gallery {
-  position: relative;
-  @include flex-center;
-  gap: $space-sm;
-  padding: $space-4xl $space-3xl;
-  background: rgba($color-white, 0.8);
-  border-radius: $radius-2xl;
-  overflow: hidden;
-
-  &__track {
-    display: flex;
-    align-items: center;
-    gap: $space-3xl;
-    width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    scroll-behavior: smooth;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  }
-
-  &__item {
-    flex: 0 0 calc((100% - (#{$space-3xl} * 2)) / 3);
-    width: calc((100% - (#{$space-3xl} * 2)) / 3);
-    min-width: calc((100% - (#{$space-3xl} * 2)) / 3);
-    height: 180px;
-    margin: 0;
-    border-radius: $radius-sm;
-    overflow: hidden;
-    background: rgba($color-bg-soft, 0.9);
-    transition:
-      transform 0.2s ease,
-      opacity 0.2s ease;
-    opacity: 0.72;
-
-    &.is-active {
-      opacity: 1;
-      transform: scale(1.04);
-    }
-
-    img,
-    picture,
-    a,
-    figure {
-      display: block;
-      width: 100%;
-      height: 100%;
-      margin: 0;
-    }
-
-    img {
-      object-fit: cover;
-      object-position: center top;
-    }
-  }
-
-  &__nav {
-    @include flex-center;
-    flex: 0 0 28px;
-    width: 28px;
-    height: 28px;
-    padding: 0;
-    border: none;
-    background: transparent;
-    color: $color-text-soft;
-    font-size: $font-size-lg;
-    cursor: pointer;
-    transition: opacity 0.2s ease;
-
-    &:hover {
-      opacity: 0.7;
-    }
-  }
-}
-
-.thumb-gallery__dots {
-  @include flex-center;
-  gap: $space-xs;
-  margin-top: $space-lg;
-}
-
-.thumb-gallery__dot {
-  width: $space-xs;
-  height: $space-xs;
-  border-radius: $radius-pill;
-  background: rgba($color-text-soft, 0.22);
-  transition:
-    transform 0.2s ease,
-    background 0.2s ease;
-
-  &.is-active {
-    background: rgba($color-text-soft, 0.55);
-    transform: scale(1.15);
-  }
-}
-
-/* =========================
-   GALERIE - GRILLE MÉDIA
-========================= */
-
-.media-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-
-  &--videos {
-    gap: 48px;
-  }
-
-  &--audios {
-    gap: $space-6xl;
-  }
-}
-
-.media-card {
-  width: 100%;
-  max-width: 100%;
-}
-
-/* =========================
-   GALERIE - CARTES VIDÉO
-========================= */
-
-.media-card--video {
-  width: 100%;
-  max-width: 100%;
-
-  .media-card__visual {
-    width: 100%;
-    max-width: 100%;
-    background: darken($color-text-soft, 8%);
-    border-radius: $radius-sm;
-    overflow: hidden;
-
-    video,
-    iframe {
-      display: block;
-      width: 100%;
-      height: auto;
-      aspect-ratio: 4 / 3;
-      object-fit: cover;
-      background: $color-black;
-    }
-  }
-
-  .media-card__content {
-    width: 100%;
-    padding-top: $space-md;
-    text-align: center;
-
-    h3 {
-      margin: 0 0 $space-sm;
-      font-size: $font-size-md;
-      font-weight: $font-weight-medium;
-      color: $color-text-main;
+    h2 {
+      font-size: $font-size-xxl;
     }
 
     p {
-      margin: 0;
+      font-size: $font-size-md;
+    }
+  }
+
+  .galerie-vignettes {
+    padding: $space-3xl $space-md;
+    gap: $space-xs;
+
+    &__track {
+      gap: $space-lg;
+    }
+
+    &__item {
+      flex: 0 0 100%;
+      width: 100%;
+      min-width: 100%;
+      max-width: 100%;
+      height: 160px;
+    }
+
+    &__nav {
+      flex: 0 0 24px;
+      width: 24px;
+      height: 160px;
       font-size: $font-size-base;
-      line-height: $line-height-relaxed;
-      color: $color-text-main;
+    }
+  }
+
+  .galerie-vignettes__dots {
+    margin-top: $space-md;
+  }
+
+  .carte-media--audio {
+    padding: $space-4xl;
+
+    .carte-media__content {
+      p {
+        font-size: $font-size-lg;
+      }
+    }
+  }
+
+  .appel-galerie {
+    padding: $space-4xl;
+
+    &__text {
+      h2 {
+        font-size: $font-size-xl;
+      }
+
+      p {
+        font-size: $font-size-md;
+      }
+    }
+
+    &__action {
+      .bouton-primaire {
+        width: 100%;
+      }
     }
   }
 }
 
-/* =========================
-   GALERIE - CARTES AUDIO
-========================= */
-
-.media-card--audio {
-  @include soft-card;
-  background: rgba($color-white, 0.78);
-  border-radius: $radius-2xl;
-  padding: $space-5xl;
-  box-shadow: none;
-
-  .media-card__icon {
+@media (max-width: 688px) {
+  .section-galerie--photos {
     display: none;
   }
-
-  .media-card__content {
-    padding: 0;
-
-    h3 {
-      display: none;
-    }
-
-    audio {
-      display: block;
-      width: 100%;
-      margin: 0 0 $space-5xl;
-      border-radius: $radius-xl;
-      background: rgba($color-bg-soft, 0.9);
-    }
-
-    p {
-      margin: 0 0 $space-lg;
-      font-size: $font-size-xl;
-      font-weight: $font-weight-regular;
-      line-height: 1.25;
-      color: $color-text-main;
-
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
-  }
 }
 
 /* =========================
-   GALERIE - CTA
-========================= */
-
-.gallery-section--cta {
-  margin-top: $space-6xl;
-  margin-bottom: 0;
-}
-
-.gallery-cta {
-  @include soft-card;
-  background: rgba($color-white, 0.72);
-  border-radius: $radius-2xl;
-  padding: $space-6xl;
-  display: flex;
-  flex-direction: column;
-  gap: $space-4xl;
-
-  &__text {
-    h2 {
-      margin: 0 0 $space-lg;
-      font-size: $font-size-xxl;
-      line-height: $line-height-base;
-      color: $color-text-soft;
-    }
-
-    p {
-      margin: 0;
-      font-size: $font-size-base;
-      line-height: $line-height-relaxed;
-      color: $color-text-soft;
-    }
-  }
-
-  &__action {
-    .btn-primary {
-      @include reset-link;
-      @include flex-center;
-      width: fit-content;
-      min-height: 46px;
-      padding: 0 $space-6xl;
-      border: none;
-      border-radius: $radius-pill;
-      background: $color-secondary;
-      color: $color-white;
-      font-size: $font-size-base;
-      font-weight: $font-weight-semibold;
-      cursor: pointer;
-      transition: background 0.2s ease-in-out;
-
-      &:hover {
-        background: $color-hover-primary;
-      }
-    }
-  }
-}
-
-/* =========================
-   PAGE NID - TABLETTE / DESKTOP
+   RESPONSIVE - PAGE NID
 ========================= */
 
 @media (min-width: 752px) {
   .page-nid {
-    .contenu-page {
+    .contenu-nid {
       max-width: 1180px;
       padding-left: $space-3xl;
       padding-right: $space-3xl;
     }
 
-    .section,
-    .carte,
+    .section-nid,
+    .carte-nid,
     #galerie-nid,
-    .section.processus,
-    .image-principale {
+    .contenu-nid__image-principale {
       max-width: 920px;
     }
 
-    .figure-nid img {
+    .contenu-nid__figure img {
       max-width: 920px;
     }
 
-    .carte {
+    .carte-nid {
       padding: $space-5xl;
     }
   }
 }
 
 /* =========================
-   PAGE FICHE ESPÈCE - TABLETTE
+   RESPONSIVE - PAGE FICHE ESPÈCE
 ========================= */
 
 @media (min-width: 752px) {
-  .oiseau-page {
+  .page-fiche-oiseau {
     .oiseau-article {
       &__header {
         display: grid;
@@ -425,12 +187,8 @@
   }
 }
 
-/* =========================
-   PAGE FICHE ESPÈCE - DESKTOP LARGE
-========================= */
-
 @media (min-width: 1900px) {
-  .oiseau-page {
+  .page-fiche-oiseau {
     .oiseau-article {
       &__header {
         display: grid;
@@ -487,204 +245,23 @@
 }
 
 /* =========================
-   RESPONSIVE - MOBILE
+   RESPONSIVE - HEADER / NAVIGATION
 ========================= */
 
 @include mobile-only {
-  /* =========================
-     MOBILE - PAGE GALERIE
-  ========================= */
-
-  .gallery-page {
-    padding: $space-4xl 0 $space-8xl;
-  }
-
-  .gallery-section {
-    padding: 0 $space-2xl;
-    margin-bottom: $space-7xl;
-  }
-
-  .section-heading {
-    margin-bottom: $space-5xl;
-
-    h2 {
-      font-size: $font-size-xxl;
-    }
-
-    p {
-      font-size: $font-size-md;
-    }
-  }
-
-  .thumb-gallery {
-    padding: $space-3xl $space-md;
-    gap: $space-xs;
-
-    &__track {
-      gap: $space-lg;
-    }
-
-    &__item {
-      flex: 0 0 100%;
-      width: 100%;
-      height: 160px;
-    }
-
-    &__nav {
-      flex: 0 0 24px;
-      width: 24px;
-      height: 160px;
-      font-size: $font-size-base;
-    }
-  }
-
-  .thumb-gallery__dots {
-    margin-top: $space-md;
-  }
-
-  .media-card--audio {
-    padding: $space-4xl;
-
-    .media-card__content {
-      p {
-        font-size: $font-size-lg;
-      }
-    }
-  }
-
-  .gallery-cta {
-    padding: $space-4xl;
-
-    &__text {
-      h2 {
-        font-size: $font-size-xl;
-      }
-
-      p {
-        font-size: $font-size-md;
-      }
-    }
-
-    &__action {
-      .btn-primary {
-        width: 100%;
-      }
-    }
-  }
-
-  /* =========================
-     MOBILE - PAGE FICHE ESPÈCE
-  ========================= */
-
-  .oiseau-page {
-    .oiseau-article {
-      padding-top: $space-5xl;
-
-      &__header {
-        display: flex;
-        flex-direction: column;
-        gap: $space-4xl;
-        padding: $space-4xl;
-        margin-bottom: $space-5xl;
-      }
-
-      &__body {
-        display: flex;
-        flex-direction: column;
-        gap: $space-5xl;
-      }
-
-      &__main {
-        width: 100%;
-        min-width: 0;
-      }
-
-      &__sidebar {
-        position: static;
-        width: 100%;
-        min-width: 0;
-      }
-
-      &__section {
-        padding: $space-4xl;
-
-        &--with-image {
-          display: flex;
-          flex-direction: column;
-          gap: $space-4xl;
-        }
-      }
-
-      &__section-content {
-        width: 100%;
-        min-width: 0;
-      }
-
-      &__figure {
-        width: 100%;
-        min-width: 0;
-      }
-
-      &__image,
-      &__hero-image {
-        width: 100%;
-        height: auto;
-      }
-
-      &__data-list {
-        display: flex;
-        flex-direction: column;
-        gap: $space-3xl;
-      }
-
-      &__card {
-        padding: $space-4xl;
-      }
-
-      &__title {
-        font-size: $font-size-xxl;
-      }
-
-      &__subtitle {
-        font-size: $font-size-lg;
-      }
-
-      &__intro,
-      &__text,
-      &__card-text {
-        font-size: $font-size-md;
-        overflow-wrap: break-word;
-        word-break: normal;
-        hyphens: auto;
-      }
-
-      &__mini-item {
-        grid-template-columns: 1fr auto;
-
-        dd {
-          font-size: $font-size-md;
-        }
-      }
-    }
-  }
-
-  /* =========================
-     MOBILE - NAVIGATION
-  ========================= */
-
-  .burger-btn {
+  .entete-site__bouton-menu {
     display: block;
   }
 
-  .profile-box {
+  .entete-site__profil {
     display: none;
   }
 
-  .mobile-profile-box {
+  .entete-site__profil-mobile {
     display: flex;
   }
 
-  .main-nav {
+  .entete-site__navigation {
     display: none;
     width: 100%;
     flex-direction: column;
@@ -700,13 +277,103 @@
       border-bottom: 1px solid rgba($color-black, 0.1);
     }
   }
+}
 
-  /* =========================
-     MOBILE - ACCUEIL
-  ========================= */
+@include desktop-only {
+  .entete-site__barre {
+    gap: $space-md;
+    padding: $space-lg $space-2xl;
+  }
 
+  .entete-site__marque {
+    justify-content: flex-start;
+    gap: $space-md;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .entete-site__titre {
+    font-size: 1.21rem;
+    white-space: nowrap;
+  }
+
+  .entete-site__logo {
+    flex-shrink: 0;
+  }
+
+  .entete-site__logo a {
+    width: 84px;
+    height: 84px;
+  }
+
+  .entete-site__logo img {
+    width: 54px;
+    height: 54px;
+  }
+
+  .entete-site__hero {
+    min-height: 380px;
+    background-position: 56% 44%;
+  }
+
+  .entete-site__superposition {
+    min-height: 380px;
+    padding-bottom: $space-6xl;
+
+    h2 {
+      font-size: 1.6rem;
+    }
+  }
+
+  .entete-site__bouton-menu {
+    display: none;
+  }
+
+  .entete-site__profil {
+    display: flex;
+    flex-shrink: 0;
+    margin-left: $space-md;
+
+    a,
+    .entete-site__lien-deconnexion {
+      padding: $space-sm $space-md;
+      white-space: nowrap;
+    }
+  }
+
+  .entete-site__profil-mobile {
+    display: none;
+  }
+
+  .entete-site__navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 15px;
+    padding: 0 $space-3xl $space-4xl $space-3xl;
+    flex-wrap: wrap;
+    background: $color-bg-soft;
+
+    a {
+      width: auto;
+      padding: 0;
+      border-bottom: none;
+    }
+  }
+}
+
+/* =========================
+   RESPONSIVE - ACCUEIL
+========================= */
+
+@include mobile-only {
   main.accueil-page {
     padding: $space-4xl $space-2xl $space-8xl;
+  }
+
+  .accueil-carousel {
+    display: none;
   }
 
   .accueil-intro,
@@ -766,303 +433,13 @@
     img {
       width: 100%;
       height: 115px;
-    }
-  }
-
-  /* =========================
-     MOBILE - LIGHTBOX
-  ========================= */
-
-  .custom-lightbox {
-    padding: $space-2xl;
-  }
-
-  .lightbox-image {
-    width: 100%;
-    max-width: 100%;
-    max-height: calc(100dvh - (#{$space-2xl} * 2) - 80px);
-    object-fit: contain;
-  }
-
-  .lightbox-close,
-  .lightbox-prev,
-  .lightbox-next {
-    @include flex-center;
-    width: 40px;
-    height: 40px;
-    border-radius: $radius-pill;
-    font-size: $font-size-xl;
-
-    i {
-      pointer-events: none;
-    }
-  }
-
-  .lightbox-close {
-    top: $space-lg;
-    right: $space-lg;
-  }
-
-  .lightbox-prev {
-    left: $space-sm;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  .lightbox-next {
-    right: $space-sm;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  /* =========================
-     MOBILE - CONTACT
-  ========================= */
-
-  .contact-page {
-    .auth-content {
-      padding: $space-5xl $space-2xl $space-8xl;
-    }
-
-    .auth-content__inner {
-      max-width: 100%;
-    }
-
-    .auth-form__choices {
-      gap: $space-2xl;
-      margin-bottom: $space-6xl;
-    }
-
-    .auth-form__choice-label {
-      font-size: $font-size-sm;
-    }
-
-    .auth-form__group {
-      margin-bottom: $space-5xl;
-    }
-
-    .auth-form__input {
-      height: 42px;
-    }
-
-    .auth-form__textarea {
-      min-height: 110px;
-    }
-
-    .auth-form__textarea--objet {
-      min-height: 90px;
-    }
-
-    .auth-form__button {
-      height: 42px;
-      font-size: $font-size-md;
-    }
-
-    .contact-info {
-      max-width: 100%;
-      margin-top: $space-6xl;
-
-      p {
-        font-size: $font-size-md;
-        letter-spacing: 0.05em;
-      }
-
-      strong {
-        letter-spacing: 0.05em;
-      }
+      object-fit: cover;
+      object-position: center;
     }
   }
 }
-
-/* =========================
-   RESPONSIVE - ACCUEIL 800PX ET MOINS
-========================= */
-
-@media (max-width: 800px) {
-  .section-bienvenue__title {
-    max-width: 260px;
-    margin: 0 auto $space-lg;
-    text-align: center;
-    white-space: normal;
-  }
-
-  .section-bienvenue__intro {
-    gap: $space-sm;
-    margin-top: $space-md;
-    margin-bottom: $space-4xl;
-  }
-
-  .section-bienvenue__intro-line {
-    width: 80px;
-    max-width: 80px;
-  }
-}
-
-/* =========================
-   RESPONSIVE - CONTACT AJUSTEMENTS
-========================= */
-
-@media (min-width: 450px) {
-  .contact-page {
-    .auth-form__button {
-      width: auto;
-      min-width: 280px;
-      max-width: 280px;
-      margin-left: auto;
-      margin-right: auto;
-      display: block;
-    }
-  }
-}
-
-@media (min-width: 600px) {
-  .contact-page {
-    .contact-info {
-      width: 100%;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-      display: block;
-
-      p,
-      strong,
-      a {
-        width: 100%;
-        max-width: none;
-        white-space: normal;
-        text-align: center;
-      }
-    }
-  }
-}
-
-/* =========================
-   RESPONSIVE - DESKTOP
-========================= */
 
 @include desktop-only {
-  /* =========================
-     DESKTOP - HEADER / NAVIGATION
-  ========================= */
-
-  .nav-header {
-    gap: $space-md;
-    padding: $space-lg $space-2xl;
-  }
-
-  .brand-box {
-    justify-content: flex-start;
-    gap: $space-md;
-    flex: 1 1 auto;
-    min-width: 0;
-  }
-
-  .site-title {
-    font-size: 1.21rem;
-    white-space: nowrap;
-  }
-
-  .logo-box {
-    flex-shrink: 0;
-  }
-
-  .logo-box a {
-    width: 84px;
-    height: 84px;
-  }
-
-  .logo-box img {
-    width: 54px;
-    height: 54px;
-  }
-
-  .hero-image {
-    min-height: 380px;
-    background-position: 56% 44%;
-  }
-
-  .hero-overlay {
-    min-height: 380px;
-    padding-bottom: $space-6xl;
-
-    h2 {
-      font-size: 1.6rem;
-    }
-  }
-
-  .burger-btn {
-    display: none;
-  }
-
-  .profile-box {
-    display: flex;
-    flex-shrink: 0;
-    margin-left: $space-md;
-
-    a,
-    .logout-link {
-      padding: $space-sm $space-md;
-      white-space: nowrap;
-    }
-  }
-
-  .mobile-profile-box {
-    display: none;
-  }
-
-  .main-nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    gap: 15px;
-    padding: 0 $space-3xl $space-4xl $space-3xl;
-    flex-wrap: wrap;
-    background: $color-bg-soft;
-
-    a {
-      width: auto;
-      padding: 0;
-      border-bottom: none;
-    }
-  }
-
-  /* =========================
-     DESKTOP - PAGE FICHE ESPÈCE
-  ========================= */
-
-  .oiseau-page {
-    .oiseau-article {
-      &__title {
-        font-size: $font-size-title-desktop;
-      }
-
-      &__header-content {
-        justify-content: center;
-      }
-
-      &__sidebar {
-        display: flex;
-      }
-    }
-  }
-
-  /* =========================
-     DESKTOP - AUTH / CONTACT
-  ========================= */
-
-  .auth-page--login,
-  .auth-page--register,
-  .contact-page {
-    .auth-content__inner {
-      max-width: 620px;
-    }
-  }
-
-  /* =========================
-     DESKTOP - ACCUEIL
-  ========================= */
-
   main.accueil-page {
     padding: $space-6xl $space-4xl $space-8xl;
   }
@@ -1089,36 +466,74 @@
     img {
       width: 100%;
       height: 220px;
+      object-fit: cover;
+      object-position: center;
     }
   }
+}
 
-  /* =========================
-     DESKTOP - LIGHTBOX
-  ========================= */
+/* =========================
+   RESPONSIVE - LIGHTBOX
+========================= */
 
+@media (min-width: 769px) and (max-width: 1199px) {
   .custom-lightbox {
-    padding: $space-8xl;
+    padding: $space-4xl;
   }
 
   .lightbox-image {
-    width: auto;
-    max-width: min(900px, calc(100vw - (#{$space-8xl} * 2)));
-    max-height: calc(100vh - (#{$space-8xl} * 2) - 80px);
-    object-fit: contain;
+    max-width: calc(100vw - (#{$space-4xl} * 2));
+    max-height: calc(100vh - (#{$space-4xl} * 2) - 80px);
+  }
+
+  .lightbox-close {
+    top: $space-2xl;
+    right: $space-2xl;
+  }
+
+  .lightbox-prev {
+    left: $space-2xl;
+  }
+
+  .lightbox-next {
+    right: $space-2xl;
+  }
+}
+
+@include mobile-only {
+  .custom-lightbox {
+    padding: $space-2xl;
+  }
+
+  .lightbox-image {
+    max-width: 100%;
+    max-height: calc(100dvh - (#{$space-2xl} * 2) - 80px);
   }
 
   .lightbox-close,
   .lightbox-prev,
   .lightbox-next {
-    @include flex-center;
-    width: 42px;
-    height: 42px;
-    border-radius: $radius-pill;
-    font-size: $font-size-xl;
+    width: 40px;
+    height: 40px;
+  }
 
-    i {
-      pointer-events: none;
-    }
+  .lightbox-prev {
+    left: $space-sm;
+  }
+
+  .lightbox-next {
+    right: $space-sm;
+  }
+}
+
+@include desktop-only {
+  .custom-lightbox {
+    padding: $space-8xl;
+  }
+
+  .lightbox-image {
+    max-width: min(900px, calc(100vw - (#{$space-8xl} * 2)));
+    max-height: calc(100vh - (#{$space-8xl} * 2) - 80px);
   }
 
   .lightbox-close {
@@ -1128,89 +543,181 @@
 
   .lightbox-prev {
     left: $space-4xl;
-    top: 50%;
-    transform: translateY(-50%);
   }
 
   .lightbox-next {
     right: $space-4xl;
-    top: 50%;
-    transform: translateY(-50%);
   }
 }
 
 /* =========================
-   RESPONSIVE - ADMIN TABLETTE / DESKTOP
+   RESPONSIVE - AUTH / CONTACT
+========================= */
+
+@include mobile-only {
+  .page-contact {
+    .contenu-authentification {
+      padding: $space-5xl $space-2xl $space-8xl;
+    }
+
+    .contenu-authentification__inner {
+      max-width: 100%;
+    }
+
+    .formulaire-authentification__choices {
+      gap: $space-2xl;
+      margin-bottom: $space-6xl;
+    }
+
+    .formulaire-authentification__choice-label {
+      font-size: $font-size-sm;
+    }
+
+    .formulaire-authentification__group {
+      margin-bottom: $space-5xl;
+    }
+
+    .formulaire-authentification__input {
+      height: 42px;
+    }
+
+    .formulaire-authentification__textarea {
+      min-height: 110px;
+    }
+
+    .formulaire-authentification__button {
+      height: 42px;
+      font-size: $font-size-md;
+    }
+
+    .informations-contact {
+      max-width: 100%;
+      margin-top: $space-6xl;
+
+      p {
+        font-size: $font-size-md;
+        letter-spacing: 0.05em;
+      }
+
+      strong {
+        letter-spacing: 0.05em;
+      }
+    }
+  }
+}
+
+@media (min-width: 450px) {
+  .page-contact {
+    .formulaire-authentification__button {
+      width: auto;
+      min-width: 280px;
+      max-width: 280px;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  .page-contact {
+    .informations-contact {
+      width: 100%;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+
+      p,
+      strong,
+      a {
+        width: 100%;
+        max-width: none;
+        white-space: normal;
+        text-align: center;
+      }
+    }
+  }
+}
+
+@include desktop-only {
+  .page-authentification--connexion,
+  .page-authentification--inscription,
+  .page-contact {
+    .contenu-authentification__inner {
+      max-width: 620px;
+    }
+  }
+}
+
+/* =========================
+   RESPONSIVE - ADMIN
 ========================= */
 
 @media (min-width: 752px) {
-  .admin-dashboard {
+  .tableau-bord-admin {
     max-width: 1400px;
     margin: 0 auto;
     padding: $space-6xl;
   }
 
-  .admin-dashboard__nav {
+  .tableau-bord-admin__nav {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     gap: $space-3xl;
   }
 
-  .admin-dashboard__link {
+  .tableau-bord-admin__link {
     width: auto;
     min-width: 180px;
     text-align: center;
   }
 
-  .admin-dashboard__section--contenus,
-  .admin-dashboard__section--utilisateurs {
+  .tableau-bord-admin__section--contenus,
+  .tableau-bord-admin__section--utilisateurs {
     gap: $space-6xl;
     align-items: stretch;
   }
 
-  .admin-dashboard__block {
+  .tableau-bord-admin__block {
     justify-content: flex-start;
   }
 
-  .admin-article-form,
-  .admin-articles,
+  .formulaire-article-admin,
+  .articles-admin,
   .admin-messages,
-  .admin-users,
-  .admin-delete-requests {
+  .admin-users {
     width: 100%;
   }
 
-  .admin-article-form__title,
-  .admin-articles__title,
+  .formulaire-article-admin__title,
+  .articles-admin__title,
   .admin-messages__title,
-  .admin-users__title,
-  .admin-delete-requests__title {
+  .admin-users__title {
     text-align: center;
   }
 
-  .admin-article-form__textarea {
+  .formulaire-article-admin__textarea {
     min-height: 220px;
   }
 
-  .admin-article-form__actions {
+  .formulaire-article-admin__actions {
     justify-content: flex-start;
   }
 
-  .admin-articles__actions,
-  .admin-delete-requests__actions {
+  .articles-admin__actions {
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
   }
 
-  .admin-articles__edit-link,
-  .admin-articles__delete-button,
-  .admin-delete-requests__button {
+  .articles-admin__edit-link,
+  .articles-admin__delete-link,
+  .articles-admin__button {
     width: auto;
   }
 
-  .admin-delete-requests__row,
   .admin-users__info {
     display: grid;
     grid-template-columns: 180px minmax(0, 1fr);
@@ -1219,164 +726,136 @@
   }
 }
 
-/* =========================
-   RESPONSIVE - ADMIN DESKTOP LARGE
-========================= */
-
 @media (min-width: 1200px) {
-  .admin-dashboard {
+  .tableau-bord-admin {
     max-width: 1600px;
   }
 
-  .admin-dashboard__section--contenus,
-  .admin-dashboard__section--utilisateurs {
+  .tableau-bord-admin__section--contenus,
+  .tableau-bord-admin__section--utilisateurs {
     display: grid;
     grid-template-columns: minmax(320px, 420px) minmax(0, 1fr);
     gap: $space-6xl;
     align-items: start;
   }
 
-  .admin-dashboard__block--article-form,
-  .admin-dashboard__block--users,
-  .admin-dashboard__block--articles,
-  .admin-dashboard__block--delete-requests {
+  .tableau-bord-admin__block--article-form,
+  .tableau-bord-admin__block--users,
+  .tableau-bord-admin__block--articles {
     align-self: start;
   }
 
-  .admin-dashboard__block--article-form,
-  .admin-dashboard__block--users {
+  .tableau-bord-admin__block--article-form,
+  .tableau-bord-admin__block--users {
     position: sticky;
     top: $space-6xl;
   }
 
-  .admin-article-form,
+  .formulaire-article-admin,
   .admin-users,
-  .admin-articles,
-  .admin-delete-requests {
+  .articles-admin {
     height: auto;
   }
 
-  .admin-article-form__title,
-  .admin-articles__title,
-  .admin-users__title,
-  .admin-delete-requests__title {
+  .formulaire-article-admin__title,
+  .articles-admin__title,
+  .admin-users__title {
     text-align: center;
   }
 
-  .admin-article-form__textarea {
+  .formulaire-article-admin__textarea {
     min-height: 260px;
   }
 
-  .admin-articles__actions,
-  .admin-delete-requests__actions {
+  .articles-admin__actions {
     justify-content: flex-start;
   }
 }
 
 /* =========================
-   RESPONSIVE - PROFILE TABLETTE
+   RESPONSIVE - PROFIL
 ========================= */
 
 @media (min-width: 736px) {
-  .profile-page {
+  .page-profil {
     max-width: 980px;
     margin: 0 auto;
     padding: $space-5xl $space-4xl $space-8xl;
     gap: $space-5xl;
   }
 
-  .profile-page__section {
+  .page-profil__section {
     width: 100%;
     padding: $space-4xl;
   }
 
-  .profile-page__section--info,
-  .profile-page__section--delete {
+  .page-profil__section--infos,
+  .page-profil__section--suppression {
     width: 100%;
     max-width: none;
     margin: 0;
   }
 
-  .profile-page__title,
-  .profile-page__subtitle {
+  .page-profil__title,
+  .page-profil__subtitle {
     text-align: center;
   }
 
-  .profile-form,
-  .profile-delete-form,
-  .profile-details {
+  .formulaire-profil,
+  .formulaire-suppression-profil,
+  .details-profil {
     width: 100%;
     max-width: none;
   }
 
-  .profile-form__input,
-  .profile-delete-form__textarea {
+  .formulaire-profil__input {
     width: 100%;
     max-width: none;
   }
 
-  .profile-details__item {
+  .details-profil__item {
     display: grid;
     grid-template-columns: 120px minmax(0, 1fr);
     gap: $space-2xl;
     align-items: start;
   }
 
-  .profile-details__value {
+  .details-profil__value {
     margin-left: 0;
   }
-
-  .profile-delete-form__textarea {
-    min-height: 150px;
-  }
 }
-
-.profile-delete-form__textarea {
-  min-height: 160px;
-}
-
-/* =========================
-   RESPONSIVE - PROFILE DESKTOP LARGE
-========================= */
 
 @media (min-width: 1400px) {
-  .profile-page {
+  .page-profil {
     max-width: 1280px;
     padding-left: $space-6xl;
     padding-right: $space-6xl;
+    display: grid;
     grid-template-columns: minmax(380px, 460px) minmax(0, 1fr);
     gap: $space-5xl;
     align-items: stretch;
   }
 
-  .profile-page__section--info,
-  .profile-page__section--delete {
+  .page-profil__section--infos,
+  .page-profil__section--suppression {
     height: 100%;
   }
 
-  .profile-page__section--info {
+  .page-profil__section--infos {
     position: sticky;
     top: $space-6xl;
     align-self: start;
     height: auto;
   }
 
-  .profile-form__actions,
-  .profile-delete-form__actions {
+  .formulaire-profil__actions,
+  .formulaire-suppression-profil__actions {
     justify-content: flex-start;
-  }
-
-  .profile-delete-form__textarea {
-    min-height: 170px;
   }
 }
 
-/* =========================
-   RESPONSIVE - PROFILE ULTRA LARGE
-========================= */
-
 @media (min-width: 1900px) {
-  .profile-page {
+  .page-profil {
     max-width: 1400px;
     padding-left: $space-8xl;
     padding-right: $space-8xl;
@@ -1385,117 +864,7 @@
     align-items: stretch;
   }
 
-  .profile-page__section--delete {
+  .page-profil__section--suppression {
     max-width: none;
-  }
-
-  .profile-delete-form__textarea {
-    min-height: 200px;
-  }
-}
-
-/* =========================
-   RESPONSIVE - TABLET-CAROUSEL
-========================= */
-@media (max-width: 991px) {
-  .desktop-carousel {
-    display: none;
-  }
-
-  .accueil {
-    &__title {
-      font-size: 2.2rem;
-      line-height: 1.2;
-    }
-
-    &__intro {
-      gap: 1rem;
-
-      &::before,
-      &::after {
-        width: 70px;
-      }
-
-      span {
-        font-size: 1.4rem;
-      }
-    }
-
-    &__text {
-      font-size: 1.05rem;
-      line-height: 1.7;
-      text-align: left;
-    }
-  }
-
-  .accueil-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-
-    &__item {
-      min-height: 140px;
-
-      img {
-        height: 140px;
-      }
-    }
-  }
-}
-
-/* =========================
-   RESPONSIVE - PAGE OISEAU
-========================= */
-
-@media screen and (min-width: 768px) {
-  .oiseau-page {
-    max-width: 760px;
-    padding: 0 $space-4xl 60px;
-  }
-
-  .oiseau-article {
-    padding: 40px 0 0;
-
-    &__title {
-      flex-direction: row;
-      gap: $space-lg;
-      font-size: 42px;
-      line-height: 1.1;
-
-      span,
-      strong {
-        font-size: inherit;
-        line-height: inherit;
-      }
-    }
-
-    &__intro,
-    &__text,
-    &__note,
-    &__caption {
-      font-size: 15px;
-    }
-
-    &__map {
-      max-width: 260px;
-    }
-  }
-}
-
-/* =========================
-   RESPONSIVE - MOBILE
-========================= */
-@media (max-width: 575px) {
-  .accueil-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
-
-    &__item img {
-      height: 120px;
-    }
-  }
-}
-@media (max-width: 688px) {
-  .gallery-section--photos {
-    display: none;
   }
 }

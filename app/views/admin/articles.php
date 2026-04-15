@@ -1,169 +1,139 @@
-<!-- =========================
-     LISTE ADMIN DES ARTICLES
-     Cette vue affiche les articles publiés
-     avec les actions de modification, suppression et pagination
-     ========================= -->
+<section class="articles-admin">
+    <h2 class="articles-admin__title">Articles publiés</h2>
 
-<section class="admin-articles">
-    <h2 class="admin-articles__title">Articles publiés</h2>
-
-    <!-- =========================
-         CAS AUCUN ARTICLE
-         ========================= -->
     <?php if (empty($articles)): ?>
-        <p class="admin-articles__empty">Aucun article.</p>
+        <p class="articles-admin__empty">Aucun article.</p>
 
     <?php else: ?>
 
-        <!-- =========================
-             LISTE DES ARTICLES
-             ========================= -->
-        <div class="admin-articles__list">
-            <?php foreach ($articles as $article): ?>
-                <article class="admin-articles__item">
+        <div class="articles-admin__list">
+            <?php foreach ($articles as $articleItem): ?>
+                <article class="articles-admin__item">
 
-                    <!-- =========================
-                         TITRE DE L’ARTICLE
-                         ========================= -->
-                    <h3 class="admin-articles__item-title">
-                        <?php echo htmlspecialchars($article['titre']); ?>
+                    <h3 class="articles-admin__item-title">
+                        <?php echo htmlspecialchars($articleItem['titre']); ?>
                     </h3>
 
-                    <!-- =========================
-                         IMAGE PRINCIPALE
-                         ========================= -->
-                    <?php if (!empty($article['medias'][0]) && $article['medias'][0]['type_media'] === 'image'): ?>
-                        <div class="admin-articles__image-wrapper">
+                    <?php if (!empty($articleItem['medias'][0]) && $articleItem['medias'][0]['type_media'] === 'image'): ?>
+                        <div class="articles-admin__image-wrapper">
                             <img
-                                class="admin-articles__image"
-                                src="public/uploads/<?php echo htmlspecialchars($article['medias'][0]['nom_fichier']); ?>"
-                                alt="Illustration de l’article <?php echo htmlspecialchars($article['titre']); ?>"
+                                class="articles-admin__image"
+                                src="public/uploads/<?php echo htmlspecialchars($articleItem['medias'][0]['nom_fichier']); ?>"
+                                alt="Illustration de l’article <?php echo htmlspecialchars($articleItem['titre']); ?>"
                             >
                         </div>
                     <?php endif; ?>
 
-                    <!-- =========================
-                         CATÉGORIES
-                         ========================= -->
-                    <p class="admin-articles__categories">
+                    <p class="articles-admin__categories">
                         <em>
                             Catégories :
-                            <?php echo htmlspecialchars($article['categories'] ?? 'Aucune'); ?>
+                            <?php echo htmlspecialchars($articleItem['categories'] ?? 'Aucune'); ?>
                         </em>
                     </p>
 
-                    <!-- =========================
-                         CONTENU
-                         ========================= -->
-                    <div class="admin-articles__content">
-                        <?php echo nl2br(htmlspecialchars($article['contenu'])); ?>
+                    <div class="articles-admin__content">
+                        <?php echo nl2br(htmlspecialchars($articleItem['contenu'])); ?>
                     </div>
 
-                    <!-- =========================
-                         MÉTADONNÉES
-                         ========================= -->
-                    <p class="admin-articles__meta">
+                    <p class="articles-admin__meta">
                         <small>
-                            <?php echo htmlspecialchars($article['date_publication']); ?> -
-                            <?php echo htmlspecialchars($article['prenom'] . ' ' . $article['nom']); ?>
+                            <?php echo htmlspecialchars($articleItem['date_publication']); ?> -
+                            <?php echo htmlspecialchars($articleItem['prenom'] . ' ' . $articleItem['nom']); ?>
                         </small>
                     </p>
 
-                    <!-- =========================
-                         ACTIONS ADMINISTRATEUR
-                         ========================= -->
-                    <div class="admin-articles__actions">
+                    <div class="articles-admin__actions">
                         <a
-                            class="admin-articles__edit-link"
-                            href="index.php?page=admin&section=contenus&edit_article=<?php echo htmlspecialchars($article['id_article']); ?>"
+                            class="articles-admin__edit-link"
+                            href="index.php?page=admin&section=articles&edit_article=<?php echo $articleItem['id_article']; ?>"
                         >
                             Modifier
                         </a>
 
                         <a
-                            class="admin-articles__delete-link"
-                            href="index.php?page=admin&section=contenus&confirm_delete=<?php echo htmlspecialchars($article['id_article']); ?>"
+                            class="articles-admin__delete-link"
+                            href="index.php?page=admin&section=articles&confirm_delete=<?php echo $articleItem['id_article']; ?>"
                         >
                             Supprimer
                         </a>
                     </div>
 
-                    <!-- =========================
-                         CONFIRMATION DE SUPPRESSION
-                         ========================= -->
-                    <?php if (isset($confirm_delete) && $confirm_delete === (int) $article['id_article']): ?>
-                        <div class="admin-articles__confirm">
-                            <p class="admin-articles__confirm-text">
+                    <?php if (isset($confirmDelete) && $confirmDelete === (int) $articleItem['id_article']): ?>
+                        <div class="articles-admin__confirm">
+                            <p class="articles-admin__confirm-text">
                                 Confirmer la suppression de cet article ?
                             </p>
 
                             <form
-                                class="admin-articles__confirm-form"
+                                class="articles-admin__confirm-form"
                                 method="POST"
-                                action="index.php?page=admin&section=contenus"
+                                action="index.php?page=admin&section=articles"
                             >
                                 <input
                                     type="hidden"
                                     name="csrf_token"
-                                    value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>"
+                                    value="<?php echo htmlspecialchars($_SESSION['csrf_token'] ?? ''); ?>"
                                 >
 
                                 <input
                                     type="hidden"
                                     name="delete_article"
-                                    value="<?php echo htmlspecialchars($article['id_article']); ?>"
+                                    value="<?php echo $articleItem['id_article']; ?>"
                                 >
 
                                 <button
-                                    class="admin-articles__button admin-articles__button--danger"
+                                    class="articles-admin__button articles-admin__button--danger"
                                     type="submit"
                                 >
                                     Oui, supprimer
                                 </button>
 
                                 <a
-                                    class="admin-articles__button admin-articles__button--secondary"
-                                    href="index.php?page=admin&section=contenus"
+                                    class="articles-admin__button articles-admin__button--secondary"
+                                    href="index.php?page=admin&section=articles"
                                 >
                                     Annuler
                                 </a>
                             </form>
                         </div>
                     <?php endif; ?>
+
                 </article>
             <?php endforeach; ?>
         </div>
 
-        <!-- =========================
-             PAGINATION
-             ========================= -->
-        <div class="admin-articles__pagination">
-            <?php if ($page_articles > 1): ?>
-                <a
-                    class="admin-articles__pagination-link"
-                    href="index.php?page=admin&section=contenus&p=<?php echo $page_articles - 1; ?>"
-                >
-                    ← Précédent
-                </a>
-            <?php endif; ?>
+        <?php if (!empty($totalArticlePages) && $totalArticlePages > 1): ?>
+            <div class="articles-admin__pagination">
 
-            <?php for ($i = 1; $i <= $total_pages_articles; $i++): ?>
-                <a
-                    class="admin-articles__pagination-link <?php echo $i === $page_articles ? 'admin-articles__pagination-link--active' : ''; ?>"
-                    href="index.php?page=admin&section=contenus&p=<?php echo $i; ?>"
-                >
-                    <?php echo $i; ?>
-                </a>
-            <?php endfor; ?>
+                <?php if ($currentArticlePage > 1): ?>
+                    <a
+                        class="articles-admin__pagination-link"
+                        href="index.php?page=admin&section=articles&p=<?php echo $currentArticlePage - 1; ?>"
+                    >
+                        ← Précédent
+                    </a>
+                <?php endif; ?>
 
-            <?php if ($page_articles < $total_pages_articles): ?>
-                <a
-                    class="admin-articles__pagination-link"
-                    href="index.php?page=admin&section=contenus&p=<?php echo $page_articles + 1; ?>"
-                >
-                    Suivant →
-                </a>
-            <?php endif; ?>
-        </div>
+                <?php for ($i = 1; $i <= $totalArticlePages; $i++): ?>
+                    <a
+                        class="articles-admin__pagination-link <?php echo $i === $currentArticlePage ? 'articles-admin__pagination-link--active' : ''; ?>"
+                        href="index.php?page=admin&section=articles&p=<?php echo $i; ?>"
+                    >
+                        <?php echo $i; ?>
+                    </a>
+                <?php endfor; ?>
+
+                <?php if ($currentArticlePage < $totalArticlePages): ?>
+                    <a
+                        class="articles-admin__pagination-link"
+                        href="index.php?page=admin&section=articles&p=<?php echo $currentArticlePage + 1; ?>"
+                    >
+                        Suivant →
+                    </a>
+                <?php endif; ?>
+
+            </div>
+        <?php endif; ?>
+
     <?php endif; ?>
 </section>

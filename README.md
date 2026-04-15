@@ -86,18 +86,11 @@ Le projet final correspond donc à une mise en œuvre concrète et cohérente de
 
 ## Gestion des comptes utilisateurs
 
-Le projet applique une logique de suppression de compte combinant :
-
-- une anonymisation des données utilisateurs ;
-- une dissociation des relations (clé étrangère mise à NULL).
+Le projet propose une fonctionnalité simple de gestion des comptes utilisateurs.
 
 La suppression du compte est accessible directement depuis l’espace utilisateur (profil).
 
-Cette approche permet de préserver l’intégrité des données tout en respectant la confidentialité des utilisateurs.
-
-Dans certains cas (ex : messages de contact), les données restent conservées 
-même après suppression du compte, mais la relation avec l’utilisateur est supprimée 
-(id_utilisateur NULL), garantissant ainsi l’intégrité des données tout en respectant la confidentialité.
+Lors de la suppression, les données liées au compte (notamment les messages) sont supprimées afin de conserver une structure cohérente dans la base de données et éviter les incohérences.
 
 ---
 
@@ -145,16 +138,11 @@ Cette structure permet :
 
 Le projet utilise une base de données **MySQL**.
 
-Le dépôt contient :
+Le dépôt contient un fichier unique :
 
-- `database/schema.sql` → structure de la base ;
-- `database/seed.sql` → données de démonstration pour tester le projet en local.
+- `database/database.sql` → structure et données de démonstration du projet.
 
-Le fichier `seed.sql` permet notamment d’insérer :
-
-- un **compte administrateur de démonstration** ;
-- des utilisateurs, catégories, contenus et médias de test ;
-- les données nécessaires à une démonstration locale du projet.
+Ce fichier permet d’installer directement une version complète du projet en local.
 
 ---
 
@@ -191,27 +179,22 @@ L’objectif était de proposer une interface accessible, claire et pédagogique
 Plusieurs bonnes pratiques ont été intégrées dans le projet :
 
 - utilisation de **requêtes préparées (PDO)** ;
-- séparation de la configuration sensible via un fichier `.env` ;
-- fichier `.env` non versionné ;
-- logique de contrôle d’accès selon le rôle utilisateur ;
-- gestion sécurisée de l’authentification ;
+- contrôle d’accès selon le rôle utilisateur ;
+- gestion de l’authentification ;
 - stockage sécurisé des mots de passe (**hashage côté serveur**) ;
-- traitement encadré des données utilisateur.
+- protection basique contre les failles courantes (XSS, SQL).
 
 ---
 
 ## Données et fichiers exclus du dépôt
 
-Le dépôt GitHub a été préparé pour rester propre, léger et installable.
+Le dépôt GitHub a été préparé pour rester propre, léger et facilement installable.
 
-Sont notamment exclus du versionnement :
+Sont exclus du versionnement :
 
-- `.env`
-- certains fichiers volumineux
-- certains contenus d’upload utilisateur
-- les éléments non nécessaires à l’installation du projet
-
-Le fichier `.env.example` est fourni afin de faciliter la réinstallation locale du projet.
+- certains fichiers volumineux ;
+- certains contenus d’upload utilisateur ;
+- les éléments non nécessaires au fonctionnement du projet.
 
 ---
 
@@ -224,112 +207,46 @@ git clone <URL_DU_REPO>
 cd <NOM_DU_PROJET>
 ```
 
-### 2) Configurer l’environnement
+### 2) Configurer la base de données
 
-Créer un fichier `.env` à partir du fichier fourni :
+Les identifiants de connexion sont externalisés dans un fichier de configuration pour des raisons de sécurité.
 
-```bash
-cp .env.example .env
-```
+1. Copier le fichier :
 
-Puis compléter les variables d’environnement selon votre configuration locale.
+config/db-config.example.php
 
-Exemple :
+2. Le renommer en :
 
-```env
-DB_HOST=localhost
-DB_NAME=fournier_roux_db
-DB_USER=root
-DB_PASS=
-```
+config/db-config.php
 
----
+3. Adapter les valeurs selon votre environnement local :
 
-## Installation de la base de données
+- host
+- dbname
+- user
+- password
 
-### 1) Créer une base de données
+Le fichier `config/db-config.php` est volontairement exclu du dépôt pour des raisons de sécurité.
 
-Créer une base vide dans **phpMyAdmin** (ou MySQL), par exemple :
-
-```sql
-CREATE DATABASE fournier_roux_db;
-```
-
-### 2) Importer la structure
+### 3) Installer la base de données
 
 Importer le fichier :
 
-```txt
-database/schema.sql
-```
+`database/database.sql`
 
-### 3) Importer les données de démonstration
+### 4) Lancer le projet
 
-Importer ensuite :
+Placer le projet dans un environnement local compatible **PHP + MySQL** (XAMPP, WAMP ou MAMP), puis démarrer le serveur.
 
-```txt
-database/seed.sql
-```
+Assurez-vous que votre serveur local (Apache et MySQL) est bien démarré.
 
-### 4) Vérifier les fichiers médias
+Accéder ensuite au projet via votre navigateur (selon votre configuration locale) :
 
-Le projet utilise également des fichiers médias présents dans :
-
-```txt
-public/uploads
-```
-
-Ces fichiers doivent être conservés pour que les articles et contenus de démonstration s’affichent correctement.
-
----
-
-## Lancer le projet
-
-Le projet doit être placé dans un environnement local compatible **PHP + MySQL**.
-
-Exemples :
-
-- **XAMPP**
-- **WAMP**
-- **MAMP**
-
-Une fois la base configurée et le fichier `.env` renseigné, lancer le serveur local puis accéder au projet via le navigateur.
-
-Exemple d’accès local :
-
-```txt
 http://localhost/web/fournier_roux/
-```
 
-L’URL exacte peut varier selon votre configuration locale.
-
----
-
-## Compte administrateur de démonstration
-
-Un compte administrateur de démonstration est créé automatiquement lors de l’import de :
-
-```txt
-database/seed.sql
-```
-
-Ce compte permet de tester localement les principales fonctionnalités d’administration du projet.
-
----
-
-## Pistes d’amélioration
-
-Le projet pourrait évoluer avec :
-
-- une gestion plus avancée des rôles utilisateurs ;
-- une modération plus fine du contenu ;
-- une meilleure gestion des médias ;
-- des validations/formulaires plus poussés ;
-- une amélioration de l’UX du back-office ;
-- une mise en production complète.
 
 ---
 
 ## Auteur
 
-Projet réalisé par **Federico Garcia** dans le cadre d’une formation de développement web full stack.
+Projet réalisé par Federico Garcia dans le cadre d’une formation de développement web full stack.

@@ -1,0 +1,131 @@
+.page-nid {
+  background: $color-bg-main;
+  color: $color-text-main;
+  font-family: $font-main;
+
+  h1,
+  h2,
+  h3 {
+    color: $color-primary;
+  }
+}
+
+.contenu-nid {
+  @include section-container;
+  max-width: 900px;
+}
+
+.contenu-nid__entete {
+  text-align: center;
+  margin-bottom: $space-6xl;
+
+  h1 {
+    padding-top: $space-3xl;
+    padding-bottom: $space-3xl;
+    font-size: $font-size-title;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-tight;
+  }
+}
+
+.contenu-nid__image-principale {
+  @include flex-center;
+  width: 100%;
+  margin: 0 auto $space-6xl;
+}
+
+.contenu-nid__figure {
+  width: 100%;
+  max-width: 920px;
+  margin: 0;
+
+  img {
+    display: block;
+    width: 100%;
+    max-width: 920px;
+    border-radius: $radius-sm;
+  }
+}
+
+.section-nid {
+  max-width: 700px;
+  margin: 0 auto $space-6xl;
+}
+
+.section-nid__schema {
+  text-align: center;
+
+  img {
+    display: block;
+    width: 120px;
+    margin: 0 auto;
+  }
+}
+
+.section-nid__cartes {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4xl;
+}
+
+.carte-nid {
+  @include soft-card;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: $space-4xl;
+  border-radius: $radius-md;
+  box-sizing: border-box;
+}
+
+.curseur-nid {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: $radius-md;
+}
+
+.curseur-nid__piste {
+  display: flex;
+  width: 100%;
+  transition: transform 0.35s ease;
+  will-change: transform;
+}
+
+.curseur-nid__diapositive {
+  flex: 0 0 100%;
+  min-width: 100%;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    border-radius: $radius-md;
+  }
+}
+
+.curseur-nid__fleche {
+  @include flex-center;
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  width: $icon-size-lg;
+  height: $icon-size-lg;
+  padding: 0;
+  border: none;
+  border-radius: $radius-pill;
+  background: rgba($color-white, 0.9);
+  color: $color-text-main;
+  font-size: $font-size-xl;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+
+.curseur-nid__fleche--precedente {
+  left: $space-lg;
+}
+
+.curseur-nid__fleche--suivante {
+  right: $space-lg;
+}

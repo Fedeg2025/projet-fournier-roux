@@ -1,30 +1,30 @@
 /* =========================
-   FOOTER
+   PIED DE PAGE
 ========================= */
 
-.site-footer {
+.pied-page {
   width: 100%;
   box-sizing: border-box;
-  background: $color-bg-main;
+  background-color: $color-bg-main;
   padding: $space-xl $space-3xl $space-lg $space-3xl;
   color: $color-text-soft;
 }
 
-/* TOP */
-.footer-top {
+/* HAUT */
+.pied-page__haut {
   @include flex-between;
   gap: $space-3xl;
   padding-bottom: $space-md;
 }
 
-/* LINKS */
-.footer-links {
+/* LIENS */
+.pied-page__liens {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
 
   a {
-    text-decoration: none;
+    @include reset-link;
     color: $color-text-muted;
     font-weight: $font-weight-semibold;
     font-size: $font-size-md;
@@ -34,8 +34,8 @@
   }
 }
 
-/* ADDRESS */
-.footer-address {
+/* ADRESSE */
+.pied-page__adresse {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -55,15 +55,15 @@
   }
 }
 
-/* SOCIAL */
-.footer-socials {
+/* RÉSEAUX */
+.pied-page__reseaux {
   display: flex;
   align-items: center;
   gap: $space-md;
   flex-shrink: 0;
 
   a {
-    text-decoration: none;
+    @include reset-link;
     font-size: 28px;
     line-height: 1;
     @include flex-center;
@@ -78,8 +78,8 @@
   }
 }
 
-/* BOTTOM */
-.footer-bottom {
+/* BAS */
+.pied-page__bas {
   padding-top: $space-md;
   text-align: center;
 
@@ -92,10 +92,10 @@
 }
 
 /* =========================
-   FOOTER RESPONSIVE MOBILE
+   PIED DE PAGE RESPONSIVE MOBILE
 ========================= */
 @include mobile-only {
-  .footer-top {
+  .pied-page__haut {
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: start;
@@ -103,7 +103,7 @@
     padding-bottom: $space-lg;
   }
 
-  .footer-links {
+  .pied-page__liens {
     flex-direction: column;
     align-items: flex-start;
     gap: $space-sm;
@@ -117,7 +117,7 @@
     }
   }
 
-  .footer-address {
+  .pied-page__adresse {
     flex-direction: column;
     align-items: flex-start;
     gap: $space-xs;
@@ -131,14 +131,14 @@
     }
   }
 
-  .footer-socials {
+  .pied-page__reseaux {
     grid-column: 2;
     justify-self: end;
     font-size: 34px;
     margin-top: $space-xxs;
   }
 
-  .footer-bottom {
+  .pied-page__bas {
     padding-top: $space-lg;
 
     p {

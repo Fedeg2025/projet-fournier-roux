@@ -2,29 +2,26 @@
    PAGE ARTICLE (DETAIL)
 ========================= */
 
-.article-page {
+.page-article {
   width: 100%;
   padding: $space-4xl;
   background-color: $color-bg-main;
   color: $color-text-main;
   font-family: $font-main;
-
   display: flex;
   justify-content: center;
 }
 
 /* =========================
-   CONTAINER
+   CONTENEUR
 ========================= */
 
-.article-page__container {
+.page-article__conteneur {
   width: 100%;
   max-width: 900px;
-
   display: flex;
   flex-direction: column;
   gap: $space-4xl;
-
   padding: $space-5xl;
   background-color: $color-white;
   border: 1px solid $color-border-soft;
@@ -36,7 +33,7 @@
    TITRE
 ========================= */
 
-.article-page__title {
+.page-article__titre {
   margin: 0;
   font-size: $font-size-title;
   font-weight: $font-weight-bold;
@@ -48,30 +45,30 @@
    IMAGE
 ========================= */
 
-.article-page__image-wrapper {
+.page-article__image-wrapper {
   width: 100%;
   border-radius: $radius-md;
   overflow: hidden;
   background-color: $color-bg-soft;
 }
 
-.article-page__image {
+.page-article__image {
   display: block;
   width: 100%;
   height: auto;
 }
 
 /* =========================
-   META
+   MÉTADONNÉES
 ========================= */
 
-.article-page__categories {
+.page-article__categories {
   margin: 0;
   font-size: $font-size-sm;
   color: $color-text-soft;
 }
 
-.article-page__meta {
+.page-article__meta {
   margin: 0;
   font-size: $font-size-sm;
   color: $color-text-muted;
@@ -81,18 +78,23 @@
    CONTENU
 ========================= */
 
-.article-page__content {
+.page-article__contenu {
   font-size: $font-size-base;
   line-height: $line-height-relaxed;
+  color: $color-text-main;
 }
 
 /* =========================
    RETOUR
 ========================= */
 
-.article-page__back-link {
-  @include reset-link;
+.page-article__retour {
+  display: flex;
+  justify-content: flex-start;
+}
 
+.page-article__retour-lien {
+  @include reset-link;
   display: inline-flex;
   margin-top: $space-2xl;
   color: $color-primary;

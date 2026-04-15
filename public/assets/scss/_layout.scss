@@ -2,17 +2,40 @@
    STRUCTURE GÉNÉRALE
 ========================= */
 
-.app-shell {
-  width: 100%;
-  margin: 0 auto;
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
   background: $color-bg-main;
 }
 
-main:not(.profile-page):not(.admin-dashboard):not(.auth-page) {
+.structure-site {
+  width: 100%;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: $color-bg-main;
+}
+
+/* Le main prend tout l’espace restant */
+main {
+  flex: 1 0 auto;
+}
+
+/* Le footer reste en bas */
+footer {
+  flex-shrink: 0;
+}
+
+main:not(.page-profil):not(.tableau-bord-admin):not(.page-authentification) {
   @include section-container;
 
   h2 {
-    color: $color-primary;
     margin-bottom: $space-4xl;
+    color: $color-primary;
   }
 }

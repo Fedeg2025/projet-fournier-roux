@@ -1,4 +1,4 @@
-.site-header {
+.entete-site {
   width: 100%;
   background: $color-bg-main;
   border: none;
@@ -8,12 +8,12 @@
 }
 
 /* ANCIEN BLOC, PLUS UTILISÉ */
-.top-header {
+.entete-site__haut {
   display: none;
 }
 
 /* BARRE SUPÉRIEURE */
-.nav-header {
+.entete-site__barre {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -23,17 +23,17 @@
 }
 
 /* BLOC LOGO + TITRE */
-.brand-box {
+.entete-site__marque {
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  gap: 16px;
+  gap: $space-2xl;
   flex: 1;
   min-width: 0;
 }
 
 /* TITRE */
-.site-title {
+.entete-site__titre {
   margin: 0 0 -2px 0;
   font-size: 1.21rem;
   line-height: 1.1;
@@ -42,7 +42,7 @@
   white-space: nowrap;
 
   a {
-    text-decoration: none;
+    @include reset-link;
     color: inherit;
   }
 
@@ -52,7 +52,7 @@
 }
 
 /* LOGO */
-.logo-box {
+.entete-site__logo {
   display: flex;
   align-items: center;
   flex-shrink: 0;
@@ -76,15 +76,15 @@
 }
 
 /* PROFIL DESKTOP */
-.profile-box {
+.entete-site__profil {
   display: none;
   margin-left: auto;
   align-items: center;
   gap: $space-md;
 
   a,
-  .logout-link {
-    text-decoration: none;
+  .entete-site__lien-deconnexion {
+    @include reset-link;
     color: $color-black;
     font-weight: $font-weight-semibold;
     padding: $space-sm $space-lg;
@@ -107,7 +107,7 @@
 }
 
 /* PROFIL MOBILE */
-.mobile-profile-box {
+.entete-site__profil-mobile {
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
@@ -115,8 +115,8 @@
   flex-shrink: 0;
 
   a,
-  .logout-link {
-    text-decoration: none;
+  .entete-site__lien-deconnexion {
+    @include reset-link;
     color: $color-black;
     font-size: 24px;
     line-height: 1;
@@ -137,7 +137,7 @@
 }
 
 /* IMAGE HERO */
-.hero-image {
+.entete-site__hero {
   position: relative;
   width: 100%;
   min-height: 420px;
@@ -150,7 +150,7 @@
   overflow: hidden;
 }
 
-.hero-overlay {
+.entete-site__superposition {
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -170,11 +170,11 @@
 }
 
 /* MENU PRINCIPAL */
-.main-nav {
+.entete-site__navigation {
   display: none;
   width: 100%;
   flex-direction: column;
-  gap: 10px;
+  gap: $space-md;
   padding: 0 $space-xl $space-xl $space-xl;
   background: $color-bg-soft;
 
@@ -183,16 +183,16 @@
   }
 
   a {
-    text-decoration: none;
+    @include reset-link;
     color: $color-black;
     font-weight: $font-weight-semibold;
-    padding: 10px 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: $space-md 0;
+    border-bottom: 1px solid rgba($color-black, 0.1);
   }
 }
 
 /* BOUTON BURGER */
-.burger-btn {
+.entete-site__bouton-menu {
   display: flex;
   align-items: flex-end;
   justify-content: flex-start;

@@ -3,28 +3,26 @@
      Permet de créer ou modifier un article
      ========================= -->
 
-<section class="admin-article-form">
-
+<section class="formulaire-article-admin">
     <!-- =========================
          TITRE DYNAMIQUE
          ========================= -->
-    <h2 class="admin-article-form__title">
-        <?php echo $article_a_modifier ? 'Modifier un article' : 'Créer un article'; ?>
+    <h2 class="formulaire-article-admin__title">
+        <?php echo $articleToEdit ? 'Modifier un article' : 'Créer un article'; ?>
     </h2>
 
     <!-- =========================
          FORMULAIRE PRINCIPAL
-         enctype requis pour upload image
+         enctype requis pour l’upload d’image
          ========================= -->
     <form
-        class="admin-article-form__form"
+        class="formulaire-article-admin__form"
         method="POST"
-        action="index.php?page=admin&section=contenus"
+        action="index.php?page=admin&section=articles"
         enctype="multipart/form-data"
     >
-
         <!-- =========================
-             TOKEN CSRF (sécurité)
+             TOKEN CSRF
              ========================= -->
         <input
             type="hidden"
@@ -35,65 +33,65 @@
         <!-- =========================
              ID ARTICLE (mode édition)
              ========================= -->
-        <?php if ($article_a_modifier): ?>
+        <?php if ($articleToEdit): ?>
             <input
                 type="hidden"
                 name="id_article"
-                value="<?php echo htmlspecialchars($article_a_modifier['id_article']); ?>"
+                value="<?php echo htmlspecialchars($articleToEdit['id_article']); ?>"
             >
         <?php endif; ?>
 
         <!-- =========================
              CHAMP TITRE
              ========================= -->
-        <div class="admin-article-form__group">
-            <label class="admin-article-form__label" for="titre">Titre :</label>
+        <div class="formulaire-article-admin__group">
+            <label class="formulaire-article-admin__label" for="titre">Titre :</label>
             <input
-                class="admin-article-form__input"
+                class="formulaire-article-admin__input"
                 type="text"
                 name="titre"
                 id="titre"
                 required
-                value="<?php echo $article_a_modifier ? htmlspecialchars($article_a_modifier['titre']) : ''; ?>"
+                value="<?php echo $articleToEdit ? htmlspecialchars($articleToEdit['titre']) : ''; ?>"
             >
         </div>
 
         <!-- =========================
              CHAMP CONTENU
              ========================= -->
-        <div class="admin-article-form__group">
-            <label class="admin-article-form__label" for="contenu">Contenu :</label>
+        <div class="formulaire-article-admin__group">
+            <label class="formulaire-article-admin__label" for="contenu">Contenu :</label>
             <textarea
-                class="admin-article-form__textarea"
+                class="formulaire-article-admin__textarea"
                 name="contenu"
                 id="contenu"
                 rows="8"
                 required
-            ><?php echo $article_a_modifier ? htmlspecialchars($article_a_modifier['contenu']) : ''; ?></textarea>
+            ><?php echo $articleToEdit ? htmlspecialchars($articleToEdit['contenu']) : ''; ?></textarea>
         </div>
 
         <!-- =========================
-             CATÉGORIES (checkbox multiples)
+             CATÉGORIES
              ========================= -->
-        <fieldset class="admin-article-form__group admin-article-form__fieldset">
-            <legend class="admin-article-form__label">Catégories :</legend>
+        <fieldset class="formulaire-article-admin__group formulaire-article-admin__fieldset">
+            <legend class="formulaire-article-admin__label">Catégories :</legend>
 
-            <p class="admin-article-form__help">
+            <p class="formulaire-article-admin__help">
                 Sélectionnez une ou plusieurs catégories.
             </p>
 
-            <div class="admin-article-form__categories">
-                <?php foreach ($categories as $categorie): ?>
-                    <label class="admin-article-form__category">
+            <div class="formulaire-article-admin__categories">
+                <?php foreach ($categories as $categoryItem): ?>
+                    <label class="formulaire-article-admin__category">
                         <input
-                            class="admin-article-form__checkbox"
+                            class="formulaire-article-admin__checkbox"
                             type="checkbox"
                             name="categories[]"
-                            value="<?php echo htmlspecialchars($categorie['id_categorie']); ?>"
-                            <?php echo in_array($categorie['id_categorie'], $categories_selectionnees, true) ? 'checked' : ''; ?>
+                            value="<?php echo htmlspecialchars($categoryItem['id_categorie']); ?>"
+                            <?php echo in_array($categoryItem['id_categorie'], $selectedCategories, true) ? 'checked' : ''; ?>
                         >
-                        <span class="admin-article-form__category-name">
-                            <?php echo htmlspecialchars($categorie['nom']); ?>
+                        <span class="formulaire-article-admin__category-name">
+                            <?php echo htmlspecialchars($categoryItem['nom']); ?>
                         </span>
                     </label>
                 <?php endforeach; ?>
@@ -101,33 +99,32 @@
         </fieldset>
 
         <!-- =========================
-             UPLOAD IMAGE (optionnel)
+             UPLOAD IMAGE
              ========================= -->
-        <div class="admin-article-form__group">
-            <label class="admin-article-form__label" for="image">Image de l’article :</label>
+        <div class="formulaire-article-admin__group">
+            <label class="formulaire-article-admin__label" for="image">Image de l’article :</label>
             <input
-                class="admin-article-form__file"
+                class="formulaire-article-admin__file"
                 type="file"
                 name="image"
                 id="image"
-                accept="image/*"
+                accept="image/jpeg,image/png,image/webp,image/gif"
             >
-            <p class="admin-article-form__help">
-                Champ optionnel.
+            <p class="formulaire-article-admin__help">
+                Champ optionnel. Formats acceptés : JPG, PNG, WEBP, GIF.
             </p>
         </div>
 
         <!-- =========================
-             BOUTON (création ou modification)
+             BOUTON D’ACTION
              ========================= -->
-        <div class="admin-article-form__actions">
+        <div class="formulaire-article-admin__actions">
             <button
-                class="admin-article-form__button <?php echo $article_a_modifier ? 'admin-article-form__button--edit' : 'admin-article-form__button--create'; ?>"
+                class="formulaire-article-admin__button <?php echo $articleToEdit ? 'formulaire-article-admin__button--edit' : 'formulaire-article-admin__button--create'; ?>"
                 type="submit"
             >
-                <?php echo $article_a_modifier ? 'Enregistrer les modifications' : 'Créer l’article'; ?>
+                <?php echo $articleToEdit ? 'Enregistrer les modifications' : 'Créer l’article'; ?>
             </button>
         </div>
-
     </form>
 </section>

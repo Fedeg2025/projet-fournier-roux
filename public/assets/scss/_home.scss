@@ -1,0 +1,329 @@
+main.accueil-page {
+  padding: $space-6xl $space-2xl $space-8xl;
+}
+
+/* =========================
+   ACCESSIBILITÉ
+========================= */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  border: 0;
+  clip-path: inset(50%);
+}
+
+/* =========================
+   STRUCTURE GÉNÉRALE
+========================= */
+
+.accueil-intro,
+.accueil-contenu,
+.accueil-galerie {
+  @include section-container;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.section-header {
+  margin-bottom: $space-4xl;
+
+  h2 {
+    margin: 0;
+    font-family: $font-main;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-base;
+    color: $color-text-soft;
+    text-align: center;
+  }
+}
+
+/* =========================
+   SECTION BIENVENUE
+========================= */
+
+.section-bienvenue__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: $space-4xl;
+}
+
+.section-bienvenue__title {
+  margin: 0;
+  text-align: center;
+  padding-top: $space-3xl;
+  padding-bottom: $space-2xl;
+}
+
+.section-bienvenue__title {
+  margin: 0 0 $space-lg 0;
+  font-family: $font-main;
+  font-size: $font-size-title;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+  color: $color-primary;
+  text-align: center;
+}
+
+.section-bienvenue__intro {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-md;
+  width: 100%;
+}
+
+.section-bienvenue__intro-line {
+  display: block;
+  width: 140px;
+  height: 1px;
+  background-color: $color-border-soft;
+}
+
+.section-bienvenue__intro-text {
+  font-family: $font-main;
+  font-size: $font-size-base;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-base;
+  color: $color-text-main;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* =========================
+   BLOCS TEXTE
+========================= */
+
+.text-border {
+  border: 1px solid $color-border-soft;
+  background-color: $color-bg-soft;
+  border-radius: $radius-sm;
+  padding: $space-6xl;
+  box-sizing: border-box;
+
+  p {
+    margin: 0 0 $space-4xl 0;
+    line-height: 1.7;
+    color: $color-text-main;
+    font-family: $font-main;
+    font-size: $font-size-base;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+/* =========================
+   CARROUSEL DESKTOP
+========================= */
+
+.accueil-carousel {
+  @include section-container;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: $space-6xl;
+}
+
+.desktop-carousel {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.desktop-carousel__track {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  overflow: hidden;
+  border-radius: $radius-md;
+  background-color: $color-bg-soft;
+  box-shadow: $shadow-soft;
+}
+
+.desktop-carousel__slide {
+  display: none;
+  width: 100%;
+  height: 100%;
+
+  &.is-active {
+    display: block;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+.desktop-carousel__btn {
+  @include flex-center;
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: none;
+  border-radius: $radius-pill;
+  background-color: rgba($color-white, 0.88);
+  color: $color-text-main;
+  cursor: pointer;
+  font-size: $font-size-xl;
+  line-height: 1;
+  transform: translateY(-50%);
+  box-shadow: $shadow-soft;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+
+  &:hover,
+  &:focus-visible {
+    background-color: $color-white;
+  }
+}
+
+.desktop-carousel__btn--prev {
+  left: $space-lg;
+}
+
+.desktop-carousel__btn--next {
+  right: $space-lg;
+}
+
+/* =========================
+   GALERIE
+========================= */
+
+.accueil-galerie {
+  margin-top: $space-6xl;
+}
+
+.galerie-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: $space-2xl;
+}
+
+.paysage {
+  margin: 0;
+
+  a {
+    @include reset-link;
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    border-radius: $radius-md;
+    background-color: $color-white;
+    box-shadow: $shadow-soft;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: 115px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: $radius-md;
+    transition: transform 0.25s ease;
+  }
+
+  a:hover img,
+  a:focus-visible img {
+    transform: scale(1.02);
+  }
+}
+
+/* =========================
+   CUSTOM LIGHTBOX
+========================= */
+
+body.lightbox-open {
+  overflow: hidden;
+}
+
+.custom-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: $space-2xl;
+  box-sizing: border-box;
+  background: rgba($color-black, 0.92);
+}
+
+.custom-lightbox.active {
+  display: flex;
+}
+
+.lightbox-image {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: calc(100dvh - (#{$space-2xl} * 2) - 70px);
+  margin: 0 auto;
+  object-fit: contain;
+  object-position: center;
+  border: 3px solid $color-white;
+  border-radius: $radius-sm;
+  background-color: $color-black;
+  box-sizing: border-box;
+}
+
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next {
+  @include flex-center;
+  position: absolute;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border: none;
+  border-radius: $radius-pill;
+  background-color: rgba($color-black, 0.45);
+  color: $color-white;
+  cursor: pointer;
+  font-size: $font-size-xl;
+  line-height: 1;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+
+  i {
+    pointer-events: none;
+  }
+
+  &:hover,
+  &:focus-visible {
+    background-color: rgba($color-black, 0.65);
+  }
+}
+
+.lightbox-close {
+  top: $space-lg;
+  right: $space-lg;
+}
+
+.lightbox-prev {
+  top: 50%;
+  left: $space-lg;
+  transform: translateY(-50%);
+}
+
+.lightbox-next {
+  top: 50%;
+  right: $space-lg;
+  transform: translateY(-50%);
+}

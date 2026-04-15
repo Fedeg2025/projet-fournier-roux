@@ -29,14 +29,14 @@ if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     exit;
 }
 
-$id_article = (int) $_GET['id'];
+$articleId = (int) $_GET['id'];
 
 
 // =========================
 // RÉCUPÉRATION DE L’ARTICLE
 // On récupère l’article demandé dans la base de données
 // =========================
-$article = getArticleDetailById($pdo, $id_article);
+$article = getArticleDetailById($pdo, $articleId);
 
 // Si l’article n’existe pas, retour vers la liste
 if (!$article) {
@@ -55,6 +55,6 @@ $article['medias'] = getMediaByArticle($pdo, $article['id_article']);
 // =========================
 // AFFICHAGE DE LA PAGE ARTICLE
 // =========================
-require_once BASE_PATH . '/app/views/pages/header.php';
-require_once BASE_PATH . '/app/views/utilisateur/article-single.php';
-require_once BASE_PATH . '/app/views/pages/footer.php';
+require_once BASE_PATH . '/app/views/layouts/header.php';
+require_once BASE_PATH . '/app/views/user/article-single.php';
+require_once BASE_PATH . '/app/views/layouts/footer.php';

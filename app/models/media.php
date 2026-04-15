@@ -11,29 +11,49 @@
 // AJOUTER UN MÉDIA
 // Cette fonction enregistre un média
 // dans la table media
+// Paramètres :
+// - $pdo : connexion à la base de données
+// - $fileName : nom du fichier
+// - $mediaType : type du média
+// Retour : true si l’enregistrement réussit, sinon false
 // =========================
-function createMedia($pdo, $nom_fichier, $type_media = 'image')
+function createMedia($pdo, $fileName, $mediaType = 'image')
 {
-    $sql = "INSERT INTO media (nom_fichier, type_media) VALUES (?, ?)";
+    try {
+        $sql = "INSERT INTO media (nom_fichier, type_media) VALUES (?, ?)";
 
-    $stmt = $pdo->prepare($sql);
+        $stmt = $pdo->prepare($sql);
 
-    return $stmt->execute([$nom_fichier, $type_media]);
+        return $stmt->execute([$fileName, $mediaType]);
+    } catch (PDOException $e) {
+        error_log('Erreur createMedia : ' . $e->getMessage());
+        return false;
+    }
 }
 
 
 // =========================
 // LIER UN MÉDIA À UN ARTICLE
-// Cette fonction crée le lien entre
-// un article et un média
+// Cette fonction crée le lien
+// entre un article et un média
+// Paramètres :
+// - $pdo : connexion à la base de données
+// - $articleId : identifiant de l’article
+// - $mediaId : identifiant du média
+// Retour : true si l’enregistrement réussit, sinon false
 // =========================
-function linkMediaToArticle($pdo, $id_article, $id_media)
+function linkMediaToArticle($pdo, $articleId, $mediaId)
 {
-    $sql = "INSERT INTO contient (id_article, id_media) VALUES (?, ?)";
+    try {
+        $sql = "INSERT INTO contient (id_article, id_media) VALUES (?, ?)";
 
-    $stmt = $pdo->prepare($sql);
+        $stmt = $pdo->prepare($sql);
 
-    return $stmt->execute([$id_article, $id_media]);
+        return $stmt->execute([$articleId, $mediaId]);
+    } catch (PDOException $e) {
+        error_log('Erreur linkMediaToArticle : ' . $e->getMessage());
+        return false;
+    }
 }
 
 
@@ -41,16 +61,25 @@ function linkMediaToArticle($pdo, $id_article, $id_media)
 // RÉCUPÉRER LES MÉDIAS D’UN ARTICLE
 // Cette fonction retourne tous les médias
 // associés à un article
+// Paramètres :
+// - $pdo : connexion à la base de données
+// - $articleId : identifiant de l’article
+// Retour : tableau des médias ou tableau vide si erreur
 // =========================
-function getMediaByArticle($pdo, $id_article)
+function getMediaByArticle($pdo, $articleId)
 {
-    $sql = "SELECT media.*
-            FROM media
-            INNER JOIN contient ON media.id_media = contient.id_media
-            WHERE contient.id_article = ?";
+    try {
+        $sql = "SELECT media.*
+                FROM media
+                INNER JOIN contient ON media.id_media = contient.id_media
+                WHERE contient.id_article = ?";
 
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$id_article]);
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$articleId]);
 
-    return $stmt->fetchAll();
+        return $stmt->fetchAll();
+    } catch (PDOException $e) {
+        error_log('Erreur getMediaByArticle : ' . $e->getMessage());
+        return [];
+    }
 }

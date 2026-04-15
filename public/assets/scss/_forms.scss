@@ -2,8 +2,8 @@
    FORMULAIRES AUTH / CONTACT - MOBILE FIRST
 ========================= */
 
-.auth-page,
-.contact-page {
+.page-authentification,
+.page-contact {
   width: 100%;
   max-width: none;
   margin: 0;
@@ -14,19 +14,19 @@
   background: $color-white;
 }
 
-.auth-page--login,
-.auth-page--register,
-.contact-page {
+.page-authentification--connexion,
+.page-authentification--inscription,
+.page-contact {
   font-family: $font-main;
   color: $color-text-main;
 
-  .auth-content {
+  .contenu-authentification {
     flex: 1;
     background: $color-white;
     padding: 4rem $auth-content-padding-x $auth-content-padding-bottom;
   }
 
-  .auth-content__inner {
+  .contenu-authentification__inner {
     width: 100%;
     max-width: $auth-content-max-width;
     margin: 0 auto;
@@ -41,7 +41,7 @@
     color: $color-text-main;
   }
 
-  .auth-content__inner > p {
+  .contenu-authentification__inner > p {
     margin: 0 0 $auth-header-margin-bottom;
     font-size: 1.08rem;
     font-weight: $font-weight-regular;
@@ -49,7 +49,7 @@
     color: $color-text-main;
   }
 
-  .auth-message {
+  .message-authentification {
     margin-bottom: $space-6xl;
     padding: $space-xl $space-2xl;
     border: 1px solid transparent;
@@ -58,39 +58,39 @@
     line-height: 1.45;
   }
 
-  .auth-message--error {
+  .message-authentification--error {
     border-color: $color-error-border;
     background-color: $color-error-bg;
     color: $color-error-text;
   }
 
-  .auth-message--success {
+  .message-authentification--success {
     border-color: $color-success-border;
     background-color: $color-success-bg;
     color: $color-success-text;
   }
 
-  .auth-form {
+  .formulaire-authentification {
     display: flex;
     flex-direction: column;
     gap: 1.45rem;
   }
 
-  .auth-form__group {
+  .formulaire-authentification__group {
     display: flex;
     flex-direction: column;
     gap: $space-sm;
   }
 
-  .auth-form__label {
+  .formulaire-authentification__label {
     font-size: 1rem;
     font-weight: $font-weight-regular;
     line-height: 1.35;
     color: $color-text-main;
   }
 
-  .auth-form__input,
-  .auth-form__textarea {
+  .formulaire-authentification__input,
+  .formulaire-authentification__textarea {
     width: 100%;
     border: 1px solid #f7f4ef;
     color: $color-text-main;
@@ -114,14 +114,14 @@
     }
   }
 
-  .auth-form__input {
+  .formulaire-authentification__input {
     height: $auth-input-height;
     padding: 0 $space-2xl;
     border-radius: $radius-pill;
     background-color: $auth-input-bg;
   }
 
-  .auth-form__textarea {
+  .formulaire-authentification__textarea {
     min-height: 140px;
     padding: $space-2xl;
     border-radius: $radius-2xl;
@@ -129,11 +129,11 @@
     resize: vertical;
   }
 
-  .auth-form__textarea--objet {
+  .formulaire-authentification__textarea--objet {
     min-height: 120px;
   }
 
-  .auth-form__choices {
+  .formulaire-authentification__choices {
     display: flex;
     justify-content: space-between;
     gap: $space-2xl;
@@ -143,7 +143,7 @@
     border: 0;
   }
 
-  .auth-form__choice {
+  .formulaire-authentification__choice {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -151,20 +151,20 @@
     flex: 1 1 90px;
   }
 
-  .auth-form__choice-label {
+  .formulaire-authentification__choice-label {
     font-size: 1rem;
     font-weight: $font-weight-bold;
     color: $color-text-main;
     text-align: center;
   }
 
-  .auth-form__submit {
+  .formulaire-authentification__submit {
     margin-top: 3px;
     display: flex;
     justify-content: flex-start;
   }
 
-  .auth-form__button {
+  .formulaire-authentification__button {
     @include auth-button-base;
     width: auto;
     min-width: 210px;
@@ -189,14 +189,14 @@
     }
   }
 
-  .auth-form__consent {
+  .formulaire-authentification__consent {
     display: flex;
     align-items: flex-start;
     gap: 1rem;
     margin-top: 0.5rem;
   }
 
-  .auth-form__checkbox {
+  .formulaire-authentification__checkbox {
     width: 28px;
     height: 28px;
     min-width: 28px;
@@ -228,32 +228,32 @@
     }
   }
 
-  .auth-form__consent-label {
+  .formulaire-authentification__consent-label {
     max-width: 290px;
     font-size: 0.95rem;
     line-height: 1.42;
     color: $color-text-main;
+  }
 
-    a {
-      color: $color-black;
-      font-weight: $font-weight-bold;
-      text-decoration: none;
+  .formulaire-authentification__link {
+    color: $color-black;
+    font-weight: $font-weight-bold;
+    text-decoration: none;
 
-      &:hover,
-      &:focus {
-        text-decoration: underline;
-      }
+    &:hover,
+    &:focus {
+      text-decoration: underline;
     }
   }
 
-  .auth-divider {
+  .separateur-authentification {
     width: 100%;
     height: 1px;
     margin: $auth-divider-margin-top 0 $auth-divider-margin-bottom;
     background-color: $color-text-muted;
   }
 
-  .auth-register {
+  .inscription-authentification {
     margin: 0 0 4rem;
     display: flex;
     justify-content: flex-start;
@@ -262,7 +262,7 @@
     flex-wrap: wrap;
   }
 
-  .auth-register__text {
+  .inscription-authentification__text {
     margin: 0;
     font-size: 1.1rem;
     font-weight: $font-weight-regular;
@@ -270,7 +270,7 @@
     color: $color-text-main;
   }
 
-  .auth-register__button {
+  .inscription-authentification__button {
     @include auth-button-base;
     @include reset-link;
     width: auto;
