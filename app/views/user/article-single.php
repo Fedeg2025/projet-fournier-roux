@@ -17,11 +17,11 @@
         <!-- =========================
              IMAGE PRINCIPALE
              ========================= -->
-        <?php if (!empty($article['medias'][0]) && $article['medias'][0]['type_media'] === 'image'): ?>
+        <?php if (!empty($article['nom_fichier_image'])): ?>
             <div class="page-article__image-wrapper">
                 <img
                     class="page-article__image"
-                    src="public/uploads/<?php echo htmlspecialchars($article['medias'][0]['nom_fichier']); ?>"
+                    src="public/uploads/<?php echo htmlspecialchars($article['nom_fichier_image']); ?>"
                     alt="Illustration de l’article <?php echo htmlspecialchars($article['titre']); ?>"
                 >
             </div>

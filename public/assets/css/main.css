@@ -2225,6 +2225,8 @@ body.lightbox-open {
 }
 .oiseau-article__section {
   padding: 18px 18px 12px;
+}
+.oiseau-article__section:not(.oiseau-article__section--title) {
   background: rgba(255, 255, 255, 0.7);
   border-radius: 12px;
 }
@@ -2255,6 +2257,11 @@ body.lightbox-open {
   line-height: 1.1;
   font-weight: 800;
   color: #111111;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
 }
 .oiseau-article__title span {
   display: block;
@@ -3229,11 +3236,15 @@ body.lightbox-open {
    TABLEAU DE BORD ADMIN
 ========================= */
 .tableau-bord-admin {
+  width: 100%;
+  max-width: none;
   min-height: 100vh;
+  margin: 0;
   padding: 20px;
   background-color: #efefef;
   color: #111111;
   font-family: "Luciole", Arial, sans-serif;
+  box-sizing: border-box;
 }
 
 .tableau-bord-admin__title {
@@ -3272,9 +3283,13 @@ body.lightbox-open {
 }
 
 .tableau-bord-admin__content {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  box-sizing: border-box;
 }
 
 .tableau-bord-admin__section {
@@ -3298,12 +3313,13 @@ body.lightbox-open {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  height: 100%;
+  min-height: 100%;
   padding: 20px;
   background-color: #ffffff;
   border: 1px solid #c8beb4;
   border-radius: 12px;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
 }
 
 .formulaire-article-admin__title {
@@ -3370,6 +3386,7 @@ body.lightbox-open {
   width: 100%;
   border-radius: 10px;
   padding: 12px 16px;
+  box-sizing: border-box;
 }
 
 .formulaire-article-admin__input {
@@ -3462,7 +3479,7 @@ body.lightbox-open {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  height: 100%;
+  min-height: 100%;
 }
 
 .articles-admin__title {
@@ -3651,11 +3668,16 @@ body.lightbox-open {
 ========================= */
 @media (max-width: 800px) {
   .page-galerie {
+    width: 100%;
+    max-width: none;
     padding: 20px 0 40px;
   }
   .section-galerie {
+    width: 100%;
+    max-width: none;
     padding: 0 16px;
     margin-bottom: 30px;
+    box-sizing: border-box;
   }
   .entete-section {
     margin-bottom: 22px;
@@ -3667,8 +3689,11 @@ body.lightbox-open {
     font-size: 14px;
   }
   .galerie-vignettes {
+    width: 100%;
+    max-width: none;
     padding: 18px 10px;
     gap: 6px;
+    box-sizing: border-box;
   }
   .galerie-vignettes__track {
     gap: 12px;
@@ -3690,13 +3715,19 @@ body.lightbox-open {
     margin-top: 10px;
   }
   .carte-media--audio {
+    width: 100%;
+    max-width: none;
     padding: 20px;
+    box-sizing: border-box;
   }
   .carte-media--audio .carte-media__content p {
     font-size: 18px;
   }
   .appel-galerie {
+    width: 100%;
+    max-width: none;
     padding: 20px;
+    box-sizing: border-box;
   }
   .appel-galerie__text h2 {
     font-size: 22px;
@@ -3717,37 +3748,57 @@ body.lightbox-open {
    RESPONSIVE - PAGE NID
 ========================= */
 @media (min-width: 752px) {
+  .page-nid {
+    width: 100%;
+    max-width: none;
+  }
   .page-nid .contenu-nid {
-    max-width: 1180px;
+    width: 100%;
+    max-width: none;
     padding-left: 18px;
     padding-right: 18px;
+    box-sizing: border-box;
   }
   .page-nid .section-nid,
   .page-nid .carte-nid,
   .page-nid #galerie-nid,
   .page-nid .contenu-nid__image-principale {
-    max-width: 920px;
+    width: 100%;
+    max-width: none;
   }
   .page-nid .contenu-nid__figure img {
-    max-width: 920px;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
   }
   .page-nid .carte-nid {
     padding: 22px;
+    box-sizing: border-box;
   }
 }
 /* =========================
    RESPONSIVE - PAGE FICHE ESPÈCE
 ========================= */
 @media (min-width: 752px) {
+  .page-fiche-oiseau {
+    width: 100%;
+    max-width: none;
+  }
+  .page-fiche-oiseau .oiseau-article {
+    width: 100%;
+    max-width: none;
+  }
   .page-fiche-oiseau .oiseau-article__header {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     gap: 24px;
   }
   .page-fiche-oiseau .oiseau-article__hero-media {
+    width: 100%;
     height: auto;
   }
   .page-fiche-oiseau .oiseau-article__hero-image {
+    width: 100%;
     height: auto;
     min-height: 320px;
   }
@@ -3772,6 +3823,11 @@ body.lightbox-open {
   .page-fiche-oiseau .oiseau-article__section-content, .page-fiche-oiseau .oiseau-article__main, .page-fiche-oiseau .oiseau-article__sidebar, .page-fiche-oiseau .oiseau-article__figure {
     min-width: 0;
     width: 100%;
+    max-width: none;
+  }
+  .page-fiche-oiseau .oiseau-article__image {
+    width: 100%;
+    height: auto;
   }
   .page-fiche-oiseau .oiseau-article__text, .page-fiche-oiseau .oiseau-article__intro, .page-fiche-oiseau .oiseau-article__card-text, .page-fiche-oiseau .oiseau-article__caption, .page-fiche-oiseau .oiseau-article__mini-item dt, .page-fiche-oiseau .oiseau-article__mini-item dd, .page-fiche-oiseau .oiseau-article__data-item dd {
     overflow-wrap: break-word;
@@ -3837,9 +3893,11 @@ body.lightbox-open {
   .entete-site__navigation {
     display: none;
     width: 100%;
+    max-width: none;
     flex-direction: column;
     gap: 10px;
     padding: 0 20px 20px 20px;
+    box-sizing: border-box;
   }
   .entete-site__navigation.active {
     display: flex;
@@ -3851,8 +3909,11 @@ body.lightbox-open {
 }
 @media (min-width: 801px) {
   .entete-site__barre {
+    width: 100%;
+    max-width: none;
     gap: 10px;
     padding: 12px 16px;
+    box-sizing: border-box;
   }
   .entete-site__marque {
     justify-content: flex-start;
@@ -3876,12 +3937,15 @@ body.lightbox-open {
     height: 54px;
   }
   .entete-site__hero {
+    width: 100%;
     min-height: 380px;
     background-position: 56% 44%;
   }
   .entete-site__superposition {
+    width: 100%;
     min-height: 380px;
     padding-bottom: 24px;
+    box-sizing: border-box;
   }
   .entete-site__superposition h2 {
     font-size: 1.6rem;
@@ -3904,6 +3968,8 @@ body.lightbox-open {
   }
   .entete-site__navigation {
     display: flex;
+    width: 100%;
+    max-width: none;
     justify-content: center;
     align-items: center;
     flex-direction: row;
@@ -3911,6 +3977,7 @@ body.lightbox-open {
     padding: 0 18px 20px 18px;
     flex-wrap: wrap;
     background: #efefef;
+    box-sizing: border-box;
   }
   .entete-site__navigation a {
     width: auto;
@@ -3923,7 +3990,10 @@ body.lightbox-open {
 ========================= */
 @media (max-width: 800px) {
   main.accueil-page {
+    width: 100%;
+    max-width: none;
     padding: 20px 16px 40px;
+    box-sizing: border-box;
   }
   .accueil-carousel {
     display: none;
@@ -3931,8 +4001,11 @@ body.lightbox-open {
   .accueil-intro,
   .accueil-contenu,
   .accueil-galerie {
+    width: 100%;
+    max-width: none;
     padding-left: 16px;
     padding-right: 16px;
+    box-sizing: border-box;
   }
   .section-bienvenue__title {
     max-width: 260px;
@@ -3950,7 +4023,10 @@ body.lightbox-open {
     max-width: 80px;
   }
   .text-border {
+    width: 100%;
+    max-width: none;
     padding: 20px;
+    box-sizing: border-box;
   }
   .text-border p {
     font-size: 14px;
@@ -3980,13 +4056,19 @@ body.lightbox-open {
 }
 @media (min-width: 801px) {
   main.accueil-page {
+    width: 100%;
+    max-width: none;
     padding: 24px 20px 40px;
+    box-sizing: border-box;
   }
   .accueil-intro,
   .accueil-contenu,
   .accueil-galerie {
+    width: 100%;
+    max-width: none;
     padding-left: 20px;
     padding-right: 20px;
+    box-sizing: border-box;
   }
   .galerie-grid {
     display: grid;
@@ -4009,7 +4091,9 @@ body.lightbox-open {
 ========================= */
 @media (min-width: 769px) and (max-width: 1199px) {
   .custom-lightbox {
+    width: 100%;
     padding: 20px;
+    box-sizing: border-box;
   }
   .lightbox-image {
     max-width: calc(100vw - 20px * 2);
@@ -4028,7 +4112,9 @@ body.lightbox-open {
 }
 @media (max-width: 800px) {
   .custom-lightbox {
+    width: 100%;
     padding: 16px;
+    box-sizing: border-box;
   }
   .lightbox-image {
     max-width: 100%;
@@ -4049,7 +4135,9 @@ body.lightbox-open {
 }
 @media (min-width: 801px) {
   .custom-lightbox {
+    width: 100%;
     padding: 40px;
+    box-sizing: border-box;
   }
   .lightbox-image {
     max-width: min(900px, 100vw - 40px * 2);
@@ -4070,11 +4158,19 @@ body.lightbox-open {
    RESPONSIVE - AUTH / CONTACT
 ========================= */
 @media (max-width: 800px) {
+  .page-contact {
+    width: 100%;
+    max-width: none;
+  }
   .page-contact .contenu-authentification {
+    width: 100%;
+    max-width: none;
     padding: 22px 16px 40px;
+    box-sizing: border-box;
   }
   .page-contact .contenu-authentification__inner {
-    max-width: 100%;
+    width: 100%;
+    max-width: none;
   }
   .page-contact .formulaire-authentification__choices {
     gap: 16px;
@@ -4093,12 +4189,15 @@ body.lightbox-open {
     min-height: 110px;
   }
   .page-contact .formulaire-authentification__button {
+    width: 100%;
     height: 42px;
     font-size: 14px;
   }
   .page-contact .informations-contact {
-    max-width: 100%;
+    width: 100%;
+    max-width: none;
     margin-top: 24px;
+    box-sizing: border-box;
   }
   .page-contact .informations-contact p {
     font-size: 14px;
@@ -4121,7 +4220,7 @@ body.lightbox-open {
 @media (min-width: 600px) {
   .page-contact .informations-contact {
     width: 100%;
-    max-width: 700px;
+    max-width: none;
     margin-left: auto;
     margin-right: auto;
     display: block;
@@ -4136,10 +4235,17 @@ body.lightbox-open {
   }
 }
 @media (min-width: 801px) {
+  .page-authentification--connexion,
+  .page-authentification--inscription,
+  .page-contact {
+    width: 100%;
+    max-width: none;
+  }
   .page-authentification--connexion .contenu-authentification__inner,
   .page-authentification--inscription .contenu-authentification__inner,
   .page-contact .contenu-authentification__inner {
-    max-width: 620px;
+    width: 100%;
+    max-width: none;
   }
 }
 /* =========================
@@ -4147,9 +4253,16 @@ body.lightbox-open {
 ========================= */
 @media (min-width: 752px) {
   .tableau-bord-admin {
-    max-width: 1400px;
-    margin: 0 auto;
+    width: 100%;
+    max-width: none;
+    margin: 0;
     padding: 24px;
+    box-sizing: border-box;
+  }
+  .tableau-bord-admin__content {
+    width: 100%;
+    max-width: none;
+    margin: 0;
   }
   .tableau-bord-admin__nav {
     flex-direction: row;
@@ -4175,6 +4288,7 @@ body.lightbox-open {
   .admin-messages,
   .admin-users {
     width: 100%;
+    max-width: none;
   }
   .formulaire-article-admin__title,
   .articles-admin__title,
@@ -4207,7 +4321,14 @@ body.lightbox-open {
 }
 @media (min-width: 1200px) {
   .tableau-bord-admin {
-    max-width: 1600px;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+  }
+  .tableau-bord-admin__content {
+    width: 100%;
+    max-width: none;
+    margin: 0;
   }
   .tableau-bord-admin__section--contenus,
   .tableau-bord-admin__section--utilisateurs {
@@ -4248,14 +4369,18 @@ body.lightbox-open {
 ========================= */
 @media (min-width: 736px) {
   .page-profil {
-    max-width: 980px;
-    margin: 0 auto;
+    width: 100%;
+    max-width: none;
+    margin: 0;
     padding: 22px 20px 40px;
     gap: 22px;
+    box-sizing: border-box;
   }
   .page-profil__section {
     width: 100%;
+    max-width: none;
     padding: 20px;
+    box-sizing: border-box;
   }
   .page-profil__section--infos,
   .page-profil__section--suppression {
@@ -4289,17 +4414,20 @@ body.lightbox-open {
 }
 @media (min-width: 1400px) {
   .page-profil {
-    max-width: 1280px;
+    width: 100%;
+    max-width: none;
     padding-left: 24px;
     padding-right: 24px;
     display: grid;
     grid-template-columns: minmax(380px, 460px) minmax(0, 1fr);
     gap: 22px;
     align-items: stretch;
+    box-sizing: border-box;
   }
   .page-profil__section--infos,
   .page-profil__section--suppression {
     height: 100%;
+    max-width: none;
   }
   .page-profil__section--infos {
     position: sticky;
@@ -4314,12 +4442,14 @@ body.lightbox-open {
 }
 @media (min-width: 1900px) {
   .page-profil {
-    max-width: 1400px;
+    width: 100%;
+    max-width: none;
     padding-left: 40px;
     padding-right: 40px;
     grid-template-columns: minmax(400px, 500px) minmax(0, 1fr);
     gap: 24px;
     align-items: stretch;
+    box-sizing: border-box;
   }
   .page-profil__section--suppression {
     max-width: none;

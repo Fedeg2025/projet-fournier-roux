@@ -2,8 +2,6 @@
 
 // =========================
 // MODÈLE UTILISATEUR
-// Ce fichier contient toutes les fonctions
-// liées à la gestion des utilisateurs
 // =========================
 
 
@@ -12,11 +10,16 @@
 // =========================
 function findUserByEmail($pdo, $email)
 {
-    $sql = "SELECT * FROM utilisateurs WHERE email = ?";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$email]);
+    try {
+        $sql = "SELECT * FROM utilisateurs WHERE email = ?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$email]);
 
-    return $stmt->fetch();
+        return $stmt->fetch();
+    } catch (PDOException $e) {
+        error_log('Erreur findUserByEmail : ' . $e->getMessage());
+        return false;
+    }
 }
 
 
@@ -25,14 +28,19 @@ function findUserByEmail($pdo, $email)
 // =========================
 function createUser($pdo, $nom, $prenom, $email, $mot_de_passe, $role = 'utilisateur')
 {
-    $hash = password_hash($mot_de_passe, PASSWORD_DEFAULT);
+    try {
+        $hash = password_hash($mot_de_passe, PASSWORD_DEFAULT);
 
-    $sql = "INSERT INTO utilisateurs (nom, prenom, email, mot_de_passe, role)
-            VALUES (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO utilisateurs (nom, prenom, email, mot_de_passe, role)
+                VALUES (?, ?, ?, ?, ?)";
 
-    $stmt = $pdo->prepare($sql);
+        $stmt = $pdo->prepare($sql);
 
-    return $stmt->execute([$nom, $prenom, $email, $hash, $role]);
+        return $stmt->execute([$nom, $prenom, $email, $hash, $role]);
+    } catch (PDOException $e) {
+        error_log('Erreur createUser : ' . $e->getMessage());
+        return false;
+    }
 }
 
 
@@ -41,10 +49,16 @@ function createUser($pdo, $nom, $prenom, $email, $mot_de_passe, $role = 'utilisa
 // =========================
 function getAllUsers($pdo)
 {
-    $sql = "SELECT * FROM utilisateurs ORDER BY nom ASC";
-    $stmt = $pdo->query($sql);
+    try {
+        $sql = "SELECT * FROM utilisateurs ORDER BY nom ASC";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
 
-    return $stmt->fetchAll();
+        return $stmt->fetchAll();
+    } catch (PDOException $e) {
+        error_log('Erreur getAllUsers : ' . $e->getMessage());
+        return [];
+    }
 }
 
 
@@ -53,13 +67,18 @@ function getAllUsers($pdo)
 // =========================
 function updateUserProfile($pdo, $id_utilisateur, $nom, $prenom)
 {
-    $sql = "UPDATE utilisateurs
-            SET nom = ?, prenom = ?
-            WHERE id_utilisateur = ?";
+    try {
+        $sql = "UPDATE utilisateurs
+                SET nom = ?, prenom = ?
+                WHERE id_utilisateur = ?";
 
-    $stmt = $pdo->prepare($sql);
+        $stmt = $pdo->prepare($sql);
 
-    return $stmt->execute([$nom, $prenom, $id_utilisateur]);
+        return $stmt->execute([$nom, $prenom, $id_utilisateur]);
+    } catch (PDOException $e) {
+        error_log('Erreur updateUserProfile : ' . $e->getMessage());
+        return false;
+    }
 }
 
 
@@ -68,12 +87,17 @@ function updateUserProfile($pdo, $id_utilisateur, $nom, $prenom)
 // =========================
 function deleteUserMessages($pdo, $id_utilisateur)
 {
-    $sql = "DELETE FROM messages
-            WHERE id_utilisateur = ?";
+    try {
+        $sql = "DELETE FROM messages
+                WHERE id_utilisateur = ?";
 
-    $stmt = $pdo->prepare($sql);
+        $stmt = $pdo->prepare($sql);
 
-    return $stmt->execute([$id_utilisateur]);
+        return $stmt->execute([$id_utilisateur]);
+    } catch (PDOException $e) {
+        error_log('Erreur deleteUserMessages : ' . $e->getMessage());
+        return false;
+    }
 }
 
 
@@ -82,12 +106,17 @@ function deleteUserMessages($pdo, $id_utilisateur)
 // =========================
 function deleteUserAccount($pdo, $id_utilisateur)
 {
-    $sql = "DELETE FROM utilisateurs
-            WHERE id_utilisateur = ?";
+    try {
+        $sql = "DELETE FROM utilisateurs
+                WHERE id_utilisateur = ?";
 
-    $stmt = $pdo->prepare($sql);
+        $stmt = $pdo->prepare($sql);
 
-    return $stmt->execute([$id_utilisateur]);
+        return $stmt->execute([$id_utilisateur]);
+    } catch (PDOException $e) {
+        error_log('Erreur deleteUserAccount : ' . $e->getMessage());
+        return false;
+    }
 }
 
 

@@ -11,12 +11,11 @@ if (!isset($_SESSION['user'])) {
 
 
 // =========================
-// CHARGEMENT DES MODÈLES
-// Ce contrôleur utilise les modèles article et media
+// CHARGEMENT DU MODÈLE
+// Ce contrôleur utilise le modèle article
 // pour afficher le détail d’un article
 // =========================
 require_once BASE_PATH . '/app/models/article.php';
-require_once BASE_PATH . '/app/models/media.php';
 
 
 // =========================
@@ -43,13 +42,6 @@ if (!$article) {
     header('Location: index.php?page=articles');
     exit;
 }
-
-
-// =========================
-// RÉCUPÉRATION DES MÉDIAS ASSOCIÉS
-// Cette étape ajoute les médias liés à l’article
-// =========================
-$article['medias'] = getMediaByArticle($pdo, $article['id_article']);
 
 
 // =========================

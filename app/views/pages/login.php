@@ -1,8 +1,7 @@
 <?php
-
 // =========================
 // RÉCUPÉRATION DU TOKEN CSRF
-// Ce token est utilisé pour sécuriser le formulaire
+// Ce token est utilisé pour sécuriser le formulaire de connexion
 // =========================
 $csrfToken = $_SESSION['csrf_token'] ?? '';
 ?>
@@ -19,9 +18,7 @@ $csrfToken = $_SESSION['csrf_token'] ?? '';
 
             <h1>Accéder à votre compte</h1>
 
-            <!-- =========================
-                 MESSAGE D’ERREUR
-                 ========================= -->
+            <!-- MESSAGE D’ERREUR -->
             <?php if (!empty($erreur)): ?>
                 <div class="message-authentification message-authentification--error" role="alert" aria-live="polite">
                     <?php echo htmlspecialchars($erreur); ?>
@@ -34,28 +31,20 @@ $csrfToken = $_SESSION['csrf_token'] ?? '';
                 </div>
             <?php endif; ?>
 
-            <!-- =========================
-                 MESSAGE DE SUCCÈS
-                 ========================= -->
+            <!-- MESSAGE DE SUCCÈS -->
             <?php if (!empty($succes)): ?>
                 <div class="message-authentification message-authentification--success" role="alert" aria-live="polite">
                     <?php echo htmlspecialchars($succes); ?>
                 </div>
             <?php endif; ?>
 
-            <!-- =========================
-                 FORMULAIRE DE CONNEXION
-                 ========================= -->
+            <!-- FORMULAIRE -->
             <form class="formulaire-authentification" method="POST" action="index.php?page=login" novalidate>
-                <input
-                    type="hidden"
-                    name="csrf_token"
-                    value="<?php echo htmlspecialchars($csrfToken); ?>"
-                >
 
-                <!-- =========================
-                     CHAMP EMAIL
-                     ========================= -->
+                <!-- TOKEN CSRF -->
+                <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrfToken); ?>">
+
+                <!-- EMAIL -->
                 <div class="formulaire-authentification__group">
                     <label class="formulaire-authentification__label" for="email">Adresse email</label>
                     <input
@@ -69,9 +58,7 @@ $csrfToken = $_SESSION['csrf_token'] ?? '';
                     >
                 </div>
 
-                <!-- =========================
-                     CHAMP MOT DE PASSE
-                     ========================= -->
+                <!-- MOT DE PASSE -->
                 <div class="formulaire-authentification__group">
                     <label class="formulaire-authentification__label" for="mot_de_passe">Mot de passe</label>
                     <input
@@ -84,22 +71,14 @@ $csrfToken = $_SESSION['csrf_token'] ?? '';
                     >
                 </div>
 
-                <!-- =========================
-                     BOUTON DE CONNEXION
-                     ========================= -->
+                <!-- BOUTON -->
                 <div class="formulaire-authentification__submit">
                     <button class="formulaire-authentification__button" type="submit">Se connecter</button>
                 </div>
             </form>
 
-            <!-- =========================
-                 SÉPARATEUR VISUEL
-                 ========================= -->
             <div class="separateur-authentification" aria-hidden="true"></div>
 
-            <!-- =========================
-                 LIEN VERS L’INSCRIPTION
-                 ========================= -->
             <section class="inscription-authentification">
                 <p class="inscription-authentification__text">Pas encore de compte ?</p>
                 <a class="inscription-authentification__button" href="index.php?page=register">

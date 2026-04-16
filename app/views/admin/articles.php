@@ -14,11 +14,11 @@
                         <?php echo htmlspecialchars($articleItem['titre']); ?>
                     </h3>
 
-                    <?php if (!empty($articleItem['medias'][0]) && $articleItem['medias'][0]['type_media'] === 'image'): ?>
+                    <?php if (!empty($articleItem['nom_fichier_image'])): ?>
                         <div class="articles-admin__image-wrapper">
                             <img
                                 class="articles-admin__image"
-                                src="public/uploads/<?php echo htmlspecialchars($articleItem['medias'][0]['nom_fichier']); ?>"
+                                src="public/uploads/<?php echo htmlspecialchars($articleItem['nom_fichier_image']); ?>"
                                 alt="Illustration de l’article <?php echo htmlspecialchars($articleItem['titre']); ?>"
                             >
                         </div>
@@ -50,53 +50,19 @@
                             Modifier
                         </a>
 
-                        <a
-                            class="articles-admin__delete-link"
-                            href="index.php?page=admin&section=articles&confirm_delete=<?php echo $articleItem['id_article']; ?>"
-                        >
-                            Supprimer
-                        </a>
-                    </div>
-
-                    <?php if (isset($confirmDelete) && $confirmDelete === (int) $articleItem['id_article']): ?>
-                        <div class="articles-admin__confirm">
-                            <p class="articles-admin__confirm-text">
-                                Confirmer la suppression de cet article ?
-                            </p>
-
-                            <form
-                                class="articles-admin__confirm-form"
-                                method="POST"
-                                action="index.php?page=admin&section=articles"
+                        <!-- Formulaire de suppression -->
+                        <form method="POST" onsubmit="return confirm('Supprimer cet article ?');" style="display:inline;">
+                            <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
+                            <input
+                                type="hidden"
+                                name="delete_article"
+                                value="<?php echo $articleItem['id_article']; ?>"
                             >
-                                <input
-                                    type="hidden"
-                                    name="csrf_token"
-                                    value="<?php echo htmlspecialchars($_SESSION['csrf_token'] ?? ''); ?>"
-                                >
-
-                                <input
-                                    type="hidden"
-                                    name="delete_article"
-                                    value="<?php echo $articleItem['id_article']; ?>"
-                                >
-
-                                <button
-                                    class="articles-admin__button articles-admin__button--danger"
-                                    type="submit"
-                                >
-                                    Oui, supprimer
-                                </button>
-
-                                <a
-                                    class="articles-admin__button articles-admin__button--secondary"
-                                    href="index.php?page=admin&section=articles"
-                                >
-                                    Annuler
-                                </a>
-                            </form>
-                        </div>
-                    <?php endif; ?>
+                            <button class="articles-admin__delete-link" type="submit">
+                                Supprimer
+                            </button>
+                        </form>
+                    </div>
 
                 </article>
             <?php endforeach; ?>

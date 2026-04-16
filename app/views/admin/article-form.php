@@ -21,14 +21,6 @@
         action="index.php?page=admin&section=articles"
         enctype="multipart/form-data"
     >
-        <!-- =========================
-             TOKEN CSRF
-             ========================= -->
-        <input
-            type="hidden"
-            name="csrf_token"
-            value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>"
-        >
 
         <!-- =========================
              ID ARTICLE (mode édition)

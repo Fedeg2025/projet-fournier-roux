@@ -17,6 +17,9 @@
 
   &__section {
     padding: $space-3xl $space-3xl $space-lg;
+  }
+
+  &__section:not(.oiseau-article__section--title) {
     background: rgba($color-white, 0.7);
     border-radius: $radius-lg;
   }
@@ -49,6 +52,11 @@
     line-height: $line-height-tight;
     font-weight: $font-weight-extrabold;
     color: $color-black;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0;
 
     span {
       display: block;

@@ -39,7 +39,7 @@
             <input
                 type="hidden"
                 name="csrf_token"
-                value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>"
+                value="<?php echo htmlspecialchars($_SESSION['csrf_token'] ?? ''); ?>"
             >
 
             <div class="formulaire-profil__group">
@@ -110,7 +110,7 @@
                 <input
                     type="hidden"
                     name="csrf_token"
-                    value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>"
+                    value="<?php echo htmlspecialchars($_SESSION['csrf_token'] ?? ''); ?>"
                 >
 
                 <input

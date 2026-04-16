@@ -1,3 +1,12 @@
+<?php
+// =========================
+// RÉCUPÉRATION DU TOKEN CSRF
+// Ce token est utilisé pour sécuriser le formulaire
+// de contact
+// =========================
+$csrfToken = $_SESSION['csrf_token'] ?? '';
+?>
+
 <!-- =========================
      PAGE CONTACT
      Cette vue affiche le formulaire de contact
@@ -31,11 +40,9 @@
                  FORMULAIRE DE CONTACT
                  ========================= -->
             <form class="formulaire-authentification" method="POST" action="index.php?page=contact">
-                <input
-                    type="hidden"
-                    name="csrf_token"
-                    value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>"
-                >
+
+                <!-- TOKEN CSRF -->
+                <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrfToken); ?>">
 
                 <!-- =========================
                      CHOIX DE CIVILITÉ
@@ -80,9 +87,7 @@
                     </label>
                 </fieldset>
 
-                <!-- =========================
-                     NOM
-                     ========================= -->
+                <!-- NOM -->
                 <div class="formulaire-authentification__group">
                     <label class="formulaire-authentification__label" for="nom">Nom</label>
                     <input
@@ -95,9 +100,7 @@
                     >
                 </div>
 
-                <!-- =========================
-                     PRÉNOM
-                     ========================= -->
+                <!-- PRÉNOM -->
                 <div class="formulaire-authentification__group">
                     <label class="formulaire-authentification__label" for="prenom">Prénom</label>
                     <input
@@ -110,9 +113,7 @@
                     >
                 </div>
 
-                <!-- =========================
-                     EMAIL
-                     ========================= -->
+                <!-- EMAIL -->
                 <div class="formulaire-authentification__group">
                     <label class="formulaire-authentification__label" for="email">E-mail</label>
                     <input
@@ -125,9 +126,7 @@
                     >
                 </div>
 
-                <!-- =========================
-                     OBJET
-                     ========================= -->
+                <!-- OBJET -->
                 <div class="formulaire-authentification__group">
                     <label class="formulaire-authentification__label" for="objet">Objet du message</label>
                     <input
@@ -140,9 +139,7 @@
                     >
                 </div>
 
-                <!-- =========================
-                     MESSAGE
-                     ========================= -->
+                <!-- MESSAGE -->
                 <div class="formulaire-authentification__group">
                     <label class="formulaire-authentification__label" for="message">Message</label>
                     <textarea
@@ -153,9 +150,7 @@
                     ><?php echo isset($_POST['message']) ? htmlspecialchars($_POST['message']) : ''; ?></textarea>
                 </div>
 
-                <!-- =========================
-                     CONSENTEMENT RGPD
-                     ========================= -->
+                <!-- CONSENTEMENT -->
                 <div class="formulaire-authentification__consent">
                     <input
                         class="formulaire-authentification__checkbox"
@@ -171,22 +166,14 @@
                     </label>
                 </div>
 
-                <!-- =========================
-                     BOUTON D’ENVOI
-                     ========================= -->
+                <!-- BOUTON -->
                 <div class="formulaire-authentification__submit">
                     <button class="formulaire-authentification__button" type="submit">Envoyer le message</button>
                 </div>
             </form>
 
-            <!-- =========================
-                 SÉPARATEUR VISUEL
-                 ========================= -->
             <div class="separateur-authentification" aria-hidden="true"></div>
 
-            <!-- =========================
-                 INFORMATIONS DE CONTACT
-                 ========================= -->
             <div class="informations-contact">
                 <p>
                     Merci pour votre visite. Nous vous remercions d’avoir consulté notre site dédié au Fournier roux.

@@ -4,12 +4,17 @@
 
 @include mobile-only {
   .page-galerie {
+    width: 100%;
+    max-width: none;
     padding: $space-4xl 0 $space-8xl;
   }
 
   .section-galerie {
+    width: 100%;
+    max-width: none;
     padding: 0 $space-2xl;
     margin-bottom: $space-7xl;
+    box-sizing: border-box;
   }
 
   .entete-section {
@@ -25,8 +30,11 @@
   }
 
   .galerie-vignettes {
+    width: 100%;
+    max-width: none;
     padding: $space-3xl $space-md;
     gap: $space-xs;
+    box-sizing: border-box;
 
     &__track {
       gap: $space-lg;
@@ -53,7 +61,10 @@
   }
 
   .carte-media--audio {
+    width: 100%;
+    max-width: none;
     padding: $space-4xl;
+    box-sizing: border-box;
 
     .carte-media__content {
       p {
@@ -63,7 +74,10 @@
   }
 
   .appel-galerie {
+    width: 100%;
+    max-width: none;
     padding: $space-4xl;
+    box-sizing: border-box;
 
     &__text {
       h2 {
@@ -95,25 +109,34 @@
 
 @media (min-width: 752px) {
   .page-nid {
+    width: 100%;
+    max-width: none;
+
     .contenu-nid {
-      max-width: 1180px;
+      width: 100%;
+      max-width: none;
       padding-left: $space-3xl;
       padding-right: $space-3xl;
+      box-sizing: border-box;
     }
 
     .section-nid,
     .carte-nid,
     #galerie-nid,
     .contenu-nid__image-principale {
-      max-width: 920px;
+      width: 100%;
+      max-width: none;
     }
 
     .contenu-nid__figure img {
-      max-width: 920px;
+      width: 100%;
+      max-width: 100%;
+      height: auto;
     }
 
     .carte-nid {
       padding: $space-5xl;
+      box-sizing: border-box;
     }
   }
 }
@@ -124,7 +147,13 @@
 
 @media (min-width: 752px) {
   .page-fiche-oiseau {
+    width: 100%;
+    max-width: none;
+
     .oiseau-article {
+      width: 100%;
+      max-width: none;
+
       &__header {
         display: grid;
         grid-template-columns: minmax(0, 1fr);
@@ -132,10 +161,12 @@
       }
 
       &__hero-media {
+        width: 100%;
         height: auto;
       }
 
       &__hero-image {
+        width: 100%;
         height: auto;
         min-height: 320px;
       }
@@ -170,6 +201,12 @@
       &__figure {
         min-width: 0;
         width: 100%;
+        max-width: none;
+      }
+
+      &__image {
+        width: 100%;
+        height: auto;
       }
 
       &__text,
@@ -264,9 +301,11 @@
   .entete-site__navigation {
     display: none;
     width: 100%;
+    max-width: none;
     flex-direction: column;
     gap: $space-md;
     padding: 0 $space-4xl $space-4xl $space-4xl;
+    box-sizing: border-box;
 
     &.active {
       display: flex;
@@ -281,8 +320,11 @@
 
 @include desktop-only {
   .entete-site__barre {
+    width: 100%;
+    max-width: none;
     gap: $space-md;
     padding: $space-lg $space-2xl;
+    box-sizing: border-box;
   }
 
   .entete-site__marque {
@@ -312,13 +354,16 @@
   }
 
   .entete-site__hero {
+    width: 100%;
     min-height: 380px;
     background-position: 56% 44%;
   }
 
   .entete-site__superposition {
+    width: 100%;
     min-height: 380px;
     padding-bottom: $space-6xl;
+    box-sizing: border-box;
 
     h2 {
       font-size: 1.6rem;
@@ -347,6 +392,8 @@
 
   .entete-site__navigation {
     display: flex;
+    width: 100%;
+    max-width: none;
     justify-content: center;
     align-items: center;
     flex-direction: row;
@@ -354,6 +401,7 @@
     padding: 0 $space-3xl $space-4xl $space-3xl;
     flex-wrap: wrap;
     background: $color-bg-soft;
+    box-sizing: border-box;
 
     a {
       width: auto;
@@ -369,7 +417,10 @@
 
 @include mobile-only {
   main.accueil-page {
+    width: 100%;
+    max-width: none;
     padding: $space-4xl $space-2xl $space-8xl;
+    box-sizing: border-box;
   }
 
   .accueil-carousel {
@@ -379,8 +430,11 @@
   .accueil-intro,
   .accueil-contenu,
   .accueil-galerie {
+    width: 100%;
+    max-width: none;
     padding-left: $space-2xl;
     padding-right: $space-2xl;
+    box-sizing: border-box;
   }
 
   .section-bienvenue__title {
@@ -402,7 +456,10 @@
   }
 
   .text-border {
+    width: 100%;
+    max-width: none;
     padding: $space-4xl;
+    box-sizing: border-box;
 
     p {
       font-size: $font-size-md;
@@ -441,14 +498,20 @@
 
 @include desktop-only {
   main.accueil-page {
+    width: 100%;
+    max-width: none;
     padding: $space-6xl $space-4xl $space-8xl;
+    box-sizing: border-box;
   }
 
   .accueil-intro,
   .accueil-contenu,
   .accueil-galerie {
+    width: 100%;
+    max-width: none;
     padding-left: $space-4xl;
     padding-right: $space-4xl;
+    box-sizing: border-box;
   }
 
   .galerie-grid {
@@ -478,7 +541,9 @@
 
 @media (min-width: 769px) and (max-width: 1199px) {
   .custom-lightbox {
+    width: 100%;
     padding: $space-4xl;
+    box-sizing: border-box;
   }
 
   .lightbox-image {
@@ -502,7 +567,9 @@
 
 @include mobile-only {
   .custom-lightbox {
+    width: 100%;
     padding: $space-2xl;
+    box-sizing: border-box;
   }
 
   .lightbox-image {
@@ -528,7 +595,9 @@
 
 @include desktop-only {
   .custom-lightbox {
+    width: 100%;
     padding: $space-8xl;
+    box-sizing: border-box;
   }
 
   .lightbox-image {
@@ -556,12 +625,19 @@
 
 @include mobile-only {
   .page-contact {
+    width: 100%;
+    max-width: none;
+
     .contenu-authentification {
+      width: 100%;
+      max-width: none;
       padding: $space-5xl $space-2xl $space-8xl;
+      box-sizing: border-box;
     }
 
     .contenu-authentification__inner {
-      max-width: 100%;
+      width: 100%;
+      max-width: none;
     }
 
     .formulaire-authentification__choices {
@@ -586,13 +662,16 @@
     }
 
     .formulaire-authentification__button {
+      width: 100%;
       height: 42px;
       font-size: $font-size-md;
     }
 
     .informations-contact {
-      max-width: 100%;
+      width: 100%;
+      max-width: none;
       margin-top: $space-6xl;
+      box-sizing: border-box;
 
       p {
         font-size: $font-size-md;
@@ -623,7 +702,7 @@
   .page-contact {
     .informations-contact {
       width: 100%;
-      max-width: 700px;
+      max-width: none;
       margin-left: auto;
       margin-right: auto;
       display: block;
@@ -644,8 +723,12 @@
   .page-authentification--connexion,
   .page-authentification--inscription,
   .page-contact {
+    width: 100%;
+    max-width: none;
+
     .contenu-authentification__inner {
-      max-width: 620px;
+      width: 100%;
+      max-width: none;
     }
   }
 }
@@ -656,9 +739,17 @@
 
 @media (min-width: 752px) {
   .tableau-bord-admin {
-    max-width: 1400px;
-    margin: 0 auto;
+    width: 100%;
+    max-width: none;
+    margin: 0;
     padding: $space-6xl;
+    box-sizing: border-box;
+  }
+
+  .tableau-bord-admin__content {
+    width: 100%;
+    max-width: none;
+    margin: 0;
   }
 
   .tableau-bord-admin__nav {
@@ -689,6 +780,7 @@
   .admin-messages,
   .admin-users {
     width: 100%;
+    max-width: none;
   }
 
   .formulaire-article-admin__title,
@@ -728,7 +820,15 @@
 
 @media (min-width: 1200px) {
   .tableau-bord-admin {
-    max-width: 1600px;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+  }
+
+  .tableau-bord-admin__content {
+    width: 100%;
+    max-width: none;
+    margin: 0;
   }
 
   .tableau-bord-admin__section--contenus,
@@ -778,15 +878,19 @@
 
 @media (min-width: 736px) {
   .page-profil {
-    max-width: 980px;
-    margin: 0 auto;
+    width: 100%;
+    max-width: none;
+    margin: 0;
     padding: $space-5xl $space-4xl $space-8xl;
     gap: $space-5xl;
+    box-sizing: border-box;
   }
 
   .page-profil__section {
     width: 100%;
+    max-width: none;
     padding: $space-4xl;
+    box-sizing: border-box;
   }
 
   .page-profil__section--infos,
@@ -827,18 +931,21 @@
 
 @media (min-width: 1400px) {
   .page-profil {
-    max-width: 1280px;
+    width: 100%;
+    max-width: none;
     padding-left: $space-6xl;
     padding-right: $space-6xl;
     display: grid;
     grid-template-columns: minmax(380px, 460px) minmax(0, 1fr);
     gap: $space-5xl;
     align-items: stretch;
+    box-sizing: border-box;
   }
 
   .page-profil__section--infos,
   .page-profil__section--suppression {
     height: 100%;
+    max-width: none;
   }
 
   .page-profil__section--infos {
@@ -856,12 +963,14 @@
 
 @media (min-width: 1900px) {
   .page-profil {
-    max-width: 1400px;
+    width: 100%;
+    max-width: none;
     padding-left: $space-8xl;
     padding-right: $space-8xl;
     grid-template-columns: minmax(400px, 500px) minmax(0, 1fr);
     gap: $space-6xl;
     align-items: stretch;
+    box-sizing: border-box;
   }
 
   .page-profil__section--suppression {

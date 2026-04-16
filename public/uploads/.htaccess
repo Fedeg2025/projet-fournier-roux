@@ -1,0 +1,6 @@
+Options -Indexes
+
+# Bloque l’exécution des scripts dans ce dossier
+<FilesMatch "\.(php|phtml|phar|pl|py|cgi|asp|aspx|jsp|sh)$">
+    Require all denied
+</FilesMatch>

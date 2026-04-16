@@ -3,7 +3,7 @@
 // =========================
 // MODÈLE ARTICLE
 // Ce fichier contient les fonctions
-// liées aux articles, catégories et médias
+// liées aux articles et catégories
 // =========================
 
 
@@ -23,8 +23,13 @@ function getBaseArticleQuery()
 function getBaseArticleSelect()
 {
     return "SELECT 
-                articles.*, 
-                utilisateurs.nom, 
+                articles.id_article,
+                articles.titre,
+                articles.contenu,
+                articles.date_publication,
+                articles.id_utilisateur,
+                articles.nom_fichier_image,
+                utilisateurs.nom,
                 utilisateurs.prenom,
                 GROUP_CONCAT(categorie.nom SEPARATOR ', ') AS categories";
 }
@@ -51,7 +56,8 @@ function getAllArticles($pdo)
                GROUP BY articles.id_article
                ORDER BY articles.date_publication DESC";
 
-        return $pdo->query($sql)->fetchAll();
+        $stmt = $pdo->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
         error_log('Erreur getAllArticles : ' . $e->getMessage());
         return [];
@@ -81,7 +87,7 @@ function getLatestArticles($pdo, $limit = 3)
         $stmt->bindValue(':limit', (int) $limit, PDO::PARAM_INT);
         $stmt->execute();
 
-        return $stmt->fetchAll();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
         error_log('Erreur getLatestArticles : ' . $e->getMessage());
         return [];
@@ -111,7 +117,7 @@ function getOlderArticles($pdo, $offset = 3)
         $stmt->bindValue(':offset', (int) $offset, PDO::PARAM_INT);
         $stmt->execute();
 
-        return $stmt->fetchAll();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
         error_log('Erreur getOlderArticles : ' . $e->getMessage());
         return [];
@@ -139,7 +145,7 @@ function getArticleDetailById($pdo, $articleId)
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$articleId]);
 
-        return $stmt->fetch();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
         error_log('Erreur getArticleDetailById : ' . $e->getMessage());
         return null;
@@ -168,7 +174,7 @@ function getArticlesByCategory($pdo, $categoryId)
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$categoryId]);
 
-        return $stmt->fetchAll();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
         error_log('Erreur getArticlesByCategory : ' . $e->getMessage());
         return [];
@@ -231,6 +237,30 @@ function updateArticle($pdo, $articleId, $title, $content)
 
 
 // =========================
+// METTRE À JOUR L’IMAGE D’UN ARTICLE
+// Cette fonction enregistre le nom du fichier image
+// directement dans la table articles
+// Paramètres :
+// - $pdo : connexion à la base de données
+// - $articleId : identifiant de l’article
+// - $fileName : nom du fichier image
+// Retour : true si succès, sinon false
+// =========================
+function updateArticleImage($pdo, $articleId, $fileName)
+{
+    try {
+        $sql = "UPDATE articles SET nom_fichier_image = ? WHERE id_article = ?";
+        $stmt = $pdo->prepare($sql);
+
+        return $stmt->execute([$fileName, $articleId]);
+    } catch (PDOException $e) {
+        error_log('Erreur updateArticleImage : ' . $e->getMessage());
+        return false;
+    }
+}
+
+
+// =========================
 // SUPPRIMER UN ARTICLE
 // Cette fonction supprime un article
 // Paramètres :
@@ -268,7 +298,7 @@ function getArticleById($pdo, $articleId)
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$articleId]);
 
-        return $stmt->fetch();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
         error_log('Erreur getArticleById : ' . $e->getMessage());
         return null;
@@ -348,24 +378,5 @@ function getCategoryIdsByArticle($pdo, $articleId)
     } catch (PDOException $e) {
         error_log('Erreur getCategoryIdsByArticle : ' . $e->getMessage());
         return [];
-    }
-}
-
-
-// =========================
-// GESTION DU LIEN AVEC LES MÉDIAS
-// Cette fonction supprime uniquement
-// les relations entre l’article et ses médias
-// =========================
-function deleteArticleMedia($pdo, $articleId)
-{
-    try {
-        $sql = "DELETE FROM contient WHERE id_article = ?";
-        $stmt = $pdo->prepare($sql);
-
-        return $stmt->execute([$articleId]);
-    } catch (PDOException $e) {
-        error_log('Erreur deleteArticleMedia : ' . $e->getMessage());
-        return false;
     }
 }

@@ -3,11 +3,15 @@
 ========================= */
 
 .tableau-bord-admin {
+  width: 100%;
+  max-width: none;
   min-height: 100vh;
+  margin: 0;
   padding: $space-4xl;
   background-color: $color-bg-soft;
   color: $color-text-main;
   font-family: $font-main;
+  box-sizing: border-box;
 }
 
 .tableau-bord-admin__title {
@@ -46,9 +50,13 @@
 }
 
 .tableau-bord-admin__content {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: $space-4xl;
+  box-sizing: border-box;
 }
 
 .tableau-bord-admin__section {
@@ -73,12 +81,13 @@
   display: flex;
   flex-direction: column;
   gap: $space-4xl;
-  height: 100%;
+  min-height: 100%;
   padding: $space-4xl;
   background-color: $color-white;
   border: 1px solid $color-border-soft;
   border-radius: $radius-lg;
   box-shadow: $shadow-soft;
+  box-sizing: border-box;
 }
 
 .formulaire-article-admin__title {
@@ -125,6 +134,7 @@
   width: 100%;
   border-radius: $radius-md;
   padding: $space-lg $space-2xl;
+  box-sizing: border-box;
 }
 
 .formulaire-article-admin__input {
@@ -208,7 +218,7 @@
   display: flex;
   flex-direction: column;
   gap: $space-4xl;
-  height: 100%;
+  min-height: 100%;
 }
 
 .articles-admin__title {

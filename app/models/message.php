@@ -10,18 +10,6 @@
 
 // =========================
 // CRÉER UN MESSAGE
-// Cette fonction enregistre un message
-// envoyé par un utilisateur ou un visiteur
-// Paramètres :
-// - $pdo : connexion à la base de données
-// - $title : civilité du contact
-// - $firstName : prénom du contact
-// - $lastName : nom du contact
-// - $email : email du contact
-// - $subject : objet du message
-// - $message : contenu du message
-// - $userId : identifiant utilisateur optionnel
-// Retour : true si l’enregistrement réussit, sinon false
 // =========================
 function createMessage($pdo, $title, $firstName, $lastName, $email, $subject, $message, $userId = null)
 {
@@ -49,19 +37,14 @@ function createMessage($pdo, $title, $firstName, $lastName, $email, $subject, $m
 
 // =========================
 // RÉCUPÉRER TOUS LES MESSAGES
-// Cette fonction retourne la liste
-// des messages triés par date d’envoi
-// du plus récent au plus ancien
-// Paramètre :
-// - $pdo : connexion à la base de données
-// Retour : tableau des messages ou tableau vide si erreur
 // =========================
 function getAllMessages($pdo)
 {
     try {
         $sql = "SELECT * FROM messages ORDER BY date_envoi DESC";
 
-        $stmt = $pdo->query($sql);
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
 
         return $stmt->fetchAll();
     } catch (PDOException $e) {
@@ -73,12 +56,6 @@ function getAllMessages($pdo)
 
 // =========================
 // SUPPRIMER UN MESSAGE
-// Cette fonction permet de supprimer
-// un message depuis l’interface d’administration
-// Paramètres :
-// - $pdo : connexion à la base de données
-// - $messageId : identifiant du message
-// Retour : true si la suppression réussit, sinon false
 // =========================
 function deleteMessage($pdo, $messageId)
 {

@@ -1,8 +1,9 @@
 <?php
 
 // =========================
-// VÉRIFICATION DE L'AUTHENTIFICATION
-// Cette page est réservée aux utilisateurs connectés
+// VÉRIFICATION DE LA CONNEXION
+// Si l'utilisateur n'est pas connecté,
+// on le redirige vers la page login
 // =========================
 if (!isset($_SESSION['user'])) {
     header('Location: index.php?page=login');
@@ -11,12 +12,9 @@ if (!isset($_SESSION['user'])) {
 
 
 // =========================
-// CHARGEMENT DES MODÈLES
-// Ce contrôleur utilise les modèles article et media
-// pour récupérer les articles et leurs médias associés
+// CHARGEMENT DU MODÈLE ARTICLE
 // =========================
 require_once BASE_PATH . '/app/models/article.php';
-require_once BASE_PATH . '/app/models/media.php';
 
 
 // =========================
@@ -24,46 +22,45 @@ require_once BASE_PATH . '/app/models/media.php';
 // =========================
 $articles = getAllArticles($pdo);
 
-
-// =========================
-// PAGINATION DES ARTICLES
-// Cette partie permet d'afficher les articles
-// sur plusieurs pages
-// =========================
-$articlesPerPage = 2;
-$currentPage = isset($_GET['p']) ? (int) $_GET['p'] : 1;
-
-if ($currentPage < 1) {
-    $currentPage = 1;
+// Sécurité simple : si la fonction retourne autre chose qu'un tableau
+if (!is_array($articles)) {
+    $articles = [];
 }
 
-$totalArticles = count($articles);
-$totalPages = (int) ceil($totalArticles / $articlesPerPage);
-$articleOffset = ($currentPage - 1) * $articlesPerPage;
 
+// =========================
+// PAGINATION
+// =========================
+$articlesPerPage = 2;
+
+// On récupère la page actuelle
+$page_articles = isset($_GET['p']) ? (int) $_GET['p'] : 1;
+
+// On évite les valeurs invalides
+if ($page_articles < 1) {
+    $page_articles = 1;
+}
+
+// Nombre total d’articles
+$totalArticles = count($articles);
+
+// Nombre total de pages
+$total_pages_articles = ($totalArticles > 0) ? (int) ceil($totalArticles / $articlesPerPage) : 1;
+
+// Si la page demandée dépasse le total, on revient à la dernière
+if ($page_articles > $total_pages_articles) {
+    $page_articles = $total_pages_articles;
+}
+
+// Calcul de l’offset
+$articleOffset = ($page_articles - 1) * $articlesPerPage;
+
+// On découpe le tableau pour n’afficher que les articles de la page
 $articles = array_slice($articles, $articleOffset, $articlesPerPage);
 
 
 // =========================
-// AJOUT DES MÉDIAS À CHAQUE ARTICLE
-// Cette boucle ajoute les médias liés
-// à chaque article affiché
-// =========================
-foreach ($articles as &$article) {
-    $article['medias'] = getMediaByArticle($pdo, $article['id_article']);
-}
-unset($article);
-
-
-// =========================
-// VARIABLES ATTENDUES PAR LA VUE
-// =========================
-$page_articles = $currentPage;
-$total_pages_articles = $totalPages;
-
-
-// =========================
-// AFFICHAGE DE LA PAGE DES ARTICLES
+// AFFICHAGE DE LA PAGE
 // =========================
 require_once BASE_PATH . '/app/views/layouts/header.php';
 require_once BASE_PATH . '/app/views/user/news.php';

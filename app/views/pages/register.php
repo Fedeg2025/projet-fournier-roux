@@ -27,18 +27,18 @@ $csrfToken = $_SESSION['csrf_token'] ?? '';
             <!-- =========================
                  MESSAGE D’ERREUR
                  ========================= -->
-            <?php if (!empty($erreur)): ?>
+            <?php if (!empty($errorMessage)): ?>
                 <div class="message-authentification message-authentification--error" role="alert" aria-live="polite">
-                    <?php echo htmlspecialchars($erreur); ?>
+                    <?php echo htmlspecialchars($errorMessage); ?>
                 </div>
             <?php endif; ?>
 
             <!-- =========================
                  MESSAGE DE SUCCÈS
                  ========================= -->
-            <?php if (!empty($succes)): ?>
+            <?php if (!empty($successMessage)): ?>
                 <div class="message-authentification message-authentification--success" role="alert" aria-live="polite">
-                    <?php echo htmlspecialchars($succes); ?>
+                    <?php echo htmlspecialchars($successMessage); ?>
                 </div>
             <?php endif; ?>
 
