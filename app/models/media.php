@@ -17,7 +17,7 @@ function createMedia($pdo, $fileName, $mediaType = 'image')
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$fileName, $mediaType]);
 
-    return $pdo->lastInsertId();
+    return (int) $pdo->lastInsertId();
 }
 
 
@@ -58,7 +58,68 @@ function getMediaByArticle($pdo, $articleId)
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$articleId]);
 
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $medias = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    return is_array($medias) ? $medias : [];
+}
+
+
+// =========================
+// RÉCUPÉRER UN MEDIA PAR SON ID
+// Retourne un seul média ou null
+// =========================
+function getMediaById($pdo, $mediaId)
+{
+    $sql = "SELECT * FROM media WHERE id_media = ?";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$mediaId]);
+
+    $media = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    return $media ?: null;
+}
+
+
+// =========================
+// RÉCUPÉRER TOUS LES MÉDIAS
+// Retourne tous les médias avec leur nombre d’utilisations
+// =========================
+function getAllMedia($pdo)
+{
+    $sql = "SELECT media.*,
+                   COUNT(contient.id_article) AS usage_count
+            FROM media
+            LEFT JOIN contient ON media.id_media = contient.id_media
+            GROUP BY media.id_media
+            ORDER BY media.id_media DESC";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+
+    $medias = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    return is_array($medias) ? $medias : [];
+}
+
+
+// =========================
+// RÉCUPÉRER LES MÉDIAS NON UTILISÉS
+// Retourne les médias sans lien avec un article
+// =========================
+function getUnusedMedia($pdo)
+{
+    $sql = "SELECT media.*
+            FROM media
+            LEFT JOIN contient ON media.id_media = contient.id_media
+            WHERE contient.id_media IS NULL
+            ORDER BY media.id_media DESC";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+
+    $medias = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    return is_array($medias) ? $medias : [];
 }
 
 
@@ -72,6 +133,19 @@ function unlinkMediaFromArticle($pdo, $articleId, $mediaId)
     $stmt = $pdo->prepare($sql);
 
     return $stmt->execute([$articleId, $mediaId]);
+}
+
+
+// =========================
+// SUPPRIMER TOUS LES LIENS D’UN MEDIA
+// Retire toutes les associations d’un média
+// =========================
+function deleteMediaLinks($pdo, $mediaId)
+{
+    $sql = "DELETE FROM contient WHERE id_media = ?";
+    $stmt = $pdo->prepare($sql);
+
+    return $stmt->execute([$mediaId]);
 }
 
 
@@ -113,7 +187,7 @@ function countMediaUsage($pdo, $mediaId)
 
 
 // =========================
-// SUPPRIMER UN MEDIA
+// SUPPRIMER UN MEDIA DE LA BASE
 // Supprime le média uniquement s’il n’est plus utilisé
 // =========================
 function deleteMedia($pdo, $mediaId)
@@ -126,4 +200,29 @@ function deleteMedia($pdo, $mediaId)
     $stmt = $pdo->prepare($sql);
 
     return $stmt->execute([$mediaId]);
+}
+
+
+// =========================
+// SUPPRIMER COMPLÈTEMENT UN MEDIA
+// Supprime les liens, le fichier physique
+// puis l’entrée dans la base de données
+// =========================
+function deleteMediaCompletely($pdo, $mediaId)
+{
+    $media = getMediaById($pdo, $mediaId);
+
+    if (!$media) {
+        return false;
+    }
+
+    deleteMediaLinks($pdo, $mediaId);
+
+    $filePath = BASE_PATH . '/public/uploads/' . $media['nom_fichier'];
+
+    if (file_exists($filePath)) {
+        unlink($filePath);
+    }
+
+    return deleteMedia($pdo, $mediaId);
 }

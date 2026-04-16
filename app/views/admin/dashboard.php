@@ -1,7 +1,7 @@
 <!-- =========================
      TABLEAU DE BORD ADMINISTRATEUR
      Cette vue organise les différentes sections
-     du back-office : messages, articles et utilisateurs
+     du back-office : messages, articles, utilisateurs et médias
      ========================= -->
 
 <main class="tableau-bord-admin">
@@ -31,6 +31,13 @@
         >
             Utilisateurs
         </a>
+
+        <a
+            class="tableau-bord-admin__link <?php echo $section === 'medias' ? 'tableau-bord-admin__link--active' : ''; ?>"
+            href="index.php?page=admin&section=medias"
+        >
+            Médias
+        </a>
     </nav>
 
     <!-- =========================
@@ -47,7 +54,7 @@
              SECTION MESSAGES
              ========================= -->
         <?php if ($section === 'messages'): ?>
-            <div class="tableau-bord-admin__section tableau-bord-admin__section--messages">
+            <section class="tableau-bord-admin__section tableau-bord-admin__section--messages">
 
                 <div class="tableau-bord-admin__block tableau-bord-admin__block--recherche-message">
                     <form method="GET" action="index.php" class="tableau-bord-admin__search-form">
@@ -74,14 +81,27 @@
                     <?php require_once BASE_PATH . '/app/views/admin/messages.php'; ?>
                 </div>
 
-            </div>
+                <?php if (!empty($messagePagination) && $messagePagination['totalPages'] > 1): ?>
+                    <div class="tableau-bord-admin__pagination pagination-admin">
+                        <?php for ($i = 1; $i <= $messagePagination['totalPages']; $i++): ?>
+                            <a
+                                class="pagination-admin__link <?php echo $i === $messagePagination['currentPage'] ? 'pagination-admin__link--active' : ''; ?>"
+                                href="index.php?page=admin&section=messages&message_page=<?php echo $i; ?>&message_date=<?php echo urlencode($messageDate ?? ''); ?>"
+                            >
+                                <?php echo $i; ?>
+                            </a>
+                        <?php endfor; ?>
+                    </div>
+                <?php endif; ?>
+
+            </section>
         <?php endif; ?>
 
         <!-- =========================
              SECTION ARTICLES
              ========================= -->
         <?php if ($section === 'articles'): ?>
-            <div class="tableau-bord-admin__section tableau-bord-admin__section--articles">
+            <section class="tableau-bord-admin__section tableau-bord-admin__section--articles">
 
                 <div class="tableau-bord-admin__block tableau-bord-admin__block--formulaire-article">
                     <?php require_once BASE_PATH . '/app/views/admin/article-form.php'; ?>
@@ -120,14 +140,27 @@
                     <?php require_once BASE_PATH . '/app/views/admin/articles.php'; ?>
                 </div>
 
-            </div>
+                <?php if (!empty($articlePagination) && $articlePagination['totalPages'] > 1): ?>
+                    <div class="tableau-bord-admin__pagination pagination-admin">
+                        <?php for ($i = 1; $i <= $articlePagination['totalPages']; $i++): ?>
+                            <a
+                                class="pagination-admin__link <?php echo $i === $articlePagination['currentPage'] ? 'pagination-admin__link--active' : ''; ?>"
+                                href="index.php?page=admin&section=articles&p=<?php echo $i; ?>&article_search=<?php echo urlencode($articleSearch ?? ''); ?>&article_date=<?php echo urlencode($articleDate ?? ''); ?>"
+                            >
+                                <?php echo $i; ?>
+                            </a>
+                        <?php endfor; ?>
+                    </div>
+                <?php endif; ?>
+
+            </section>
         <?php endif; ?>
 
         <!-- =========================
              SECTION UTILISATEURS
              ========================= -->
         <?php if ($section === 'utilisateurs'): ?>
-            <div class="tableau-bord-admin__section tableau-bord-admin__section--utilisateurs">
+            <section class="tableau-bord-admin__section tableau-bord-admin__section--utilisateurs">
 
                 <div class="tableau-bord-admin__block tableau-bord-admin__block--recherche-utilisateur">
                     <form method="GET" action="index.php" class="tableau-bord-admin__search-form">
@@ -155,7 +188,33 @@
                     <?php require_once BASE_PATH . '/app/views/admin/user.php'; ?>
                 </div>
 
-            </div>
+                <?php if (!empty($userPagination) && $userPagination['totalPages'] > 1): ?>
+                    <div class="tableau-bord-admin__pagination pagination-admin">
+                        <?php for ($i = 1; $i <= $userPagination['totalPages']; $i++): ?>
+                            <a
+                                class="pagination-admin__link <?php echo $i === $userPagination['currentPage'] ? 'pagination-admin__link--active' : ''; ?>"
+                                href="index.php?page=admin&section=utilisateurs&user_page=<?php echo $i; ?>&user_search=<?php echo urlencode($userSearch ?? ''); ?>"
+                            >
+                                <?php echo $i; ?>
+                            </a>
+                        <?php endfor; ?>
+                    </div>
+                <?php endif; ?>
+
+            </section>
+        <?php endif; ?>
+
+        <!-- =========================
+             SECTION MÉDIAS
+             ========================= -->
+        <?php if ($section === 'medias'): ?>
+            <section class="tableau-bord-admin__section tableau-bord-admin__section--medias">
+
+                <div class="tableau-bord-admin__block tableau-bord-admin__block--medias">
+                    <?php require_once BASE_PATH . '/app/views/admin/media.php'; ?>
+                </div>
+
+            </section>
         <?php endif; ?>
 
     </section>

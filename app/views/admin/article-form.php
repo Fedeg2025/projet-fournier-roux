@@ -6,6 +6,8 @@
 <section class="formulaire-article-admin">
     <!-- =========================
          TITRE DYNAMIQUE
+         Affiche un titre différent
+         selon le mode création ou édition
          ========================= -->
     <h2 class="formulaire-article-admin__title">
         <?php echo $articleToEdit ? 'Modifier un article' : 'Créer un article'; ?>
@@ -23,7 +25,8 @@
     >
 
         <!-- =========================
-             ID ARTICLE (mode édition)
+             ID ARTICLE
+             Champ caché utilisé en mode édition
              ========================= -->
         <?php if ($articleToEdit): ?>
             <input
@@ -64,6 +67,7 @@
 
         <!-- =========================
              CATÉGORIES
+             Sélection multiple des catégories
              ========================= -->
         <fieldset class="formulaire-article-admin__group formulaire-article-admin__fieldset">
             <legend class="formulaire-article-admin__label">Catégories :</legend>
@@ -91,19 +95,21 @@
         </fieldset>
 
         <!-- =========================
-             UPLOAD IMAGE
+             UPLOAD DES IMAGES
+             Permet de sélectionner une ou plusieurs images
              ========================= -->
         <div class="formulaire-article-admin__group">
-            <label class="formulaire-article-admin__label" for="image">Image de l’article :</label>
+            <label class="formulaire-article-admin__label" for="images">Images de l’article :</label>
             <input
                 class="formulaire-article-admin__file"
                 type="file"
-                name="image"
-                id="image"
+                name="images[]"
+                id="images"
                 accept="image/jpeg,image/png,image/webp,image/gif"
+                multiple
             >
             <p class="formulaire-article-admin__help">
-                Champ optionnel. Formats acceptés : JPG, PNG, WEBP, GIF.
+                Champ optionnel. Vous pouvez sélectionner une ou plusieurs images. Formats acceptés : JPG, PNG, WEBP, GIF.
             </p>
         </div>
 

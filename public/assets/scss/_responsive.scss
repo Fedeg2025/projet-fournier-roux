@@ -780,6 +780,7 @@
     right: $space-md;
   }
 }
+
 /* =========================
    RESPONSIVE - AUTH / CONTACT
 ========================= */
@@ -909,8 +910,8 @@
 
   .tableau-bord-admin__content {
     width: 100%;
-    max-width: none;
-    margin: 0;
+    max-width: 1400px;
+    margin: 0 auto;
   }
 
   .tableau-bord-admin__nav {
@@ -926,28 +927,42 @@
     text-align: center;
   }
 
-  .tableau-bord-admin__section--contenus,
-  .tableau-bord-admin__section--utilisateurs {
-    gap: $space-6xl;
-    align-items: stretch;
+  .tableau-bord-admin__section {
+    gap: $space-5xl;
   }
 
   .tableau-bord-admin__block {
     justify-content: flex-start;
   }
 
+  .tableau-bord-admin__search-form {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .tableau-bord-admin__search-input {
+    flex: 1 1 220px;
+  }
+
+  .tableau-bord-admin__search-button {
+    width: auto;
+  }
+
   .formulaire-article-admin,
   .articles-admin,
-  .admin-messages,
-  .admin-users {
+  .messages-admin,
+  .utilisateurs-admin,
+  .gestion-media-admin {
     width: 100%;
     max-width: none;
   }
 
   .formulaire-article-admin__title,
   .articles-admin__title,
-  .admin-messages__title,
-  .admin-users__title {
+  .messages-admin__title,
+  .utilisateurs-admin__title,
+  .gestion-media-admin__title {
     text-align: center;
   }
 
@@ -959,7 +974,11 @@
     justify-content: flex-start;
   }
 
-  .articles-admin__actions {
+  .articles-admin__actions,
+  .messages-admin__actions,
+  .gestion-media-admin__actions,
+  .gestion-media-admin__bulk-actions,
+  .gestion-media-admin__single-action {
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
@@ -967,15 +986,33 @@
 
   .articles-admin__edit-link,
   .articles-admin__delete-link,
-  .articles-admin__button {
+  .articles-admin__button,
+  .messages-admin__button,
+  .gestion-media-admin__button {
     width: auto;
   }
 
-  .admin-users__info {
+  .utilisateurs-admin__info {
     display: grid;
-    grid-template-columns: 180px minmax(0, 1fr);
+    grid-template-columns: 140px minmax(0, 1fr);
     gap: $space-2xl;
     align-items: start;
+  }
+
+  .gestion-media-admin__item {
+    display: grid;
+    grid-template-columns: 40px 180px minmax(0, 1fr) auto;
+    gap: $space-3xl;
+    align-items: start;
+  }
+
+  .gestion-media-admin__preview {
+    width: 180px;
+  }
+
+  .gestion-media-admin__image {
+    width: 100%;
+    max-width: none;
   }
 }
 
@@ -988,40 +1025,39 @@
 
   .tableau-bord-admin__content {
     width: 100%;
-    max-width: none;
-    margin: 0;
+    max-width: 1400px;
+    margin: 0 auto;
   }
 
-  .tableau-bord-admin__section--contenus,
-  .tableau-bord-admin__section--utilisateurs {
-    display: grid;
-    grid-template-columns: minmax(320px, 420px) minmax(0, 1fr);
+  .tableau-bord-admin__section--articles,
+  .tableau-bord-admin__section--messages,
+  .tableau-bord-admin__section--utilisateurs,
+  .tableau-bord-admin__section--medias {
+    display: flex;
+    flex-direction: column;
     gap: $space-6xl;
-    align-items: start;
+    align-items: stretch;
   }
 
-  .tableau-bord-admin__block--article-form,
-  .tableau-bord-admin__block--users,
-  .tableau-bord-admin__block--articles {
-    align-self: start;
-  }
-
-  .tableau-bord-admin__block--article-form,
-  .tableau-bord-admin__block--users {
-    position: sticky;
-    top: $space-6xl;
+  .tableau-bord-admin__block--formulaire-article,
+  .tableau-bord-admin__block--recherche-article,
+  .tableau-bord-admin__block--articles,
+  .tableau-bord-admin__block--recherche-utilisateur,
+  .tableau-bord-admin__block--utilisateurs,
+  .tableau-bord-admin__block--recherche-message,
+  .tableau-bord-admin__block--messages,
+  .tableau-bord-admin__block--medias {
+    position: static;
+    top: auto;
+    align-self: auto;
   }
 
   .formulaire-article-admin,
-  .admin-users,
-  .articles-admin {
+  .articles-admin,
+  .messages-admin,
+  .utilisateurs-admin,
+  .gestion-media-admin {
     height: auto;
-  }
-
-  .formulaire-article-admin__title,
-  .articles-admin__title,
-  .admin-users__title {
-    text-align: center;
   }
 
   .formulaire-article-admin__textarea {
@@ -1030,6 +1066,23 @@
 
   .articles-admin__actions {
     justify-content: flex-start;
+  }
+
+  .gestion-media-admin__list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $space-4xl;
+  }
+
+  .gestion-media-admin__item {
+    display: grid;
+    grid-template-columns: 40px 200px minmax(0, 1fr) auto;
+    gap: $space-4xl;
+    align-items: start;
+  }
+
+  .gestion-media-admin__preview {
+    width: 200px;
   }
 }
 

@@ -1,13 +1,46 @@
-# Node
+# =========================
+# NODE / OUTILS
+# =========================
 node_modules/
+package.json
+package-lock.json
 
-# Config sensible
+# =========================
+# CONFIG SENSIBLE
+# =========================
 config/db-config.php
 
-# Logs / cache
+# =========================
+# LOGS / CACHE
+# =========================
 *.log
 *.cache
 
-# Media pesada
+# =========================
+# UPLOADS (NO VERSIONADOS)
+# =========================
+/public/uploads/*
+!/public/uploads/.gitkeep
+
+# =========================
+# FICHIERS GENERADOS
+# =========================
+/public/assets/css/*.map
+
+# =========================
+# MEDIA INUTILE / DEMO
+# =========================
+public/assets/images/demo.articles/
+
+# =========================
+# MEDIA PESADA
+# =========================
 public/assets/images/videos/fournier-roux1.webm
 public/assets/images/videos/fournier-roux1.mp4
+
+# =========================
+# OS / EDITOR
+# =========================
+.DS_Store
+Thumbs.db
+.vscode/

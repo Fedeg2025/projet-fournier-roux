@@ -1,12 +1,13 @@
 /* =========================
-   TABLEAU DE BORD ADMIN
+   BACK-OFFICE ADMIN
+   BASE GÉNÉRALE
 ========================= */
 
 .tableau-bord-admin {
   width: 100%;
-  max-width: none;
+  max-width: 1200px;
   min-height: 100vh;
-  margin: 0;
+  margin: 0 auto;
   padding: $space-4xl;
   background-color: $color-bg-soft;
   color: $color-text-main;
@@ -15,14 +16,37 @@
 }
 
 .tableau-bord-admin__title {
-  margin: 0 0 $space-4xl 0;
+  margin: 0 0 $space-4xl;
   font-size: $font-size-xl;
   font-weight: $font-weight-bold;
   line-height: $line-height-tight;
   text-align: center;
 }
 
+.tableau-bord-admin__separator {
+  margin: $space-4xl 0;
+  border: 0;
+  border-top: 1px solid $color-divider;
+}
+
+.tableau-bord-admin__content {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: $space-4xl;
+  box-sizing: border-box;
+}
+
+/* =========================
+   NAVIGATION ADMIN
+========================= */
+
 .tableau-bord-admin__nav {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: $space-2xl;
@@ -35,54 +59,72 @@
   background-color: $color-white;
   border: 1px solid $color-border-soft;
   border-radius: $radius-md;
+  box-shadow: $shadow-soft;
   font-size: $font-size-base;
   font-weight: $font-weight-semibold;
+  text-align: center;
+  color: $color-text-main;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 
   &:hover {
     background-color: $color-bg-main;
+    transform: translateY(-1px);
   }
 }
 
-.tableau-bord-admin__separator {
-  margin: $space-4xl 0;
-  border: 0;
-  border-top: 1px solid $color-divider;
-}
-
-.tableau-bord-admin__content {
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: $space-4xl;
-  box-sizing: border-box;
-}
-
-.tableau-bord-admin__section {
-  display: flex;
-  flex-direction: column;
-  gap: $space-4xl;
-  align-items: stretch;
-}
-
-.tableau-bord-admin__block {
-  display: flex;
-  flex-direction: column;
-  gap: $space-4xl;
-  justify-content: flex-start;
+.tableau-bord-admin__link--active {
+  background-color: $color-primary;
+  border-color: $color-primary;
+  color: $color-white;
 }
 
 /* =========================
-   FORMULAIRE ARTICLE ADMIN
+   STRUCTURE COMMUNE DES ÉCRANS
 ========================= */
 
-.formulaire-article-admin {
+.tableau-bord-admin__section {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: $space-4xl;
-  min-height: 100%;
-  padding: $space-4xl;
+}
+
+.tableau-bord-admin__block {
+  width: 100%;
+}
+
+.tableau-bord-admin__section--messages,
+.tableau-bord-admin__section--articles,
+.tableau-bord-admin__section--utilisateurs,
+.tableau-bord-admin__section--medias {
+  width: 100%;
+  max-width: 950px;
+  margin: 0 auto;
+}
+
+.tableau-bord-admin__section--messages .tableau-bord-admin__block,
+.tableau-bord-admin__section--articles .tableau-bord-admin__block,
+.tableau-bord-admin__section--utilisateurs .tableau-bord-admin__block,
+.tableau-bord-admin__section--medias .tableau-bord-admin__block {
+  width: 100%;
+  max-width: 950px;
+  margin: 0 auto;
+}
+
+/* =========================
+   COMPOSANTS COMMUNS
+========================= */
+
+.tableau-bord-admin__search-form,
+.formulaire-article-admin,
+.articles-admin__item,
+.messages-admin__item,
+.utilisateurs-admin__item,
+.gestion-media-admin__item,
+.articles-admin__empty,
+.messages-admin__empty,
+.utilisateurs-admin__empty,
+.gestion-media-admin__empty {
   background-color: $color-white;
   border: 1px solid $color-border-soft;
   border-radius: $radius-lg;
@@ -90,7 +132,111 @@
   box-sizing: border-box;
 }
 
-.formulaire-article-admin__title {
+.tableau-bord-admin__search-form {
+  width: 100%;
+  padding: $space-4xl;
+  display: flex;
+  flex-direction: column;
+  gap: $space-2xl;
+}
+
+.tableau-bord-admin__search-input {
+  @include form-field-base;
+  width: 100%;
+  min-height: 42px;
+  padding: $space-lg $space-2xl;
+  border-radius: $radius-md;
+  box-sizing: border-box;
+}
+
+.tableau-bord-admin__search-button {
+  @include auth-button-base;
+  width: fit-content;
+  min-width: 160px;
+  height: $auth-button-height;
+  padding: 0 $space-5xl;
+  margin: 0 auto;
+  border: 2px solid transparent;
+  background-color: $color-primary;
+  color: $color-white;
+  box-shadow: none;
+  line-height: 1.2;
+
+  &:hover,
+  &:focus {
+    opacity: 0.92;
+    transform: translateY(-1px);
+  }
+}
+
+.tableau-bord-admin__pagination,
+.articles-admin__pagination,
+.utilisateurs-admin__pagination {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: $space-lg;
+}
+
+.pagination-admin__link,
+.articles-admin__pagination-link,
+.utilisateurs-admin__pagination-link {
+  @include reset-link;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 42px;
+  padding: $space-md $space-lg;
+  border: 1px solid $color-border-soft;
+  border-radius: $radius-md;
+  background-color: $color-white;
+  color: $color-text-main;
+  font-size: $font-size-base;
+  box-shadow: $shadow-soft;
+}
+
+.pagination-admin__link--active,
+.articles-admin__pagination-link--active {
+  background-color: $color-primary;
+  border-color: $color-primary;
+  color: $color-white;
+}
+
+.articles-admin__edit-link,
+.articles-admin__delete-link,
+.messages-admin__button,
+.articles-admin__button,
+.gestion-media-admin__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: $radius-md;
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+  font-family: $font-main;
+  cursor: pointer;
+}
+
+/* =========================
+   ÉCRAN ARTICLES
+========================= */
+
+.formulaire-article-admin,
+.articles-admin {
+  width: 100%;
+  max-width: 950px;
+  margin: 0 auto;
+}
+
+.formulaire-article-admin {
+  padding: $space-4xl;
+  display: flex;
+  flex-direction: column;
+  gap: $space-4xl;
+}
+
+.formulaire-article-admin__title,
+.articles-admin__title {
   margin: 0;
   font-size: $font-size-xl;
   font-weight: $font-weight-bold;
@@ -113,7 +259,7 @@
 }
 
 .formulaire-article-admin__fieldset {
-  margin: 0 0 $space-4xl 0;
+  margin: 0;
   padding: 0;
   border: 0;
   min-width: 0;
@@ -121,10 +267,16 @@
 
 .formulaire-article-admin__label {
   margin: 0;
-  padding: 0;
   font-size: $font-size-base;
   font-weight: $font-weight-medium;
   color: $color-text-main;
+}
+
+.formulaire-article-admin__help {
+  margin: 0;
+  font-size: $font-size-sm;
+  line-height: $line-height-relaxed;
+  color: $color-text-muted;
 }
 
 .formulaire-article-admin__input,
@@ -132,8 +284,8 @@
 .formulaire-article-admin__file {
   @include form-field-base;
   width: 100%;
-  border-radius: $radius-md;
   padding: $space-lg $space-2xl;
+  border-radius: $radius-md;
   box-sizing: border-box;
 }
 
@@ -143,8 +295,13 @@
 
 .formulaire-article-admin__textarea {
   min-height: 160px;
-  line-height: $line-height-relaxed;
   resize: vertical;
+  line-height: $line-height-relaxed;
+}
+
+.formulaire-article-admin__file {
+  padding: $space-md;
+  cursor: pointer;
 }
 
 .formulaire-article-admin__categories {
@@ -175,30 +332,20 @@
   color: $color-text-main;
 }
 
-.formulaire-article-admin__file {
-  padding: $space-md;
-  cursor: pointer;
-}
-
 .formulaire-article-admin__actions {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 .formulaire-article-admin__button {
   @include auth-button-base;
-  width: auto;
   min-width: 170px;
   height: $auth-button-height;
   padding: 0 $space-6xl;
-  box-sizing: border-box;
   border: 2px solid transparent;
   background-color: $color-secondary;
   color: $color-black;
   box-shadow: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   white-space: nowrap;
   text-align: center;
   line-height: 1.2;
@@ -210,32 +357,16 @@
   }
 }
 
-/* =========================
-   ARTICLES ADMIN
-========================= */
-
 .articles-admin {
   display: flex;
   flex-direction: column;
   gap: $space-4xl;
-  min-height: 100%;
-}
-
-.articles-admin__title {
-  margin: 0;
-  font-size: $font-size-xl;
-  font-weight: $font-weight-bold;
-  line-height: $line-height-tight;
-  text-align: center;
-  color: $color-text-main;
 }
 
 .articles-admin__empty {
   margin: 0;
   padding: $space-4xl;
-  background-color: $color-white;
-  border: 1px solid $color-border-soft;
-  border-radius: $radius-lg;
+  text-align: center;
   color: $color-text-muted;
 }
 
@@ -250,10 +381,6 @@
   flex-direction: column;
   gap: $space-3xl;
   padding: $space-4xl;
-  background-color: $color-white;
-  border: 1px solid $color-border-soft;
-  border-radius: $radius-lg;
-  box-shadow: $shadow-soft;
 }
 
 .articles-admin__item-title {
@@ -261,26 +388,39 @@
   font-size: $font-size-lg;
   font-weight: $font-weight-bold;
   line-height: $line-height-base;
+  text-align: center;
   color: $color-text-main;
 }
 
 .articles-admin__image-wrapper {
   width: 100%;
-  overflow: hidden;
-  border-radius: $radius-md;
-  background-color: $color-bg-soft;
+  display: flex;
+  justify-content: center;
 }
 
 .articles-admin__image {
   display: block;
   width: 100%;
-  height: auto;
+  max-width: 120px;
+  height: 80px;
+  object-fit: cover;
+  border: 1px solid $color-border-soft;
+  border-radius: $radius-md;
+}
+
+.articles-admin__categories,
+.articles-admin__meta {
+  margin: 0;
+  text-align: center;
+  font-size: $font-size-sm;
 }
 
 .articles-admin__categories {
-  margin: 0;
-  font-size: $font-size-sm;
   color: $color-text-soft;
+}
+
+.articles-admin__meta {
+  color: $color-text-muted;
 }
 
 .articles-admin__content {
@@ -288,30 +428,23 @@
   font-size: $font-size-base;
   line-height: $line-height-relaxed;
   color: $color-text-main;
-}
-
-.articles-admin__meta {
-  margin: 0;
-  font-size: $font-size-sm;
-  color: $color-text-muted;
+  text-align: left;
 }
 
 .articles-admin__actions {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: $space-2xl;
+  flex-wrap: wrap;
 }
 
 .articles-admin__edit-link,
 .articles-admin__delete-link {
   @include reset-link;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  min-width: 140px;
   padding: $space-lg $space-4xl;
-  border-radius: $radius-md;
-  font-size: $font-size-base;
-  font-weight: $font-weight-semibold;
+  box-shadow: $shadow-soft;
 }
 
 .articles-admin__edit-link {
@@ -320,9 +453,9 @@
 }
 
 .articles-admin__delete-link {
+  border: 1px solid $color-error-border;
   background-color: $color-error-bg;
   color: $color-error-text;
-  border: 1px solid $color-error-border;
 }
 
 .articles-admin__confirm {
@@ -349,15 +482,7 @@
 
 .articles-admin__button {
   @include reset-link;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   padding: $space-lg $space-4xl;
-  border-radius: $radius-md;
-  font-size: $font-size-base;
-  font-weight: $font-weight-semibold;
-  font-family: $font-main;
-  cursor: pointer;
 }
 
 .articles-admin__button--danger {
@@ -372,29 +497,269 @@
   color: $color-text-main;
 }
 
-.articles-admin__pagination {
+/* =========================
+   ÉCRAN MESSAGES
+========================= */
+
+.messages-admin {
+  width: 100%;
+  max-width: 950px;
+  margin: 0 auto;
   display: flex;
-  flex-wrap: wrap;
-  gap: $space-lg;
+  flex-direction: column;
+  gap: $space-4xl;
+}
+
+.messages-admin__title {
+  margin: 0;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+  text-align: center;
+  color: $color-text-main;
+}
+
+.messages-admin__empty {
+  margin: 0;
+  padding: $space-4xl;
+  text-align: center;
+  color: $color-text-muted;
+}
+
+.messages-admin__list {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4xl;
+}
+
+.messages-admin__item {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3xl;
+  padding: $space-4xl;
+}
+
+.messages-admin__subject {
+  margin: 0;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+  text-align: center;
+  color: $color-text-main;
+}
+
+.messages-admin__meta,
+.messages-admin__text,
+.messages-admin__date {
+  margin: 0;
+}
+
+.messages-admin__meta {
+  font-size: $font-size-sm;
+  line-height: $line-height-relaxed;
+  text-align: center;
+  color: $color-text-soft;
+}
+
+.messages-admin__text {
+  font-size: $font-size-base;
+  line-height: $line-height-relaxed;
+  color: $color-text-main;
+}
+
+.messages-admin__date {
+  font-size: $font-size-sm;
+  text-align: center;
+  color: $color-text-muted;
+}
+
+.messages-admin__actions {
+  display: flex;
   justify-content: center;
 }
 
-.articles-admin__pagination-link {
-  @include reset-link;
-  display: inline-flex;
+.messages-admin__confirm-form {
+  display: flex;
+}
+
+.messages-admin__button {
+  padding: $space-lg $space-4xl;
+  box-shadow: $shadow-soft;
+}
+
+.messages-admin__button--danger {
+  border: 1px solid $color-error-border;
+  background-color: $color-error-bg;
+  color: $color-error-text;
+}
+
+/* =========================
+   ÉCRAN UTILISATEURS
+========================= */
+
+.utilisateurs-admin {
+  width: 100%;
+  max-width: 950px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: $space-4xl;
+}
+
+.utilisateurs-admin__title {
+  margin: 0;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+  text-align: center;
+  color: $color-text-main;
+}
+
+.utilisateurs-admin__empty {
+  margin: 0;
+  padding: $space-4xl;
+  text-align: center;
+  color: $color-text-muted;
+}
+
+.utilisateurs-admin__list {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4xl;
+}
+
+.utilisateurs-admin__item {
+  padding: $space-4xl;
+  text-align: center;
+}
+
+.utilisateurs-admin__name {
+  margin: 0;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+  color: $color-text-main;
+}
+
+.utilisateurs-admin__info {
+  margin: 0;
+  font-size: $font-size-base;
+  line-height: $line-height-relaxed;
+  color: $color-text-main;
+}
+
+.utilisateurs-admin__label {
+  font-weight: $font-weight-semibold;
+  color: $color-text-soft;
+}
+
+.utilisateurs-admin__value {
+  color: $color-text-main;
+}
+
+/* =========================
+   ÉCRAN MÉDIAS
+========================= */
+
+.gestion-media-admin {
+  width: 100%;
+  max-width: 950px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: $space-4xl;
+}
+
+.gestion-media-admin__title {
+  margin: 0;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+  text-align: center;
+  color: $color-text-main;
+}
+
+.gestion-media-admin__actions,
+.gestion-media-admin__bulk-actions,
+.gestion-media-admin__single-action {
+  display: flex;
+  justify-content: center;
+}
+
+.gestion-media-admin__empty {
+  margin: 0;
+  padding: $space-4xl;
+  text-align: center;
+  color: $color-text-muted;
+}
+
+.gestion-media-admin__list {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4xl;
+}
+
+.gestion-media-admin__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-3xl;
+  padding: $space-4xl;
+  text-align: center;
+}
+
+.gestion-media-admin__checkbox-wrapper {
+  display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 42px;
-  padding: $space-md $space-lg;
-  border: 1px solid $color-border-soft;
-  border-radius: $radius-md;
-  background-color: $color-white;
-  color: $color-text-main;
-  font-size: $font-size-base;
 }
 
-.articles-admin__pagination-link--active {
+.gestion-media-admin__preview {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.gestion-media-admin__image {
+  display: block;
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  border: 1px solid $color-border-soft;
+  border-radius: $radius-md;
+}
+
+.gestion-media-admin__info {
+  display: flex;
+  flex-direction: column;
+  gap: $space-sm;
+  align-items: center;
+
+  p {
+    margin: 0;
+    font-size: $font-size-base;
+    line-height: $line-height-relaxed;
+    color: $color-text-main;
+  }
+}
+
+.gestion-media-admin__button {
+  @include auth-button-base;
+  min-width: 180px;
+  padding: 0 $space-5xl;
+  border: 2px solid transparent;
   background-color: $color-primary;
-  border-color: $color-primary;
   color: $color-white;
+  box-shadow: none;
+  line-height: 1.2;
+
+  &:hover,
+  &:focus {
+    opacity: 0.92;
+    transform: translateY(-1px);
+  }
+}
+
+.gestion-media-admin__button--delete {
+  background-color: $color-error-bg;
+  border-color: $color-error-border;
+  color: $color-error-text;
 }

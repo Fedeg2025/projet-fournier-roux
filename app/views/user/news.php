@@ -1,5 +1,22 @@
 <?php require_once BASE_PATH . '/app/models/media.php'; ?>
 
+<?php
+/*
+ * Cette fonction retourne l’image principale
+ * ou la première image disponible
+ */
+function getMainImage(array $medias): ?array
+{
+    foreach ($medias as $media) {
+        if (!empty($media['image_principale'])) {
+            return $media;
+        }
+    }
+
+    return $medias[0] ?? null;
+}
+?>
+
 <main class="page-actualites">
     <h1 class="page-actualites__title">Actualités</h1>
 
@@ -13,7 +30,7 @@
 
                 <?php
                 $medias = getMediaByArticle($pdo, $article['id_article']);
-                $mainImage = $medias[0] ?? null;
+                $mainImage = getMainImage($medias);
                 ?>
 
                 <section class="page-actualites__item">
@@ -21,8 +38,7 @@
                     <h2 class="page-actualites__item-title">
                         <a
                             class="page-actualites__item-link"
-                            href="index.php?page=article&id=<?php echo htmlspecialchars($article['id_article']); ?>"
-                        >
+                            href="index.php?page=article&id=<?php echo htmlspecialchars($article['id_article']); ?>">
                             <?php echo htmlspecialchars($article['titre']); ?>
                         </a>
                     </h2>
@@ -32,8 +48,7 @@
                             <img
                                 class="page-actualites__image"
                                 src="public/uploads/<?php echo htmlspecialchars($mainImage['nom_fichier']); ?>"
-                                alt="Illustration de l’article <?php echo htmlspecialchars($article['titre']); ?>"
-                            >
+                                alt="Illustration de l’article <?php echo htmlspecialchars($article['titre']); ?>">
                         </div>
                     <?php endif; ?>
 
@@ -58,8 +73,7 @@
                     <p class="page-actualites__more">
                         <a
                             class="page-actualites__more-link"
-                            href="index.php?page=article&id=<?php echo htmlspecialchars($article['id_article']); ?>"
-                        >
+                            href="index.php?page=article&id=<?php echo htmlspecialchars($article['id_article']); ?>">
                             Lire la suite
                         </a>
                     </p>
@@ -78,8 +92,7 @@
             <?php if ($currentPage > 1): ?>
                 <a
                     class="page-actualites__pagination-link"
-                    href="index.php?page=articles&p=<?php echo $currentPage - 1; ?>"
-                >
+                    href="index.php?page=articles&p=<?php echo $currentPage - 1; ?>">
                     ← Précédent
                 </a>
             <?php endif; ?>
@@ -87,8 +100,7 @@
             <?php for ($i = 1; $i <= $totalPages; $i++): ?>
                 <a
                     class="page-actualites__pagination-link <?php echo $i === $currentPage ? 'page-actualites__pagination-link--active' : ''; ?>"
-                    href="index.php?page=articles&p=<?php echo $i; ?>"
-                >
+                    href="index.php?page=articles&p=<?php echo $i; ?>">
                     <?php echo htmlspecialchars((string) $i); ?>
                 </a>
             <?php endfor; ?>
@@ -96,8 +108,7 @@
             <?php if ($currentPage < $totalPages): ?>
                 <a
                     class="page-actualites__pagination-link"
-                    href="index.php?page=articles&p=<?php echo $currentPage + 1; ?>"
-                >
+                    href="index.php?page=articles&p=<?php echo $currentPage + 1; ?>">
                     Suivant →
                 </a>
             <?php endif; ?>

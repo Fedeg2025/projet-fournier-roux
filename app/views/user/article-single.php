@@ -15,15 +15,20 @@
         </h1>
 
         <!-- =========================
-             IMAGE PRINCIPALE
+             IMAGES DE L’ARTICLE
              ========================= -->
-        <?php if (!empty($article['nom_fichier_image'])): ?>
-            <div class="page-article__image-wrapper">
-                <img
-                    class="page-article__image"
-                    src="public/uploads/<?php echo htmlspecialchars($article['nom_fichier_image']); ?>"
-                    alt="Illustration de l’article <?php echo htmlspecialchars($article['titre']); ?>"
-                >
+             
+        <?php if (!empty($medias)): ?>
+            <div class="page-article__images">
+                <?php foreach ($medias as $media): ?>
+                    <div class="page-article__image-wrapper">
+                        <img
+                            class="page-article__image"
+                            src="public/uploads/<?php echo htmlspecialchars($media['nom_fichier']); ?>"
+                            alt="Illustration de l’article <?php echo htmlspecialchars($article['titre']); ?>"
+                        >
+                    </div>
+                <?php endforeach; ?>
             </div>
         <?php endif; ?>
 

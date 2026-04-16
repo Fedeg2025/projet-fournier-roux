@@ -1,3 +1,22 @@
+<?php require_once BASE_PATH . '/app/models/media.php'; ?>
+
+<?php
+/*
+ * Cette fonction retourne l’image principale
+ * ou la première image disponible
+ */
+function getMainImage(array $medias): ?array
+{
+    foreach ($medias as $media) {
+        if (!empty($media['image_principale'])) {
+            return $media;
+        }
+    }
+
+    return $medias[0] ?? null;
+}
+?>
+
 <section class="articles-admin">
     <h2 class="articles-admin__title">Articles publiés</h2>
 
@@ -8,19 +27,24 @@
 
         <div class="articles-admin__list">
             <?php foreach ($articles as $articleItem): ?>
+
+                <?php
+                $medias = getMediaByArticle($pdo, $articleItem['id_article']);
+                $mainImage = getMainImage($medias);
+                ?>
+
                 <article class="articles-admin__item">
 
                     <h3 class="articles-admin__item-title">
                         <?php echo htmlspecialchars($articleItem['titre']); ?>
                     </h3>
 
-                    <?php if (!empty($articleItem['nom_fichier_image'])): ?>
+                    <?php if (!empty($mainImage)): ?>
                         <div class="articles-admin__image-wrapper">
                             <img
                                 class="articles-admin__image"
-                                src="public/uploads/<?php echo htmlspecialchars($articleItem['nom_fichier_image']); ?>"
-                                alt="Illustration de l’article <?php echo htmlspecialchars($articleItem['titre']); ?>"
-                            >
+                                src="public/uploads/<?php echo htmlspecialchars($mainImage['nom_fichier']); ?>"
+                                alt="Illustration de l’article <?php echo htmlspecialchars($articleItem['titre']); ?>">
                         </div>
                     <?php endif; ?>
 
@@ -45,19 +69,16 @@
                     <div class="articles-admin__actions">
                         <a
                             class="articles-admin__edit-link"
-                            href="index.php?page=admin&section=articles&edit_article=<?php echo $articleItem['id_article']; ?>"
-                        >
+                            href="index.php?page=admin&section=articles&edit_article=<?php echo $articleItem['id_article']; ?>">
                             Modifier
                         </a>
 
-                        <!-- Formulaire de suppression -->
-                        <form method="POST" onsubmit="return confirm('Supprimer cet article ?');" style="display:inline;">
+                        <form method="POST" onsubmit="return confirm('Supprimer cet article ?');">
                             <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
                             <input
                                 type="hidden"
                                 name="delete_article"
-                                value="<?php echo $articleItem['id_article']; ?>"
-                            >
+                                value="<?php echo $articleItem['id_article']; ?>">
                             <button class="articles-admin__delete-link" type="submit">
                                 Supprimer
                             </button>
@@ -67,39 +88,6 @@
                 </article>
             <?php endforeach; ?>
         </div>
-
-        <?php if (!empty($totalArticlePages) && $totalArticlePages > 1): ?>
-            <div class="articles-admin__pagination">
-
-                <?php if ($currentArticlePage > 1): ?>
-                    <a
-                        class="articles-admin__pagination-link"
-                        href="index.php?page=admin&section=articles&p=<?php echo $currentArticlePage - 1; ?>"
-                    >
-                        ← Précédent
-                    </a>
-                <?php endif; ?>
-
-                <?php for ($i = 1; $i <= $totalArticlePages; $i++): ?>
-                    <a
-                        class="articles-admin__pagination-link <?php echo $i === $currentArticlePage ? 'articles-admin__pagination-link--active' : ''; ?>"
-                        href="index.php?page=admin&section=articles&p=<?php echo $i; ?>"
-                    >
-                        <?php echo $i; ?>
-                    </a>
-                <?php endfor; ?>
-
-                <?php if ($currentArticlePage < $totalArticlePages): ?>
-                    <a
-                        class="articles-admin__pagination-link"
-                        href="index.php?page=admin&section=articles&p=<?php echo $currentArticlePage + 1; ?>"
-                    >
-                        Suivant →
-                    </a>
-                <?php endif; ?>
-
-            </div>
-        <?php endif; ?>
 
     <?php endif; ?>
 </section>

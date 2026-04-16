@@ -1,43 +1,28 @@
 <?php
 
 // =========================
-// VÉRIFICATION DE L'AUTHENTIFICATION
-// Cette page est réservée aux utilisateurs connectés
-// =========================
-if (!isset($_SESSION['user'])) {
-    header('Location: index.php?page=login');
-    exit;
-}
-
-
-// =========================
-// CHARGEMENT DU MODÈLE
-// Ce contrôleur utilise le modèle article
-// pour afficher le détail d’un article
+// CHARGEMENT DES MODÈLES
 // =========================
 require_once BASE_PATH . '/app/models/article.php';
+require_once BASE_PATH . '/app/models/media.php';
 
 
 // =========================
-// VALIDATION DE L’IDENTIFIANT
-// On vérifie que l’identifiant de l’article est présent
-// et qu’il s’agit bien d’un nombre
+// VALIDATION DE L'IDENTIFIANT
 // =========================
-if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+$articleId = isset($_GET['id']) ? (int) $_GET['id'] : 0;
+
+if ($articleId <= 0) {
     header('Location: index.php?page=articles');
     exit;
 }
 
-$articleId = (int) $_GET['id'];
-
 
 // =========================
-// RÉCUPÉRATION DE L’ARTICLE
-// On récupère l’article demandé dans la base de données
+// RÉCUPÉRATION DE L'ARTICLE
 // =========================
 $article = getArticleDetailById($pdo, $articleId);
 
-// Si l’article n’existe pas, retour vers la liste
 if (!$article) {
     header('Location: index.php?page=articles');
     exit;
@@ -45,7 +30,20 @@ if (!$article) {
 
 
 // =========================
-// AFFICHAGE DE LA PAGE ARTICLE
+// RÉCUPÉRATION DES MÉDIAS DE L’ARTICLE
+// =========================
+/**
+ * Récupère les médias liés à l'article courant.
+ */
+$medias = getMediaByArticle($pdo, $articleId);
+
+if (!is_array($medias)) {
+    $medias = [];
+}
+
+
+// =========================
+// AFFICHAGE DE LA PAGE
 // =========================
 require_once BASE_PATH . '/app/views/layouts/header.php';
 require_once BASE_PATH . '/app/views/user/article-single.php';
