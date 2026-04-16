@@ -483,13 +483,41 @@
 
   .paysage {
     a {
-      max-width: 100%;
+      display: block;
       width: 100%;
+      max-width: 100%;
+      overflow: hidden;
     }
 
     img {
+      display: block;
       width: 100%;
       height: 115px;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+}
+
+/* ajuste exacto para el tramo problemático */
+@media (min-width: 518px) and (max-width: 762px) {
+  .galerie-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: $space-2xl;
+  }
+
+  .paysage {
+    a {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: 170px;
       object-fit: cover;
       object-position: center;
     }
@@ -522,11 +550,14 @@
 
   .paysage {
     a {
-      max-width: 100%;
+      display: block;
       width: 100%;
+      max-width: 100%;
+      overflow: hidden;
     }
 
     img {
+      display: block;
       width: 100%;
       height: 220px;
       object-fit: cover;
@@ -539,33 +570,7 @@
    RESPONSIVE - LIGHTBOX
 ========================= */
 
-@media (min-width: 769px) and (max-width: 1199px) {
-  .custom-lightbox {
-    width: 100%;
-    padding: $space-4xl;
-    box-sizing: border-box;
-  }
-
-  .lightbox-image {
-    max-width: calc(100vw - (#{$space-4xl} * 2));
-    max-height: calc(100vh - (#{$space-4xl} * 2) - 80px);
-  }
-
-  .lightbox-close {
-    top: $space-2xl;
-    right: $space-2xl;
-  }
-
-  .lightbox-prev {
-    left: $space-2xl;
-  }
-
-  .lightbox-next {
-    right: $space-2xl;
-  }
-}
-
-@include mobile-only {
+@media (max-width: 767px) {
   .custom-lightbox {
     width: 100%;
     padding: $space-2xl;
@@ -573,8 +578,14 @@
   }
 
   .lightbox-image {
+    display: block;
+    width: auto;
+    height: auto;
     max-width: 100%;
     max-height: calc(100dvh - (#{$space-2xl} * 2) - 80px);
+    object-fit: contain;
+    object-position: center;
+    margin: 0 auto;
   }
 
   .lightbox-close,
@@ -582,6 +593,11 @@
   .lightbox-next {
     width: 40px;
     height: 40px;
+  }
+
+  .lightbox-close {
+    top: $space-lg;
+    right: $space-lg;
   }
 
   .lightbox-prev {
@@ -593,7 +609,86 @@
   }
 }
 
-@include desktop-only {
+/* ajuste exacto para el lightbox en el tramo problemático */
+@media (min-width: 518px) and (max-width: 762px) {
+  .custom-lightbox {
+    width: 100%;
+    padding: $space-lg;
+    box-sizing: border-box;
+  }
+
+  .lightbox-image {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: calc(100vw - (#{$space-lg} * 2));
+    max-height: calc(100dvh - (#{$space-lg} * 2) - 80px);
+    object-fit: contain;
+    object-position: center;
+    margin: 0 auto;
+  }
+
+  .lightbox-close,
+  .lightbox-prev,
+  .lightbox-next {
+    width: 36px;
+    height: 36px;
+  }
+
+  .lightbox-close {
+    top: $space-md;
+    right: $space-md;
+  }
+
+  .lightbox-prev {
+    left: $space-md;
+  }
+
+  .lightbox-next {
+    right: $space-md;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .custom-lightbox {
+    width: 100%;
+    padding: $space-2xl;
+    box-sizing: border-box;
+  }
+
+  .lightbox-image {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: calc(100vw - (#{$space-2xl} * 2));
+    max-height: calc(100dvh - (#{$space-2xl} * 2) - 80px);
+    object-fit: contain;
+    object-position: center;
+    margin: 0 auto;
+  }
+
+  .lightbox-close,
+  .lightbox-prev,
+  .lightbox-next {
+    width: 40px;
+    height: 40px;
+  }
+
+  .lightbox-close {
+    top: $space-lg;
+    right: $space-lg;
+  }
+
+  .lightbox-prev {
+    left: $space-lg;
+  }
+
+  .lightbox-next {
+    right: $space-lg;
+  }
+}
+
+@media (min-width: 1200px) {
   .custom-lightbox {
     width: 100%;
     padding: $space-8xl;
@@ -601,8 +696,14 @@
   }
 
   .lightbox-image {
+    display: block;
+    width: auto;
+    height: auto;
     max-width: min(900px, calc(100vw - (#{$space-8xl} * 2)));
-    max-height: calc(100vh - (#{$space-8xl} * 2) - 80px);
+    max-height: calc(100dvh - (#{$space-8xl} * 2) - 80px);
+    object-fit: contain;
+    object-position: center;
+    margin: 0 auto;
   }
 
   .lightbox-close {
@@ -619,6 +720,66 @@
   }
 }
 
+@media (min-width: 760px) and (max-width: 800px) {
+  .galerie-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: $space-2xl;
+  }
+
+  .paysage {
+    a {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+
+  .custom-lightbox {
+    width: 100%;
+    padding: $space-lg;
+    box-sizing: border-box;
+  }
+
+  .lightbox-image {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: calc(100vw - (#{$space-lg} * 2));
+    max-height: calc(100dvh - (#{$space-lg} * 2) - 80px);
+    object-fit: contain;
+    object-position: center;
+    margin: 0 auto;
+  }
+
+  .lightbox-close,
+  .lightbox-prev,
+  .lightbox-next {
+    width: 36px;
+    height: 36px;
+  }
+
+  .lightbox-close {
+    top: $space-md;
+    right: $space-md;
+  }
+
+  .lightbox-prev {
+    left: $space-md;
+  }
+
+  .lightbox-next {
+    right: $space-md;
+  }
+}
 /* =========================
    RESPONSIVE - AUTH / CONTACT
 ========================= */
@@ -929,7 +1090,7 @@
   }
 }
 
-@media (min-width: 1400px) {
+@media (min-width: 1900px) {
   .page-profil {
     width: 100%;
     max-width: none;
@@ -975,5 +1136,34 @@
 
   .page-profil__section--suppression {
     max-width: none;
+  }
+}
+
+/* =========================
+   TITRE - DESKTOP-L'oiseau
+========================= */
+
+@media (min-width: 768px) {
+  .page-oiseau {
+    max-width: 1020px;
+  }
+
+  .page-oiseau__section--title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .page-oiseau__title {
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: center;
+    gap: $space-lg;
+    text-align: center;
+
+    span,
+    strong {
+      display: inline;
+    }
   }
 }

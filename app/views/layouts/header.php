@@ -94,18 +94,18 @@
     </div>
 
     <nav class="entete-site__navigation" id="main-nav" aria-label="Navigation principale">
-        <a href="index.php?page=accueil">Accueil</a>
-        <a href="index.php?page=oiseau">L’oiseau</a>
-        <a href="index.php?page=nid">Le Nid</a>
-        <a href="index.php?page=galerie">Galerie</a>
-        <a href="index.php?page=contact">Contact</a>
+        <a href="index.php?page=accueil" class="<?= ($_GET['page'] ?? 'accueil') === 'accueil' ? 'is-active' : '' ?>">Accueil</a>
+        <a href="index.php?page=oiseau" class="<?= ($_GET['page'] ?? '') === 'oiseau' ? 'is-active' : '' ?>">L’oiseau</a>
+        <a href="index.php?page=nid" class="<?= ($_GET['page'] ?? '') === 'nid' ? 'is-active' : '' ?>">Le Nid</a>
+        <a href="index.php?page=galerie" class="<?= ($_GET['page'] ?? '') === 'galerie' ? 'is-active' : '' ?>">Galerie</a>
+        <a href="index.php?page=contact" class="<?= ($_GET['page'] ?? '') === 'contact' ? 'is-active' : '' ?>">Contact</a>
 
         <?php if (isset($_SESSION['user'])): ?>
-            <a href="index.php?page=articles">Actualités</a>
-            <a href="index.php?page=ressources">Ressources pédagogiques</a>
+            <a href="index.php?page=articles" class="<?= ($_GET['page'] ?? '') === 'articles' ? 'is-active' : '' ?>">Actualités</a>
+            <a href="index.php?page=ressources" class="<?= ($_GET['page'] ?? '') === 'ressources' ? 'is-active' : '' ?>">Ressources pédagogiques</a>
 
             <?php if ($_SESSION['user']['role'] === 'admin'): ?>
-                <a href="index.php?page=admin">Admin</a>
+                <a href="index.php?page=admin" class="<?= ($_GET['page'] ?? '') === 'admin' ? 'is-active' : '' ?>">Admin</a>
             <?php endif; ?>
         <?php endif; ?>
     </nav>

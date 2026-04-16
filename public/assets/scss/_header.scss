@@ -1,3 +1,8 @@
+.entete-site__navigation a:hover,
+.entete-site__navigation a.is-active {
+  color: $color-primary;
+}
+
 .entete-site {
   width: 100%;
   background: $color-bg-main;

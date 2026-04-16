@@ -1,5 +1,5 @@
 <!-- =========================
-     PAGE L’OISEAU
+     PAGE L’OISEAU (Article)
      Cette vue présente une fiche complète
      sur le Fournier roux : identité, habitat,
      comportement, reproduction et importance culturelle

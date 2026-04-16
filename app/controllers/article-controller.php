@@ -18,14 +18,11 @@ require_once BASE_PATH . '/app/models/article.php';
 
 
 // =========================
-// RÉCUPÉRATION DE TOUS LES ARTICLES
+// PARAMÈTRES DE RECHERCHE
+// Recherche simple par titre et date
 // =========================
-$articles = getAllArticles($pdo);
-
-// Sécurité simple : si la fonction retourne autre chose qu'un tableau
-if (!is_array($articles)) {
-    $articles = [];
-}
+$searchTerm = isset($_GET['search']) ? trim($_GET['search']) : '';
+$searchDate = isset($_GET['date']) ? trim($_GET['date']) : '';
 
 
 // =========================
@@ -34,29 +31,52 @@ if (!is_array($articles)) {
 $articlesPerPage = 2;
 
 // On récupère la page actuelle
-$page_articles = isset($_GET['p']) ? (int) $_GET['p'] : 1;
+$currentPage = isset($_GET['p']) ? (int) $_GET['p'] : 1;
 
 // On évite les valeurs invalides
-if ($page_articles < 1) {
-    $page_articles = 1;
-}
-
-// Nombre total d’articles
-$totalArticles = count($articles);
-
-// Nombre total de pages
-$total_pages_articles = ($totalArticles > 0) ? (int) ceil($totalArticles / $articlesPerPage) : 1;
-
-// Si la page demandée dépasse le total, on revient à la dernière
-if ($page_articles > $total_pages_articles) {
-    $page_articles = $total_pages_articles;
+if ($currentPage < 1) {
+    $currentPage = 1;
 }
 
 // Calcul de l’offset
-$articleOffset = ($page_articles - 1) * $articlesPerPage;
+$articleOffset = ($currentPage - 1) * $articlesPerPage;
 
-// On découpe le tableau pour n’afficher que les articles de la page
-$articles = array_slice($articles, $articleOffset, $articlesPerPage);
+
+// =========================
+// RÉCUPÉRATION DES ARTICLES
+// Si une recherche est présente,
+// on utilise la recherche paginée
+// Sinon, on utilise la pagination normale
+// =========================
+if ($searchTerm !== '' || $searchDate !== '') {
+    $totalArticles = countSearchArticles($pdo, $searchTerm, $searchDate);
+    $articles = searchArticles($pdo, $searchTerm, $searchDate, $articlesPerPage, $articleOffset);
+} else {
+    $totalArticles = countArticles($pdo);
+    $articles = getPaginatedArticles($pdo, $articlesPerPage, $articleOffset);
+}
+
+
+// =========================
+// SÉCURITÉ SIMPLE
+// Si la fonction retourne autre chose
+// qu’un tableau, on force un tableau vide
+// =========================
+if (!is_array($articles)) {
+    $articles = [];
+}
+
+
+// =========================
+// CALCUL DU NOMBRE TOTAL DE PAGES
+// =========================
+$totalPages = ($totalArticles > 0) ? (int) ceil($totalArticles / $articlesPerPage) : 1;
+
+// Si la page demandée dépasse le total,
+// on revient à la dernière page
+if ($currentPage > $totalPages) {
+    $currentPage = $totalPages;
+}
 
 
 // =========================

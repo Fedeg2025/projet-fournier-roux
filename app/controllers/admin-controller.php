@@ -26,6 +26,7 @@ require_once BASE_PATH . '/app/models/message.php';
 require_once BASE_PATH . '/app/models/article.php';
 require_once BASE_PATH . '/app/models/category.php';
 require_once BASE_PATH . '/app/models/user.php';
+require_once BASE_PATH . '/app/models/media.php';
 
 
 // =========================
@@ -51,7 +52,6 @@ $confirmDeleteMessage = isset($_GET['confirm_delete_message']) ? (int) $_GET['co
 // ===================== MESSAGES =======================
 // =====================================================
 
-// SUPPRESSION D’UN MESSAGE
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
     $messageId = (int) $_POST['delete'];
     deleteMessage($pdo, $messageId);
@@ -60,22 +60,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
     exit;
 }
 
-// RÉCUPÉRATION DES MESSAGES
 $messages = getAllMessages($pdo);
+
+$messageDate = trim($_GET['message_date'] ?? '');
+
+if ($messageDate !== '') {
+    $messages = array_filter($messages, function ($message) use ($messageDate) {
+        return strpos($message['date_envoi'], $messageDate) === 0;
+    });
+}
+
+$messages = array_values($messages);
+
+$messagesPerPage = 10;
+$currentMessagePage = isset($_GET['message_page']) ? (int) $_GET['message_page'] : 1;
+
+if ($currentMessagePage < 1) {
+    $currentMessagePage = 1;
+}
+
+$totalMessages = count($messages);
+$totalMessagePages = ($totalMessages > 0) ? (int) ceil($totalMessages / $messagesPerPage) : 1;
+
+if ($currentMessagePage > $totalMessagePages) {
+    $currentMessagePage = $totalMessagePages;
+}
+
+$messageOffset = ($currentMessagePage - 1) * $messagesPerPage;
+$messages = array_slice($messages, $messageOffset, $messagesPerPage);
+
+$messagePagination = [
+    'currentPage' => $currentMessagePage,
+    'totalPages' => $totalMessagePages
+];
+
 
 
 // =====================================================
 // ===================== ARTICLES =======================
 // =====================================================
 
-// =========================
-// FONCTION IMAGE
-// Cette fonction ajoute ou remplace
-// l’image d’un article
-// Retour :
-// - true si image enregistrée
-// - false si erreur
-// =========================
 function addImageToArticle($pdo, $articleId, &$errorMessage = '')
 {
     if (
@@ -83,19 +107,11 @@ function addImageToArticle($pdo, $articleId, &$errorMessage = '')
         empty($_FILES['image']['name']) ||
         $_FILES['image']['error'] === UPLOAD_ERR_NO_FILE
     ) {
-        // Pas d’image envoyée : ce n’est pas une erreur
         return true;
     }
 
     if ($_FILES['image']['error'] !== UPLOAD_ERR_OK) {
         $errorMessage = 'Erreur lors de l’envoi du fichier.';
-        error_log('Upload error code : ' . $_FILES['image']['error']);
-        return false;
-    }
-
-    if (empty($_FILES['image']['tmp_name'])) {
-        $errorMessage = 'Fichier temporaire introuvable.';
-        error_log('tmp_name vide pour image.');
         return false;
     }
 
@@ -106,12 +122,11 @@ function addImageToArticle($pdo, $articleId, &$errorMessage = '')
         return false;
     }
 
-    $allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
-    $mimeType = mime_content_type($_FILES['image']['tmp_name']);
+    $allowedExtensions = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
+    $extension = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
 
-    if (!in_array($mimeType, $allowedTypes, true)) {
+    if (!in_array($extension, $allowedExtensions, true)) {
         $errorMessage = 'Format d’image non autorisé.';
-        error_log('Type MIME refusé : ' . $mimeType);
         return false;
     }
 
@@ -120,25 +135,13 @@ function addImageToArticle($pdo, $articleId, &$errorMessage = '')
     if (!is_dir($uploadDirectory)) {
         if (!mkdir($uploadDirectory, 0777, true)) {
             $errorMessage = 'Impossible de créer le dossier uploads.';
-            error_log('Impossible de créer le dossier : ' . $uploadDirectory);
             return false;
         }
     }
 
     if (!is_writable($uploadDirectory)) {
         $errorMessage = 'Le dossier uploads n’est pas accessible en écriture.';
-        error_log('Dossier non inscriptible : ' . $uploadDirectory);
         return false;
-    }
-
-    $currentArticle = getArticleById($pdo, $articleId);
-
-    if (!empty($currentArticle['nom_fichier_image'])) {
-        $oldImagePath = $uploadDirectory . $currentArticle['nom_fichier_image'];
-
-        if (file_exists($oldImagePath)) {
-            unlink($oldImagePath);
-        }
     }
 
     $safeName = preg_replace('/[^A-Za-z0-9._-]/', '_', basename($_FILES['image']['name']));
@@ -147,13 +150,22 @@ function addImageToArticle($pdo, $articleId, &$errorMessage = '')
 
     if (!move_uploaded_file($_FILES['image']['tmp_name'], $filePath)) {
         $errorMessage = 'Impossible d’enregistrer l’image dans le dossier uploads.';
-        error_log('move_uploaded_file a échoué vers : ' . $filePath);
         return false;
     }
 
-    if (!updateArticleImage($pdo, $articleId, $fileName)) {
+    $mediaId = createMedia($pdo, $fileName, 'image');
+
+    if (!$mediaId) {
         $errorMessage = 'L’image a été envoyée mais pas enregistrée dans la base de données.';
-        error_log('Échec updateArticleImage pour article : ' . $articleId);
+        return false;
+    }
+
+    $medias = getMediaByArticle($pdo, $articleId);
+    $order = count($medias) + 1;
+    $isMainImage = empty($medias) ? 1 : 0;
+
+    if (!linkMediaToArticle($pdo, $articleId, $mediaId, $order, $isMainImage)) {
+        $errorMessage = 'L’image a été envoyée mais pas liée à l’article.';
         return false;
     }
 
@@ -161,19 +173,8 @@ function addImageToArticle($pdo, $articleId, &$errorMessage = '')
 }
 
 
-// SUPPRESSION D’UN ARTICLE
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_article'])) {
     $articleId = (int) $_POST['delete_article'];
-
-    $article = getArticleById($pdo, $articleId);
-
-    if (!empty($article['nom_fichier_image'])) {
-        $imagePath = BASE_PATH . '/public/uploads/' . $article['nom_fichier_image'];
-
-        if (file_exists($imagePath)) {
-            unlink($imagePath);
-        }
-    }
 
     deleteArticleCategories($pdo, $articleId);
     deleteArticle($pdo, $articleId);
@@ -183,7 +184,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_article'])) {
 }
 
 
-// CHARGEMENT D’UN ARTICLE À MODIFIER
 if (isset($_GET['edit_article'])) {
     $articleId = (int) $_GET['edit_article'];
     $articleToEdit = getArticleById($pdo, $articleId);
@@ -191,7 +191,6 @@ if (isset($_GET['edit_article'])) {
 }
 
 
-// CRÉATION OU MODIFICATION D’UN ARTICLE
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['titre'])) {
     $title = trim($_POST['titre'] ?? '');
     $content = trim($_POST['contenu'] ?? '');
@@ -205,10 +204,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['titre'])) {
         $errorMessage = 'Le contenu doit contenir au moins 10 caractères.';
         $section = 'articles';
     } else {
-
-        // =========================
-        // MODIFICATION
-        // =========================
         if (isset($_POST['id_article']) && !empty($_POST['id_article'])) {
             $articleId = (int) $_POST['id_article'];
 
@@ -231,15 +226,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['titre'])) {
                 $section = 'articles';
             }
         } else {
-            // =========================
-            // CRÉATION
-            // =========================
-            if (!createArticle($pdo, $title, $content, $userId)) {
+            $articleId = createArticle($pdo, $title, $content, $userId);
+
+            if (!$articleId) {
                 $errorMessage = 'Erreur lors de la création de l’article.';
                 $section = 'articles';
             } else {
-                $articleId = $pdo->lastInsertId();
-
                 foreach ($selectedCategories as $categoryId) {
                     addArticleCategory($pdo, $articleId, $categoryId);
                 }
@@ -256,8 +248,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['titre'])) {
 }
 
 
-// RÉCUPÉRATION DES ARTICLES
 $articles = getAllArticles($pdo);
+
+$articleSearch = trim($_GET['article_search'] ?? '');
+$articleDate = trim($_GET['article_date'] ?? '');
+
+if ($articleSearch !== '') {
+    $articles = array_filter($articles, function ($article) use ($articleSearch) {
+        return mb_stripos($article['titre'], $articleSearch) !== false;
+    });
+}
+
+if ($articleDate !== '') {
+    $articles = array_filter($articles, function ($article) use ($articleDate) {
+        return strpos($article['date_publication'], $articleDate) === 0;
+    });
+}
+
+$articles = array_values($articles);
 
 $articlesPerPage = 2;
 $currentArticlePage = isset($_GET['p']) ? (int) $_GET['p'] : 1;
@@ -278,23 +286,22 @@ $articles = array_slice($articles, $articleOffset, $articlesPerPage);
 
 $categories = getAllCategories($pdo);
 
-
 // =====================================================
 // ===================== UTILISATEURS ===================
 // =====================================================
 
 $users = getAllUsers($pdo);
 
-$search = trim($_GET['search'] ?? '');
+$userSearch = trim($_GET['user_search'] ?? '');
 $letter = strtoupper(trim($_GET['letter'] ?? ''));
 
-if ($search !== '') {
-    $users = array_filter($users, function ($user) use ($search) {
-        $search = mb_strtolower($search);
+if ($userSearch !== '') {
+    $users = array_filter($users, function ($user) use ($userSearch) {
+        $userSearch = mb_strtolower($userSearch);
 
-        return mb_strpos(mb_strtolower($user['nom']), $search) !== false
-            || mb_strpos(mb_strtolower($user['prenom']), $search) !== false
-            || mb_strpos(mb_strtolower($user['email']), $search) !== false;
+        return mb_strpos(mb_strtolower($user['nom']), $userSearch) !== false
+            || mb_strpos(mb_strtolower($user['prenom']), $userSearch) !== false
+            || mb_strpos(mb_strtolower($user['email']), $userSearch) !== false;
     });
 }
 
@@ -324,6 +331,11 @@ if ($currentUserPage > $totalUserPages) {
 $userOffset = ($currentUserPage - 1) * $usersPerPage;
 $users = array_slice($users, $userOffset, $usersPerPage);
 
+// pagination simple (variables utilisées dans la vue)
+$userPagination = [
+    'currentPage' => $currentUserPage,
+    'totalPages' => $totalUserPages
+];
 
 // =========================
 // CATÉGORIES ARTICLE EN COURS

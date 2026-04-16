@@ -1,15 +1,15 @@
-.oiseau-page {
+.page-oiseau {
   width: 100%;
   max-width: 430px;
   margin: 0 auto;
-  padding: 0 $space-3xl $space-8xl;
+  padding: 0 $space-3xl $space-4xl;
   background: transparent;
-}
 
-.oiseau-article {
-  padding: $space-4xl 0 0;
-  color: $color-text-main;
-  background: transparent;
+  &__article {
+    padding: $space-4xl 0 0;
+    color: $color-text-main;
+    background: transparent;
+  }
 
   /* =========================
      SECTIONS
@@ -19,7 +19,7 @@
     padding: $space-3xl $space-3xl $space-lg;
   }
 
-  &__section:not(.oiseau-article__section--title) {
+  &__section:not(.page-oiseau__section--title) {
     background: rgba($color-white, 0.7);
     border-radius: $radius-lg;
   }

@@ -47,20 +47,28 @@
     </div>
 </footer>
 
+<!-- =========================
+     BOUTON RETOUR EN HAUT
+========================= -->
+
+<button type="button" class="bouton-retour-haut" aria-label="Retour en haut">
+    <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+</button>
+
 </div> <!-- fermeture de la structure principale (structure-site) -->
 
 
 <!-- =========================
      SCRIPT GLOBAL
      Menu burger utilisé sur toutes les pages
-     ========================= -->
+========================= -->
 <script src="public/assets/js/common/menu.js" defer></script>
 
 
 <!-- =========================
      CHARGEMENT DES SCRIPTS SPÉCIFIQUES
      Les scripts sont chargés en fonction de la page courante
-     ========================= -->
+========================= -->
 
 <?php
 $page = $_GET['page'] ?? 'accueil';
@@ -83,6 +91,8 @@ $page = $_GET['page'] ?? 'accueil';
 <?php if ($page === 'inaturalist'): ?>
     <script src="public/assets/js/pages/inaturalist.js" defer></script>
 <?php endif; ?>
+
+<script src="public/assets/js/common/scroll-top.js" defer></script>
 
 </body>
 </html>

@@ -8,40 +8,6 @@
     <h2 class="utilisateurs-admin__title">Utilisateurs</h2>
 
     <!-- =========================
-         FORMULAIRE DE RECHERCHE
-         ========================= -->
-    <form method="GET" action="index.php" class="utilisateurs-admin__search">
-        <input type="hidden" name="page" value="admin">
-        <input type="hidden" name="section" value="utilisateurs">
-
-        <input
-            class="utilisateurs-admin__search-input"
-            type="text"
-            name="search"
-            placeholder="Rechercher un utilisateur..."
-            value="<?php echo htmlspecialchars($search ?? ''); ?>"
-        >
-
-        <button class="utilisateurs-admin__search-button" type="submit">
-            Rechercher
-        </button>
-    </form>
-
-    <!-- =========================
-         FILTRE ALPHABÉTIQUE
-         ========================= -->
-    <div class="utilisateurs-admin__alphabet">
-        <?php foreach (range('A', 'Z') as $letterItem): ?>
-            <a
-                class="utilisateurs-admin__alphabet-link"
-                href="index.php?page=admin&section=utilisateurs&letter=<?php echo $letterItem; ?>"
-            >
-                <?php echo $letterItem; ?>
-            </a>
-        <?php endforeach; ?>
-    </div>
-
-    <!-- =========================
          CAS AUCUN UTILISATEUR
          ========================= -->
     <?php if (empty($users)): ?>

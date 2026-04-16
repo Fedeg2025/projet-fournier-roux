@@ -142,6 +142,59 @@ main:not(.page-profil):not(.tableau-bord-admin):not(.page-authentification) h2 {
   color: #8b3d0f;
 }
 
+/* =========================
+   BOUTON RETOUR EN HAUT
+========================= */
+.bouton-retour-haut {
+  position: fixed;
+  right: max(24px, env(safe-area-inset-right));
+  bottom: max(24px, env(safe-area-inset-bottom));
+  width: 52px;
+  height: 52px;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background-color: rgba(139, 61, 15, 0.92);
+  color: #ffffff;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+  z-index: 9999;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, opacity 0.2s ease;
+  opacity: 1;
+  visibility: visible;
+}
+
+.bouton-retour-haut:hover {
+  transform: translateY(-3px);
+  background-color: #8b3d0f;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.22);
+}
+
+.bouton-retour-haut:focus {
+  outline: none;
+}
+
+.bouton-retour-haut:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.9);
+  outline-offset: 3px;
+}
+
+.bouton-retour-haut i {
+  font-size: 18px;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.entete-site__navigation a:hover,
+.entete-site__navigation a.is-active {
+  color: #8b3d0f;
+}
+
 .entete-site {
   width: 100%;
   background: #DDD1C4;
@@ -2207,45 +2260,46 @@ body.lightbox-open {
   background: #a84a14;
 }
 
-.oiseau-page {
+.page-oiseau {
   width: 100%;
   max-width: 430px;
   margin: 0 auto;
-  padding: 0 18px 40px;
+  padding: 0 18px 20px;
   background: transparent;
 }
-
-.oiseau-article {
+.page-oiseau__article {
   padding: 20px 0 0;
   color: #111111;
   background: transparent;
+}
+.page-oiseau {
   /* =========================
      SECTIONS
   ========================= */
 }
-.oiseau-article__section {
+.page-oiseau__section {
   padding: 18px 18px 12px;
 }
-.oiseau-article__section:not(.oiseau-article__section--title) {
+.page-oiseau__section:not(.page-oiseau__section--title) {
   background: rgba(255, 255, 255, 0.7);
   border-radius: 12px;
 }
-.oiseau-article__section--title {
+.page-oiseau__section--title {
   padding: 22px 0 20px;
   background: transparent;
   border: none;
   border-radius: 0;
   box-shadow: none;
 }
-.oiseau-article__section + .oiseau-article__section {
+.page-oiseau__section + .page-oiseau__section {
   margin-top: 20px;
 }
-.oiseau-article {
+.page-oiseau {
   /* =========================
      TITLE
   ========================= */
 }
-.oiseau-article__title {
+.page-oiseau__title {
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -2263,56 +2317,56 @@ body.lightbox-open {
   box-shadow: none;
   padding: 0;
 }
-.oiseau-article__title span {
+.page-oiseau__title span {
   display: block;
   color: #e06a1a;
   font-weight: 800;
 }
-.oiseau-article__title strong {
+.page-oiseau__title strong {
   display: block;
   color: #111111;
   font-weight: 800;
 }
-.oiseau-article {
+.page-oiseau {
   /* =========================
      TEXT
   ========================= */
 }
-.oiseau-article__intro, .oiseau-article__text, .oiseau-article__note, .oiseau-article__caption {
+.page-oiseau__intro, .page-oiseau__text, .page-oiseau__note, .page-oiseau__caption {
   margin: 0;
   font-size: 13px;
   line-height: 1.5;
   color: #4b3a2f;
 }
-.oiseau-article__intro, .oiseau-article__text {
+.page-oiseau__intro, .page-oiseau__text {
   margin-bottom: 20px;
 }
-.oiseau-article {
+.page-oiseau {
   /* =========================
      MEDIA
   ========================= */
 }
-.oiseau-article__media {
+.page-oiseau__media {
   margin: 22px 0;
 }
-.oiseau-article__image {
+.page-oiseau__image {
   width: 100%;
   height: auto;
   object-fit: cover;
   display: block;
 }
-.oiseau-article__map {
+.page-oiseau__map {
   width: 100%;
   max-width: 162px;
   margin: 0;
 }
-.oiseau-article__map-image {
+.page-oiseau__map-image {
   width: 100%;
   height: auto;
   display: block;
   border: 1px solid rgba(17, 17, 17, 0.08);
 }
-.oiseau-article__caption {
+.page-oiseau__caption {
   margin-top: 18px;
   max-width: 290px;
 }
@@ -4044,12 +4098,35 @@ body.lightbox-open {
     gap: 16px;
   }
   .paysage a {
-    max-width: 100%;
+    display: block;
     width: 100%;
+    max-width: 100%;
+    overflow: hidden;
   }
   .paysage img {
+    display: block;
     width: 100%;
     height: 115px;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+/* ajuste exacto para el tramo problemático */
+@media (min-width: 518px) and (max-width: 762px) {
+  .galerie-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .paysage a {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+  .paysage img {
+    display: block;
+    width: 100%;
+    height: 170px;
     object-fit: cover;
     object-position: center;
   }
@@ -4076,10 +4153,13 @@ body.lightbox-open {
     gap: 20px;
   }
   .paysage a {
-    max-width: 100%;
+    display: block;
     width: 100%;
+    max-width: 100%;
+    overflow: hidden;
   }
   .paysage img {
+    display: block;
     width: 100%;
     height: 220px;
     object-fit: cover;
@@ -4089,42 +4169,31 @@ body.lightbox-open {
 /* =========================
    RESPONSIVE - LIGHTBOX
 ========================= */
-@media (min-width: 769px) and (max-width: 1199px) {
-  .custom-lightbox {
-    width: 100%;
-    padding: 20px;
-    box-sizing: border-box;
-  }
-  .lightbox-image {
-    max-width: calc(100vw - 20px * 2);
-    max-height: calc(100vh - 20px * 2 - 80px);
-  }
-  .lightbox-close {
-    top: 16px;
-    right: 16px;
-  }
-  .lightbox-prev {
-    left: 16px;
-  }
-  .lightbox-next {
-    right: 16px;
-  }
-}
-@media (max-width: 800px) {
+@media (max-width: 767px) {
   .custom-lightbox {
     width: 100%;
     padding: 16px;
     box-sizing: border-box;
   }
   .lightbox-image {
+    display: block;
+    width: auto;
+    height: auto;
     max-width: 100%;
     max-height: calc(100dvh - 16px * 2 - 80px);
+    object-fit: contain;
+    object-position: center;
+    margin: 0 auto;
   }
   .lightbox-close,
   .lightbox-prev,
   .lightbox-next {
     width: 40px;
     height: 40px;
+  }
+  .lightbox-close {
+    top: 12px;
+    right: 12px;
   }
   .lightbox-prev {
     left: 8px;
@@ -4133,15 +4202,88 @@ body.lightbox-open {
     right: 8px;
   }
 }
-@media (min-width: 801px) {
+/* ajuste exacto para el lightbox en el tramo problemático */
+@media (min-width: 518px) and (max-width: 762px) {
+  .custom-lightbox {
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+  }
+  .lightbox-image {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: calc(100vw - 12px * 2);
+    max-height: calc(100dvh - 12px * 2 - 80px);
+    object-fit: contain;
+    object-position: center;
+    margin: 0 auto;
+  }
+  .lightbox-close,
+  .lightbox-prev,
+  .lightbox-next {
+    width: 36px;
+    height: 36px;
+  }
+  .lightbox-close {
+    top: 10px;
+    right: 10px;
+  }
+  .lightbox-prev {
+    left: 10px;
+  }
+  .lightbox-next {
+    right: 10px;
+  }
+}
+@media (min-width: 768px) and (max-width: 1199px) {
+  .custom-lightbox {
+    width: 100%;
+    padding: 16px;
+    box-sizing: border-box;
+  }
+  .lightbox-image {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: calc(100vw - 16px * 2);
+    max-height: calc(100dvh - 16px * 2 - 80px);
+    object-fit: contain;
+    object-position: center;
+    margin: 0 auto;
+  }
+  .lightbox-close,
+  .lightbox-prev,
+  .lightbox-next {
+    width: 40px;
+    height: 40px;
+  }
+  .lightbox-close {
+    top: 12px;
+    right: 12px;
+  }
+  .lightbox-prev {
+    left: 12px;
+  }
+  .lightbox-next {
+    right: 12px;
+  }
+}
+@media (min-width: 1200px) {
   .custom-lightbox {
     width: 100%;
     padding: 40px;
     box-sizing: border-box;
   }
   .lightbox-image {
+    display: block;
+    width: auto;
+    height: auto;
     max-width: min(900px, 100vw - 40px * 2);
-    max-height: calc(100vh - 40px * 2 - 80px);
+    max-height: calc(100dvh - 40px * 2 - 80px);
+    object-fit: contain;
+    object-position: center;
+    margin: 0 auto;
   }
   .lightbox-close {
     top: 20px;
@@ -4152,6 +4294,56 @@ body.lightbox-open {
   }
   .lightbox-next {
     right: 20px;
+  }
+}
+@media (min-width: 760px) and (max-width: 800px) {
+  .galerie-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .paysage a {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+  .paysage img {
+    display: block;
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    object-position: center;
+  }
+  .custom-lightbox {
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+  }
+  .lightbox-image {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: calc(100vw - 12px * 2);
+    max-height: calc(100dvh - 12px * 2 - 80px);
+    object-fit: contain;
+    object-position: center;
+    margin: 0 auto;
+  }
+  .lightbox-close,
+  .lightbox-prev,
+  .lightbox-next {
+    width: 36px;
+    height: 36px;
+  }
+  .lightbox-close {
+    top: 10px;
+    right: 10px;
+  }
+  .lightbox-prev {
+    left: 10px;
+  }
+  .lightbox-next {
+    right: 10px;
   }
 }
 /* =========================
@@ -4412,7 +4604,7 @@ body.lightbox-open {
     margin-left: 0;
   }
 }
-@media (min-width: 1400px) {
+@media (min-width: 1900px) {
   .page-profil {
     width: 100%;
     max-width: none;
@@ -4453,6 +4645,30 @@ body.lightbox-open {
   }
   .page-profil__section--suppression {
     max-width: none;
+  }
+}
+/* =========================
+   TITRE - DESKTOP-L'oiseau
+========================= */
+@media (min-width: 768px) {
+  .page-oiseau {
+    max-width: 1020px;
+  }
+  .page-oiseau__section--title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .page-oiseau__title {
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: center;
+    gap: 12px;
+    text-align: center;
+  }
+  .page-oiseau__title span,
+  .page-oiseau__title strong {
+    display: inline;
   }
 }
 
