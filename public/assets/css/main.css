@@ -1980,7 +1980,7 @@ body.lightbox-open {
 }
 .galerie-vignettes__item img {
   object-fit: cover;
-  object-position: center top;
+  object-position: center 55%;
 }
 .galerie-vignettes__nav {
   display: flex;

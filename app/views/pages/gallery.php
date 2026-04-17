@@ -33,10 +33,6 @@ $galleryImages = [
         'alt' => 'Fournier roux 56'
     ],
     [
-        'src' => $assetBase . '/img57.webp',
-        'alt' => 'Fournier roux 57'
-    ],
-    [
         'src' => $assetBase . '/img58.webp',
         'alt' => 'Fournier roux 58'
     ],

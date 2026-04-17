@@ -5,12 +5,11 @@ RewriteBase /web/fournier_roux/
 # Bloque l’accès aux fichiers cachés
 RewriteRule "(^|/)\." - [F,L]
 
-# Bloque les fichiers de logs, sauvegardes ou temporaires
-<FilesMatch "\.(log|sql|bak|old|orig|save|swp)$">
-    Require all denied
-</FilesMatch>
+# Redirige vers HTTPS
+RewriteCond %{HTTPS} !=on
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# Redirige toutes les requêtes vers index.php si le fichier ou dossier n’existe pas
+# Réécriture d'URL
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^ index.php [QSA,L]
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]

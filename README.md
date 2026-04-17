@@ -115,6 +115,14 @@ Lors de la suppression, les données liées au compte (notamment les messages) s
 - **phpMyAdmin**
 - Environnement local type **XAMPP / MAMP / WAMP**
 
+## Compilation des styles
+
+Les fichiers CSS sont déjà compilés et inclus dans le dépôt.
+
+Conformément aux consignes, les outils de compilation (Sass, Node.js, etc.) ne sont pas versionnés.
+
+Le projet est donc directement fonctionnel sans étape de build supplémentaire.
+
 ---
 
 ## Architecture du projet
@@ -140,7 +148,7 @@ Le projet utilise une base de données **MySQL**.
 
 Le dépôt contient un fichier unique :
 
-- `database/database.sql` → structure et données de démonstration du projet.
+- `database/schema.sql` → structure et données de démonstration du projet.
 
 Ce fichier permet d’installer directement une version complète du projet en local.
 
@@ -232,7 +240,7 @@ Le fichier `config/db-config.php` est volontairement exclu du dépôt pour des r
 
 Importer le fichier :
 
-`database/database.sql`
+`database/schema.sql`
 
 ### 4) Lancer le projet
 
@@ -242,7 +250,7 @@ Assurez-vous que votre serveur local (Apache et MySQL) est bien démarré.
 
 Accéder ensuite au projet via votre navigateur (selon votre configuration locale) :
 
-http://localhost/web/fournier_roux/
+http://localhost/<nom_du_projet>/
 
 
 ---
