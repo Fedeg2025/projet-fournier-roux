@@ -59,27 +59,27 @@
   <?php
   $carouselImages = [
     [
-      'file' => 'slider2.webp',
+      'file' => 'fournier_roux2.webp',
       'alt'  => 'Fournier roux perché sur une branche, observant son environnement'
     ],
     [
-      'file' => 'slider3.webp',
+      'file' => 'fournier_roux3.webp',
       'alt'  => 'Nid de fournier roux en argile avec un oiseau à l’intérieur'
     ],
     [
-      'file' => 'slider4.webp',
+      'file' => 'fournier_roux4.webp',
       'alt'  => 'Fournier roux perché sur une branche fine dans la végétation'
     ],
     [
-      'file' => 'slider5.webp',
+      'file' => 'fournier_roux5.webp',
       'alt'  => 'Fournier roux posé dans un environnement naturel verdoyant'
     ],
     [
-      'file' => 'slider6.webp',
+      'file' => 'fournier_roux6.webp',
       'alt'  => 'Trois fourniers roux perchés côte à côte sur une structure'
     ],
     [
-      'file' => 'slider7.webp',
+      'file' => 'fournier_roux7.webp',
       'alt'  => 'Fournier roux sortant de son nid en terre fixé à un arbre'
     ]
   ];
@@ -167,54 +167,54 @@
     <div class="galerie-grid">
 
       <article class="paysage">
-        <a href="public/assets/images/img1.webp" aria-label="Fournier roux perché sur une branche">
+        <a href="public/assets/images/fournier_roux1.webp" aria-label="Fournier roux perché sur une branche">
           <img
-            src="public/assets/images/img1.webp"
+            src="public/assets/images/fournier_roux1.webp"
             alt="Fournier roux perché sur une branche dans un environnement naturel"
             loading="lazy">
         </a>
       </article>
 
       <article class="paysage">
-        <a href="public/assets/images/img2.webp" aria-label="Fournier roux près de son nid">
+        <a href="public/assets/images/fournier_roux2.webp" aria-label="Fournier roux près de son nid">
           <img
-            src="public/assets/images/img2.webp"
+            src="public/assets/images/fournier_roux2.webp"
             alt="Fournier roux observé près de son nid en terre"
             loading="lazy">
         </a>
       </article>
 
       <article class="paysage">
-        <a href="public/assets/images/img3.webp" aria-label="Fournier roux dans la végétation">
+        <a href="public/assets/images/fournier_roux3.webp" aria-label="Fournier roux dans la végétation">
           <img
-            src="public/assets/images/img3.webp"
+            src="public/assets/images/fournier_roux3.webp"
             alt="Fournier roux au milieu de la végétation avec son plumage brun et roux"
             loading="lazy">
         </a>
       </article>
 
       <article class="paysage">
-        <a href="public/assets/images/img4.webp" aria-label="Nid de Fournier roux en forme de four">
+        <a href="public/assets/images/fournier_roux4.webp" aria-label="Nid de Fournier roux en forme de four">
           <img
-            src="public/assets/images/img4.webp"
+            src="public/assets/images/fournier_roux4.webp"
             alt="Nid de Fournier roux construit en boue avec sa forme caractéristique de four"
             loading="lazy">
         </a>
       </article>
 
       <article class="paysage">
-        <a href="public/assets/images/img5.webp" aria-label="Fournier roux au sol">
+        <a href="public/assets/images/fournier_roux5.webp" aria-label="Fournier roux au sol">
           <img
-            src="public/assets/images/img5.webp"
+            src="public/assets/images/fournier_roux5.webp"
             alt="Fournier roux marchant au sol dans son habitat naturel"
             loading="lazy">
         </a>
       </article>
 
       <article class="paysage">
-        <a href="public/assets/images/img6.webp" aria-label="Fournier roux en observation">
+        <a href="public/assets/images/fournier_roux6.webp" aria-label="Fournier roux en observation">
           <img
-            src="public/assets/images/img6.webp"
+            src="public/assets/images/fournier_roux6.webp"
             alt="Fournier roux en train d’observer son environnement"
             loading="lazy">
         </a>

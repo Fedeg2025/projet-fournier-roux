@@ -97,7 +97,7 @@
   }
 }
 
-@media (max-width: 688px) {
+@media (max-width: 800px) {
   .section-galerie--photos {
     display: none;
   }
@@ -126,15 +126,25 @@
     .contenu-nid__image-principale {
       width: 100%;
       max-width: none;
+      box-sizing: border-box;
+    }
+
+    .contenu-nid__figure {
+      width: 100%;
+      max-width: none;
+      margin: 0;
     }
 
     .contenu-nid__figure img {
+      display: block;
       width: 100%;
-      max-width: 100%;
+      max-width: none;
       height: auto;
     }
 
     .carte-nid {
+      width: 100%;
+      max-width: none;
       padding: $space-5xl;
       box-sizing: border-box;
     }

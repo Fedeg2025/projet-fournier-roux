@@ -46,8 +46,8 @@ main:not(.page-profil):not(.tableau-bord-admin):not(.page-authentification) {
 
 .bouton-retour-haut {
   position: fixed;
-  right: max(24px, env(safe-area-inset-right));
-  bottom: max(24px, env(safe-area-inset-bottom));
+  right: 24px;
+  bottom: 96px;
   width: 52px;
   height: 52px;
   border: none;
@@ -55,27 +55,23 @@ main:not(.page-profil):not(.tableau-bord-admin):not(.page-authentification) {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0;
-  background-color: rgba($color-primary, 0.92);
+  background: rgba($color-primary, 0.92);
   color: $color-white;
+  text-decoration: none;
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+  z-index: 2000;
   cursor: pointer;
-  z-index: 9999;
-  -webkit-appearance: none;
-  appearance: none;
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease,
-    background-color 0.2s ease,
-    opacity 0.2s ease;
-
-  opacity: 1;
-  visibility: visible;
+    background 0.2s ease;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .bouton-retour-haut:hover {
   transform: translateY(-3px);
-  background-color: $color-primary;
+  background: $color-primary;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.22);
 }
 
