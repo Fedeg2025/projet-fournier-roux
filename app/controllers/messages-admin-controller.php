@@ -4,7 +4,18 @@
 // ===================== MESSAGES =======================
 // =====================================================
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
+/**
+ * Supprime un message.
+ * Cette action vérifie que la requête utilise
+ * bien la méthode POST avant de traiter la suppression.
+ */
+if (isset($_POST['delete'])) {
+
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        header('Location: index.php?page=admin&section=messages');
+        exit;
+    }
+
     $messageId = (int) $_POST['delete'];
     deleteMessage($pdo, $messageId);
 

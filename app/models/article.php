@@ -12,6 +12,11 @@
 // Ces fonctions permettent de factoriser
 // les éléments communs des requêtes article
 // =========================
+
+/**
+ * Retourne la partie commune FROM et JOIN
+ * utilisée dans les requêtes liées aux articles.
+ */
 function getBaseArticleQuery()
 {
     return "FROM articles
@@ -20,6 +25,10 @@ function getBaseArticleQuery()
             LEFT JOIN categorie ON appartient.id_categorie = categorie.id_categorie";
 }
 
+/**
+ * Retourne la partie commune SELECT
+ * utilisée dans les requêtes liées aux articles.
+ */
 function getBaseArticleSelect()
 {
     return "SELECT 

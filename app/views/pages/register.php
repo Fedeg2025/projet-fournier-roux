@@ -1,20 +1,10 @@
-<?php
-
-// =========================
-// RÉCUPÉRATION DU TOKEN CSRF
-// Ce token est utilisé pour sécuriser le formulaire
-// d’inscription
-// =========================
-$csrfToken = $_SESSION['csrf_token'] ?? '';
-?>
-
 <!-- =========================
      PAGE D’INSCRIPTION
      Cette vue permet à l’utilisateur
      de créer un compte
      ========================= -->
 
-<main class="page-authentification page-authentification--inscription">
+<main id="main-content" class="page-authentification page-authentification--inscription">
     <section class="contenu-authentification">
         <div class="contenu-authentification__inner">
 
@@ -45,12 +35,7 @@ $csrfToken = $_SESSION['csrf_token'] ?? '';
             <!-- =========================
                  FORMULAIRE D’INSCRIPTION
                  ========================= -->
-            <form class="formulaire-authentification" method="POST" action="index.php?page=register" novalidate>
-                <input
-                    type="hidden"
-                    name="csrf_token"
-                    value="<?php echo htmlspecialchars($csrfToken); ?>"
-                >
+            <form class="formulaire-authentification" method="POST" action="index.php?page=register">
 
                 <!-- =========================
                      CHAMP NOM

@@ -45,6 +45,12 @@ function processLogin()
 {
     global $pdo;
 
+    // Vérification de la méthode HTTP
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        header('Location: index.php?page=login');
+        exit;
+    }
+
     $errorMessage = '';
     $successMessage = $_SESSION['flash_success'] ?? '';
 
@@ -104,6 +110,12 @@ function showRegister()
 function processRegister()
 {
     global $pdo;
+
+    // Vérification de la méthode HTTP
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        header('Location: index.php?page=register');
+        exit;
+    }
 
     $errorMessage = '';
     $successMessage = '';

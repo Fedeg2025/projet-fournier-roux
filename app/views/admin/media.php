@@ -30,6 +30,7 @@
                                 type="checkbox"
                                 name="media_ids[]"
                                 value="<?php echo (int) $media['id_media']; ?>"
+                                aria-label="Sélectionner le média <?php echo (int) $media['id_media']; ?>"
                             >
                         </div>
 

@@ -17,7 +17,7 @@ function getMainImage(array $medias): ?array
 }
 ?>
 
-<main class="page-actualites">
+<main id="main-content" class="page-actualites">
     <h1 class="page-actualites__title">Actualités</h1>
 
     <?php if (empty($articles)): ?>

@@ -6,8 +6,16 @@
 
 /**
  * Supprime un média simple.
+ * Cette action vérifie que la requête utilise
+ * bien la méthode POST avant de traiter la suppression.
  */
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_media_id'])) {
+if (isset($_POST['delete_media_id'])) {
+
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        header('Location: index.php?page=admin&section=medias');
+        exit;
+    }
+
     $mediaId = (int) $_POST['delete_media_id'];
 
     if ($mediaId > 0) {
@@ -21,8 +29,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_media_id'])) {
 
 /**
  * Supprime plusieurs médias sélectionnés.
+ * Cette action est sécurisée en vérifiant
+ * la méthode POST avant traitement.
  */
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_selected_media'])) {
+if (isset($_POST['delete_selected_media'])) {
+
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        header('Location: index.php?page=admin&section=medias');
+        exit;
+    }
+
     $selectedMediaIds = $_POST['media_ids'] ?? [];
 
     if (is_array($selectedMediaIds)) {
@@ -42,8 +58,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_selected_media
 
 /**
  * Supprime les médias non utilisés.
+ * Cette action contrôle la méthode POST
+ * pour éviter les accès directs non autorisés.
  */
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_unused_media'])) {
+if (isset($_POST['delete_unused_media'])) {
+
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        header('Location: index.php?page=admin&section=medias');
+        exit;
+    }
+
     $unusedMedias = getUnusedMedia($pdo);
 
     foreach ($unusedMedias as $media) {

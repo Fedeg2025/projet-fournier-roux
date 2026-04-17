@@ -34,10 +34,18 @@ function showContact()
 
 // =========================
 // TRAITEMENT DU FORMULAIRE DE CONTACT
+// Cette fonction vérifie que la requête
+// utilise bien la méthode POST avant
+// de traiter les données du formulaire
 // =========================
 function processContact()
 {
     global $pdo;
+
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        header('Location: index.php?page=contact');
+        exit;
+    }
 
     $successMessage = '';
     $errorMessage = '';

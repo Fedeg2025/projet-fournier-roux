@@ -39,8 +39,6 @@
                             action="index.php?page=admin&section=messages"
                             onsubmit="return confirm('Confirmer la suppression de ce message ?');"
                         >
-                            <!-- Campo CSRF -->
-                            <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
 
                             <button
                                 class="messages-admin__button messages-admin__button--danger"

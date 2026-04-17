@@ -10,39 +10,39 @@ $assetBase = 'public/assets/images';
 $galleryImages = [
     [
         'src' => $assetBase . '/img51.webp',
-        'alt' => 'Fournier roux 51'
+        'alt' => 'Fournier roux perché sur une branche, plumage brun-roux visible'
     ],
     [
         'src' => $assetBase . '/img52.webp',
-        'alt' => 'Fournier roux 52'
+        'alt' => 'Fournier roux de profil sur une branche avec fond naturel flou'
     ],
     [
         'src' => $assetBase . '/img53.webp',
-        'alt' => 'Fournier roux 53'
+        'alt' => 'Fournier roux observant son environnement depuis une branche'
     ],
     [
         'src' => $assetBase . '/img54.webp',
-        'alt' => 'Fournier roux 54'
+        'alt' => 'Fournier roux en train de se poser sur une branche'
     ],
     [
         'src' => $assetBase . '/img55.webp',
-        'alt' => 'Fournier roux 55'
+        'alt' => 'Fournier roux perché sur une branche avec végétation en arrière-plan'
     ],
     [
         'src' => $assetBase . '/img56.webp',
-        'alt' => 'Fournier roux 56'
+        'alt' => 'Fournier roux sur une branche, regard tourné vers la droite'
     ],
     [
         'src' => $assetBase . '/img58.webp',
-        'alt' => 'Fournier roux 58'
+        'alt' => 'Fournier roux près de son nid en terre en forme de four'
     ],
     [
         'src' => $assetBase . '/img59.webp',
-        'alt' => 'Fournier roux 59'
+        'alt' => 'Fournier roux perché avec fond naturel verdoyant'
     ],
     [
         'src' => $assetBase . '/img60.webp',
-        'alt' => 'Fournier roux 60'
+        'alt' => 'Fournier roux sur une branche avec plumage brun-roux bien visible'
     ],
 ];
 
@@ -81,7 +81,7 @@ $audioTracks = [
      composée d’images, de vidéos et d’enregistrements audio
      ========================= -->
 
-<main class="page-galerie">
+<main id="main-content" class="page-galerie">
 
     <!-- =========================
          EN-TÊTE DE LA GALERIE

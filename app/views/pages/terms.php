@@ -4,7 +4,7 @@
      Cette page définit les règles d’utilisation du site
      ========================= -->
 
-<main class="page-legale page-legale--cgu">
+<main id="main-content" class="page-legale page-legale--cgu">
 
     <!-- =========================
          TITRE PRINCIPAL

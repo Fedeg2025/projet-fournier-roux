@@ -4,7 +4,7 @@
      relatives à l’éditeur du site et à son fonctionnement
      ========================= -->
 
-<main class="page-legale page-legale--mentions">
+<main id="main-content" class="page-legale page-legale--mentions">
     <!-- =========================
          TITRE PRINCIPAL
          ========================= -->

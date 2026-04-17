@@ -4,7 +4,7 @@
      que la page demandée est introuvable
      ========================= -->
 
-<main class="page-erreur">
+<main id="main-content" class="page-erreur">
     <!-- Titre principal de la page -->
     <h1 class="page-erreur__title">Erreur 404</h1>
 

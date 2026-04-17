@@ -19,6 +19,13 @@
 </head>
 
 <body>
+
+<!-- =========================
+     LIEN D’ACCÈS RAPIDE
+     Permet de sauter directement au contenu principal
+     ========================= -->
+<a href="#main-content" class="skip-link">Aller au contenu</a>
+
 <div class="structure-site">
 
 <header class="entete-site">

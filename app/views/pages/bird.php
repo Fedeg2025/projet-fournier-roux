@@ -4,7 +4,7 @@
      culturels et symboliques autour du Fournier roux
      ========================= -->
 
-<main class="page-oiseau">
+<main id="main-content" class="page-oiseau">
     <article class="page-oiseau__article">
         <!-- =========================
              EN-TÊTE DE LA PAGE

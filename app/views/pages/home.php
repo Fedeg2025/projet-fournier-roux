@@ -4,7 +4,7 @@
      le Fournier roux et une galerie d’images
      ========================= -->
 
-<main class="accueil-page">
+<main id="main-content" class="accueil-page">
   <h1 class="visually-hidden">Accueil - Association Les Fourniers roux</h1>
 
   <?php if (isset($_GET['message']) && $_GET['message'] === 'demande_envoyee'): ?>

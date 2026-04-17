@@ -74,7 +74,6 @@ function getMainImage(array $medias): ?array
                         </a>
 
                         <form method="POST" onsubmit="return confirm('Supprimer cet article ?');">
-                            <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
                             <input
                                 type="hidden"
                                 name="delete_article"

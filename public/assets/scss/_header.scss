@@ -12,11 +12,6 @@
   overflow: hidden;
 }
 
-/* ANCIEN BLOC, PLUS UTILISÉ */
-.entete-site__haut {
-  display: none;
-}
-
 /* BARRE SUPÉRIEURE */
 .entete-site__barre {
   display: flex;
@@ -183,7 +178,7 @@
   padding: 0 $space-xl $space-xl $space-xl;
   background: $color-bg-soft;
 
-  &.active {
+  &.is-open {
     display: flex;
   }
 

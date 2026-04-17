@@ -42,21 +42,5 @@
             <?php endforeach; ?>
         </div>
 
-        <!-- =========================
-             PAGINATION
-             ========================= -->
-        <?php if (!empty($totalUserPages) && $totalUserPages > 1): ?>
-            <div class="utilisateurs-admin__pagination">
-                <?php for ($i = 1; $i <= $totalUserPages; $i++): ?>
-                    <a
-                        class="utilisateurs-admin__pagination-link"
-                        href="index.php?page=admin&section=utilisateurs&user_page=<?php echo $i; ?>&search=<?php echo urlencode($search ?? ''); ?>&letter=<?php echo urlencode($letter ?? ''); ?>"
-                    >
-                        <?php echo $i; ?>
-                    </a>
-                <?php endfor; ?>
-            </div>
-        <?php endif; ?>
-
     <?php endif; ?>
 </section>

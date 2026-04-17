@@ -218,6 +218,9 @@ cd <NOM_DU_PROJET>
 ### 2) Configurer la base de données
 
 Les identifiants de connexion sont externalisés dans un fichier de configuration pour des raisons de sécurité.
+Ce choix permet d’éviter d’exposer des informations sensibles (identifiants de base de données) dans le dépôt Git.
+
+En environnement local, la configuration est adaptée au contexte de développement. En production, il est recommandé d’utiliser un utilisateur dédié avec des privilèges limités et un mot de passe sécurisé.
 
 1. Copier le fichier :
 

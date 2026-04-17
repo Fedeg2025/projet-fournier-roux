@@ -5,7 +5,7 @@
      ainsi que de supprimer directement son compte
      ========================= -->
 
-<main class="page-profil">
+<main id="main-content" class="page-profil">
     <h1 class="page-profil__title">Mon profil</h1>
 
     <!-- =========================
@@ -36,12 +36,6 @@
              FORMULAIRE DE MISE À JOUR DU PROFIL
              ========================= -->
         <form class="formulaire-profil" method="POST" action="index.php?page=profil">
-            <input
-                type="hidden"
-                name="csrf_token"
-                value="<?php echo htmlspecialchars($_SESSION['csrf_token'] ?? ''); ?>"
-            >
-
             <div class="formulaire-profil__group">
                 <label class="formulaire-profil__label" for="nom">Nom :</label>
                 <input
@@ -107,12 +101,6 @@
             </p>
 
             <form class="formulaire-suppression-profil" method="POST" action="index.php?page=profil">
-                <input
-                    type="hidden"
-                    name="csrf_token"
-                    value="<?php echo htmlspecialchars($_SESSION['csrf_token'] ?? ''); ?>"
-                >
-
                 <input
                     type="hidden"
                     name="action"

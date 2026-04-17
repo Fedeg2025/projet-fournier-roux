@@ -45,37 +45,23 @@ $images = [
 
 ?>
 
-<!-- =========================
-     PAGE CONSTRUCTION DU NID
-     Cette vue présente le processus
-     de construction du nid du Fournier roux
-     ========================= -->
-
 <main id="main-content" class="page-nid">
     <article class="contenu-nid">
 
-        <!-- =========================
-             EN-TÊTE DE LA PAGE
-             ========================= -->
         <header class="contenu-nid__entete">
             <h1>Construction du nid du fournier roux</h1>
         </header>
 
-        <!-- =========================
-             IMAGE PRINCIPALE
-             ========================= -->
+        <!-- IMAGE PRINCIPALE -->
         <section class="contenu-nid__image-principale">
             <figure class="contenu-nid__figure">
                 <img
                     src="<?php echo htmlspecialchars($galleryWebPath . '/nid8.webp'); ?>"
-                    alt="Fournier roux devant son nid"
+                    alt="Fournier roux en train de construire son nid en argile, structure en forme de four"
                 >
             </figure>
         </section>
 
-        <!-- =========================
-             PRÉSENTATION GÉNÉRALE
-             ========================= -->
         <section class="carte-nid">
             <h2>Comment le fournier construit son nid</h2>
 
@@ -96,11 +82,7 @@ $images = [
             </p>
         </section>
 
-        <!-- =========================
-             GALERIE / SLIDER
-             Cette section présente les différentes étapes
-             de la construction du nid
-             ========================= -->
+        <!-- GALERIE -->
         <section id="galerie-nid" class="section-nid section-nid--galerie">
             <h2>L’incroyable processus de construction du nid</h2>
 
@@ -112,7 +94,7 @@ $images = [
                         <div class="curseur-nid__diapositive">
                             <img
                                 src="<?php echo htmlspecialchars($imageUrl); ?>"
-                                alt="Étape <?php echo htmlspecialchars((string) ($index + 1)); ?> de la construction du nid"
+                                alt="Fournier roux à l’intérieur de son nid en construction, vue rapprochée de la structure en argile"
                                 loading="lazy"
                             >
                         </div>
@@ -121,15 +103,9 @@ $images = [
             </div>
         </section>
 
-        <!-- =========================
-             INFORMATIONS COMPLÉMENTAIRES
-             ========================= -->
         <section class="section-nid section-nid--processus">
             <div class="section-nid__cartes">
 
-                <!-- =========================
-                     DURÉE ET CONSTRUCTION
-                     ========================= -->
                 <article class="carte-nid">
                     <h3>Durée et construction</h3>
 
@@ -150,9 +126,6 @@ $images = [
                     </p>
                 </article>
 
-                <!-- =========================
-                     PARTICULARITÉS DU NID
-                     ========================= -->
                 <article class="carte-nid">
                     <h3>Particularités du nid</h3>
 

@@ -1,18 +1,10 @@
-<?php
-// =========================
-// RÉCUPÉRATION DU TOKEN CSRF
-// Ce token est utilisé pour sécuriser le formulaire de connexion
-// =========================
-$csrfToken = $_SESSION['csrf_token'] ?? '';
-?>
-
 <!-- =========================
      PAGE DE CONNEXION
      Cette vue permet à l’utilisateur
      d’accéder à son compte
      ========================= -->
 
-<main class="page-authentification page-authentification--connexion">
+<main id="main-content" class="page-authentification page-authentification--connexion">
     <section class="contenu-authentification">
         <div class="contenu-authentification__inner">
 
@@ -25,12 +17,6 @@ $csrfToken = $_SESSION['csrf_token'] ?? '';
                 </div>
             <?php endif; ?>
 
-            <?php if (isset($_GET['error']) && $_GET['error'] === 'compte_en_suppression'): ?>
-                <div class="message-authentification message-authentification--error" role="alert" aria-live="polite">
-                    Votre compte est en cours de suppression. Vous ne pouvez plus vous connecter.
-                </div>
-            <?php endif; ?>
-
             <!-- MESSAGE DE SUCCÈS -->
             <?php if (!empty($succes)): ?>
                 <div class="message-authentification message-authentification--success" role="alert" aria-live="polite">
@@ -39,10 +25,7 @@ $csrfToken = $_SESSION['csrf_token'] ?? '';
             <?php endif; ?>
 
             <!-- FORMULAIRE -->
-            <form class="formulaire-authentification" method="POST" action="index.php?page=login" novalidate>
-
-                <!-- TOKEN CSRF -->
-                <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrfToken); ?>">
+            <form class="formulaire-authentification" method="POST" action="index.php?page=login">
 
                 <!-- EMAIL -->
                 <div class="formulaire-authentification__group">

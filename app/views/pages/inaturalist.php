@@ -5,7 +5,7 @@
      via l’API iNaturalist
      ========================= -->
 
-<main class="page-inaturalist">
+<main id="main-content" class="page-inaturalist">
 
     <!-- =========================
          EN-TÊTE DE LA PAGE

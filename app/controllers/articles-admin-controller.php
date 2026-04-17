@@ -20,7 +20,7 @@ function addImagesToArticle(PDO $pdo, int $articleId, string &$errorMessage = ''
     $uploadDirectory = BASE_PATH . '/public/uploads/';
 
     if (!is_dir($uploadDirectory)) {
-        if (!mkdir($uploadDirectory, 0777, true)) {
+        if (!mkdir($uploadDirectory, 0755, true)) {
             $errorMessage = 'Impossible de créer le dossier uploads.';
             return false;
         }
@@ -57,6 +57,18 @@ function addImagesToArticle(PDO $pdo, int $articleId, string &$errorMessage = ''
 
         if (!in_array($extension, $allowedExtensions, true)) {
             $errorMessage = 'Un format d’image n’est pas autorisé.';
+            return false;
+        }
+
+        // =========================
+        // VÉRIFICATION DE L’IMAGE
+        // Cette vérification permet de s’assurer
+        // que le fichier envoyé est bien une image valide
+        // =========================
+        $imageInfo = getimagesize($_FILES['images']['tmp_name'][$index]);
+
+        if ($imageInfo === false) {
+            $errorMessage = 'Le fichier envoyé n’est pas une image valide.';
             return false;
         }
 

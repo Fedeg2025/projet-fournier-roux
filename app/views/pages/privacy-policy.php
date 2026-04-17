@@ -4,7 +4,7 @@
      sur la gestion de leurs données personnelles
      ========================= -->
 
-<main class="page-legale page-legale--confidentialite">
+<main id="main-content" class="page-legale page-legale--confidentialite">
 
     <!-- =========================
          TITRE PRINCIPAL

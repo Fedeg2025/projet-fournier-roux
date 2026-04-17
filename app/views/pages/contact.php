@@ -1,19 +1,10 @@
-<?php
-// =========================
-// RÉCUPÉRATION DU TOKEN CSRF
-// Ce token est utilisé pour sécuriser le formulaire
-// de contact
-// =========================
-$csrfToken = $_SESSION['csrf_token'] ?? '';
-?>
-
 <!-- =========================
      PAGE CONTACT
      Cette vue affiche le formulaire de contact
      ainsi que les informations de contact de l’association
      ========================= -->
 
-<main class="page-contact page-authentification">
+<main id="main-content" class="page-contact page-authentification">
     <section class="contenu-authentification">
         <div class="contenu-authentification__inner">
             <h1>Contactez-nous</h1>
@@ -40,9 +31,6 @@ $csrfToken = $_SESSION['csrf_token'] ?? '';
                  FORMULAIRE DE CONTACT
                  ========================= -->
             <form class="formulaire-authentification" method="POST" action="index.php?page=contact">
-
-                <!-- TOKEN CSRF -->
-                <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrfToken); ?>">
 
                 <!-- =========================
                      CHOIX DE CIVILITÉ
