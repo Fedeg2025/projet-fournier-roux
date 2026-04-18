@@ -161,15 +161,27 @@ main:not(.page-profil):not(.tableau-bord-admin):not(.page-authentification) h2 {
   top: 1rem;
 }
 
+/* Cache le focus par défaut souris */
 *:focus {
   outline: none;
 }
 
+/* Focus visible navigation clavier JS */
 .user-is-tabbing a:focus,
 .user-is-tabbing button:focus,
 .user-is-tabbing input:focus,
 .user-is-tabbing textarea:focus,
 .user-is-tabbing select:focus {
+  outline: 3px solid #8b3d0f;
+  outline-offset: 3px;
+}
+
+/* Sécurité moderne : focus visible natif */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
   outline: 3px solid #8b3d0f;
   outline-offset: 3px;
 }
