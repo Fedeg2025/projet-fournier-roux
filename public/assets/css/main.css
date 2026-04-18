@@ -2982,7 +2982,7 @@ body.lightbox-open {
 ========================= */
 .page-article {
   width: 100%;
-  padding: 20px;
+  padding: 0;
   background-color: #DDD1C4;
   color: #111111;
   font-family: "Luciole", Arial, sans-serif;
@@ -2999,7 +2999,7 @@ body.lightbox-open {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 22px;
+  padding: 20px;
   background-color: #ffffff;
   border: 1px solid #c8beb4;
   border-radius: 12px;
@@ -3015,22 +3015,32 @@ body.lightbox-open {
   font-weight: 700;
   line-height: 1.1;
   color: #8b3d0f;
+  overflow-wrap: break-word;
 }
 
 /* =========================
-   IMAGE
+   IMAGES DE L’ARTICLE
 ========================= */
+.page-article__images {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
 .page-article__image-wrapper {
   width: 100%;
   border-radius: 10px;
   overflow: hidden;
   background-color: #efefef;
+  border: 1px solid #c8beb4;
 }
 
 .page-article__image {
   display: block;
   width: 100%;
   height: auto;
+  max-height: 420px;
+  object-fit: cover;
 }
 
 /* =========================
@@ -4150,6 +4160,18 @@ body.lightbox-open {
   color: #8e2d23;
 }
 
+.formulaire-article-admin__alts {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.formulaire-article-admin__alt-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 /* =========================
    RESPONSIVE - PAGE GALERIE
 ========================= */
@@ -5041,6 +5063,23 @@ body.lightbox-open {
   }
   .gestion-media-admin__preview {
     width: 200px;
+  }
+}
+/* =========================
+   RESPONSIVE - PAGE ARTICLE
+========================= */
+@media (min-width: 801px) {
+  .page-article__images {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+  .page-article__image-wrapper {
+    height: 260px;
+  }
+  .page-article__image {
+    height: 100%;
+    max-height: none;
   }
 }
 /* =========================

@@ -46,6 +46,7 @@
                         <div class="gestion-media-admin__info">
                             <p><strong>ID :</strong> <?php echo (int) $media['id_media']; ?></p>
                             <p><strong>Fichier :</strong> <?php echo htmlspecialchars($media['nom_fichier']); ?></p>
+                            <p><strong>Texte alternatif :</strong> <?php echo !empty($media['alt_text']) ? htmlspecialchars($media['alt_text']) : 'Aucun texte alternatif'; ?></p>
                             <p><strong>Date :</strong> <?php echo htmlspecialchars($media['date_upload']); ?></p>
                             <p><strong>Type :</strong> <?php echo htmlspecialchars($media['type_media']); ?></p>
                             <p><strong>Utilisation :</strong> <?php echo (int) $media['usage_count']; ?> article(s)</p>

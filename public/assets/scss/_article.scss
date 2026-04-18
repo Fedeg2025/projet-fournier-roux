@@ -4,7 +4,7 @@
 
 .page-article {
   width: 100%;
-  padding: $space-4xl;
+  padding: 0;
   background-color: $color-bg-main;
   color: $color-text-main;
   font-family: $font-main;
@@ -22,7 +22,7 @@
   display: flex;
   flex-direction: column;
   gap: $space-4xl;
-  padding: $space-5xl;
+  padding: $space-4xl;
   background-color: $color-white;
   border: 1px solid $color-border-soft;
   border-radius: $radius-lg;
@@ -39,23 +39,33 @@
   font-weight: $font-weight-bold;
   line-height: $line-height-tight;
   color: $color-primary;
+  overflow-wrap: break-word;
 }
 
 /* =========================
-   IMAGE
+   IMAGES DE L’ARTICLE
 ========================= */
+
+.page-article__images {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2xl;
+}
 
 .page-article__image-wrapper {
   width: 100%;
   border-radius: $radius-md;
   overflow: hidden;
   background-color: $color-bg-soft;
+  border: 1px solid $color-border-soft;
 }
 
 .page-article__image {
   display: block;
   width: 100%;
   height: auto;
+  max-height: 420px;
+  object-fit: cover;
 }
 
 /* =========================

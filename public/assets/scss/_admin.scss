@@ -763,3 +763,15 @@
   border-color: $color-error-border;
   color: $color-error-text;
 }
+
+.formulaire-article-admin__alts {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.formulaire-article-admin__alt-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}

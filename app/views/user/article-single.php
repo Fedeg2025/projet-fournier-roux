@@ -17,7 +17,6 @@
         <!-- =========================
              IMAGES DE L’ARTICLE
              ========================= -->
-             
         <?php if (!empty($medias)): ?>
             <div class="page-article__images">
                 <?php foreach ($medias as $media): ?>
@@ -25,7 +24,7 @@
                         <img
                             class="page-article__image"
                             src="public/uploads/<?php echo htmlspecialchars($media['nom_fichier']); ?>"
-                            alt="Illustration de l’article <?php echo htmlspecialchars($article['titre']); ?>"
+                            alt="<?php echo htmlspecialchars($media['alt_text'] ?? ''); ?>"
                         >
                     </div>
                 <?php endforeach; ?>

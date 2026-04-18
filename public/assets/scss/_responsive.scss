@@ -1097,6 +1097,27 @@
 }
 
 /* =========================
+   RESPONSIVE - PAGE ARTICLE
+========================= */
+
+@include desktop-only {
+  .page-article__images {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: $space-3xl;
+  }
+
+  .page-article__image-wrapper {
+    height: 260px;
+  }
+
+  .page-article__image {
+    height: 100%;
+    max-height: none;
+  }
+}
+
+/* =========================
    RESPONSIVE - PROFIL
 ========================= */
 

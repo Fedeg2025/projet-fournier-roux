@@ -11,11 +11,11 @@
 // Enregistre un média dans la table media
 // et retourne son identifiant
 // =========================
-function createMedia($pdo, $fileName, $mediaType = 'image')
+function createMedia($pdo, $fileName, $mediaType = 'image', $altText = null)
 {
-    $sql = "INSERT INTO media (nom_fichier, type_media) VALUES (?, ?)";
+    $sql = "INSERT INTO media (nom_fichier, type_media, alt_text) VALUES (?, ?, ?)";
     $stmt = $pdo->prepare($sql);
-    $stmt->execute([$fileName, $mediaType]);
+    $stmt->execute([$fileName, $mediaType, $altText]);
 
     return (int) $pdo->lastInsertId();
 }

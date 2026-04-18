@@ -80,8 +80,15 @@ function addImagesToArticle(PDO $pdo, int $articleId, string &$errorMessage = ''
             $errorMessage = 'Impossible d’enregistrer une image dans le dossier uploads.';
             return false;
         }
+        
+        $altText = trim($_POST['alt_texts'][$index] ?? '');
+        $altText = mb_substr($altText, 0, 255);
 
-        $mediaId = createMedia($pdo, $fileName, 'image');
+        if ($altText === '') {
+            $altText = null;
+        }
+
+        $mediaId = createMedia($pdo, $fileName, 'image', $altText);
 
         if (!$mediaId) {
             $errorMessage = 'Une image a été envoyée mais pas enregistrée dans la base de données.';

@@ -21,8 +21,7 @@
         class="formulaire-article-admin__form"
         method="POST"
         action="index.php?page=admin&section=articles"
-        enctype="multipart/form-data"
-    >
+        enctype="multipart/form-data">
 
         <!-- =========================
              ID ARTICLE
@@ -32,8 +31,7 @@
             <input
                 type="hidden"
                 name="id_article"
-                value="<?php echo htmlspecialchars($articleToEdit['id_article']); ?>"
-            >
+                value="<?php echo htmlspecialchars($articleToEdit['id_article']); ?>">
         <?php endif; ?>
 
         <!-- =========================
@@ -47,8 +45,7 @@
                 name="titre"
                 id="titre"
                 required
-                value="<?php echo $articleToEdit ? htmlspecialchars($articleToEdit['titre']) : ''; ?>"
-            >
+                value="<?php echo $articleToEdit ? htmlspecialchars($articleToEdit['titre']) : ''; ?>">
         </div>
 
         <!-- =========================
@@ -61,8 +58,7 @@
                 name="contenu"
                 id="contenu"
                 rows="8"
-                required
-            ><?php echo $articleToEdit ? htmlspecialchars($articleToEdit['contenu']) : ''; ?></textarea>
+                required><?php echo $articleToEdit ? htmlspecialchars($articleToEdit['contenu']) : ''; ?></textarea>
         </div>
 
         <!-- =========================
@@ -84,8 +80,7 @@
                             type="checkbox"
                             name="categories[]"
                             value="<?php echo htmlspecialchars($categoryItem['id_categorie']); ?>"
-                            <?php echo in_array($categoryItem['id_categorie'], $selectedCategories, true) ? 'checked' : ''; ?>
-                        >
+                            <?php echo in_array($categoryItem['id_categorie'], $selectedCategories, true) ? 'checked' : ''; ?>>
                         <span class="formulaire-article-admin__category-name">
                             <?php echo htmlspecialchars($categoryItem['nom']); ?>
                         </span>
@@ -106,11 +101,26 @@
                 name="images[]"
                 id="images"
                 accept="image/jpeg,image/png,image/webp,image/gif"
-                multiple
-            >
+                multiple>
             <p class="formulaire-article-admin__help">
                 Champ optionnel. Vous pouvez sélectionner une ou plusieurs images. Formats acceptés : JPG, PNG, WEBP, GIF.
             </p>
+        </div>
+
+        <!-- =========================
+             TEXTES ALTERNATIFS
+             Champs destinés aux descriptions des images
+             ========================= -->
+        <div class="formulaire-article-admin__group">
+            <p class="formulaire-article-admin__label">Textes alternatifs des images :</p>
+
+            <p class="formulaire-article-admin__help">
+                Ajoutez un texte alternatif pour chaque image sélectionnée afin d’améliorer l’accessibilité.
+            </p>
+
+            <div
+                class="formulaire-article-admin__alts"
+                id="formulaire-article-admin-alts"></div>
         </div>
 
         <!-- =========================
@@ -119,8 +129,7 @@
         <div class="formulaire-article-admin__actions">
             <button
                 class="formulaire-article-admin__button <?php echo $articleToEdit ? 'formulaire-article-admin__button--edit' : 'formulaire-article-admin__button--create'; ?>"
-                type="submit"
-            >
+                type="submit">
                 <?php echo $articleToEdit ? 'Enregistrer les modifications' : 'Créer l’article'; ?>
             </button>
         </div>

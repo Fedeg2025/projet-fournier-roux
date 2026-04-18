@@ -72,6 +72,7 @@
 
 <?php
 $page = $_GET['page'] ?? 'accueil';
+$section = $_GET['section'] ?? '';
 ?>
 
 <?php if ($page === 'accueil'): ?>
@@ -92,8 +93,13 @@ $page = $_GET['page'] ?? 'accueil';
     <script src="public/assets/js/pages/inaturalist.js" defer></script>
 <?php endif; ?>
 
+<?php if ($page === 'admin' && $section === 'articles'): ?>
+    <script src="public/assets/js/pages/admin-article-form.js" defer></script>
+<?php endif; ?>
+
 <script src="public/assets/js/common/accessibility.js" defer></script>
 <script src="public/assets/js/common/scroll-top.js" defer></script>
 
 </body>
+
 </html>
