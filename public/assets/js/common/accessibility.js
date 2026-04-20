@@ -71,9 +71,6 @@ document.addEventListener('DOMContentLoaded', function () {
         burgerBtn.addEventListener('click', function () {
             const isExpanded = burgerBtn.getAttribute('aria-expanded') === 'true';
 
-            burgerBtn.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
-            nav.classList.toggle('is-open');
-
             if (!isExpanded && navLinks.length > 0) {
                 navLinks[0].focus();
             }
@@ -87,8 +84,8 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         document.addEventListener('keydown', function (event) {
-            if (event.key === 'Escape' && nav.classList.contains('is-open')) {
-                nav.classList.remove('is-open');
+            if (event.key === 'Escape' && nav.classList.contains('active')) {
+                nav.classList.remove('active');
                 burgerBtn.setAttribute('aria-expanded', 'false');
                 burgerBtn.focus();
             }

@@ -25,7 +25,7 @@ switch ($page) {
         break;
 
     case 'error':
-        require_once BASE_PATH . '/app/views/pages/error.php';
+        require_once BASE_PATH . '/app/views/error.php';
         break;
 
     // =========================
