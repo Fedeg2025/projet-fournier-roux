@@ -8,12 +8,12 @@
 
 .oiseau-article {
   @include section-container;
-  padding-top: $space-7xl;
+  padding-top: $space-5xl;
 
   &__body {
     display: flex;
     flex-direction: column;
-    gap: $space-5xl;
+    gap: $space-4xl;
     width: 100%;
     min-width: 0;
   }
@@ -21,7 +21,7 @@
   &__main {
     display: flex;
     flex-direction: column;
-    gap: $space-5xl;
+    gap: $space-4xl;
     width: 100%;
     min-width: 0;
   }
@@ -29,7 +29,7 @@
   &__sidebar {
     display: flex;
     flex-direction: column;
-    gap: $space-4xl;
+    gap: $space-3xl;
     width: 100%;
     min-width: 0;
   }
@@ -40,12 +40,12 @@
 ========================= */
 
 .oiseau-article__header {
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
-  align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
   gap: $space-4xl;
-  margin-bottom: $space-6xl;
-  padding: $space-5xl;
+  margin-bottom: $space-5xl;
+  padding: $space-3xl;
   background: linear-gradient(
     135deg,
     rgba($color-white, 0.82) 0%,
@@ -69,8 +69,9 @@
   display: inline-flex;
   align-items: center;
   width: fit-content;
+  max-width: 100%;
   margin: 0;
-  padding: $space-sm $space-3xl;
+  padding: $space-sm $space-2xl;
   border-radius: $radius-pill;
   background: rgba($color-primary, 0.1);
   color: $color-primary;
@@ -83,17 +84,21 @@
 .oiseau-article__title {
   margin: 0;
   color: $color-primary;
-  font-size: $font-size-title;
+  font-size: clamp(2rem, 7vw, $font-size-title);
   font-weight: $font-weight-extrabold;
-  line-height: $line-height-tight;
+  line-height: 1.1;
+  overflow-wrap: break-word;
 }
 
 .oiseau-article__latin {
   margin: 0;
   color: $color-text-soft;
-  font-size: $font-size-lg;
+  font-size: $font-size-base;
   font-weight: $font-weight-medium;
   line-height: $line-height-base;
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: auto;
 
   em {
     font-style: italic;
@@ -118,21 +123,20 @@
   margin: 0;
   width: 100%;
   min-width: 0;
-  min-height: 100%;
 }
 
 .oiseau-article__hero-image {
   display: block;
   width: 100%;
   max-width: 100%;
-  height: clamp(260px, 34vw, 420px);
+  height: clamp(220px, 58vw, 320px);
   object-fit: contain;
   object-position: center;
   border-radius: $radius-xl;
   border: 1px solid rgba($color-border, 0.7);
   box-shadow: $shadow-soft;
   background: $color-white;
-  padding: $space-md;
+  padding: $space-sm;
 }
 
 /* =========================
@@ -142,17 +146,17 @@
 .oiseau-article__section {
   width: 100%;
   min-width: 0;
-  padding: $space-5xl;
+  padding: $space-3xl;
   background: rgba($color-white, 0.68);
   border: 1px solid rgba($color-border-soft, 0.95);
   border-radius: $radius-xl;
   box-shadow: $shadow-soft;
 
   &--with-image {
-    display: grid;
-    grid-template-columns: minmax(0, 1.2fr) minmax(240px, 0.8fr);
-    align-items: start;
-    gap: $space-4xl;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: $space-3xl;
   }
 
   &--info {
@@ -180,13 +184,14 @@
 }
 
 .oiseau-article__subtitle {
-  margin: 0 0 $space-4xl;
-  padding-bottom: $space-md;
+  margin: 0 0 $space-3xl;
+  padding-bottom: $space-sm;
   color: $color-primary;
-  font-size: $font-size-xl;
+  font-size: $font-size-lg;
   font-weight: $font-weight-bold;
   line-height: $line-height-base;
   position: relative;
+  overflow-wrap: break-word;
 
   &::after {
     content: "";
@@ -247,6 +252,7 @@
     font-weight: $font-weight-bold;
     text-transform: uppercase;
     letter-spacing: 0.03em;
+    overflow-wrap: break-word;
   }
 
   dd {
@@ -311,7 +317,7 @@
 .oiseau-article__card {
   width: 100%;
   min-width: 0;
-  padding: $space-4xl;
+  padding: $space-3xl;
   background: rgba($color-white, 0.72);
   border: 1px solid rgba($color-border-soft, 0.9);
   border-radius: $radius-xl;
@@ -343,11 +349,12 @@
 }
 
 .oiseau-article__card-title {
-  margin: 0 0 $space-3xl;
+  margin: 0 0 $space-2xl;
   color: $color-primary;
   font-size: $font-size-lg;
   font-weight: $font-weight-bold;
   line-height: $line-height-base;
+  overflow-wrap: break-word;
 }
 
 .oiseau-article__card-text {
@@ -374,10 +381,10 @@
 }
 
 .oiseau-article__mini-item {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: $space-lg;
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  gap: $space-sm;
+  align-items: flex-start;
   padding-bottom: $space-2xl;
   border-bottom: 1px solid rgba($color-border-soft, 0.7);
   min-width: 0;
@@ -403,7 +410,7 @@
   dd {
     margin: 0;
     min-width: 0;
-    text-align: right;
+    text-align: left;
     color: $color-text-main;
     font-size: $font-size-base;
     font-weight: $font-weight-semibold;

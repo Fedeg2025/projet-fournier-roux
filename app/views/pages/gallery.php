@@ -9,39 +9,39 @@ $assetBase = 'public/assets/images';
 
 $galleryImages = [
     [
-        'src' => $assetBase . '/img51.webp',
+        'src' => $assetBase . '/fournier_roux51.webp',
         'alt' => 'Fournier roux perché sur une branche, plumage brun-roux visible'
     ],
     [
-        'src' => $assetBase . '/img52.webp',
+        'src' => $assetBase . '/fournier_roux52.webp',
         'alt' => 'Fournier roux de profil sur une branche avec fond naturel flou'
     ],
     [
-        'src' => $assetBase . '/img53.webp',
+        'src' => $assetBase . '/fournier_roux53.webp',
         'alt' => 'Fournier roux observant son environnement depuis une branche'
     ],
     [
-        'src' => $assetBase . '/img54.webp',
+        'src' => $assetBase . '/fournier_roux54.webp',
         'alt' => 'Fournier roux en train de se poser sur une branche'
     ],
     [
-        'src' => $assetBase . '/img55.webp',
+        'src' => $assetBase . '/fournier_roux55.webp',
         'alt' => 'Fournier roux perché sur une branche avec végétation en arrière-plan'
     ],
     [
-        'src' => $assetBase . '/img56.webp',
+        'src' => $assetBase . '/fournier_roux56.webp',
         'alt' => 'Fournier roux sur une branche, regard tourné vers la droite'
     ],
     [
-        'src' => $assetBase . '/img58.webp',
+        'src' => $assetBase . '/fournier_roux58.webp',
         'alt' => 'Fournier roux près de son nid en terre en forme de four'
     ],
     [
-        'src' => $assetBase . '/img59.webp',
+        'src' => $assetBase . '/fournier_roux59.webp',
         'alt' => 'Fournier roux perché avec fond naturel verdoyant'
     ],
     [
-        'src' => $assetBase . '/img60.webp',
+        'src' => $assetBase . '/fournier_roux60.webp',
         'alt' => 'Fournier roux sur une branche avec plumage brun-roux bien visible'
     ],
 ];

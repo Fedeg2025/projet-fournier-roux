@@ -21,7 +21,7 @@
     <?php if (empty($medias)): ?>
         <p class="gestion-media-admin__empty">Aucun média trouvé.</p>
     <?php else: ?>
-        <form method="POST" action="index.php?page=admin&section=medias">
+        <form method="POST" action="index.php?page=admin&section=medias" class="gestion-media-admin__form">
             <div class="gestion-media-admin__list">
                 <?php foreach ($medias as $media): ?>
                     <div class="gestion-media-admin__item">
