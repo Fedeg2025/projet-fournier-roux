@@ -4314,7 +4314,212 @@ body.lightbox-open {
   }
 }
 /* =========================
-   RESPONSIVE - PAGE NID
+   PAGE NID - STYLES GÉNÉRAUX
+========================= */
+.page-nid {
+  background: #DDD1C4;
+  color: #111111;
+  font-family: "Luciole", Arial, sans-serif;
+}
+.page-nid h1,
+.page-nid h2,
+.page-nid h3 {
+  color: #8b3d0f;
+}
+
+.contenu-nid {
+  max-width: 1100px;
+  margin: 10px auto;
+  padding: 0 20px 40px 20px;
+  max-width: 900px;
+}
+
+.contenu-nid__entete {
+  text-align: center;
+  margin-bottom: 24px;
+}
+.contenu-nid__entete h1 {
+  padding-top: 18px;
+  padding-bottom: 18px;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.contenu-nid__image-principale {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto 24px;
+}
+
+.contenu-nid__figure {
+  width: 100%;
+  max-width: 920px;
+  margin: 0;
+}
+.contenu-nid__figure img {
+  display: block;
+  width: 100%;
+  max-width: 920px;
+  height: auto;
+  border-radius: 6px;
+}
+
+.section-nid {
+  max-width: 700px;
+  margin: 0 auto 24px;
+}
+
+.section-nid__schema {
+  text-align: center;
+}
+.section-nid__schema img {
+  display: block;
+  width: 120px;
+  margin: 0 auto;
+}
+
+.section-nid__cartes {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.carte-nid {
+  background: rgba(255, 255, 255, 0.45);
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+/* =========================
+   CURSEUR - STYLES DE BASE
+========================= */
+.curseur-nid {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.curseur-nid__piste {
+  display: flex;
+  width: 100%;
+  transition: transform 0.35s ease;
+  will-change: transform;
+}
+
+.curseur-nid__diapositive {
+  flex: 0 0 100%;
+  min-width: 100%;
+}
+.curseur-nid__diapositive img {
+  display: block;
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 10px;
+}
+
+.curseur-nid__fleche {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border: none;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #111111;
+  font-size: 22px;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+
+.curseur-nid__fleche--precedente {
+  left: 12px;
+}
+
+.curseur-nid__fleche--suivante {
+  right: 12px;
+}
+
+/* =========================
+   VERSION MOBILE / TABLETTE
+========================= */
+@media (max-width: 751px) {
+  .page-nid {
+    width: 100%;
+    max-width: none;
+  }
+  .page-nid .contenu-nid {
+    width: 100%;
+    max-width: none;
+    padding-left: 12px;
+    padding-right: 12px;
+    box-sizing: border-box;
+  }
+  .page-nid .contenu-nid__entete h1 {
+    font-size: clamp(2rem, 7vw, 3rem);
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+  .page-nid .section-nid,
+  .page-nid .carte-nid,
+  .page-nid #galerie-nid,
+  .page-nid .contenu-nid__image-principale,
+  .page-nid .contenu-nid__figure {
+    width: 100%;
+    max-width: none;
+    box-sizing: border-box;
+  }
+  .page-nid .contenu-nid__figure {
+    margin: 0;
+  }
+  .page-nid .contenu-nid__figure img {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+  }
+  .page-nid .carte-nid {
+    width: 100%;
+    max-width: none;
+    padding: 18px;
+  }
+  .page-nid .curseur-nid__diapositive img {
+    width: 100%;
+    height: auto;
+    max-height: none;
+    object-fit: contain;
+    object-position: center;
+  }
+  .page-nid .curseur-nid__fleche {
+    width: calc(42px - 6px);
+    height: calc(42px - 6px);
+    font-size: 18px;
+  }
+  .page-nid .curseur-nid__fleche--precedente {
+    left: 8px;
+  }
+  .page-nid .curseur-nid__fleche--suivante {
+    right: 8px;
+  }
+}
+/* =========================
+   VERSION DESKTOP
 ========================= */
 @media (min-width: 752px) {
   .page-nid {
@@ -4352,6 +4557,32 @@ body.lightbox-open {
     max-width: none;
     padding: 22px;
     box-sizing: border-box;
+  }
+  .page-nid .curseur-nid {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+  .page-nid .curseur-nid__piste {
+    display: flex;
+    width: 100%;
+  }
+  .page-nid .curseur-nid__diapositive {
+    flex: 0 0 100%;
+    min-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 620px;
+  }
+  .page-nid .curseur-nid__diapositive img {
+    display: block;
+    width: 100%;
+    max-height: 620px;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+    border-radius: 10px;
   }
 }
 /* =========================
